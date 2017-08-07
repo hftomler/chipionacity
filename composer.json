@@ -1,7 +1,7 @@
 {
     "name": "Chipiona City",
     "description": "Tu webApp de experiencias en Chipiona y Costa Noroeste",
-    "keywords": ["chipiona", "cádiz", "experiencias", "vacaciones"],
+    "keywords": ["chipiona", "cádiz", "experiencias", "vacaciones", "ocio", "deporte", "alojamientos"],
     "homepage": "http://www.chipionacity.es/",
     "type": "project",
     "license": "BSD-3-Clause",
