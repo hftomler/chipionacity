@@ -1,14 +1,12 @@
-Yii 2 Advanced Project Template
-===============================
+Chipiona City. Web online de contratacion de experiencias.
+==========================================================
 
-Yii 2 Advanced Project Template is a skeleton [Yii 2](http://www.yiiframework.com/) application best for
-developing complex Web applications with multiple tiers.
+La principal funcionalidad de la aplicación web es la de ofrecer la contratación anticipada de servicios relacionados con el ocio y tiempo libre. 
 
-The template includes three tiers: front end, back end, and console, each of which
-is a separate Yii application.
+Pondrá a disposición del usuario la posibilidad de contratar y/o reservar online cualquier tipo de servicio disponible en la localidad y Costa Noroeste de la Provincia de Cádiz, desde alquiler de bicicletas hasta contratación de un guía turístico. Ofrecerá una amplísima variedad de servicios de ocio: Formación (clases de tenis, hípica, guitarra, inglés, vela, etc.), turismo tradicional (visita y entrada a los monumentos y museos de la localidad, con o sin guía), turismo medioambiental (rutas de senderismo, rutas en bicicleta, visita a corrales de pesca, visitas guiadas a parque dunar), Deporte (reserva de pistas deportivas, públicas o privadas), Náutica  (salidas en velero) o Restauración (reserva previa en restaurantes).
 
-The template is designed to work in a team development environment. It supports
-deploying the application in different environments.
+En definitiva intentará ofertar, agrupados en una sola web, la gran diversidad de servicios ofrecidos por autónomos, empresas e instituciones y que, en la actualidad, sólo es posible encontrar virtualmente de forma aislada e incluso algunos de ellos sólo de forma presencial.
+
 
 Documentation is at [docs/guide/README.md](docs/guide/README.md).
 
