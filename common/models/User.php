@@ -20,7 +20,18 @@ use yii\web\IdentityInterface;
  * @property integer $created_at
  * @property integer $updated_at
  * @property string $password write-only password
+ * @property string $rol_id
+ * @property string $nombre
+ * @property string $apellidos
+ * @property string $direccion
+ * @property integer $pais_id
+ * @property integer $municipio_id
+ * @property integer $provincia_id
+ * @property char $cpostal
+ * @property date $fecha_nac
+ * @property boolean $proveedor
  */
+
 class User extends ActiveRecord implements IdentityInterface
 {
     const STATUS_DELETED = 0;

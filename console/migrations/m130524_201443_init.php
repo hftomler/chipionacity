@@ -5,13 +5,7 @@ class m130524_201443_init extends Migration
 {
     public function up()
     {
-/*       $this->dropTable('roles');
-        $this->dropTable('usuarios');
-        $this->dropTable('items');
-        $this->dropTable('servicios');
-        $this->dropTable('paquetes');
-        $this->dropTable('lineas_paquetes');
-*/
+
         $tableOptions = null;
         if ($this->db->driverName === 'mysql') {
             // http://stackoverflow.com/questions/766809/whats-the-difference-between-utf8-general-ci-and-utf8-unicode-ci
@@ -19,6 +13,11 @@ class m130524_201443_init extends Migration
         }
 
         // Creo las tablas  e inserto los valores iniciales.
+
+        $this->createTable('paises', [
+            'id'=>$this->primaryKey(),
+            'desc_pais'=>$this->string(255)->notNull()->unique(),
+        ]);
 
         $this->createTable('provincias', [
             'id'=>$this->primaryKey(),
@@ -56,9 +55,8 @@ class m130524_201443_init extends Migration
         $this->insert('roles', [
             'den_rol' => 'Invitado',
         ]);
-        $this->createTable('usuarios', [
+        $this->createTable('user', [
             'id' => $this->primaryKey(),
-            /* Por si se quiere prescindir de la tabla users - eliminar el comentario del bloque
             'username' => $this->string()->notNull()->unique(),
             'auth_key' => $this->string(32)->notNull(),
             'password_hash' => $this->string()->notNull(),
@@ -66,50 +64,64 @@ class m130524_201443_init extends Migration
             'email' => $this->string()->notNull()->unique(),
             'status' => $this->smallInteger()->notNull()->defaultValue(10),
             'created_at' => $this->integer()->notNull(),
-            'updated_at' => $this->integer()->notNull(),*/
-            'user_id'=>$this->integer()->notNull()->unique(),
+            'updated_at' => $this->integer()->notNull(),
             'rol_id'=>$this->integer()->defaultValue(4),
             'nombre' => $this->string(255),
             'apellidos' => $this->string(255),
             'direccion' => $this->string(255),
+            'pais_id'=>$this->integer(),
             'municipio_id' => $this->integer(),
             'cpostal' => $this->char(5),
             'provincia_id' => $this->integer(),
             'fecha_nac'=>$this->date(),
             'proveedor'=>$this->boolean()->defaultValue(false),
         ], $tableOptions);
+
         $this->addForeignKey(
-            'fk_usuarios_roles',
-            'usuarios',
+            'fk_user_roles',
+            'user',
             'rol_id',
             'roles',
             'id',
             'CASCADE'
         );
+
         $this->addForeignKey(
-            'fk_usuarios_provincias',
-            'usuarios',
+            'fk_user_paises',
+            'user',
+            'pais_id',
+            'paises',
+            'id',
+            'CASCADE'
+        );
+
+        $this->addForeignKey(
+            'fk_user_provincias',
+            'user',
             'provincia_id',
             'provincias',
             'id',
             'CASCADE'
         );
+
         $this->addForeignKey(
-            'fk_usuarios_municipios',
-            'usuarios',
+            'fk_user_municipios',
+            'user',
             'municipio_id',
             'municipios',
             'id',
             'CASCADE'
         );
-        $this->addForeignKey(
-            'fk_usuarios_user',
-            'usuarios',
-            'user_id',
-            'user',
-            'id',
-            'CASCADE'
-        );
+
+        // Inserta el usuario SuperAdmin
+        $user = new User();
+        $user->username = 'Admin';
+        $user->email = 'agustin.lorenzi@gmail.com';
+        $user->rol_id = 1;
+        $user->setPassword('123456');
+        $user->generateAuthKey();
+        return $user->save() ? $user : null;
+
         $this->createTable('items', [
             'id'=> $this->primaryKey(),
             'tipo'=> $this->char()->notNull()->defaultValue('S')->check("tipo in('S', 'P')"),
@@ -193,16 +205,18 @@ class m130524_201443_init extends Migration
             'id',
             'CASCADE'
         );
-        // Creo un nuevo usuario Admin
-        $user = new User();
-        $user->username = 'Admin';
-        $user->email = 'agustin.lorenzi@gmail.com';
-        $user->setPassword('123456');
-        $user->generateAuthKey();
-        return $user->save() ? $user : null;
     }
+
     public function down()
     {
-        $this->dropTable('usuarios');
+        $this->dropTable('lineas_paquetes');
+        $this->dropTable('servicios');
+        $this->dropTable('paquetes');
+        $this->dropTable('items');
+        $this->dropTable('usuario');
+        $this->dropTable('user');
+        $this->dropTable('roles');
+        $this->dropTable('municipios');
+        $this->dropTable('provincias');
     }
 }
