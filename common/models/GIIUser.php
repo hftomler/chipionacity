@@ -1,4 +1,5 @@
 <?php
+
 namespace common\models;
 
 use Yii;
@@ -8,27 +9,26 @@ use yii\db\ActiveRecord;
 use yii\web\IdentityInterface;
 
 /**
- * User model
+ * This is the model class for table "user".
  *
  * @property integer $id
  * @property string $username
+ * @property string $auth_key
  * @property string $password_hash
  * @property string $password_reset_token
  * @property string $email
- * @property string $auth_key
  * @property integer $status
  * @property integer $created_at
  * @property integer $updated_at
- * @property string $password write-only password
- * @property string $rol_id
+ * @property integer $rol_id
  * @property string $nombre
  * @property string $apellidos
  * @property string $direccion
  * @property integer $pais_id
  * @property integer $municipio_id
+ * @property string $cpostal
  * @property integer $provincia_id
- * @property char $cpostal
- * @property date $fecha_nac
+ * @property string $fecha_nac
  * @property boolean $proveedor
  *
  * @property Municipios $municipio
@@ -36,12 +36,10 @@ use yii\web\IdentityInterface;
  * @property Provincias $provincia
  * @property Roles $rol
  */
-
-class User extends ActiveRecord implements IdentityInterface
+class User extends \yii\db\ActiveRecord implements IdentityInterface
 {
     const STATUS_DELETED = 0;
     const STATUS_ACTIVE = 10;
-
 
     /**
      * @inheritdoc
@@ -50,6 +48,7 @@ class User extends ActiveRecord implements IdentityInterface
     {
         return '{{%user}}';
     }
+
 
     /**
      * @inheritdoc
@@ -69,7 +68,7 @@ class User extends ActiveRecord implements IdentityInterface
         return [
             ['status', 'default', 'value' => self::STATUS_ACTIVE],
             ['status', 'in', 'range' => [self::STATUS_ACTIVE, self::STATUS_DELETED]],
-            [['username', 'password_hash', 'email'], 'required'],
+            [['username', 'auth_key', 'password_hash', 'email', 'created_at', 'updated_at'], 'required'],
             [['status', 'created_at', 'updated_at', 'rol_id', 'pais_id', 'municipio_id', 'provincia_id'], 'integer'],
             [['fecha_nac'], 'safe'],
             [['proveedor'], 'boolean'],
@@ -85,7 +84,6 @@ class User extends ActiveRecord implements IdentityInterface
             [['rol_id'], 'exist', 'skipOnError' => true, 'targetClass' => Roles::className(), 'targetAttribute' => ['rol_id' => 'id']],
         ];
     }
-
 
     /**
      * @inheritdoc

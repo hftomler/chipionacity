@@ -30,11 +30,6 @@ use yii\web\IdentityInterface;
  * @property char $cpostal
  * @property date $fecha_nac
  * @property boolean $proveedor
- *
- * @property Municipios $municipio
- * @property Paises $pais
- * @property Provincias $provincia
- * @property Roles $rol
  */
 
 class User extends ActiveRecord implements IdentityInterface
@@ -69,82 +64,7 @@ class User extends ActiveRecord implements IdentityInterface
         return [
             ['status', 'default', 'value' => self::STATUS_ACTIVE],
             ['status', 'in', 'range' => [self::STATUS_ACTIVE, self::STATUS_DELETED]],
-            [['username', 'password_hash', 'email'], 'required'],
-            [['status', 'created_at', 'updated_at', 'rol_id', 'pais_id', 'municipio_id', 'provincia_id'], 'integer'],
-            [['fecha_nac'], 'safe'],
-            [['proveedor'], 'boolean'],
-            [['username', 'password_hash', 'password_reset_token', 'email', 'nombre', 'apellidos', 'direccion'], 'string', 'max' => 255],
-            [['auth_key'], 'string', 'max' => 32],
-            [['cpostal'], 'string', 'max' => 5],
-            [['email'], 'unique'],
-            [['password_reset_token'], 'unique'],
-            [['username'], 'unique'],
-            [['municipio_id'], 'exist', 'skipOnError' => true, 'targetClass' => Municipios::className(), 'targetAttribute' => ['municipio_id' => 'id']],
-            [['pais_id'], 'exist', 'skipOnError' => true, 'targetClass' => Paises::className(), 'targetAttribute' => ['pais_id' => 'id']],
-            [['provincia_id'], 'exist', 'skipOnError' => true, 'targetClass' => Provincias::className(), 'targetAttribute' => ['provincia_id' => 'id']],
-            [['rol_id'], 'exist', 'skipOnError' => true, 'targetClass' => Roles::className(), 'targetAttribute' => ['rol_id' => 'id']],
         ];
-    }
-
-
-    /**
-     * @inheritdoc
-     */
-    public function attributeLabels()
-    {
-        return [
-            'id' => 'ID',
-            'username' => 'Username',
-            'auth_key' => 'Auth Key',
-            'password_hash' => 'Password Hash',
-            'password_reset_token' => 'Password Reset Token',
-            'email' => 'Email',
-            'status' => 'Status',
-            'created_at' => 'Created At',
-            'updated_at' => 'Updated At',
-            'rol_id' => 'Rol ID',
-            'nombre' => 'Nombre',
-            'apellidos' => 'Apellidos',
-            'direccion' => 'Direccion',
-            'pais_id' => 'Pais ID',
-            'municipio_id' => 'Municipio ID',
-            'cpostal' => 'Cpostal',
-            'provincia_id' => 'Provincia ID',
-            'fecha_nac' => 'Fecha Nac',
-            'proveedor' => 'Proveedor',
-        ];
-    }
-
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getMunicipio()
-    {
-        return $this->hasOne(Municipios::className(), ['id' => 'municipio_id']);
-    }
-
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getPais()
-    {
-        return $this->hasOne(Paises::className(), ['id' => 'pais_id']);
-    }
-
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getProvincia()
-    {
-        return $this->hasOne(Provincias::className(), ['id' => 'provincia_id']);
-    }
-
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getRol()
-    {
-        return $this->hasOne(Roles::className(), ['id' => 'rol_id']);
     }
 
     /**
