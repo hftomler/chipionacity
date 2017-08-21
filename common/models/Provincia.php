@@ -13,7 +13,7 @@ use Yii;
  * @property Municipios[] $municipios
  * @property User[] $users
  */
-class Provincias extends \yii\db\ActiveRecord
+class Provincia extends \yii\db\ActiveRecord
 {
     /**
      * @inheritdoc
@@ -41,8 +41,8 @@ class Provincias extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id' => 'ID',
-            'desc_provincia' => 'Desc Provincia',
+            'id' => Yii::t('app', 'ID'),
+            'desc_provincia' => Yii::t('app', 'Desc Provincia'),
         ];
     }
 

@@ -31,10 +31,10 @@ use yii\web\IdentityInterface;
  * @property date $fecha_nac
  * @property boolean $proveedor
  *
- * @property Municipios $municipio
- * @property Paises $pais
- * @property Provincias $provincia
- * @property Roles $rol
+ * @property Municipio $municipio
+ * @property Pais $pais
+ * @property Provincia $provincia
+ * @property Rol $rol
  */
 
 class User extends ActiveRecord implements IdentityInterface
@@ -79,10 +79,10 @@ class User extends ActiveRecord implements IdentityInterface
             [['email'], 'unique'],
             [['password_reset_token'], 'unique'],
             [['username'], 'unique'],
-            [['municipio_id'], 'exist', 'skipOnError' => true, 'targetClass' => Municipios::className(), 'targetAttribute' => ['municipio_id' => 'id']],
-            [['pais_id'], 'exist', 'skipOnError' => true, 'targetClass' => Paises::className(), 'targetAttribute' => ['pais_id' => 'id']],
-            [['provincia_id'], 'exist', 'skipOnError' => true, 'targetClass' => Provincias::className(), 'targetAttribute' => ['provincia_id' => 'id']],
-            [['rol_id'], 'exist', 'skipOnError' => true, 'targetClass' => Roles::className(), 'targetAttribute' => ['rol_id' => 'id']],
+            [['municipio_id'], 'exist', 'skipOnError' => true, 'targetClass' => Municipio::className(), 'targetAttribute' => ['municipio_id' => 'id']],
+            [['pais_id'], 'exist', 'skipOnError' => true, 'targetClass' => Pais::className(), 'targetAttribute' => ['pais_id' => 'id']],
+            [['provincia_id'], 'exist', 'skipOnError' => true, 'targetClass' => Provincia::className(), 'targetAttribute' => ['provincia_id' => 'id']],
+            [['rol_id'], 'exist', 'skipOnError' => true, 'targetClass' => Rol::className(), 'targetAttribute' => ['rol_id' => 'id']],
         ];
     }
 
@@ -120,7 +120,7 @@ class User extends ActiveRecord implements IdentityInterface
      */
     public function getMunicipio()
     {
-        return $this->hasOne(Municipios::className(), ['id' => 'municipio_id']);
+        return $this->hasOne(Municipio::className(), ['id' => 'municipio_id']);
     }
 
     /**
@@ -128,7 +128,7 @@ class User extends ActiveRecord implements IdentityInterface
      */
     public function getPais()
     {
-        return $this->hasOne(Paises::className(), ['id' => 'pais_id']);
+        return $this->hasOne(Pais::className(), ['id' => 'pais_id']);
     }
 
     /**
@@ -136,7 +136,7 @@ class User extends ActiveRecord implements IdentityInterface
      */
     public function getProvincia()
     {
-        return $this->hasOne(Provincias::className(), ['id' => 'provincia_id']);
+        return $this->hasOne(Provincia::className(), ['id' => 'provincia_id']);
     }
 
     /**
@@ -144,7 +144,7 @@ class User extends ActiveRecord implements IdentityInterface
      */
     public function getRol()
     {
-        return $this->hasOne(Roles::className(), ['id' => 'rol_id']);
+        return $this->hasOne(Rol::className(), ['id' => 'rol_id']);
     }
 
     /**

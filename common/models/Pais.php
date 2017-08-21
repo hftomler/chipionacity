@@ -12,7 +12,7 @@ use Yii;
  *
  * @property User[] $users
  */
-class Paises extends \yii\db\ActiveRecord
+class Pais extends \yii\db\ActiveRecord
 {
     /**
      * @inheritdoc
@@ -40,8 +40,8 @@ class Paises extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id' => 'ID',
-            'desc_pais' => 'Desc Pais',
+            'id' => Yii::t('app', 'ID'),
+            'desc_pais' => Yii::t('app', 'Desc Pais'),
         ];
     }
 
