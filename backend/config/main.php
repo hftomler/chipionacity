@@ -9,12 +9,25 @@ $params = array_merge(
 return [
     'id' => 'app-backend',
     'basePath' => dirname(__DIR__),
+    'language' => 'es',
     'controllerNamespace' => 'backend\controllers',
     'bootstrap' => ['log'],
     'modules' => [],
     'components' => [
         'request' => [
             'csrfParam' => '_csrf-backend',
+        ],
+        'i18n' => [
+                'translations' => [
+                    'app' => [
+                        'class' => 'yii\i18n\PhpMessageSource',
+                        'sourceLanguage' => 'en',
+                        'fileMap' => [
+                            'app' => 'app.php',
+                            'app/error' => 'error.php',
+                        ],
+                    ],
+                ],
         ],
         'user' => [
             'identityClass' => 'common\models\User',

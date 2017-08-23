@@ -15,6 +15,19 @@ return [
         'request' => [
             'csrfParam' => '_csrf-frontend',
         ],
+        'i18n' => [
+                'translations' => [
+                    'frontend*' => [
+                        'class' => 'yii\i18n\PhpMessageSource',
+                        'basePath' => '@app/config/messages',
+                        //'sourceLanguage' => 'en',
+                        'fileMap' => [
+                            'app' => 'app.php',
+                            'app/error' => 'error.php',
+                        ],
+                    ],
+                ],
+        ],
         'user' => [
             'identityClass' => 'common\models\User',
             'enableAutoLogin' => true,

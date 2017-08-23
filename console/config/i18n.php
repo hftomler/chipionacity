@@ -1,8 +1,7 @@
 <?php
 return [
-    // Usar  "php yii message/extract @common/config/i18n.php" para extraer todas las cadenas
-    'sourcePath' => '/home/hftomler/web/chipionacity',
-    'languages' => ['es-ES'], // Añado los lenguajes alemán, español e inglés
+    'sourcePath' => __DIR__. '..' . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR,
+    'languages' => ['de','es','fr'], // Añado los lenguajes alemán, español e inglés
     'translator' => 'Yii::t',
     'sort' => false,
     'removeUnused' => false,

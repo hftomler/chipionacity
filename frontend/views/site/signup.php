@@ -7,13 +7,13 @@
 use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
 
-$this->title = 'Signup';
+$this->title = Yii::t('frontend', 'Signup');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="site-signup">
     <h1><?= Html::encode($this->title) ?></h1>
 
-    <p>Please fill out the following fields to signup:</p>
+    <p><?= Yii::t('frontend','Please fill out the following fields to signup:') ?></p>
 
     <div class="row">
         <div class="col-lg-5">
@@ -24,6 +24,22 @@ $this->params['breadcrumbs'][] = $this->title;
                 <?= $form->field($model, 'email') ?>
 
                 <?= $form->field($model, 'password')->passwordInput() ?>
+
+                <?= $form->field($model, 'nombre')->textInput(['maxlength' => true]) ?>
+
+                <?= $form->field($model, 'apellidos')->textInput(['maxlength' => true]) ?>
+
+                <?= $form->field($model, 'direccion')->textInput(['maxlength' => true]) ?>
+
+                <?= $form->field($model, 'pais_id')->textInput() ?>
+
+                <?= $form->field($model, 'municipio_id')->textInput() ?>
+
+                <?= $form->field($model, 'provincia_id')->textInput() ?>
+
+                <?= $form->field($model, 'cpostal')->textInput(['maxlength' => true]) ?>
+
+                <?= $form->field($model, 'fecha_nac')->textInput() ?>
 
                 <div class="form-group">
                     <?= Html::submitButton('Signup', ['class' => 'btn btn-primary', 'name' => 'signup-button']) ?>

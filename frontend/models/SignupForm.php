@@ -12,6 +12,14 @@ class SignupForm extends Model
     public $username;
     public $email;
     public $password;
+    public $nombre;
+    public $apellidos;
+    public $direccion;
+    public $pais_id;
+    public $municipio_id;
+    public $provincia_id;
+    public $cpostal;
+    public $fecha_nac;
 
 
     /**
@@ -46,13 +54,21 @@ class SignupForm extends Model
         if (!$this->validate()) {
             return null;
         }
-        
+
         $user = new User();
         $user->username = $this->username;
         $user->email = $this->email;
         $user->setPassword($this->password);
+        $user->nombre = $this->nombre;
+        $user->apellidos = $this->apellidos;
+        $user->direccion = $this->direccion;
+        $user->pais_id = $this->pais_id;
+        $user->municipio_id = $this->municipio_id;
+        $user->provincia_id = $this->provincia_id;
+        $user->cpostal = $this->cpostal;
+        $user->fecha_nac = $this->fecha_nac;
         $user->generateAuthKey();
-        
+
         return $user->save() ? $user : null;
     }
 }
