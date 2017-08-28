@@ -22,12 +22,24 @@ class m130524_201443_init extends Migration
         $this->createTable('provincias', [
             'id'=>$this->primaryKey(),
             'desc_provincia'=>$this->string(25)->notNull()->unique(),
+            'pais_id'=>$this->integer()->notNull(),
         ]);
+
+        $this->addForeignKey(
+            'fk_provincias_paises',
+            'provincias',
+            'paises_id',
+            'paises',
+            'id',
+            'CASCADE'
+        );
+
         $this->createTable('municipios', [
             'id'=>$this->primaryKey(),
             'nombre_municipio'=>$this->string(50)->notNull(),
             'provincia_id'=>$this->integer()->notNull(),
         ]);
+
         $this->addForeignKey(
             'fk_municipios_provincias',
             'municipios',
@@ -36,6 +48,7 @@ class m130524_201443_init extends Migration
             'id',
             'CASCADE'
         );
+
         $this->createTable('roles', [
             'id'=> $this->primaryKey(),
             'den_rol'=> $this->string(50)->notNull()->unique(),
@@ -55,6 +68,7 @@ class m130524_201443_init extends Migration
         $this->insert('roles', [
             'den_rol' => 'Invitado',
         ]);
+
         $this->createTable('user', [
             'id' => $this->primaryKey(),
             'username' => $this->string()->notNull()->unique(),

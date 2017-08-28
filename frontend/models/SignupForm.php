@@ -32,11 +32,13 @@ class SignupForm extends Model
             ['username', 'required'],
             ['username', 'unique', 'targetClass' => '\common\models\User', 'message' => 'This username has already been taken.'],
             ['username', 'string', 'min' => 2, 'max' => 255],
+            [['email', 'nombre', 'apellidos', 'direccion', 'fecha_nac'], 'string', 'max' => 255],
 
+            [['pais_id', 'municipio_id', 'provincia_id'], 'integer'],
+            ['cpostal', 'string', 'max' => 5],
             ['email', 'trim'],
             ['email', 'required'],
             ['email', 'email'],
-            ['email', 'string', 'max' => 255],
             ['email', 'unique', 'targetClass' => '\common\models\User', 'message' => 'This email address has already been taken.'],
 
             ['password', 'required'],
