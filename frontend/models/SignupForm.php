@@ -1,6 +1,7 @@
 <?php
 namespace frontend\models;
 
+use yii;
 use yii\base\Model;
 use common\models\User;
 
@@ -30,16 +31,16 @@ class SignupForm extends Model
         return [
             ['username', 'trim'],
             ['username', 'required'],
-            ['username', 'unique', 'targetClass' => '\common\models\User', 'message' => 'This username has already been taken.'],
+            ['username', 'unique', 'targetClass' => '\common\models\User', 'message' => Yii::t('frontend','This username has already been taken.')],
             ['username', 'string', 'min' => 2, 'max' => 255],
             [['email', 'nombre', 'apellidos', 'direccion', 'fecha_nac'], 'string', 'max' => 255],
-
-            [['pais_id', 'municipio_id', 'provincia_id'], 'integer'],
-            ['cpostal', 'string', 'max' => 5],
             ['email', 'trim'],
             ['email', 'required'],
             ['email', 'email'],
-            ['email', 'unique', 'targetClass' => '\common\models\User', 'message' => 'This email address has already been taken.'],
+            ['email', 'unique', 'targetClass' => '\common\models\User', 'message' => Yii::t('frontend','This email address has already been taken.')],
+
+            [['pais_id', 'municipio_id', 'provincia_id'], 'integer'],
+            ['cpostal', 'string', 'max' => 5],
 
             ['password', 'required'],
             ['password', 'string', 'min' => 6],

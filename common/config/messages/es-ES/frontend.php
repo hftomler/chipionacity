@@ -17,9 +17,11 @@
  * NOTE: this file must be saved in UTF-8 encoding.
  */
 return [
-    'Please fill out the following fields to signup:' => 'Por favor, rellene los siguientes campos para registrarse',
+    'This email address has already been taken.' => 'La dirección de email ya está registrada',
+    'This username has already been taken.' => 'Ese nombre de usuario ya está registrado',
     'Congratulations!' => '¡ Felicidades!',
     'Login' => 'Entrar',
     'Please fill out the following fields to login:' => 'Por favor, rellene los siguientes campos para entrar',
+    'Please fill out the following fields to signup:' => 'Por favor, rellene los siguientes campos para registrarse',
     'Signup' => 'Registrarse',
 ];
