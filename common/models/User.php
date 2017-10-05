@@ -147,6 +147,14 @@ class User extends ActiveRecord implements IdentityInterface
     }
 
     /**
+     * @return static|null
+     */
+    public function getRolId()
+    {
+        return $this->rol_id;
+    }
+
+    /**
      * @inheritdoc
      */
     public static function findIdentity($id)

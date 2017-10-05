@@ -150,6 +150,7 @@ class SiteController extends Controller
     {
         $model = new SignupForm();
 
+        // Activar la validación por AJAX
         if (Yii::$app->request->isAjax && $model ->load($_POST)) {
             Yii::$app->response->format = 'json';
             return \yii\widgets\ActiveForm::validate($model);
