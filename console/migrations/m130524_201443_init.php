@@ -28,7 +28,7 @@ class m130524_201443_init extends Migration
         $this->addForeignKey(
             'fk_provincias_paises',
             'provincias',
-            'paises_id',
+            'pais_id',
             'paises',
             'id',
             'CASCADE'
@@ -57,7 +57,7 @@ class m130524_201443_init extends Migration
             'den_rol' => 'SuperAdmin',
         ]);
         $this->insert('roles', [
-            'den_rol' => 'Administador',
+            'den_rol' => 'Administrador',
         ]);
         $this->insert('roles', [
             'den_rol' => 'Proveedor',
@@ -127,6 +127,53 @@ class m130524_201443_init extends Migration
             'CASCADE'
         );
 
+        $this->createTable('servicios', [
+            'id'=> $this->primaryKey(),
+            'precio'=>$this->decimal()->notNull(),
+            'proveedor_id'=>$this->integer()->notNull(),
+        ], $tableOptions);
+
+        $this->addForeignKey(
+            'fk_servicios_usuarios',
+            'servicios',
+            'proveedor_id',
+            'user',
+            'id',
+            'CASCADE'
+        );
+
+        $this->createTable('pedidos', [
+            'id'=> $this->primaryKey(),
+            'usuario_id'=>$this->integer()->notNull(),
+            'fecha_ped'=>$this->date(),
+            ], $tableOptions);
+
+        $this->addForeignKey(
+            'fk_pedidos_usuarios',
+            'pedidos',
+            'usuario_id',
+            'user',
+            'id',
+            'CASCADE'
+        );
+
+        $this->createTable('lineas_pedido', [
+            'id'=> $this->primaryKey(),
+            'pedido_id'=> $this->integer()->notNull(),
+            'cantidad'=>$this->integer()->notNull(),
+            'precio'=>$this->decimal()->notNull(),
+            'descuento'=>$this->decimal(),
+            'precio_linea'=>$this->decimal()->notNull(),
+        ], $tableOptions);
+        $this->addForeignKey(
+            'fk_lineas_pedidos_pedidos',
+            'lineas_pedido',
+            'pedido_id',
+            'pedidos',
+            'id',
+            'CASCADE'
+        );
+
         // Inserta el usuario SuperAdmin
         $user = new User();
         $user->username = 'Admin';
@@ -136,89 +183,6 @@ class m130524_201443_init extends Migration
         $user->generateAuthKey();
         return $user->save() ? $user : null;
 
-        $this->createTable('items', [
-            'id'=> $this->primaryKey(),
-            'tipo'=> $this->char()->notNull()->defaultValue('S')->check("tipo in('S', 'P')"),
-            'precio'=>$this->decimal()->notNull(),
-        ], $tableOptions);
-        $this->createIndex('idxUniqueIdTipoItems', 'items', 'id, tipo', true);
-        $this->createTable('servicios', [
-            'id'=> $this->primaryKey(),
-            'tipo'=> $this->char()->notNull()->defaultValue('S')->check("tipo='S'"),
-            'precio'=>$this->decimal()->notNull(),
-            'proveedor_id'=>$this->integer()->notNull(),
-        ], $tableOptions);
-        $this->addForeignKey(
-            'fk_servicios_usuarios',
-            'servicios',
-            'proveedor_id',
-            'usuarios',
-            'id',
-            'CASCADE'
-        );
-        $this->addForeignKey(
-            'fk_servicios_tipos',
-            'servicios',
-            ['id', 'tipo'],
-            'items',
-            ['id', 'tipo'],
-            'CASCADE'
-        );
-        $this->addForeignKey(
-            'fk_servicios_tipos_id',
-            'servicios',
-            'id',
-            'items',
-            'id',
-            'CASCADE'
-        );
-        $this->createTable('paquetes', [
-            'id'=> $this->primaryKey(),
-            'tipo'=> $this->char()->notNull()->defaultValue('P')->check("tipo='P'"),
-            'precio'=>$this->decimal()->notNull(),
-            'descuento'=>$this->decimal(),
-        ], $tableOptions);
-        $this->addForeignKey(
-            'fk_paquetes_tipos',
-            'paquetes',
-            ['id', 'tipo'],
-            'items',
-            ['id', 'tipo'],
-            'CASCADE'
-        );
-        $this->addForeignKey(
-            'fk_paquetes_tipos_id',
-            'paquetes',
-            'id',
-            'items',
-            'id',
-            'CASCADE'
-        );
-        $this->createTable('lineas_paquetes', [
-            'id'=> $this->primaryKey(),
-            'paquete_id'=> $this->integer()->notNull(),
-            'servicio_id'=> $this->integer()->notNull(),
-            'cantidad'=>$this->integer()->notNull(),
-            'precio'=>$this->decimal()->notNull(),
-            'descuento'=>$this->decimal(),
-            'precio_linea'=>$this->decimal()->notNull(),
-        ], $tableOptions);
-        $this->addForeignKey(
-            'fk_lineas_paquetes_paquetes',
-            'lineas_paquetes',
-            'paquete_id',
-            'paquetes',
-            'id',
-            'CASCADE'
-        );
-        $this->addForeignKey(
-            'fk_lineas_paquetes_servicios',
-            'lineas_paquetes',
-            'servicio_id',
-            'servicios',
-            'id',
-            'CASCADE'
-        );
     }
 
     public function down()
@@ -227,7 +191,7 @@ class m130524_201443_init extends Migration
         $this->dropTable('servicios');
         $this->dropTable('paquetes');
         $this->dropTable('items');
-        $this->dropTable('usuario');
+        $this->dropTable('user');
         $this->dropTable('user');
         $this->dropTable('roles');
         $this->dropTable('municipios');

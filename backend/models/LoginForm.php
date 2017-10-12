@@ -61,7 +61,7 @@ class LoginForm extends Model
         if ($this->validate()) {
             if ($rolId > 3) {
                 echo 'No tiene permitido el acceso. Su rol = ' . $rolId;
-                die();
+                return false;
             } else {
                 return Yii::$app->user->login($this->getUser(), $this->rememberMe ? 3600 * 24 * 30 : 0);
             }

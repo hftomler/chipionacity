@@ -9,6 +9,9 @@ use yii\bootstrap\NavBar;
 use yii\widgets\Breadcrumbs;
 use frontend\assets\AppAsset;
 use common\widgets\Alert;
+use yii\helpers\Url;
+use yii\bootstrap\Modal;
+
 
 AppAsset::register($this);
 ?>
@@ -42,7 +45,12 @@ AppAsset::register($this);
     ];
     if (Yii::$app->user->isGuest) {
         $menuItems[] = ['label' => 'Signup', 'url' => ['/site/signup']];
-        $menuItems[] = ['label' => 'Login', 'url' => ['/site/login']];
+        $menuItems[] = ['label' => 'Login',
+                        'url' => ['/site/login'],
+                        'linkOptions' => [
+                                            'value' => Url::to('index.php?r=site/login'),
+                                            'id'=>'modalLogin'],
+                       ];
     } else {
         $menuItems[] = '<li>'
             . Html::beginForm(['/site/logout'], 'post')
@@ -67,6 +75,18 @@ AppAsset::register($this);
         <?= Alert::widget() ?>
         <?= $content ?>
     </div>
+    <?php
+        Modal::begin([
+                'header'=>'<h3>Login</h3>',
+                'id'=>'modalLoginContent',
+                'size'=>'modal-md',
+                'footer'=>'<h3>Pié de modal',
+            ]);
+
+        echo "<div id='modalContent'></div>";
+
+        Modal::end();
+    ?>
 </div>
 
 <footer class="footer">
