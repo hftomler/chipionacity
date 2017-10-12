@@ -76,10 +76,11 @@ class m130524_201443_init extends Migration
             'password_hash' => $this->string()->notNull(),
             'password_reset_token' => $this->string()->unique(),
             'email' => $this->string()->notNull()->unique(),
-            'status' => $this->smallInteger()->notNull()->defaultValue(10),
-            'created_at' => $this->integer()->notNull(),
-            'updated_at' => $this->integer()->notNull(),
-            'rol_id'=>$this->integer()->defaultValue(4),
+            'status_id' => $this->smallInteger()->notNull()->defaultValue(10),
+            'created_at' => $this->date()->notNull(),
+            'updated_at' => $this->date()->notNull(),
+            'rol_id'=>$this->integer()->defaultValue(10),
+            'user_type_id'=>$this->integer()->defaultValue(10),
             'nombre' => $this->string(255),
             'apellidos' => $this->string(255),
             'direccion' => $this->string(255),
@@ -176,7 +177,7 @@ class m130524_201443_init extends Migration
 
         // Inserta el usuario SuperAdmin
         $user = new User();
-        $user->username = 'Admin';
+        $user->username = 'admin1';
         $user->email = 'agustin.lorenzi@gmail.com';
         $user->rol_id = 1;
         $user->setPassword('123456');

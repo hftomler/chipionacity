@@ -5,7 +5,9 @@ use Yii;
 use yii\base\NotSupportedException;
 use yii\behaviors\TimestampBehavior;
 use yii\db\ActiveRecord;
+use yii\db\Expression;
 use yii\web\IdentityInterface;
+use yii\helpers\Security;
 
 /**
  * User model
@@ -16,11 +18,12 @@ use yii\web\IdentityInterface;
  * @property string $password_reset_token
  * @property string $email
  * @property string $auth_key
- * @property integer $status
- * @property integer $created_at
- * @property integer $updated_at
+ * @property integer $status_id
+ * @property date $created_at
+ * @property date $updated_at
  * @property string $password write-only password
- * @property string $rol_id
+ * @property integer $rol_id
+ * @property integer $user_type_id
  * @property string $nombre
  * @property string $apellidos
  * @property string $direccion
@@ -48,7 +51,7 @@ class User extends ActiveRecord implements IdentityInterface
      */
     public static function tableName()
     {
-        return '{{%user}}';
+        return 'user';
     }
 
     /**
@@ -57,7 +60,14 @@ class User extends ActiveRecord implements IdentityInterface
     public function behaviors()
     {
         return [
-            TimestampBehavior::className(),
+            'timestamp' => [
+                'class' => 'yii\behaviors\TimestampBehavior',
+                'attributes' => [
+                    ActiveRecord::EVENT_BEFORE_INSERT => ['created_at', 'updated_at'],
+                    ActiveRecord::EVENT_BEFORE_UPDATE => ['updated_at'],
+                ],
+                'value' => new Expression('NOW()'),
+            ],
         ];
     }
 
@@ -67,18 +77,21 @@ class User extends ActiveRecord implements IdentityInterface
     public function rules()
     {
         return [
-            ['status', 'default', 'value' => self::STATUS_ACTIVE],
-            ['status', 'in', 'range' => [self::STATUS_ACTIVE, self::STATUS_DELETED]],
+            ['status_id', 'default', 'value' => self::STATUS_ACTIVE],
+            ['status_id', 'in', 'range' => [self::STATUS_ACTIVE, self::STATUS_DELETED]],
             [['username', 'password_hash', 'email'], 'required'],
-            [['status', 'created_at', 'updated_at', 'rol_id', 'pais_id', 'municipio_id', 'provincia_id'], 'integer'],
+            [['status_id', 'created_at', 'updated_at', 'rol_id', 'user_type_id', 'pais_id', 'municipio_id', 'provincia_id'], 'integer'],
+            ['rol_id', 'default', 'value' => 10],
+            ['user_type_id', 'default', 'value' => 10],
             [['fecha_nac'], 'safe'],
             [['proveedor'], 'boolean'],
             [['username', 'password_hash', 'password_reset_token', 'email', 'nombre', 'apellidos', 'direccion'], 'string', 'max' => 255],
             [['auth_key'], 'string', 'max' => 32],
             [['cpostal'], 'string', 'max' => 5],
-            [['email'], 'unique'],
+            [['email', 'username'], 'unique'],
             [['password_reset_token'], 'unique'],
-            [['username'], 'unique'],
+            [['username', 'email'], 'filter', 'filter' => 'trim'],
+            ['username', 'string', 'min' => 6, 'max' => 255],
             [['municipio_id'], 'exist', 'skipOnError' => true, 'targetClass' => Municipio::className(), 'targetAttribute' => ['municipio_id' => 'id']],
             [['pais_id'], 'exist', 'skipOnError' => true, 'targetClass' => Pais::className(), 'targetAttribute' => ['pais_id' => 'id']],
             [['provincia_id'], 'exist', 'skipOnError' => true, 'targetClass' => Provincia::className(), 'targetAttribute' => ['provincia_id' => 'id']],
@@ -98,10 +111,11 @@ class User extends ActiveRecord implements IdentityInterface
             'password_hash' => 'Password Hash',
             'password_reset_token' => 'Password Reset Token',
             'email' => 'Email',
-            'status' => 'Status',
+            'status_id' => 'Status',
             'created_at' => 'Created At',
             'updated_at' => 'Updated At',
             'rol_id' => 'Rol ID',
+            'user_type_id' => 'Tipo Usuario',
             'nombre' => 'Nombre',
             'apellidos' => 'Apellidos',
             'direccion' => 'Direccion',
@@ -159,7 +173,7 @@ class User extends ActiveRecord implements IdentityInterface
      */
     public static function findIdentity($id)
     {
-        return static::findOne(['id' => $id, 'status' => self::STATUS_ACTIVE]);
+        return static::findOne(['id' => $id, 'status_id' => self::STATUS_ACTIVE]);
     }
 
     /**
@@ -167,7 +181,8 @@ class User extends ActiveRecord implements IdentityInterface
      */
     public static function findIdentityByAccessToken($token, $type = null)
     {
-        throw new NotSupportedException('"findIdentityByAccessToken" is not implemented.');
+        /* throw new NotSupportedException('"findIdentityByAccessToken" is not implemented.');*/
+        return static::findOne(['auth_key' => $token]);
     }
 
     /**
@@ -178,7 +193,7 @@ class User extends ActiveRecord implements IdentityInterface
      */
     public static function findByUsername($username)
     {
-        return static::findOne(['username' => $username, 'status' => self::STATUS_ACTIVE]);
+        return static::findOne(['username' => $username, 'status_id' => self::STATUS_ACTIVE]);
     }
 
     /**
@@ -189,13 +204,17 @@ class User extends ActiveRecord implements IdentityInterface
      */
     public static function findByPasswordResetToken($token)
     {
-        if (!static::isPasswordResetTokenValid($token)) {
+        $expire = Yii::$app->params['user.passwordResetTokenExpire'];
+        $parts = explode('_, $token');
+        $timestamp = (int) end($parts);
+        if ($timestamp + $expire < time()) {
+            //token expired
             return null;
         }
 
         return static::findOne([
             'password_reset_token' => $token,
-            'status' => self::STATUS_ACTIVE,
+            'status_id' => self::STATUS_ACTIVE,
         ]);
     }
 
