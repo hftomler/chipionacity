@@ -7,3 +7,7 @@ drop table "lineas_pedido" cascade;
 drop table "pedidos" cascade;
 drop table "servicios" cascade;
 drop table "migration" cascade;
+drop table "gender" cascade;
+drop table "profile" cascade;
+drop table "status" cascade;
+drop table "user_type" cascade;

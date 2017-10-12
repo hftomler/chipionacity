@@ -3,11 +3,17 @@ namespace common\models;
 
 use Yii;
 use yii\base\NotSupportedException;
-use yii\behaviors\TimestampBehavior;
 use yii\db\ActiveRecord;
 use yii\db\Expression;
 use yii\web\IdentityInterface;
 use yii\helpers\Security;
+use backend\models\Rol;
+use backend\models\Status;
+use backend\models\UserType;
+use frontend\models\Profile;
+use yii\helpers\ArrayHelper;
+use yii\helpers\Url;
+use yii\helpers\Html;
 
 /**
  * User model
@@ -18,31 +24,17 @@ use yii\helpers\Security;
  * @property string $password_reset_token
  * @property string $email
  * @property string $auth_key
+ * @property integer $rol_id
  * @property integer $status_id
  * @property date $created_at
  * @property date $updated_at
  * @property string $password write-only password
- * @property integer $rol_id
- * @property integer $user_type_id
- * @property string $nombre
- * @property string $apellidos
- * @property string $direccion
- * @property integer $pais_id
- * @property integer $municipio_id
- * @property integer $provincia_id
- * @property char $cpostal
- * @property date $fecha_nac
  * @property boolean $proveedor
- *
- * @property Municipio $municipio
- * @property Pais $pais
- * @property Provincia $provincia
  * @property Rol $rol
  */
 
 class User extends ActiveRecord implements IdentityInterface
 {
-    const STATUS_DELETED = 0;
     const STATUS_ACTIVE = 10;
 
 
@@ -78,24 +70,25 @@ class User extends ActiveRecord implements IdentityInterface
     {
         return [
             ['status_id', 'default', 'value' => self::STATUS_ACTIVE],
-            ['status_id', 'in', 'range' => [self::STATUS_ACTIVE, self::STATUS_DELETED]],
-            [['username', 'password_hash', 'email'], 'required'],
-            [['status_id', 'created_at', 'updated_at', 'rol_id', 'user_type_id', 'pais_id', 'municipio_id', 'provincia_id'], 'integer'],
+            ['status_id', 'in', 'range' => array_keys($this->getStatusList())],
+
             ['rol_id', 'default', 'value' => 10],
+            [['rol_id'], 'in', 'range'=>array_keys($this->getRolList())],
+
             ['user_type_id', 'default', 'value' => 10],
-            [['fecha_nac'], 'safe'],
-            [['proveedor'], 'boolean'],
-            [['username', 'password_hash', 'password_reset_token', 'email', 'nombre', 'apellidos', 'direccion'], 'string', 'max' => 255],
-            [['auth_key'], 'string', 'max' => 32],
-            [['cpostal'], 'string', 'max' => 5],
-            [['email', 'username'], 'unique'],
+            [['user_type_id'], 'in', 'range'=>array_keys($this->getUserTypeList())],
+
+            [['password_hash', 'password_reset_token', 'email'], 'string', 'max' => 255],
+
             [['password_reset_token'], 'unique'],
+
             [['username', 'email'], 'filter', 'filter' => 'trim'],
+            [['username', 'email'], 'required'],
             ['username', 'string', 'min' => 6, 'max' => 255],
-            [['municipio_id'], 'exist', 'skipOnError' => true, 'targetClass' => Municipio::className(), 'targetAttribute' => ['municipio_id' => 'id']],
-            [['pais_id'], 'exist', 'skipOnError' => true, 'targetClass' => Pais::className(), 'targetAttribute' => ['pais_id' => 'id']],
-            [['provincia_id'], 'exist', 'skipOnError' => true, 'targetClass' => Provincia::className(), 'targetAttribute' => ['provincia_id' => 'id']],
-            [['rol_id'], 'exist', 'skipOnError' => true, 'targetClass' => Rol::className(), 'targetAttribute' => ['rol_id' => 'id']],
+            ['email', 'email'],
+            [['email', 'username'], 'unique'],
+
+            [['proveedor'], 'boolean'],
         ];
     }
 
@@ -116,57 +109,20 @@ class User extends ActiveRecord implements IdentityInterface
             'updated_at' => 'Updated At',
             'rol_id' => 'Rol ID',
             'user_type_id' => 'Tipo Usuario',
-            'nombre' => 'Nombre',
-            'apellidos' => 'Apellidos',
-            'direccion' => 'Direccion',
-            'pais_id' => 'Pais ID',
-            'municipio_id' => 'Municipio ID',
-            'cpostal' => 'Cpostal',
-            'provincia_id' => 'Provincia ID',
-            'fecha_nac' => 'Fecha Nac',
             'proveedor' => 'Proveedor',
+
+            'rolName' => Yii::t('app', 'Rol'),
+            'statusName' => Yii::t('app', 'Status'),
+            'profileId' => Yii::t('app', 'Profile'),
+            'profileLink' => Yii::t('app', 'Profile'),
+            'userLink' => Yii::t('app', 'User'),
+            'username' => Yii::t('app', 'User'),
+            'userTypeName' => Yii::t('app', 'User Type'),
+            'userTypeId' => Yii::t('app', 'User Type'),
+            'userIdLink' => Yii::t('app', 'ID'),
         ];
     }
 
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getMunicipio()
-    {
-        return $this->hasOne(Municipio::className(), ['id' => 'municipio_id']);
-    }
-
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getPais()
-    {
-        return $this->hasOne(Pais::className(), ['id' => 'pais_id']);
-    }
-
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getProvincia()
-    {
-        return $this->hasOne(Provincia::className(), ['id' => 'provincia_id']);
-    }
-
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getRol()
-    {
-        return $this->hasOne(Rol::className(), ['id' => 'rol_id']);
-    }
-
-    /**
-     * @return static|null
-     */
-    public function getRolId()
-    {
-        return $this->rol_id;
-    }
 
     /**
      * @inheritdoc
@@ -246,6 +202,7 @@ class User extends ActiveRecord implements IdentityInterface
     /**
      * @inheritdoc
      */
+
     public function getAuthKey()
     {
         return $this->auth_key;
@@ -302,5 +259,128 @@ class User extends ActiveRecord implements IdentityInterface
     public function removePasswordResetToken()
     {
         $this->password_reset_token = null;
+    }
+
+    /**
+     * Establecer la relación de User con Rol.
+     * @return \yii\db\ActiveQuery
+     */
+    public function getRol()
+    {
+        return $this->hasOne(Rol::className(), ['rol_value' => 'role_id']);
+    }
+
+    /**
+     * Acceder al nombre del ROl
+     */
+    public function getRolName() {
+        return $this->rol ? $this->rol->rol_name : '- sin rol -';
+    }
+
+    /**
+     * Obtener lista de roles para dropdown
+     */
+    public static function getRolList() {
+        $droptions = Role::find()->asArray()->all();
+        return Arrayhelper::map($droptions, 'rol_value', 'rol_name');
+    }
+
+    /**
+     * Establecer la relación de User con Status.
+     * @return \yii\db\ActiveQuery
+     */
+    public function getStatus()
+    {
+        return $this->hasOne(Status::className(), ['status_value' => 'status_id']);
+    }
+
+    /**
+     * Acceder al nombre del Status
+     */
+    public function getStatusName() {
+        return $this->status ? $this->status->status_name : '- sin status -';
+    }
+
+    /**
+     * Obtener lista de status para dropdown
+     */
+    public static function getStatusList() {
+        $droptions = Status::find()->asArray()->all();
+        return Arrayhelper::map($droptions, 'status_value', 'status_name');
+    }
+
+    /**
+     * Establecer la relación con la tabla Profile
+     * @getProfile
+     */
+    public function getProfile() {
+        return $this->hasOne(Profile::className(), ['user_id' => 'id']);
+    }
+
+    /**
+     * Obtener el ProfileId para este usuario
+     * @getProfileId
+     */
+    public function getProfileId() {
+        return $this->profile ? $this->profile->id : 'ninguno';
+    }
+
+    /**
+     * Obtener el link del Profile
+     * @getProfileLink
+     */
+    public function getProfileLink() {
+        $url = Url::to(['profile/view', 'id'=>$this->profileId]);
+        $options = [];
+        return Html::a($this->profile ? 'profile' : 'ninguno', $url, $options);    
+    }
+
+    /**
+     * Establecer la relación de User con UserType.
+     * @return \yii\db\ActiveQuery
+     */
+    public function getUserType()
+    {
+        return $this->hasOne(UserType::className(), ['user_type_value' => 'user_type_id']);
+    }
+
+    /**
+     * Acceder al nombre del Status
+     */
+    public function getUserTypeName() {
+        return $this->userType ? $this->userType->user_type_name : '- sin tipo de usuario -';
+    }
+
+    /**
+     * Obtener lista de status para dropdown
+     */
+    public static function getUserTypeList() {
+        $droptions = UserType::find()->asArray()->all();
+        return Arrayhelper::map($droptions, 'user_type_value', 'user_type_name');
+    }
+
+    /**
+     * Obtener el id del tipo de usuario
+     */
+    public function getUserTypeId() {
+        return $this->userType ? $this->userType->id : 'ninguno';
+    }
+
+    /**
+    * Obtener el link para el id de usuario
+    */
+    public function getUserIdLink() {
+        $url = Url::to(['user/update', 'id'=>$this->id]);
+        $options = [];
+        return Html::a($this->id, $url, $options);            
+    }
+
+    /**
+    * Obtener el link para el id de usuario
+    */
+    public function getUserLink() {
+        $url = Url::to(['user/view', 'id'=>$this->id]);
+        $options = [];
+        return Html::a($this->username, $url, $options);            
     }
 }

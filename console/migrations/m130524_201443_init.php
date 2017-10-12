@@ -17,13 +17,13 @@ class m130524_201443_init extends Migration
         $this->createTable('paises', [
             'id'=>$this->primaryKey(),
             'desc_pais'=>$this->string(255)->notNull()->unique(),
-        ]);
+        ], $tableOptions);
 
         $this->createTable('provincias', [
             'id'=>$this->primaryKey(),
             'desc_provincia'=>$this->string(25)->notNull()->unique(),
             'pais_id'=>$this->integer()->notNull(),
-        ]);
+        ], $tableOptions);
 
         $this->addForeignKey(
             'fk_provincias_paises',
@@ -38,7 +38,7 @@ class m130524_201443_init extends Migration
             'id'=>$this->primaryKey(),
             'nombre_municipio'=>$this->string(50)->notNull(),
             'provincia_id'=>$this->integer()->notNull(),
-        ]);
+        ], $tableOptions);
 
         $this->addForeignKey(
             'fk_municipios_provincias',
@@ -49,25 +49,62 @@ class m130524_201443_init extends Migration
             'CASCADE'
         );
 
+        $this->createTable('user_type', [
+            'id'=> $this->primaryKey(),
+            'user_type_name'=> $this->string(45)->notNull()->unique(),
+            'user_type_value'=> $this->integer()->notNull(),
+        ], $tableOptions);
+
+        $this->insert('user_type', [
+            'user_type_name' => 'Gratuito',
+            'user_type_value' => '10',
+        ]);
+
+        $this->insert('user_type', [
+            'user_type_name' => 'Suscrito',
+            'user_type_value' => '30',
+        ]);
+
+        $this->createTable('status', [
+            'id'=> $this->primaryKey(),
+            'status_name'=> $this->string(45)->notNull()->unique(),
+            'status_value'=> $this->integer()->notNull(),
+        ], $tableOptions);
+
+        $this->insert('status', [
+            'status_name' => 'Activo',
+            'status_value' => '10',
+        ]);
+        $this->insert('status', [
+            'status_name' => 'Pendiente',
+            'status_value' => '5',
+        ]);
+
+
         $this->createTable('roles', [
             'id'=> $this->primaryKey(),
-            'den_rol'=> $this->string(50)->notNull()->unique(),
+            'rol_name'=> $this->string(45)->notNull()->unique(),
+            'rol_value'=> $this->integer()->notNull(),
         ], $tableOptions);
+
         $this->insert('roles', [
-            'den_rol' => 'SuperAdmin',
+            'rol_name' => 'user',
+            'rol_value' => '10',
         ]);
         $this->insert('roles', [
-            'den_rol' => 'Administrador',
+            'rol_name' => 'admin',
+            'rol_value' => '20',
+        ]);
+        /*
+        $this->insert('roles', [
+            'rol_name' => 'Proveedor',
         ]);
         $this->insert('roles', [
-            'den_rol' => 'Proveedor',
+            'rol_name' => 'Usuario Registrado',
         ]);
         $this->insert('roles', [
-            'den_rol' => 'Usuario Registrado',
-        ]);
-        $this->insert('roles', [
-            'den_rol' => 'Invitado',
-        ]);
+            'rol_name' => 'Invitado',
+        ]);*/
 
         $this->createTable('user', [
             'id' => $this->primaryKey(),
@@ -81,14 +118,6 @@ class m130524_201443_init extends Migration
             'updated_at' => $this->date()->notNull(),
             'rol_id'=>$this->integer()->defaultValue(10),
             'user_type_id'=>$this->integer()->defaultValue(10),
-            'nombre' => $this->string(255),
-            'apellidos' => $this->string(255),
-            'direccion' => $this->string(255),
-            'pais_id'=>$this->integer(),
-            'municipio_id' => $this->integer(),
-            'cpostal' => $this->char(5),
-            'provincia_id' => $this->integer(),
-            'fecha_nac'=>$this->date(),
             'proveedor'=>$this->boolean()->defaultValue(false),
         ], $tableOptions);
 
@@ -102,8 +131,85 @@ class m130524_201443_init extends Migration
         );
 
         $this->addForeignKey(
-            'fk_user_paises',
+            'fk_user_user_type',
             'user',
+            'user_type_id',
+            'user_type',
+            'id',
+            'CASCADE'
+        );
+
+        $this->addForeignKey(
+            'fk_user_status',
+            'user',
+            'status_id',
+            'status',
+            'id',
+            'CASCADE'
+        );
+
+        $this->createTable('gender', [
+            'id'=> $this->primaryKey(),
+            'gender_name'=> $this->string(45)->notNull()->unique(),
+        ], $tableOptions);
+
+        $this->insert('gender', [
+            'gender_name' => 'Hombre',
+        ]);
+
+        $this->insert('gender', [
+            'gender_name' => 'Mujer',
+        ]);
+
+        $this->insert('gender', [
+            'gender_name' => 'Trans',
+        ]);
+
+        $this->insert('gender', [
+            'gender_name' => 'Gay',
+        ]);
+
+        $this->insert('gender', [
+            'gender_name' => 'Lesbiana',
+        ]);
+
+        $this->insert('gender', [
+            'gender_name' => 'Bisexual',
+        ]);
+
+        $this->insert('gender' [
+            'gender_name' => 'Indeterm.',
+        ]);
+
+
+        $this->createTable('profile', [
+            'id'=> $this->primaryKey(),
+            'user_id' => $this->integer(),
+            'nombre' => $this->string(255),
+            'apellidos' => $this->string(255),
+            'gender_id' => $this->integer(),
+            'direccion' => $this->string(255),
+            'pais_id'=>$this->integer(),
+            'municipio_id' => $this->integer(),
+            'cpostal' => $this->char(5),
+            'provincia_id' => $this->integer(),
+            'fecha_nac'=>$this->date(),
+            'created_at' => $this->date()->notNull(),
+            'updated_at' => $this->date()->notNull(),           
+            ], $tableOptions);
+
+        $this->addForeignKey(
+            'fk_profile_gender',
+            'profile',
+            'gender_id',
+            'gender',
+            'id',
+            'CASCADE'
+        );
+
+        $this->addForeignKey(
+            'fk_profile_paises',
+            'profile',
             'pais_id',
             'paises',
             'id',
@@ -111,8 +217,8 @@ class m130524_201443_init extends Migration
         );
 
         $this->addForeignKey(
-            'fk_user_provincias',
-            'user',
+            'fk_profile_provincias',
+            'profile',
             'provincia_id',
             'provincias',
             'id',
@@ -120,10 +226,19 @@ class m130524_201443_init extends Migration
         );
 
         $this->addForeignKey(
-            'fk_user_municipios',
-            'user',
+            'fk_profile_municipios',
+            'profile',
             'municipio_id',
             'municipios',
+            'id',
+            'CASCADE'
+        );
+
+        $this->addForeignKey(
+            'fk_profile_user',
+            'profile',
+            'user_id',
+            'user',
             'id',
             'CASCADE'
         );
@@ -175,14 +290,14 @@ class m130524_201443_init extends Migration
             'CASCADE'
         );
 
-        // Inserta el usuario SuperAdmin
+        /* Inserta el usuario SuperAdmin
         $user = new User();
         $user->username = 'admin1';
         $user->email = 'agustin.lorenzi@gmail.com';
         $user->rol_id = 1;
         $user->setPassword('123456');
         $user->generateAuthKey();
-        return $user->save() ? $user : null;
+        return $user->save() ? $user : null;*/
 
     }
 
