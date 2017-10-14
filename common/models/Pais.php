@@ -8,7 +8,7 @@ use Yii;
  * This is the model class for table "paises".
  *
  * @property integer $id
- * @property string $desc_pais
+ * @property string $nombre_pais
  *
  * @property User[] $users
  */
@@ -28,9 +28,9 @@ class Pais extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['desc_pais'], 'required'],
-            [['desc_pais'], 'string', 'max' => 255],
-            [['desc_pais'], 'unique'],
+            [['nombre_pais'], 'required'],
+            [['nombre_pais'], 'string', 'max' => 255],
+            [['nombre_pais'], 'unique'],
         ];
     }
 
@@ -41,7 +41,7 @@ class Pais extends \yii\db\ActiveRecord
     {
         return [
             'id' => Yii::t('app', 'ID'),
-            'desc_pais' => Yii::t('app', 'Desc Pais'),
+            'nombre_pais' => Yii::t('app', 'Nombre Pais'),
         ];
     }
 

@@ -41,7 +41,7 @@ class Gender extends \yii\db\ActiveRecord
     {
         return [
             'id' => Yii::t('backend', 'ID'),
-            'gender_name' => Yii::t('frontend', 'Gender Name'),
+            'gender_name' => Yii::t('frontend', 'Gender'),
         ];
     }
 

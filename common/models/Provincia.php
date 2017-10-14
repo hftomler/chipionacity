@@ -8,7 +8,7 @@ use Yii;
  * This is the model class for table "provincias".
  *
  * @property integer $id
- * @property string $desc_provincia
+ * @property string $nombre_provincia
  *
  * @property Municipios[] $municipios
  * @property User[] $users
@@ -29,9 +29,9 @@ class Provincia extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['desc_provincia'], 'required'],
-            [['desc_provincia'], 'string', 'max' => 25],
-            [['desc_provincia'], 'unique'],
+            [['nombre_provincia'], 'required'],
+            [['nombre_provincia'], 'string', 'max' => 25],
+            [['nombre_provincia'], 'unique'],
         ];
     }
 
@@ -42,7 +42,7 @@ class Provincia extends \yii\db\ActiveRecord
     {
         return [
             'id' => Yii::t('app', 'ID'),
-            'desc_provincia' => Yii::t('app', 'Desc Provincia'),
+            'nombre_provincia' => Yii::t('app', 'Nombre Provincia'),
         ];
     }
 

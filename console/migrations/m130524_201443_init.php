@@ -16,12 +16,24 @@ class m130524_201443_init extends Migration
 
         $this->createTable('paises', [
             'id'=>$this->primaryKey(),
-            'desc_pais'=>$this->string(255)->notNull()->unique(),
+            'nombre_pais'=>$this->string(255)->notNull()->unique(),
         ], $tableOptions);
+
+        $this->insert('paises', [
+            'nombre_pais' => 'España',
+        ]);
+
+        $this->insert('paises', [
+            'nombre_pais' => 'Alemania',
+        ]);
+
+        $this->insert('paises', [
+            'nombre_pais' => 'Francia',
+        ]);
 
         $this->createTable('provincias', [
             'id'=>$this->primaryKey(),
-            'desc_provincia'=>$this->string(25)->notNull()->unique(),
+            'nombre_provincia'=>$this->string(25)->notNull()->unique(),
             'pais_id'=>$this->integer()->notNull(),
         ], $tableOptions);
 
@@ -33,6 +45,16 @@ class m130524_201443_init extends Migration
             'id',
             'CASCADE'
         );
+
+        $this->insert('provincias', [
+            'nombre_provincia' => 'Cádiz',
+            'pais_id' => 1,
+        ]);
+
+        $this->insert('provincias', [
+            'nombre_provincia' => 'Borgoña',
+            'pais_id' => 3,
+        ]);
 
         $this->createTable('municipios', [
             'id'=>$this->primaryKey(),
@@ -48,6 +70,11 @@ class m130524_201443_init extends Migration
             'id',
             'CASCADE'
         );
+
+        $this->insert('municipios', [
+            'nombre_municipio' => 'Chipiona',
+            'provincia_id' => 1,
+        ]);
 
         $this->createTable('user_type', [
             'id'=> $this->primaryKey(),
@@ -178,7 +205,7 @@ class m130524_201443_init extends Migration
         ]);
 
         $this->insert('gender', [
-            'gender_name' => 'Indeterm.',
+            'gender_name' => 'Intersexual',
         ]);
 
 

@@ -31,31 +31,39 @@ AppAsset::register($this);
 
 <div class="wrap">
     <?php
-    NavBar::begin([
+    /*NavBar::begin([
         'brandLabel' => 'My Company',
         'brandUrl' => Yii::$app->homeUrl,
         'options' => [
             'class' => 'navbar-inverse navbar-fixed-top',
         ],
+    ]);*/
+    NavBar::begin([
+        'brandLabel' => '<img id="logo" src="imagenes/logo.png" alt="logo" height="100">',
+        'brandUrl' => Yii::$app->homeUrl,
+        'options' => [
+           'class' => 'navbar-inverse',
+        ],
     ]);
     $menuItems = [
-        ['label' => 'Home', 'url' => ['/site/index']],
-        ['label' => 'About', 'url' => ['/site/about']],
-        ['label' => 'Contact', 'url' => ['/site/contact']],
+        ['label' => '<span class="glyphicon glyphicon-home"></span><br/>Home', 'url' => ['/site/index']],
+        ['label' => '<span class="glyphicon glyphicon-phone-alt"></span><br/>About', 'url' => ['/site/about']],
+        ['label' => '<span class="glyphicon glyphicon-envelope"></span><br/>Contact', 'url' => ['/site/contact']],
     ];
     if (Yii::$app->user->isGuest) {
-        $menuItems[] = ['label' => 'Signup', 'url' => ['/site/signup']];
-        $menuItems[] = ['label' => 'Login',
+        $menuItems[] = ['label' => '<span class="glyphicon glyphicon-pencil"></span><br/>Signup', 'url' => ['/site/signup']];
+        $menuItems[] = ['label' => '<span class="glyphicon glyphicon-user"></span><br/>Login',
                         'url' => ['/site/login'],
                         'linkOptions' => [
                                             'value' => Url::to('index.php?r=site/login'),
                                             'id'=>'modalLogin'],
                        ];
     } else {
+        $menuItems[] = ['label' => '<span class="glyphicon glyphicon-list-alt"></span><br/>Profile', 'url' => ['/profile/view']];
         $menuItems[] = '<li>'
             . Html::beginForm(['/site/logout'], 'post')
             . Html::submitButton(
-                'Logout (' . Yii::$app->user->identity->username . ')',
+                '<span class="glyphicon glyphicon-off"></span><br/>'  . Yii::$app->user->identity->username,
                 ['class' => 'btn btn-link logout']
             )
             . Html::endForm()
@@ -63,6 +71,7 @@ AppAsset::register($this);
     }
     echo Nav::widget([
         'options' => ['class' => 'navbar-nav navbar-right'],
+        'encodeLabels' => false,
         'items' => $menuItems,
     ]);
     NavBar::end();
@@ -91,7 +100,7 @@ AppAsset::register($this);
 
 <footer class="footer">
     <div class="container">
-        <p class="pull-left">&copy; My Company <?= date('Y') ?></p>
+        <p class="pull-left"><img id="logo" src="imagenes/logo.png" alt="logo" height="35"></p>
 
         <p class="pull-right"><?= Yii::powered() ?></p>
     </div>

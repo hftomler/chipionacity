@@ -38,7 +38,7 @@ Class PermissionHelpers {
 	 * @param mixed $user_type_name
 	 * @return \yii\web\Response
 	*/
-	public static function requireUpgradeTo($user_type_name)) {
+	public static function requireUpgradeTo($user_type_name) {
 		if (Yii::$app->user->identity->user_type_id != 
 			ValueHelpers::getUserTypeValue($user_type_name)) {
 			return Yii::$app->getResponse()->redirect(Url::to(['suscripcion/index']));
