@@ -82,7 +82,7 @@ class User extends ActiveRecord implements IdentityInterface
 
             [['password_reset_token'], 'unique'],
 
-            [['username', 'email'], 'filter', 'filter' => 'trim'],
+            [['username', 'email'], 'trim'],
             [['username', 'email'], 'required'],
             ['username', 'string', 'min' => 6, 'max' => 255],
             ['email', 'email'],
@@ -281,7 +281,7 @@ class User extends ActiveRecord implements IdentityInterface
      * Obtener lista de roles para dropdown
      */
     public static function getRolList() {
-        $droptions = Role::find()->asArray()->all();
+        $droptions = Rol::find()->asArray()->all();
         return Arrayhelper::map($droptions, 'rol_value', 'rol_name');
     }
 

@@ -2,4 +2,5 @@ Dudas:
 
 	- Después del login que me devuelva a la página en la que estaba y no al Home; (goBack() or goHome());
 
-	- 
+	- Contact view: <?php $form = ActiveForm::begin(['id' => 'contact-form']); ?>
+	  Porqué sabe que tiene que usar el ContactForm model?

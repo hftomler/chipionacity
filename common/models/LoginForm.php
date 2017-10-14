@@ -3,6 +3,8 @@ namespace common\models;
 
 use Yii;
 use yii\base\Model;
+use yii\web\NotFoundHttpException;
+use common\models\ValueHelpers;
 
 /**
  * Login form
@@ -55,12 +57,21 @@ class LoginForm extends Model
      */
     public function login()
     {
-        if ($this->validate()) {
+        if ($this->validate() && $this->getUser()->status_id == ValueHelpers::getStatusValue('Activo')) {
             return Yii::$app->user->login($this->getUser(), $this->rememberMe ? 3600 * 24 * 30 : 0);
         } else {
             return false;
         }
     }
+
+    public function loginAdmin() {
+        if (($this->validate()) && $this->getUser()->rol_id >= ValueHelpers::getRolValue('admin') && $this->getUser()->status_id == ValueHelpers::getStatusValue('Activo')) {
+                return Yii::$app->user->login($this->getUser(), $this->rememberMe ? 3600 * 24 * 30 : 0);
+        } else {
+            Yii::$app->session->setFlash('error', 'No tienes acceso a este apartado de la aplicacion');           
+        }
+    }
+
 
     /**
      * Finds user by [[username]]

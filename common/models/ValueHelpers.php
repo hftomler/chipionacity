@@ -17,7 +17,7 @@ Class ValueHelpers {
 		$connection = \Yii::$app->db;
 		$sql = "SELECT rol_value FROM roles WHERE rol_name = :rol_name";
 		$command = $connection->createCommand($sql);
-		$command = bindValue(":rol_name", $rol_name);
+		$command -> bindValue(":rol_name", $rol_name);
 		$result = $command->queryOne();
 
 		return $result['rol_value'];
@@ -36,7 +36,7 @@ Class ValueHelpers {
 		$connection = \Yii::$app->db;
 		$sql = "SELECT status_value FROM status WHERE status_name = :status_name";
 		$command = $connection->createCommand($sql);
-		$command = bindValue(":status_name", $status_name);
+		$command -> bindValue(":status_name", $status_name);
 		$result = $command->queryOne();
 
 		return $result['status_value'];
@@ -56,7 +56,7 @@ Class ValueHelpers {
 		$connection = \Yii::$app->db;
 		$sql = "SELECT user_type_value FROM user_type WHERE user_type_name = :user_type_name";
 		$command = $connection->createCommand($sql);
-		$command = bindValue(":user_type_name", $user_type_name);
+		$command -> bindValue(":user_type_name", $user_type_name);
 		$result = $command->queryOne();
 
 		return $result['user_type_value'];		

@@ -52,7 +52,7 @@ class m130524_201443_init extends Migration
         $this->createTable('user_type', [
             'id'=> $this->primaryKey(),
             'user_type_name'=> $this->string(45)->notNull()->unique(),
-            'user_type_value'=> $this->integer()->notNull(),
+            'user_type_value'=> $this->integer()->notNull()->unique(),
         ], $tableOptions);
 
         $this->insert('user_type', [
@@ -68,7 +68,7 @@ class m130524_201443_init extends Migration
         $this->createTable('status', [
             'id'=> $this->primaryKey(),
             'status_name'=> $this->string(45)->notNull()->unique(),
-            'status_value'=> $this->integer()->notNull(),
+            'status_value'=> $this->integer()->notNull()->unique(),
         ], $tableOptions);
 
         $this->insert('status', [
@@ -84,7 +84,7 @@ class m130524_201443_init extends Migration
         $this->createTable('roles', [
             'id'=> $this->primaryKey(),
             'rol_name'=> $this->string(45)->notNull()->unique(),
-            'rol_value'=> $this->integer()->notNull(),
+            'rol_value'=> $this->integer()->notNull()->unique(),
         ], $tableOptions);
 
         $this->insert('roles', [
@@ -126,7 +126,7 @@ class m130524_201443_init extends Migration
             'user',
             'rol_id',
             'roles',
-            'id',
+            'rol_value',
             'CASCADE'
         );
 
@@ -135,7 +135,7 @@ class m130524_201443_init extends Migration
             'user',
             'user_type_id',
             'user_type',
-            'id',
+            'user_type_value',
             'CASCADE'
         );
 
@@ -144,7 +144,7 @@ class m130524_201443_init extends Migration
             'user',
             'status_id',
             'status',
-            'id',
+            'status_value',
             'CASCADE'
         );
 
@@ -177,7 +177,7 @@ class m130524_201443_init extends Migration
             'gender_name' => 'Bisexual',
         ]);
 
-        $this->insert('gender' [
+        $this->insert('gender', [
             'gender_name' => 'Indeterm.',
         ]);
 
@@ -290,14 +290,14 @@ class m130524_201443_init extends Migration
             'CASCADE'
         );
 
-        /* Inserta el usuario SuperAdmin
+        // Inserta el usuario SuperAdmin
         $user = new User();
         $user->username = 'admin1';
         $user->email = 'agustin.lorenzi@gmail.com';
-        $user->rol_id = 1;
+        $user->rol_id = 20;
         $user->setPassword('123456');
         $user->generateAuthKey();
-        return $user->save() ? $user : null;*/
+        return $user->save() ? $user : null;
 
     }
 
