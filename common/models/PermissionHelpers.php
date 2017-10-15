@@ -41,7 +41,7 @@ Class PermissionHelpers {
 	public static function requireUpgradeTo($user_type_name) {
 		if (Yii::$app->user->identity->user_type_id != 
 			ValueHelpers::getUserTypeValue($user_type_name)) {
-			return Yii::$app->getResponse()->redirect(Url::to(['suscripcion/index']));
+			return Yii::$app->getResponse()->redirect(Url::to(['upgrade/index']));
 		}
 	}
 
@@ -50,7 +50,7 @@ Class PermissionHelpers {
 	 * @param mixed $status_name
  	*/
  	public static function requireStatus($status_name) {
- 		if (Yii::$app->user_identity->status_id ==
+ 		if (Yii::$app->user->identity->status_id ==
  			ValueHelpers::getStatusValue($status_name)) {
  			return true;
  		} else {

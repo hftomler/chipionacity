@@ -14,8 +14,8 @@ use common\models\RecordHelpers;
 /**
  * ProfileController implements the CRUD actions for Profile model.
  */
-class ProfileController extends Controller
-{
+class ProfileController extends Controller {
+
     /**
      * @inheritdoc
      */
@@ -31,6 +31,9 @@ class ProfileController extends Controller
                         'actions' => ['index', 'view', 'create', 'update', 'delete'],
                         'allow' => true,
                         'roles' => ['@'],
+                        'matchCallback' => function ($rule, $action) {
+                            return PermissionHelpers::requireStatus('Activo');
+                        }
                     ],
                 ],
             ],
@@ -111,6 +114,7 @@ class ProfileController extends Controller
      */
     public function actionUpdate()
     {
+        PermissionHelpers::requireUpgradeTo('Suscrito');
 
         if ($model = Profile::find()->where(['user_id' => Yii::$app->user->identity->id])->one()) {
             if ($model->load(Yii::$app->request->post()) && $model->save()) {

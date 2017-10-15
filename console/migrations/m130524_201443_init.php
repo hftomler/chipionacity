@@ -89,7 +89,7 @@ class m130524_201443_init extends Migration
 
         $this->insert('user_type', [
             'user_type_name' => 'Suscrito',
-            'user_type_value' => '30',
+            'user_type_value' => '20',
         ]);
 
         $this->createTable('status', [
@@ -308,6 +308,7 @@ class m130524_201443_init extends Migration
             'descuento'=>$this->decimal(),
             'precio_linea'=>$this->decimal()->notNull(),
         ], $tableOptions);
+
         $this->addForeignKey(
             'fk_lineas_pedidos_pedidos',
             'lineas_pedido',
@@ -317,14 +318,35 @@ class m130524_201443_init extends Migration
             'CASCADE'
         );
 
-        // Inserta el usuario SuperAdmin
+        // Inserta el usuario Admin y usuarios de control
         $user = new User();
         $user->username = 'admin1';
         $user->email = 'agustin.lorenzi@gmail.com';
-        $user->rol_id = 20;
+        $user->rol_id = 20; // administrador
+        $user->user_type_id = 20; // suscrito
         $user->setPassword('123456');
         $user->generateAuthKey();
-        return $user->save() ? $user : null;
+        $user->save() ? $user : null;
+
+        $user = new User();
+        $user->username = 'invitado';
+        $user->email = 'invitado@gmail.com';
+        $user->rol_id = 10; // usuario
+        $user->user_type_id = 10; // gratuito
+        $user->status_id = 5; // Pendiente (No activo)
+        $user->setPassword('123456');
+        $user->generateAuthKey();
+        $user->save() ? $user : null;
+
+        $user = new User();
+        $user->username = 'invitadoActivo';
+        $user->email = 'invitado2@gmail.com';
+        $user->rol_id = 10; // usuario
+        $user->user_type_id = 10; // gratuito
+        $user->status_id = 10; // Activo (Valor defecto, pero lo pongo a tit. inform.)
+        $user->setPassword('123456');
+        $user->generateAuthKey();
+        $user->save() ? $user : null;
 
     }
 
