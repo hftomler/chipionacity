@@ -40,7 +40,7 @@ FontAwesomeAsset::register($this);
         ],
     ]);*/
     NavBar::begin([
-        'brandLabel' => '<img id="logo" src="imagenes/logo.png" alt="logo" height="100">',
+        'brandLabel' => '<img id="logo" src="imagenes/logo.png" alt="logo">',
         'brandUrl' => Yii::$app->homeUrl,
         'options' => [
            'class' => 'navbar',
