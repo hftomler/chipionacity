@@ -1,16 +1,21 @@
 <?php
 
-/* @var $this \yii\web\View */
-/* @var $content string */
-
 use backend\assets\AppAsset;
 use yii\helpers\Html;
 use yii\bootstrap\Nav;
 use yii\bootstrap\NavBar;
 use yii\widgets\Breadcrumbs;
+use common\models\ValueHelpers;
+use backend\assets\FontAwesomeAsset;
 use common\widgets\Alert;
+use yii\helpers\Url;
+
+
+/* @var $this \yii\web\View */
+/* @var $content string */
 
 AppAsset::register($this);
+FontAwesomeAsset::register($this);
 ?>
 <?php $this->beginPage() ?>
 <!DOCTYPE html>
@@ -28,28 +33,49 @@ AppAsset::register($this);
 
 <div class="wrap">
     <?php
-    NavBar::begin([
-        'brandLabel' => 'My Company',
-        'brandUrl' => Yii::$app->homeUrl,
-        'options' => [
-            'class' => 'navbar-inverse navbar-fixed-top',
-        ],
-    ]);
+    $is_admin = ValueHelpers::getRolValue('Admin');
+    if (!Yii::$app->user->isGuest) {
+        NavBar::begin([
+            'brandLabel' => 'Chipiona City <i class="fa fa-plug"></i> Administración',
+            'brandUrl' => Yii::$app->homeUrl,
+            'options' => [
+                'class' => 'navbar-inverse navbar-fixed-top',
+            ],
+        ]);
+    } else {
+        NavBar::begin([
+            'brandLabel' => 'Chipiona City <i class="fa fa-plug"></i>',
+            'brandUrl' => Yii::$app->homeUrl,
+            'options' => [
+                'class' => 'navbar-inverse navbar-fixed-top',
+            ],
+        ]);        
+    }
+
     $menuItems = [
         ['label' => 'Home', 'url' => ['/site/index']],
     ];
+    if (!Yii::$app->user->isGuest && Yii::$app->user->identity->rol_id >= $is_admin) {
+        $menuItems[] = ['label' => 'Usuarios', 'url' => ['user/index']];
+        $menuItems[] = ['label' => 'Perfiles', 'url' => ['profile/index']];
+        $menuItems[] = ['label' => 'Roles', 'url' => ['/rol/index']];
+        $menuItems[] = ['label' => 'Tipos Usuario', 'url' => ['/user-type/index']];
+        $menuItems[] = ['label' => 'Tipos Estatus', 'url' => ['/status/index']];
+    }
+
     if (Yii::$app->user->isGuest) {
-        $menuItems[] = ['label' => 'Login', 'url' => ['/site/login']];
+        $menuItems[] = ['label' => '<span class="glyphicon glyphicon-user"></span><br/>Login',  'url' => ['/site/login']];
     } else {
         $menuItems[] = '<li>'
             . Html::beginForm(['/site/logout'], 'post')
             . Html::submitButton(
-                'Logout (' . Yii::$app->user->identity->username . ')',
+                '<span class="glyphicon glyphicon-off"></span><br/>'  . Yii::$app->user->identity->username,
                 ['class' => 'btn btn-link logout']
             )
             . Html::endForm()
             . '</li>';
     }
+
     echo Nav::widget([
         'options' => ['class' => 'navbar-nav navbar-right'],
         'items' => $menuItems,

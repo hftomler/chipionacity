@@ -11,9 +11,10 @@ use frontend\assets\AppAsset;
 use common\widgets\Alert;
 use yii\helpers\Url;
 use yii\bootstrap\Modal;
-
+use backend\assets\FontAwesomeAsset;
 
 AppAsset::register($this);
+FontAwesomeAsset::register($this);
 ?>
 <?php $this->beginPage() ?>
 <!DOCTYPE html>
@@ -42,28 +43,27 @@ AppAsset::register($this);
         'brandLabel' => '<img id="logo" src="imagenes/logo.png" alt="logo" height="100">',
         'brandUrl' => Yii::$app->homeUrl,
         'options' => [
-           'class' => 'navbar-inverse',
+           'class' => 'navbar',
         ],
     ]);
     $menuItems = [
-        ['label' => '<span class="glyphicon glyphicon-home"></span><br/>Home', 'url' => ['/site/index']],
-        ['label' => '<span class="glyphicon glyphicon-phone-alt"></span><br/>About', 'url' => ['/site/about']],
-        ['label' => '<span class="glyphicon glyphicon-envelope"></span><br/>Contact', 'url' => ['/site/contact']],
+        ['label' => '<i class="fa fa-home" aria-hidden="true"></i><br/>Home', 'url' => ['/site/index']],
+        ['label' => '<i class="fa fa-building-o" aria-hidden="true"></i><br/>About', 'url' => ['/site/about']],
+        ['label' => '<i class="fa fa-envelope-o" aria-hidden="true"></i><br/>Contact', 'url' => ['/site/contact']],
     ];
     if (Yii::$app->user->isGuest) {
         $menuItems[] = ['label' => '<span class="glyphicon glyphicon-pencil"></span><br/>Signup', 'url' => ['/site/signup']];
-        $menuItems[] = ['label' => '<span class="glyphicon glyphicon-user"></span><br/>Login',
-                        'url' => ['/site/login'],
-                        'linkOptions' => [
-                                            'value' => Url::to('index.php?r=site/login'),
-                                            'id'=>'modalLogin'],
-                       ];
+        $menuItems[] = ['label' => '<i class="fa fa-sign-in" aria-hidden="true"></i><br/>Login',  'url' => ['/site/login'],
+                     'linkOptions' => [
+                           'value' => Url::to('index.php?r=site/login'),
+                           'id'=>'modalLogin'],
+                     ];
     } else {
-        $menuItems[] = ['label' => '<span class="glyphicon glyphicon-list-alt"></span><br/>Profile', 'url' => ['/profile/view']];
+        $menuItems[] = ['label' => '<i class="fa fa-user-plus" aria-hidden="true"></i><br/>Profile', 'url' => ['/profile/view']];
         $menuItems[] = '<li>'
             . Html::beginForm(['/site/logout'], 'post')
             . Html::submitButton(
-                '<span class="glyphicon glyphicon-off"></span><br/>'  . Yii::$app->user->identity->username,
+                '<i class="fa fa-power-off" aria-hidden="true"></i><br/>'  . Yii::$app->user->identity->username,
                 ['class' => 'btn btn-link logout']
             )
             . Html::endForm()

@@ -20,7 +20,7 @@
         "yiisoft/yii2-swiftmailer": "~2.0.0",
         "yiisoft/yii2-apidoc": "~2.0.0",
         "kartik-v/yii2-widget-datepicker": "@dev",
-        "yiisoft/yii2-jui": "@dev"
+        "FortAwesome/Font-Awesome": "*"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "~2.0.0",
