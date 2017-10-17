@@ -12,19 +12,11 @@ use yii\widgets\ActiveForm;
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'username')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'password_hash')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'password_reset_token')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'email')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'status_id')->textInput() ?>
-
-    <?= $form->field($model, 'rol_id')->textInput() ?>
-
-    <?= $form->field($model, 'user_type_id')->textInput() ?>
+    <?= $form->field($model, 'status_id')->dropDownList($model->statusList, [ 'prompt' => 'Elige Estado' ]); ?>
+    <?= $form->field($model, 'rol_id')->dropDownList($model->rolList, [ 'prompt' => 'Elige Rol' ]);?>
+    <?= $form->field($model, 'user_type_id')->dropDownList($model->userTypeList, [ 'prompt' => 'Elige Tipo de Usuario' ]);?>
+    <?= $form->field($model, 'username')->textInput(['maxlength' => 255]) ?>
+    <?= $form->field($model, 'email')->textInput(['maxlength' => 255]) ?>
 
     <?= $form->field($model, 'proveedor')->checkbox() ?>
 

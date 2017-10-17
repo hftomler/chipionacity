@@ -136,14 +136,17 @@ a.desc:after {
 #w1 li {
     height: 80px;
     text-align: center;
+    font-size: 0.9em;
+    margin-left: -15px;
 }
 
 #w1 li i {
-    font-size: 1.5em;    
     background-color: #f0f0f0;
 }
 
-#w1 a:visited, #w1 button {
+#w1 a:link,
+#w1 a:visited,
+#w1 button {
     color: #d0d0d0;
 }
 
@@ -153,5 +156,6 @@ a.desc:after {
 }
 
 #w1 a:hover, #w1 button:hover {
+    background-color: #f0f0f0;
     color: #ff7e00;
 }

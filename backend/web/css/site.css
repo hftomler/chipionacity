@@ -49,11 +49,11 @@ a.asc:after, a.desc:after {
 }
 
 a.asc:after {
-    content: /*"\e113"*/ "\e151";
+    content: "\e151";
 }
 
 a.desc:after {
-    content: /*"\e114"*/ "\e152";
+    content: "\e152";
 }
 
 .sort-numerical a.asc:after {
@@ -119,30 +119,35 @@ a.desc:after {
     outline: none;
 }
 
+
 /* ESTILOS PROPIOS */
 
 #logo {
     height: 60px;
 }
 
-#w0 {
+nav {
     height: 80px;
     background-color: #f0f0f0;
     box-shadow: 5px 5px 5px #d0d0d0;
     border-color: #d0d0d0;
 }
 
-#w1 li {
+nav ul li {
     height: 80px;
+    text-align: center;
+    font-size: 0.9em;
+    margin-left: -15px;
+}
+
+nav ul li i {
+    background-color: #f0f0f0;
     text-align: center;
 }
 
-#w1 li i {
-    font-size: 1.5em;    
-    background-color: #f0f0f0;
-}
-
-#w1 a:visited, #w1 button {
+nav li a:link,
+nav li a:visited,
+nav li button {
     color: #d0d0d0;
 }
 
@@ -152,5 +157,6 @@ a.desc:after {
 }
 
 #w1 a:hover, #w1 button:hover {
+    background-color: #f0f0f0;
     color: #ff7e00;
 }

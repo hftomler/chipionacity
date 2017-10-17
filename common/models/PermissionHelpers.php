@@ -63,7 +63,7 @@ Class PermissionHelpers {
 	 * @param mixed $status_name
  	*/
  	public static function requireMinStatus($status_name) {
- 		if (Yii::$app->user_identity->status_id >=
+ 		if (Yii::$app->user->identity->status_id >=
  			ValueHelpers::getStatusValue($status_name)) {
  			return true;
  		} else {
@@ -76,7 +76,7 @@ Class PermissionHelpers {
 	 * @param mixed $rol_name
  	*/
  	public static function requireRol($rol_name) {
- 		if (Yii::$app->user_identity->rol_id ==
+ 		if (Yii::$app->user->identity->rol_id ==
  			ValueHelpers::getRolValue($rol_name)) {
  			return true;
  		} else {
@@ -89,7 +89,7 @@ Class PermissionHelpers {
 	 * @param mixed $rol_name
  	*/
  	public static function requireMinRol($rol_name) {
- 		if (Yii::$app->user_identity->rol_id >=
+ 		if (Yii::$app->user->identity->rol_id >=
  			ValueHelpers::getRolValue($rol_name)) {
  			return true;
  		} else {

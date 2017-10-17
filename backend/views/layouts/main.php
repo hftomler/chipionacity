@@ -1,14 +1,14 @@
 <?php
 
-use backend\assets\AppAsset;
 use yii\helpers\Html;
 use yii\bootstrap\Nav;
 use yii\bootstrap\NavBar;
 use yii\widgets\Breadcrumbs;
-use common\models\ValueHelpers;
-use backend\assets\FontAwesomeAsset;
+use backend\assets\AppAsset;
 use common\widgets\Alert;
 use yii\helpers\Url;
+use common\models\ValueHelpers;
+use frontend\assets\FontAwesomeAsset;
 
 
 /* @var $this \yii\web\View */
@@ -33,43 +33,44 @@ FontAwesomeAsset::register($this);
 
 <div class="wrap">
     <?php
-    $is_admin = ValueHelpers::getRolValue('Admin');
-    if (!Yii::$app->user->isGuest) {
+    $is_admin = ValueHelpers::getRolValue('admin');
+    if (!Yii::$app->user->isGuest) { //Logo para administradores
         NavBar::begin([
-            'brandLabel' => 'Chipiona City <i class="fa fa-plug"></i> Administración',
+            'brandLabel' => '<img id="logo" src="imagenes/logo70px.png" alt="logo">',
             'brandUrl' => Yii::$app->homeUrl,
             'options' => [
-                'class' => 'navbar-inverse navbar-fixed-top',
+               'class' => 'navbar',
             ],
         ]);
-    } else {
+    } else {  //Logo para usuarios NO administradores
         NavBar::begin([
-            'brandLabel' => 'Chipiona City <i class="fa fa-plug"></i>',
+            'brandLabel' => '<img id="logo" src="imagenes/logo70px.png" alt="logo">',
             'brandUrl' => Yii::$app->homeUrl,
             'options' => [
-                'class' => 'navbar-inverse navbar-fixed-top',
+               'class' => 'navbar',
             ],
-        ]);        
+        ]);
     }
 
     $menuItems = [
-        ['label' => 'Home', 'url' => ['/site/index']],
+        ['label' => '<i class="fa fa-home" aria-hidden="true"></i><br/>Home', 'url' => ['/site/index']],
     ];
+
     if (!Yii::$app->user->isGuest && Yii::$app->user->identity->rol_id >= $is_admin) {
-        $menuItems[] = ['label' => 'Usuarios', 'url' => ['user/index']];
-        $menuItems[] = ['label' => 'Perfiles', 'url' => ['profile/index']];
-        $menuItems[] = ['label' => 'Roles', 'url' => ['/rol/index']];
-        $menuItems[] = ['label' => 'Tipos Usuario', 'url' => ['/user-type/index']];
-        $menuItems[] = ['label' => 'Tipos Estatus', 'url' => ['/status/index']];
+        $menuItems[] = ['label' => '<i class="fa fa-users" aria-hidden="true"></i><br/>Usuarios', 'url' => ['user/index']];
+        $menuItems[] = ['label' => '<i class="fa fa-address-card-o" aria-hidden="true"></i><br/>Perfiles', 'url' => ['profile/index']];
+        $menuItems[] = ['label' => '<i class="fa fa-universal-access" aria-hidden="true"></i><br/>Roles', 'url' => ['/rol/index']];
+        $menuItems[] = ['label' => '<i class="fa fa-eye-slash" aria-hidden="true"></i><i class="fa fa-eye" aria-hidden="true"></i><br/>Tip. Usuarios', 'url' => ['/user-type/index']];
+        $menuItems[] = ['label' => '<i class="fa fa-check" aria-hidden="true"></i><br/>Status', 'url' => ['/status/index']];
     }
 
     if (Yii::$app->user->isGuest) {
-        $menuItems[] = ['label' => '<span class="glyphicon glyphicon-user"></span><br/>Login',  'url' => ['/site/login']];
+        $menuItems[] = ['label' => '<i class="fa fa-sign-in" aria-hidden="true"></i><br/>Login', 'url' => ['/site/login']];
     } else {
         $menuItems[] = '<li>'
             . Html::beginForm(['/site/logout'], 'post')
             . Html::submitButton(
-                '<span class="glyphicon glyphicon-off"></span><br/>'  . Yii::$app->user->identity->username,
+                '<i class="fa fa-power-off" aria-hidden="true"></i><br/>'  . Yii::$app->user->identity->username,
                 ['class' => 'btn btn-link logout']
             )
             . Html::endForm()
@@ -78,6 +79,7 @@ FontAwesomeAsset::register($this);
 
     echo Nav::widget([
         'options' => ['class' => 'navbar-nav navbar-right'],
+        'encodeLabels' => false,
         'items' => $menuItems,
     ]);
     NavBar::end();

@@ -267,7 +267,7 @@ class User extends ActiveRecord implements IdentityInterface
      */
     public function getRol()
     {
-        return $this->hasOne(Rol::className(), ['rol_value' => 'role_id']);
+        return $this->hasOne(Rol::className(), ['rol_value' => 'rol_id']);
     }
 
     /**
@@ -310,7 +310,7 @@ class User extends ActiveRecord implements IdentityInterface
     }
 
     /**
-     * Establecer la relación con la tabla Profile
+     * Comprueba si el usuario tiene un perfil
      * @getProfile
      */
     public function getProfile() {
@@ -332,7 +332,12 @@ class User extends ActiveRecord implements IdentityInterface
     public function getProfileLink() {
         $url = Url::to(['profile/view', 'id'=>$this->profileId]);
         $options = [];
-        return Html::a($this->profile ? 'profile' : 'ninguno', $url, $options);    
+        if ($this->profileId == 'ninguno') {
+            return 'ninguno';
+        } else {
+            return Html::a($this->profile ? 'profile' : 'ninguno', $url, $options);    
+
+        }
     }
 
     /**

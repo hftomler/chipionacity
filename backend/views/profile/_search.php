@@ -2,6 +2,7 @@
 
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
+use frontend\models\Profile;
 
 /* @var $this yii\web\View */
 /* @var $model backend\models\search\ProfileSearch */
@@ -15,15 +16,13 @@ use yii\widgets\ActiveForm;
         'method' => 'get',
     ]); ?>
 
-    <?= $form->field($model, 'id') ?>
-
-    <?= $form->field($model, 'user_id') ?>
-
     <?= $form->field($model, 'nombre') ?>
 
     <?= $form->field($model, 'apellidos') ?>
 
-    <?= $form->field($model, 'gender_id') ?>
+    <?= $form->field($model, 'fecha_nac') ?>
+    
+    <?= $form->field($model, 'gender_id')->dropDownList(Profile::getgenderList(), [ 'prompt' => 'Sexo' ]);?>
 
     <?php // echo $form->field($model, 'direccion') ?>
 

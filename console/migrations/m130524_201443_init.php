@@ -102,9 +102,20 @@ class m130524_201443_init extends Migration
             'status_name' => 'Activo',
             'status_value' => '10',
         ]);
+
+        $this->insert('status', [
+            'status_name' => 'Inactivo',
+            'status_value' => '5',
+        ]);
+
         $this->insert('status', [
             'status_name' => 'Pendiente',
-            'status_value' => '5',
+            'status_value' => '4',
+        ]);
+
+        $this->insert('status', [
+            'status_name' => 'Bloqueado',
+            'status_value' => '0',
         ]);
 
 
@@ -120,12 +131,18 @@ class m130524_201443_init extends Migration
         ]);
         $this->insert('roles', [
             'rol_name' => 'admin',
+            'rol_value' => '25',
+        ]);
+        $this->insert('roles', [
+            'rol_name' => 'superAdmin',
+            'rol_value' => '30',
+        ]);  
+              
+        $this->insert('roles', [
+            'rol_name' => 'Proveedor',
             'rol_value' => '20',
         ]);
         /*
-        $this->insert('roles', [
-            'rol_name' => 'Proveedor',
-        ]);
         $this->insert('roles', [
             'rol_name' => 'Usuario Registrado',
         ]);
@@ -187,7 +204,7 @@ class m130524_201443_init extends Migration
         $this->insert('gender', [
             'gender_name' => 'Mujer',
         ]);
-
+        /* ACTIVAR PARA SENSIBILIDAD LGBTI
         $this->insert('gender', [
             'gender_name' => 'Trans',
         ]);
@@ -207,7 +224,7 @@ class m130524_201443_init extends Migration
         $this->insert('gender', [
             'gender_name' => 'Intersexual',
         ]);
-
+        */
 
         $this->createTable('profile', [
             'id'=> $this->primaryKey(),
@@ -333,7 +350,16 @@ class m130524_201443_init extends Migration
         $user->email = 'invitado@gmail.com';
         $user->rol_id = 10; // usuario
         $user->user_type_id = 10; // gratuito
-        $user->status_id = 5; // Pendiente (No activo)
+        $user->status_id = 5; // Inactivo
+        $user->setPassword('123456');
+        $user->generateAuthKey();
+        $user->save() ? $user : null;
+
+        $user = new User();
+        $user->username = 'superAdmin';
+        $user->email = 'sa@gmail.com';
+        $user->rol_id = 30; // superAdmin
+        $user->user_type_id = 20; // suscrito
         $user->setPassword('123456');
         $user->generateAuthKey();
         $user->save() ? $user : null;

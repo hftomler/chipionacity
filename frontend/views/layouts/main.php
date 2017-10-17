@@ -11,7 +11,7 @@ use frontend\assets\AppAsset;
 use common\widgets\Alert;
 use yii\helpers\Url;
 use yii\bootstrap\Modal;
-use backend\assets\FontAwesomeAsset;
+use frontend\assets\FontAwesomeAsset;
 
 AppAsset::register($this);
 FontAwesomeAsset::register($this);
@@ -32,13 +32,6 @@ FontAwesomeAsset::register($this);
 
 <div class="wrap">
     <?php
-    /*NavBar::begin([
-        'brandLabel' => 'My Company',
-        'brandUrl' => Yii::$app->homeUrl,
-        'options' => [
-            'class' => 'navbar-inverse navbar-fixed-top',
-        ],
-    ]);*/
     NavBar::begin([
         'brandLabel' => '<img id="logo" src="imagenes/logo.png" alt="logo">',
         'brandUrl' => Yii::$app->homeUrl,
@@ -52,7 +45,7 @@ FontAwesomeAsset::register($this);
         ['label' => '<i class="fa fa-envelope-o" aria-hidden="true"></i><br/>Contact', 'url' => ['/site/contact']],
     ];
     if (Yii::$app->user->isGuest) {
-        $menuItems[] = ['label' => '<span class="glyphicon glyphicon-pencil"></span><br/>Signup', 'url' => ['/site/signup']];
+        $menuItems[] = ['label' => '<i class="fa fa-id-card-o" aria-hidden="true"></i><br/>Signup', 'url' => ['/site/signup']];
         $menuItems[] = ['label' => '<i class="fa fa-sign-in" aria-hidden="true"></i><br/>Login',  'url' => ['/site/login'],
                      'linkOptions' => [
                            'value' => Url::to('index.php?r=site/login'),

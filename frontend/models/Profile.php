@@ -92,7 +92,7 @@ class Profile extends \yii\db\ActiveRecord
             'user_id' => Yii::t('frontend', 'User ID'),
             'nombre' => Yii::t('frontend', 'Nombre'),
             'apellidos' => Yii::t('frontend', 'Apellidos'),
-            'gender_id' => Yii::t('frontend', 'Orientación Sexual'),
+            'gender_id' => Yii::t('frontend', 'Sexo'),
             'direccion' => Yii::t('frontend', 'Direccion'),
             'pais_id' => Yii::t('frontend', 'Pais ID'),
             'municipio_id' => Yii::t('frontend', 'Municipio ID'),
@@ -227,7 +227,7 @@ class Profile extends \yii\db\ActiveRecord
     public function getUserLink() {
         $url = Url::to(['user/view', 'id'=>$this->UserId]);
         $options = [];
-        return Html::a($this->getUserName(), $url, $options);
+        return Html::a($this->getUsername(), $url, $options);
     }
 
     /**
@@ -236,7 +236,7 @@ class Profile extends \yii\db\ActiveRecord
     public function getProfileIdLink() {
         $url = Url::to(['profile/update', 'id'=>$this->id]);
         $options = [];
-        return Html::a($this->getUserName(), $url, $options);
+        return Html::a($this->id, $url, $options);
     }
 
     public function beforeValidate() {
