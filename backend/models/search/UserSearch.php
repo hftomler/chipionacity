@@ -138,11 +138,11 @@ class UserSearch extends User
             }])
         // Filtrar por status
               ->joinWith(['status' => function ($q) {
-                $q->where('status.status_name LIKE "%' . $this->statusName . '%"');
+                $q->where("status.status_name LIKE '%" . $this->statusName . "%'");
             }])
         // Filtrar por tipo de usuario
               ->joinWith(['userType' => function ($q) {
-                $q->where('user_type.user_type_name LIKE "%' . $this->userTypeName . '%"');
+                $q->where("user_type.user_type_name LIKE '%" . $this->userTypeName . "%'");
             }]);
 
         return $dataProvider;
