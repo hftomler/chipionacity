@@ -3,6 +3,7 @@
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 use frontend\models\Profile;
+use kartik\date\DatePicker;
 
 /* @var $this yii\web\View */
 /* @var $model backend\models\search\ProfileSearch */
@@ -16,29 +17,27 @@ use frontend\models\Profile;
         'method' => 'get',
     ]); ?>
 
-    <?= $form->field($model, 'nombre') ?>
+    <div class="col-xs-12 col-sm-6">
+        <?= $form->field($model, 'nombre') ?>
+    </div>
 
-    <?= $form->field($model, 'apellidos') ?>
+    <div class="col-xs-12 col-sm-6">
+        <?= $form->field($model, 'apellidos') ?>
+    </div>
 
-    <?= $form->field($model, 'fecha_nac') ?>
-    
-    <?= $form->field($model, 'gender_id')->dropDownList(Profile::getgenderList(), [ 'prompt' => 'Sexo' ]);?>
+    <div class="col-xs-12 col-sm-6">
+        <?= $form->field($model, 'fecha_nac')->widget(DatePicker::classname(), [
+            'language' => 'es',
+            'options' => ['placeholder' => 'Fecha de Nacimiento ...'],
+            'pluginOptions' => [
+                'autoclose'=>true
+            ]
+        ]); ?>
+    </div>
 
-    <?php // echo $form->field($model, 'direccion') ?>
-
-    <?php // echo $form->field($model, 'pais_id') ?>
-
-    <?php // echo $form->field($model, 'municipio_id') ?>
-
-    <?php // echo $form->field($model, 'cpostal') ?>
-
-    <?php // echo $form->field($model, 'provincia_id') ?>
-
-    <?php // echo $form->field($model, 'fecha_nac') ?>
-
-    <?php // echo $form->field($model, 'created_at') ?>
-
-    <?php // echo $form->field($model, 'updated_at') ?>
+    <div class="col-xs-12 col-sm-6">
+        <?= $form->field($model, 'gender_id')->dropDownList(Profile::getgenderList(), [ 'prompt' => 'Sexo' ]);?>
+    </div>
 
     <div class="form-group">
         <?= Html::submitButton(Yii::t('app', 'Search'), ['class' => 'btn btn-primary']) ?>
