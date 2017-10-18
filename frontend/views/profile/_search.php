@@ -2,6 +2,7 @@
 
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
+use kartik\date\DatePicker;
 
 /* @var $this yii\web\View */
 /* @var $model frontend\models\search\ProfileSearch */
@@ -25,22 +26,14 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'gender_id') ?>
 
-    <?php // echo $form->field($model, 'direccion') ?>
-
-    <?php // echo $form->field($model, 'pais_id') ?>
-
-    <?php // echo $form->field($model, 'municipio_id') ?>
-
-    <?php // echo $form->field($model, 'cpostal') ?>
-
-    <?php // echo $form->field($model, 'provincia_id') ?>
-
-    <?php // echo $form->field($model, 'fecha_nac') ?>
-
-    <?php // echo $form->field($model, 'created_at') ?>
-
-    <?php // echo $form->field($model, 'updated_at') ?>
-
+    <?= $form->field($model, 'fecha_nac')->widget(DatePicker::classname(), [
+        'language' => 'es',
+        'options' => ['placeholder' => 'Fecha de Nacimiento ...'],
+        'pluginOptions' => [
+            'autoclose'=>true
+        ]
+    ]); ?>
+    
     <div class="form-group">
         <?= Html::submitButton(Yii::t('app', 'Search'), ['class' => 'btn btn-primary']) ?>
         <?= Html::resetButton(Yii::t('app', 'Reset'), ['class' => 'btn btn-default']) ?>
