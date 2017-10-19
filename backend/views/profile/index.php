@@ -3,6 +3,7 @@
 use yii\helpers\Html;
 use yii\grid\GridView;
 use yii\bootstrap\Collapse;
+use common\models\PermissionHelpers;
 
 /* @var $this yii\web\View */
 /* @var $searchModel backend\models\search\ProfileSearch */
@@ -10,6 +11,8 @@ use yii\bootstrap\Collapse;
 
 $this->title = Yii::t('app', 'Profiles');
 $this->params['breadcrumbs'][] = $this->title;
+$show_this_nav = PermissionHelpers::requireMinRol('superAdmin');
+
 ?>
 <div class="profile-index">
 
@@ -40,7 +43,12 @@ $this->params['breadcrumbs'][] = $this->title;
             'apellidos',
             'fecha_nac',
             'genderName',
-            ['class' => 'yii\grid\ActionColumn'],
+            ['class' => 'yii\grid\ActionColumn',
+                             'visibleButtons' => [
+                                 'update' => $show_this_nav,
+                                 'delete' => $show_this_nav,
+                             ],
+            ],
         ],
     ]); ?>
 </div>

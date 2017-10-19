@@ -8,7 +8,8 @@ use backend\models\search\RolSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
-
+use yii\filters\AccessControl;
+use common\models\PermissionHelpers;
 /**
  * RolController implements the CRUD actions for Rol model.
  */
@@ -29,7 +30,7 @@ class RolController extends Controller
                         'allow' => true,
                         'roles' => ['@'],
                         'matchCallback' => function ($rule, $action) {
-                            return PermissionHelpers::requireMinimumRol('admin') && PermissionHelpers::requireStatus('Activo');
+                            return PermissionHelpers::requireMinRol('admin') && PermissionHelpers::requireStatus('Activo');
                         }
                     ],
                     [
@@ -37,7 +38,7 @@ class RolController extends Controller
                         'allow' => true,
                         'roles' => ['@'],
                         'matchCallback' => function ($rule, $action) {
-                            return PermissionHelpers::requireMinimumRol('superAdmin') && PermissionHelpers::requireStatus('Activo');
+                            return PermissionHelpers::requireMinRol('superAdmin') && PermissionHelpers::requireStatus('Activo');
                         }
                     ],
                 ],

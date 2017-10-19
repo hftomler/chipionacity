@@ -2,6 +2,7 @@
 
 use yii\helpers\Html;
 use yii\grid\GridView;
+use common\models\PermissionHelpers;
 
 /* @var $this yii\web\View */
 /* @var $searchModel backend\models\search\StatusSearch */
@@ -9,6 +10,7 @@ use yii\grid\GridView;
 
 $this->title = Yii::t('app', 'Statuses');
 $this->params['breadcrumbs'][] = $this->title;
+$show_this_nav = PermissionHelpers::requireMinRol('superAdmin');
 ?>
 <div class="status-index">
 
@@ -28,7 +30,12 @@ $this->params['breadcrumbs'][] = $this->title;
             'status_name',
             'status_value',
 
-            ['class' => 'yii\grid\ActionColumn'],
+            ['class' => 'yii\grid\ActionColumn',
+                             'visibleButtons' => [
+                                 'update' => $show_this_nav,
+                                 'delete' => $show_this_nav,
+                             ],
+            ],
         ],
     ]); ?>
 </div>

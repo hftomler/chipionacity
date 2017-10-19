@@ -3,6 +3,7 @@
 use yii\helpers\Html;
 use yii\grid\GridView;
 use yii\bootstrap\Collapse;
+use common\models\PermissionHelpers;
 
 /* @var $this yii\web\View */
 /* @var $searchModel backend\models\search\UserSearch */
@@ -10,6 +11,7 @@ use yii\bootstrap\Collapse;
 
 $this->title = Yii::t('app', 'Users');
 $this->params['breadcrumbs'][] = $this->title;
+$show_this_nav = PermissionHelpers::requireMinRol('superAdmin');
 ?>
 <div class="user-index">
 
@@ -50,7 +52,12 @@ $this->params['breadcrumbs'][] = $this->title;
             // 'user_type_id',
             // 'proveedor:boolean',
 
-            ['class' => 'yii\grid\ActionColumn'],
+            ['class' => 'yii\grid\ActionColumn',
+                             'visibleButtons' => [
+                                 'update' => $show_this_nav,
+                                 'delete' => $show_this_nav,
+                             ],
+            ],
         ],
     ]); ?>
 </div>
