@@ -6,6 +6,7 @@ use yii\web\Controller;
 use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
 use common\models\LoginForm;
+use common\models\PermissionHelpers;
 
 /**
  * Site controller
@@ -26,10 +27,18 @@ class SiteController extends Controller
                         'allow' => true,
                     ],
                     [
-                        'actions' => ['logout', 'index'],
+                        'actions' => [ 'index'],
                         'allow' => true,
                         'roles' => ['@'],
+                        'matchCallback' => function ($rule, $action) {
+                            return PermissionHelpers::requireMinRol('admin') && PermissionHelpers::requireStatus('Activo');
+                        }
                     ],
+                    [
+                        'actions' => [ 'logout'],
+                        'allow' => true,
+                        'roles' => ['@'],
+                    ]
                 ],
             ],
             'verbs' => [

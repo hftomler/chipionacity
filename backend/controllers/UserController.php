@@ -8,6 +8,8 @@ use backend\models\search\UserSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\filters\AccessControl;
+use common\models\PermissionHelpers;
 
 /**
  * UserController implements the CRUD actions for User model.
@@ -20,6 +22,28 @@ class UserController extends Controller
     public function behaviors()
     {
         return [
+            'access' => [
+                'class' => AccessControl::className(), // \yii\filters\AccessControl::className(),
+                'only' => ['index', 'view', 'create', 'update', 'delete'],
+                'rules' => [
+                    [
+                        'actions' => ['index', 'view'],
+                        'allow' => true,
+                        'roles' => ['@'],
+                        'matchCallback' => function ($rule, $action) {
+                            return PermissionHelpers::requireMinRol('admin') && PermissionHelpers::requireStatus('Activo');
+                        }
+                    ],
+                    [
+                        'actions' => ['update', 'delete'],
+                        'allow' => true,
+                        'roles' => ['@'],
+                        'matchCallback' => function ($rule, $action) {
+                            return PermissionHelpers::requireMinRol('superAdmin') && PermissionHelpers::requireStatus('Activo');
+                        }
+                    ],
+                ],
+            ],
             'verbs' => [
                 'class' => VerbFilter::className(),
                 'actions' => [

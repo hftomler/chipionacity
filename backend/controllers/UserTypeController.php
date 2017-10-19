@@ -20,6 +20,28 @@ class UserTypeController extends Controller
     public function behaviors()
     {
         return [
+            'access' => [
+                'class' => AccessControl::className(), // \yii\filters\AccessControl::className(),
+                'only' => ['index', 'view', 'create', 'update', 'delete'],
+                'rules' => [
+                    [
+                        'actions' => ['index', 'view'],
+                        'allow' => true,
+                        'roles' => ['@'],
+                        'matchCallback' => function ($rule, $action) {
+                            return PermissionHelpers::requireMinimumRol('admin') && PermissionHelpers::requireStatus('Activo');
+                        }
+                    ],
+                    [
+                        'actions' => ['update', 'delete'],
+                        'allow' => true,
+                        'roles' => ['@'],
+                        'matchCallback' => function ($rule, $action) {
+                            return PermissionHelpers::requireMinimumRol('superAdmin') && PermissionHelpers::requireStatus('Activo');
+                        }
+                    ],
+                ],
+            ],
             'verbs' => [
                 'class' => VerbFilter::className(),
                 'actions' => [
