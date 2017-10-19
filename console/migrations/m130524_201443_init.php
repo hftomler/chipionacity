@@ -129,19 +129,22 @@ class m130524_201443_init extends Migration
             'rol_name' => 'user',
             'rol_value' => '10',
         ]);
+
         $this->insert('roles', [
             'rol_name' => 'admin',
             'rol_value' => '25',
         ]);
+
         $this->insert('roles', [
             'rol_name' => 'superAdmin',
             'rol_value' => '30',
-        ]);  
-              
+        ]);
+
         $this->insert('roles', [
-            'rol_name' => 'Proveedor',
+            'rol_name' => 'proveedor',
             'rol_value' => '20',
         ]);
+
         /*
         $this->insert('roles', [
             'rol_name' => 'Usuario Registrado',
@@ -192,6 +195,64 @@ class m130524_201443_init extends Migration
             'CASCADE'
         );
 
+        // Inserta el usuario Admin y usuarios de control
+
+        /*$this->insert('user', [
+            'username' => 'Agustin',
+            'email' => 'agustin_1997@yahoo.es',
+            'rol_id' => 30, // SuperAdmin
+            'user_type_id' => 20,
+            'password_hash' => Yii::$app->security->generatePasswordHash('123456'),
+            'auth_key' => Yii::$app->security->generateRandomString()
+        ]);*/
+        $user = new User();
+        $user->username = 'SuperAdmin';
+        $user->email = 'sa@gmail.com';
+        $user->rol_id = 30; // superAdmin
+        $user->user_type_id = 20; // suscrito
+        $user->setPassword('123456');
+        $user->generateAuthKey();
+        $user->save() ? $user : null;
+
+        $user = new User();
+        $user->username = 'Aministrador';
+        $user->email = 'admin@gmail.com';
+        $user->rol_id = 25; // usuario
+        $user->user_type_id = 20; // gratuito
+        $user->status_id = 10; // Activo (Valor defecto, pero lo pongo a tit. inform.)
+        $user->setPassword('123456');
+        $user->generateAuthKey();
+        $user->save() ? $user : null;
+
+        $user = new User();
+        $user->username = 'Proveedor1';
+        $user->email = 'proveedor1@gmail.com';
+        $user->rol_id = 20; // proveedor
+        $user->user_type_id = 20; // suscrito
+        $user->setPassword('123456');
+        $user->generateAuthKey();
+        $user->save() ? $user : null;
+
+        $user = new User();
+        $user->username = 'InvitadoActivo';
+        $user->email = 'invitadoActivo@gmail.com';
+        $user->rol_id = 10; // usuario
+        $user->user_type_id = 10; // gratuito
+        $user->status_id = 10; // Activo (Valor defecto, pero lo pongo a tit. inform.)
+        $user->setPassword('123456');
+        $user->generateAuthKey();
+        $user->save() ? $user : null;
+
+        $user = new User();
+        $user->username = 'InvitadoInactivo';
+        $user->email = 'invitadoInactivo@gmail.com';
+        $user->rol_id = 10; // usuario
+        $user->user_type_id = 10; // gratuito
+        $user->status_id = 5; // Inactivo
+        $user->setPassword('123456');
+        $user->generateAuthKey();
+        $user->save() ? $user : null;
+
         $this->createTable('gender', [
             'id'=> $this->primaryKey(),
             'gender_name'=> $this->string(45)->notNull()->unique(),
@@ -239,7 +300,7 @@ class m130524_201443_init extends Migration
             'provincia_id' => $this->integer(),
             'fecha_nac'=>$this->date(),
             'created_at' => $this->date()->notNull(),
-            'updated_at' => $this->date()->notNull(),           
+            'updated_at' => $this->date()->notNull(),
             ], $tableOptions);
 
         $this->addForeignKey(
@@ -327,7 +388,7 @@ class m130524_201443_init extends Migration
         ], $tableOptions);
 
         $this->addForeignKey(
-            'fk_lineas_pedidos_pedidos',
+            'fk_lineas_pedido_pedidos',
             'lineas_pedido',
             'pedido_id',
             'pedidos',
@@ -335,57 +396,22 @@ class m130524_201443_init extends Migration
             'CASCADE'
         );
 
-        // Inserta el usuario Admin y usuarios de control
-        $user = new User();
-        $user->username = 'admin1';
-        $user->email = 'agustin.lorenzi@gmail.com';
-        $user->rol_id = 20; // administrador
-        $user->user_type_id = 20; // suscrito
-        $user->setPassword('123456');
-        $user->generateAuthKey();
-        $user->save() ? $user : null;
-
-        $user = new User();
-        $user->username = 'invitado';
-        $user->email = 'invitado@gmail.com';
-        $user->rol_id = 10; // usuario
-        $user->user_type_id = 10; // gratuito
-        $user->status_id = 5; // Inactivo
-        $user->setPassword('123456');
-        $user->generateAuthKey();
-        $user->save() ? $user : null;
-
-        $user = new User();
-        $user->username = 'superAdmin';
-        $user->email = 'sa@gmail.com';
-        $user->rol_id = 30; // superAdmin
-        $user->user_type_id = 20; // suscrito
-        $user->setPassword('123456');
-        $user->generateAuthKey();
-        $user->save() ? $user : null;
-
-        $user = new User();
-        $user->username = 'invitadoActivo';
-        $user->email = 'invitado2@gmail.com';
-        $user->rol_id = 10; // usuario
-        $user->user_type_id = 10; // gratuito
-        $user->status_id = 10; // Activo (Valor defecto, pero lo pongo a tit. inform.)
-        $user->setPassword('123456');
-        $user->generateAuthKey();
-        $user->save() ? $user : null;
-
     }
 
     public function down()
     {
-        $this->dropTable('lineas_paquetes');
-        $this->dropTable('servicios');
-        $this->dropTable('paquetes');
-        $this->dropTable('items');
-        $this->dropTable('user');
         $this->dropTable('user');
         $this->dropTable('roles');
-        $this->dropTable('municipios');
         $this->dropTable('provincias');
+        $this->dropTable('municipios');
+        $this->dropTable('paises');
+        $this->dropTable('lineas_pedido');
+        $this->dropTable('pedidos');
+        $this->dropTable('servicios');
+        $this->dropTable('migration');
+        $this->dropTable('gender');
+        $this->dropTable('status');
+        $this->dropTable('user_type');
+
     }
 }
