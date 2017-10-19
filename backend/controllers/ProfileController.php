@@ -10,6 +10,8 @@ use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
 use common\models\PermissionHelpers;
+use common\models\RecordHelpers;
+
 /**
  * ProfileController implements the CRUD actions for Profile model.
  */
@@ -34,7 +36,7 @@ class ProfileController extends Controller
                         }
                     ],
                     [
-                        'actions' => ['update', 'delete'],
+                        'actions' => ['create', 'update', 'delete'],
                         'allow' => true,
                         'roles' => ['@'],
                         'matchCallback' => function ($rule, $action) {
@@ -84,18 +86,27 @@ class ProfileController extends Controller
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
-    public function actionCreate()
-    {
-        $model = new Profile();
+     public function actionCreate()
+     {
+         $model = new Profile();
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
-        } else {
-            return $this->render('create', [
-                'model' => $model,
-            ]);
-        }
-    }
+         // Asignamos al user_id del perfil con el id de usuario activo.
+         $model -> user_id = \Yii::$app->user->identity->id;
+
+         if ($id_perfil_usuario = RecordHelpers::userHas('profile')) {
+             return $this->render('view', [
+                 'model' => $this->findModel($id_perfil_usuario),
+             ]);
+
+         } elseif ($model->load(Yii::$app->request->post()) && $model->save()) {
+             return $this->redirect(['view']);
+
+         } else {
+             return $this->render('create', [
+                 'model' => $model,
+             ]);
+         }
+     }
 
     /**
      * Updates an existing Profile model.

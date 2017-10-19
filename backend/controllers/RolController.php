@@ -34,7 +34,7 @@ class RolController extends Controller
                         }
                     ],
                     [
-                        'actions' => ['update', 'delete'],
+                        'actions' => ['create', 'update', 'delete'],
                         'allow' => true,
                         'roles' => ['@'],
                         'matchCallback' => function ($rule, $action) {

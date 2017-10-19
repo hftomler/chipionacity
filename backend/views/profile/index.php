@@ -16,7 +16,14 @@ $show_this_nav = PermissionHelpers::requireMinRol('superAdmin');
 ?>
 <div class="profile-index">
 
-    <h1><?= Html::encode($this->title) ?></h1>
+    <h1>
+        <?= Html::encode($this->title) ?>
+        <?php
+            if ($show_this_nav) {
+                    echo Html::a(Yii::t('app', 'Create Profile'), ['create'], ['class' => 'pull-right btn btn-success']);
+            }
+        ?>
+    </h1>
     <?php echo Collapse::widget([
             'items' => [
                 [
