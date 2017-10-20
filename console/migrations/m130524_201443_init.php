@@ -19,16 +19,10 @@ class m130524_201443_init extends Migration
             'nombre_pais'=>$this->string(255)->notNull()->unique(),
         ], $tableOptions);
 
-        $this->insert('paises', [
-            'nombre_pais' => 'España',
-        ]);
-
-        $this->insert('paises', [
-            'nombre_pais' => 'Alemania',
-        ]);
-
-        $this->insert('paises', [
-            'nombre_pais' => 'Francia',
+        $this->batchInsert('paises',  ['nombre_pais'], [
+            ['España'],
+            ['Alemania'],
+            ['Francia']
         ]);
 
         $this->createTable('provincias', [
@@ -46,14 +40,15 @@ class m130524_201443_init extends Migration
             'CASCADE'
         );
 
-        $this->insert('provincias', [
-            'nombre_provincia' => 'Cádiz',
-            'pais_id' => 1,
-        ]);
-
-        $this->insert('provincias', [
-            'nombre_provincia' => 'Borgoña',
-            'pais_id' => 3,
+        $this->batchInsert('provincias', ['nombre_provincia', 'pais_id'], [
+            ['Álava', 1], ['Albacete', 1], ['Alicante', 1], ['Almería', 1], ['Ávila', 1], ['Badajoz', 1], ['Islas Baleares', 1],
+            ['Barcelona', 1], ['Burgos', 1], ['Cáceres', 1], ['Cádiz', 1], ['Castellón', 1], ['Ciudad Real', 1],
+            ['Córdoba', 1], ['La Coruña', 1], ['Cuenca', 1], ['Girona', 1], ['Granada', 1], ['Guadalajara', 1],
+            ['Guipuzcoa', 1], ['Huelva', 1], ['Huesca', 1], ['Jaén', 1], ['León', 1], ['Lérida', 1], ['La Rioja', 1],
+            ['Lugo', 1], ['Madrid', 1], ['Málaga', 1], ['Murcia', 1], ['Navarra', 1], ['Ourense', 1], ['Asturias', 1],
+            ['Palencia', 1], ['Las Palmas', 1], ['Pontevedra', 1], ['Salamanca', 1], ['Santa Cruz de Tenerife', 1],
+            ['Cantabria', 1], ['Segovia', 1], ['Sevilla', 1], ['Soria', 1], ['Tarragona', 1], ['Teruel', 1], ['Toledo', 1],
+            ['Valencia', 1],['Valladolid', 1], ['Vizcaya', 1], ['Zamora', 1], ['Zaragoza', 1], ['Ceuta', 1], ['Melilla', 1]
         ]);
 
         $this->createTable('municipios', [

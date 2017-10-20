@@ -2,37 +2,6 @@
 
 Dudas:
 
-	- Después del login que me devuelva a la página en la que estaba y no al Home; (goBack() or goHome());
-
-	- Contact view: <?php $form = ActiveForm::begin(['id' => 'contact-form']); ?>
-	  Porqué sabe que tiene que usar el ContactForm model?
-
-	- UserView->backend:
-		Attribute profileLink un ternario por si no tiene perfil:
-
-		<?= DetailView::widget([
-        'model' => $model,
-        'attributes' => [
-            ['attribute'=>'profileLink', 'format'=>'raw'],
-            'id',
-            //'username',
-            //'auth_key',
-            //'password_hash',
-            //'password_reset_token',
-            'email:email',
-            'statusName',
-            'rolName',
-            'created_at',
-            'updated_at',
-            //'rol_id',
-            //'user_type_id',
-            //'proveedor:boolean',
-        ],
-    ]) ?>
-
-    - ProfileView->backend
-    	//['attribute'=>'userLink', 'format'=>'raw'],
-    	Error Trying to get property of non-object
-
-    - ProfileView->backend
-    	$this->title = $model->username; Error.
+Fallos:
+	BACKEND-> Al crear un perfil, la página de vuelta (view) me da error no existe ID, se ha creado bien
+							y después si entro al view desde el index aparece correctamente.
