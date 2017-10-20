@@ -20,9 +20,7 @@ class m130524_201443_init extends Migration
         ], $tableOptions);
 
         $this->batchInsert('paises',  ['nombre_pais'], [
-            ['España'],
-            ['Alemania'],
-            ['Francia']
+            ['España'], ['Alemania'], ['Francia'], ['Italia'], ['Marruecos'], ['EEUU'], ['Rusia'], ['Finlandia'], ['Bélgica']
         ]);
 
         $this->createTable('provincias', [
@@ -51,6 +49,11 @@ class m130524_201443_init extends Migration
             ['Valencia', 1],['Valladolid', 1], ['Vizcaya', 1], ['Zamora', 1], ['Zaragoza', 1], ['Ceuta', 1], ['Melilla', 1]
         ]);
 
+        $this->batchInsert('provincias', ['nombre_provincia', 'pais_id'], [
+            ['Heirom', 2], ['Alyuth', 2], ['Paris', 3], ['Lyon', 3], ['Florencia', 4], ['Berlin', 2]
+        ]);
+
+
         $this->createTable('municipios', [
             'id'=>$this->primaryKey(),
             'nombre_municipio'=>$this->string(50)->notNull(),
@@ -66,9 +69,10 @@ class m130524_201443_init extends Migration
             'CASCADE'
         );
 
-        $this->insert('municipios', [
-            'nombre_municipio' => 'Chipiona',
-            'provincia_id' => 1,
+        $this->batchInsert('municipios', ['nombre_municipio', 'provincia_id'], [
+            ['Chipiona', 11], ['Jerez de la Frontera', 11], ['Sanlúcar de Bda.', 11], ['Rota', 11], ['Cádiz', 1], ['El Puerto de Santa María', 11], ['San Fernando', 11],
+            ['Dos Hermanas', 41], ['Lebrija', 41], ['Utrera', 41], ['Mairena del Aljarafe', 41], ['Alcalá de Guadaira', 41], ['Coria', 41],
+            ['Baeza', 23], ['Úbeda', 23], ['Linares', 23], ['Cazorla', 23], ['Andújar', 23], ['Torredelcampo', 23],
         ]);
 
         $this->createTable('user_type', [
@@ -210,7 +214,7 @@ class m130524_201443_init extends Migration
         $user->save() ? $user : null;
 
         $user = new User();
-        $user->username = 'Aministrador';
+        $user->username = 'Administrador';
         $user->email = 'admin@gmail.com';
         $user->rol_id = 25; // usuario
         $user->user_type_id = 20; // gratuito

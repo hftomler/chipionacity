@@ -3,6 +3,7 @@
 namespace frontend\controllers;
 
 use Yii;
+use yii\helpers\ArrayHelper;
 use frontend\models\Profile;
 use frontend\models\search\ProfileSearch;
 use yii\web\Controller;
@@ -10,6 +11,9 @@ use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use common\models\PermissionHelpers;
 use common\models\RecordHelpers;
+use common\models\Pais;
+use common\models\Provincia;
+use common\models\Municipio;
 
 /**
  * ProfileController implements the CRUD actions for Profile model.
@@ -53,7 +57,7 @@ class ProfileController extends Controller {
      */
     public function actionIndex()
     {
- 
+
         if ($id_perfil_usuario = RecordHelpers::userHas('profile')) {
             return $this->render('view', [
                 'model' => $this->findModel($id_perfil_usuario),
@@ -89,7 +93,7 @@ class ProfileController extends Controller {
         $model = new Profile();
 
         // Asignamos al user_id del perfil con el id de usuario activo.
-        $model -> user_id = \Yii::$app->user->identity->id; 
+        $model -> user_id = \Yii::$app->user->identity->id;
 
         if ($id_perfil_usuario = RecordHelpers::userHas('profile')) {
             return $this->render('view', [
@@ -143,6 +147,33 @@ class ProfileController extends Controller {
 
         return $this->redirect(['site/index']);
     }
+
+    public function actionListaprov($id) {
+        $contProvincias = Provincia::find()->where(['pais_id' => $id]) ->count();
+        $provincias = Provincia::find()->where(['pais_id' => $id])->all();
+        ArrayHelper::multisort($provincias, 'nombre_provincia', SORT_ASC);
+        if ($contProvincias >0) {
+            foreach($provincias as $provincia) {
+                echo "<option value='" . $provincia->id . "'>" . $provincia->nombre_provincia . "</option>";
+            }
+        } else {
+            echo "<option> -- </option>";
+        }
+    }
+
+    public function actionListamuni($id) {
+        $contMunicipios = Municipio::find()->where(['provincia_id' => $id]) ->count();
+        $municipios = Municipio::find()->where(['provincia_id' => $id])->all();
+        ArrayHelper::multisort($municipios, 'nombre_municipio', SORT_ASC);
+        if ($contMunicipios >0) {
+            foreach($municipios as $municipio) {
+                echo "<option value='" . $municipio->id . "'>" . $municipio->nombre_municipio . "</option>";
+            }
+        } else {
+            echo "<option> -- </option>";
+        }
+    }
+
 
     /**
      * Finds the Profile model based on its primary key value.

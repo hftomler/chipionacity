@@ -21,9 +21,25 @@ use kartik\date\DatePicker;
 
     <?= $form->field($model, 'direccion')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'pais_id')->dropDownList($model->listaPaises, ['prompt' => 'País' ]);?>
+    <?= $form->field($model, 'pais_id')->dropDownList($model->listaPaises,
 
-    <?= $form->field($model, 'provincia_id')->dropDownList($model->listaProvincias, ['prompt' => 'Provincia' ]);?>
+            [
+                'prompt' => 'País',
+                'onchange' => '
+                    $.post( "index.php?r=profile/listaprov&id='.'"+$(this).val(), function ( data ) {
+                        $( "select#profile-provincia_id" ).html( data );
+                    });'
+            ]);?>
+
+    <?= $form->field($model, 'provincia_id')->dropDownList($model->listaProvincias,
+
+            [
+                'prompt' => 'Provincia',
+                'onchange' => '
+                    $.post( "index.php?r=profile/listamuni&id='.'"+$(this).val(), function ( data ) {
+                        $( "select#profile-municipio_id" ).html( data );
+                    });'
+            ]);?>
 
     <?= $form->field($model, 'municipio_id')->dropDownList($model->listaMunicipios, ['prompt' => 'Población' ]);?>
 

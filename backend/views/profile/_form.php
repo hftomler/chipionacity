@@ -21,9 +21,25 @@ use kartik\date\DatePicker;
 
     <?= $form->field($model, 'direccion')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'pais_id')->dropDownList($model->listaPaises, ['prompt' => 'País' ]);?>
+    <?= $form->field($model, 'pais_id')->dropDownList($model->listaPaises,
 
-    <?= $form->field($model, 'provincia_id')->dropDownList($model->listaProvincias, ['prompt' => 'Provincia' ]);?>
+            [
+                'prompt' => 'País',
+                'onchange' => '
+                    $.post( "index.php?r=profile/listaprov&id='.'"+$(this).val(), function ( data ) {
+                        $( "select#profile-provincia_id" ).html( data );
+                    });'
+            ]);?>
+
+    <?= $form->field($model, 'provincia_id')->dropDownList($model->listaProvincias,
+
+            [
+                'prompt' => 'Provincia',
+                'onchange' => '
+                    $.post( "index.php?r=profile/listamuni&id='.'"+$(this).val(), function ( data ) {
+                        $( "select#profile-municipio_id" ).html( data );
+                    });'
+            ]);?>
 
     <?= $form->field($model, 'municipio_id')->dropDownList($model->listaMunicipios, ['prompt' => 'Población' ]);?>
 
@@ -38,9 +54,7 @@ use kartik\date\DatePicker;
     ]); ?>
 
     <div class="form-group">
-        <?= Html::submitButton($model->isNewRecord ? Yii::t('app', 'Create') : Yii::t('app', 'Update'),
-                                ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary'])
-        ?>
+        <?= Html::submitButton($model->isNewRecord ? Yii::t('app', 'Create') : Yii::t('app', 'Update'), ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>
