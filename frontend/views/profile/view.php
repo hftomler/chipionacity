@@ -7,13 +7,13 @@ use common\models\PermissionHelpers;
 /* @var $this yii\web\View */
 /* @var $model frontend\models\Profile */
 
-$this->title = "Perfil de " . $model->user->username;
+$this->title = $model->user->username;
 $this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Profile'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="profile-view">
 
-    <h1><?= Html::encode($this->title) ?></h1>
+    <h1><?= Yii::t('app', 'Profile:') ?><?= Html::encode($this->title) ?></h1>
 
     <p>
 
@@ -30,7 +30,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 ],
             ]);
         ?>
-        
+
     </p>
 
     <?= DetailView::widget([

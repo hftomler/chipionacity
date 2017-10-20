@@ -91,7 +91,7 @@ class ProfileController extends Controller
          $model = new Profile();
 
          // Asignamos al user_id del perfil con el id de usuario activo.
-         $model -> user_id = \Yii::$app->user->identity->id;
+         $model->user_id = \Yii::$app->user->identity->id;
 
          if ($id_perfil_usuario = RecordHelpers::userHas('profile')) {
              return $this->render('view', [
