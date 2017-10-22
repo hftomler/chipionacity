@@ -3,6 +3,7 @@
 namespace backend\controllers;
 
 use Yii;
+use yii\helpers\ArrayHelper;
 use frontend\models\Profile;
 use backend\models\search\ProfileSearch;
 use yii\web\Controller;
@@ -11,6 +12,9 @@ use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
 use common\models\PermissionHelpers;
 use common\models\RecordHelpers;
+use common\models\Pais;
+use common\models\Provincia;
+use common\models\Municipio;
 
 /**
  * ProfileController implements the CRUD actions for Profile model.
@@ -99,7 +103,7 @@ class ProfileController extends Controller
              ]);
 
          } elseif ($model->load(Yii::$app->request->post()) && $model->save()) {
-             return $this->redirect(['view']);
+             return $this->redirect(['view', 'id' => $model->id]);
 
          } else {
              return $this->render('create', [
@@ -155,4 +159,31 @@ class ProfileController extends Controller
             throw new NotFoundHttpException('The requested page does not exist.');
         }
     }
+
+    public function actionListaprov($id) {
+        $contProvincias = Provincia::find()->where(['pais_id' => $id]) ->count();
+        $provincias = Provincia::find()->where(['pais_id' => $id])->all();
+        ArrayHelper::multisort($provincias, 'nombre_provincia', SORT_ASC);
+        if ($contProvincias >0) {
+            foreach($provincias as $provincia) {
+                echo "<option value='" . $provincia->id . "'>" . $provincia->nombre_provincia . "</option>";
+            }
+        } else {
+            echo "<option> -- </option>";
+        }
+    }
+
+    public function actionListamuni($id) {
+        $contMunicipios = Municipio::find()->where(['provincia_id' => $id]) ->count();
+        $municipios = Municipio::find()->where(['provincia_id' => $id])->all();
+        ArrayHelper::multisort($municipios, 'nombre_municipio', SORT_ASC);
+        if ($contMunicipios >0) {
+            foreach($municipios as $municipio) {
+                echo "<option value='" . $municipio->id . "'>" . $municipio->nombre_municipio . "</option>";
+            }
+        } else {
+            echo "<option> -- </option>";
+        }
+    }
+
 }

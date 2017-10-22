@@ -11,7 +11,7 @@ use Yii;
  * @property string $nombre_municipio
  * @property integer $provincia_id
  *
- * @property Provincias $provincia
+ * @property Provincia $provincia
  * @property User[] $users
  */
 class Municipio extends \yii\db\ActiveRecord
@@ -33,7 +33,7 @@ class Municipio extends \yii\db\ActiveRecord
             [['nombre_municipio', 'provincia_id'], 'required'],
             [['provincia_id'], 'integer'],
             [['nombre_municipio'], 'string', 'max' => 50],
-            [['provincia_id'], 'exist', 'skipOnError' => true, 'targetClass' => Provincias::className(), 'targetAttribute' => ['provincia_id' => 'id']],
+            [['provincia_id'], 'exist', 'skipOnError' => true, 'targetClass' => Provincia::className(), 'targetAttribute' => ['provincia_id' => 'id']],
         ];
     }
 

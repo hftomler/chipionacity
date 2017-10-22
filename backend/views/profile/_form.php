@@ -49,7 +49,8 @@ use kartik\date\DatePicker;
         'language' => 'es',
         'options' => ['placeholder' => 'Fecha de Nacimiento ...'],
         'pluginOptions' => [
-            'autoclose'=>true
+            'autoclose'=>true,
+            'format' => 'dd/mm/yyyy'
         ]
     ]); ?>
 

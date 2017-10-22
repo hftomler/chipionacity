@@ -31,7 +31,8 @@ $tp = $usuario->getProfileId();
     <?php echo Collapse::widget([
             'items' => [
                 [
-                    'label' => Yii::t('app', 'Search'),
+                    'label' =>   Yii::t('app', 'Search'),
+                    'encode' => true,
                     'content' => $this->render('_search', ['model' => $searchModel]),
                     // Descomentar lo siguiente si quiero que aparezca abierto por defecto
                     // 'contentOptions' => ['class' => 'in']
@@ -52,7 +53,8 @@ $tp = $usuario->getProfileId();
             //'id', Ya aparece en el link de arriba
             'nombre',
             'apellidos',
-            'fecha_nac',
+            ['attribute'=>'fecha_nac', 'format' => ['date', 'php:d-m-Y']
+            ],
             'genderName',
             ['class' => 'yii\grid\ActionColumn',
                              'visibleButtons' => [

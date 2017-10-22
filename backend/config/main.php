@@ -9,7 +9,6 @@ $params = array_merge(
 return [
     'id' => 'app-backend',
     'basePath' => dirname(__DIR__),
-    'language' => 'es',
     'controllerNamespace' => 'backend\controllers',
     'bootstrap' => ['log'],
     'modules' => [],
@@ -19,11 +18,11 @@ return [
         ],
         'i18n' => [
                 'translations' => [
-                    'app' => [
+                    'backend*' => [
                         'class' => 'yii\i18n\PhpMessageSource',
-                        'sourceLanguage' => 'en',
+                        //'sourceLanguage' => 'en',
                         'fileMap' => [
-                            'app' => 'app.php',
+                            'backend' => 'backend.php',
                             'app/error' => 'error.php',
                         ],
                     ],

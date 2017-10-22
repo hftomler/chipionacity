@@ -119,7 +119,7 @@ class Profile extends \yii\db\ActiveRecord
      *
     */
     public function getGenderName() {
-        return $this->gender->gender_name;
+        return ($this->gender) ? $this->gender->gender_name : 'Ninguno';
     }
 
     /**
@@ -216,7 +216,7 @@ class Profile extends \yii\db\ActiveRecord
 
     /**
      * @getUserId
-     */ 
+     */
     public function getUserId() {
         return $this->user ? $this->user->id : 'Ninguno';
     }
@@ -239,11 +239,11 @@ class Profile extends \yii\db\ActiveRecord
         return Html::a($this->id, $url, $options);
     }
 
-    public function beforeValidate() {
+    /*public function beforeValidate() {
         if ($this->fecha_nac != null) {
             $new_date_format = date('d-m-Y', strtotime($this->fecha_nac));
             $this->fecha_nac = $new_date_format;
         }
             return parent::beforeValidate();
-        }
-    }
+    }*/
+}

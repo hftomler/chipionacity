@@ -9,7 +9,6 @@ $this->title = Yii::t('app', "Administrator's Zone");
 $is_admin = ValueHelpers::getRolValue('Admin');
 ?>
 <div class="site-index">
-
     <div class="jumbotron">
         <h1><?= Yii::t('app', "Welcome to Administrator's Zone") ?></h1>
         <p class="lead"><?= Yii::t('app', "You can manage users, roles and more with theese tools") ?></p>

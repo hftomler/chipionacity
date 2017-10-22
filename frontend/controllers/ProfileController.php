@@ -148,6 +148,22 @@ class ProfileController extends Controller {
         return $this->redirect(['site/index']);
     }
 
+    /**
+     * Finds the Profile model based on its primary key value.
+     * If the model is not found, a 404 HTTP exception will be thrown.
+     * @param integer $id
+     * @return Profile the loaded model
+     * @throws NotFoundHttpException if the model cannot be found
+     */
+    protected function findModel($id)
+    {
+        if (($model = Profile::findOne($id)) !== null) {
+            return $model;
+        } else {
+            throw new NotFoundHttpException('The requested page does not exist.');
+        }
+    }
+
     public function actionListaprov($id) {
         $contProvincias = Provincia::find()->where(['pais_id' => $id]) ->count();
         $provincias = Provincia::find()->where(['pais_id' => $id])->all();
@@ -174,20 +190,4 @@ class ProfileController extends Controller {
         }
     }
 
-
-    /**
-     * Finds the Profile model based on its primary key value.
-     * If the model is not found, a 404 HTTP exception will be thrown.
-     * @param integer $id
-     * @return Profile the loaded model
-     * @throws NotFoundHttpException if the model cannot be found
-     */
-    protected function findModel($id)
-    {
-        if (($model = Profile::findOne($id)) !== null) {
-            return $model;
-        } else {
-            throw new NotFoundHttpException('The requested page does not exist.');
-        }
-    }
 }
