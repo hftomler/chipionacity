@@ -3,6 +3,7 @@
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 use kartik\date\DatePicker;
+use kartik\select2\Select2;
 
 /* @var $this yii\web\View */
 /* @var $model frontend\models\Profile */
@@ -21,25 +22,23 @@ use kartik\date\DatePicker;
 
     <?= $form->field($model, 'direccion')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'pais_id')->dropDownList($model->listaPaises,
+    <?= $form->field($model, 'pais_id')->widget(Select2::classname(), [
+                'data' => $model->listaPaises,
+                'options' => ['placeholder' => 'País ...'],
+                'pluginOptions' => [
+                    'allowClear' => true
+                ],
+            ]);
+    ?>
 
-            [
-                'prompt' => 'País',
-                'onchange' => '
-                    $.post( "index.php?r=profile/listaprov&id='.'"+$(this).val(), function ( data ) {
-                        $( "select#profile-provincia_id" ).html( data );
-                    });'
-            ]);?>
-
-    <?= $form->field($model, 'provincia_id')->dropDownList($model->listaProvincias,
-
-            [
-                'prompt' => 'Provincia',
-                'onchange' => '
-                    $.post( "index.php?r=profile/listamuni&id='.'"+$(this).val(), function ( data ) {
-                        $( "select#profile-municipio_id" ).html( data );
-                    });'
-            ]);?>
+    <?= $form->field($model, 'provincia_id')->widget(Select2::classname(), [
+                'data' => $model->listaProvincias,
+                'options' => ['placeholder' => 'Provincia ...'],
+                'pluginOptions' => [
+                    'allowClear' => true
+                ],
+            ]);
+    ?>
 
     <?= $form->field($model, 'municipio_id')->dropDownList($model->listaMunicipios, ['prompt' => 'Población' ]);?>
 
