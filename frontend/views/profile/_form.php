@@ -4,6 +4,8 @@ use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 use kartik\date\DatePicker;
 use kartik\select2\Select2;
+use kartik\file\FileInput;
+
 
 /* @var $this yii\web\View */
 /* @var $model frontend\models\Profile */
@@ -18,6 +20,9 @@ use kartik\select2\Select2;
 
     <?= $form->field($model, 'apellidos')->textInput(['maxlength' => 45]) ?>
 
+    <?= $form->field($model, 'fichImage')->widget(FileInput::classname(),
+        [ 'options' => ['accept' => 'image/*'], ]);
+    ?>
     <?= $form->field($model, 'gender_id')->dropDownList($model->genderList, ['prompt' => 'Género' ]);?>
 
     <?= $form->field($model, 'direccion')->textInput(['maxlength' => true]) ?>

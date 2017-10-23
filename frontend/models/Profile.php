@@ -27,6 +27,7 @@ use common\models\Provincia;
  * @property string $cpostal
  * @property integer $provincia_id
  * @property string $fecha_nac
+ * @property string img_perfil
  * @property string $created_at
  * @property string $updated_at
  *
@@ -41,6 +42,9 @@ class Profile extends \yii\db\ActiveRecord
     /**
      * @inheritdoc
      */
+
+    public $fichImage;
+
     public static function tableName()
     {
         return 'profile';
@@ -71,8 +75,9 @@ class Profile extends \yii\db\ActiveRecord
         return [
             [['user_id', 'gender_id', 'pais_id', 'municipio_id', 'provincia_id'], 'integer'],
             [['fecha_nac'], 'safe'],
+            ['fichImage', 'file'],
             [['gender_id'], 'in', 'range'=>array_keys($this->getGenderList())],
-            [['nombre', 'apellidos', 'direccion'], 'string', 'max' => 255],
+            [['nombre', 'apellidos', 'direccion', 'img_perfil'], 'string', 'max' => 255],
             [['cpostal'], 'string', 'max' => 5],
             [['gender_id'], 'exist', 'skipOnError' => true, 'targetClass' => Gender::className(), 'targetAttribute' => ['gender_id' => 'id']],
             [['municipio_id'], 'exist', 'skipOnError' => true, 'targetClass' => Municipio::className(), 'targetAttribute' => ['municipio_id' => 'id']],
@@ -99,6 +104,7 @@ class Profile extends \yii\db\ActiveRecord
             'cpostal' => Yii::t('frontend', 'Cpostal'),
             'provincia_id' => Yii::t('frontend', 'Provincia ID'),
             'fecha_nac' => Yii::t('frontend', 'Fecha Nac'),
+            'img_perfil' => Yii::t('frontend', 'Imagen'),
             'created_at' => Yii::t('frontend', 'Created At'),
             'updated_at' => Yii::t('frontend', 'Updated At'),
             'genderName' => Yii::t('app', 'Gender'),

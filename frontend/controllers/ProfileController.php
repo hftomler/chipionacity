@@ -14,7 +14,7 @@ use common\models\RecordHelpers;
 use common\models\Pais;
 use common\models\Provincia;
 use common\models\Municipio;
-
+use yii\web\UploadedFile;
 /**
  * ProfileController implements the CRUD actions for Profile model.
  */
@@ -91,9 +91,9 @@ class ProfileController extends Controller {
     public function actionCreate()
     {
         $model = new Profile();
-
         // Asignamos al user_id del perfil con el id de usuario activo.
         $model -> user_id = \Yii::$app->user->identity->id;
+
 
         if ($id_perfil_usuario = RecordHelpers::userHas('profile')) {
             return $this->render('view', [
@@ -101,6 +101,13 @@ class ProfileController extends Controller {
             ]);
 
         } elseif ($model->load(Yii::$app->request->post()) && $model->save()) {
+            // Capturamos la instancia del fichero subido en el form y guardamos la imagen
+            $nombreImagen = $model->username;
+            $model->fichImage = UploadedFile::getInstance($model, 'fichImage');
+            $model->fichImage->saveAs('imagenes/imgPerfil/' . $nombreImagen . '.' . $model->fichImage->extension);
+            // Guardo la trayectoria de la imagen en el campo img_perfil de la tabla profile.
+            $model->img_perfil = 'imagenes/imgPerfil/' . $nombreImagen . '.' . $model->fichImage->extension;
+            $model->save();
             return $this->redirect(['view']);
 
         } else {
