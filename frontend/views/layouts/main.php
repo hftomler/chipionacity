@@ -77,29 +77,29 @@ FontAwesomeAsset::register($this);
         <?= Alert::widget() ?>
         <?= $content ?>
     </div>
-    <?php
-        Modal::begin([
-                'header'=>'<h3>Login</h3>',
-                'id'=>'modalLoginContent',
-                'size'=>'modal-md',
-                'footer'=>'<h3>Pié de modal',
-            ]);
-
-        echo "<div id='modalContent'></div>";
-
-        Modal::end();
-    ?>
 </div>
 
 <footer class="footer">
     <div class="container">
-        <p class="pull-left"><img id="logo" src="imagenes/logo.png" alt="logo" height="35"></p>
+        <p class="pull-left"><img src="imagenes/logo.png" alt="logo" height="35"></p>
 
         <p class="pull-right"><?= Yii::powered() ?></p>
     </div>
 </footer>
 
 <?php $this->endBody() ?>
+<?php
+Modal::begin([
+    'header'=>'<h3>Login</h3>',
+    'id'=>'modalLoginContent',
+    'size'=>'modal-md',
+    'footer'=>'<h3>Pié de modal',
+]);
+
+echo "<div id='modalContent'></div>";
+
+Modal::end();
+?>
 </body>
 </html>
 <?php $this->endPage() ?>

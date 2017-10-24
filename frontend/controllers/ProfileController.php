@@ -102,14 +102,15 @@ class ProfileController extends Controller {
 
         } elseif ($model->load(Yii::$app->request->post()) && $model->save()) {
             // Capturamos la instancia del fichero subido en el form y guardamos la imagen
-            $nombreImagen = $model->username;
             $model->fichImage = UploadedFile::getInstance($model, 'fichImage');
-            $model->fichImage->saveAs('imagenes/imgPerfil/' . $nombreImagen . '.' . $model->fichImage->extension);
-            // Guardo la trayectoria de la imagen en el campo img_perfil de la tabla profile.
-            $model->img_perfil = 'imagenes/imgPerfil/' . $nombreImagen . '.' . $model->fichImage->extension;
+                if ($model->fichImage !== null) {
+                $nombreImagen = $model->username;
+                $model->fichImage->saveAs('imagenes/imgPerfil/' . $nombreImagen . '.' . $model->fichImage->extension);
+                // Guardo la trayectoria de la imagen en el campo img_perfil de la tabla profile.
+                $model->img_perfil = 'imagenes/imgPerfil/' . $nombreImagen . '.' . $model->fichImage->extension;
+            }
             $model->save();
             return $this->redirect(['view']);
-
         } else {
             return $this->render('create', [
                 'model' => $model,
@@ -129,6 +130,15 @@ class ProfileController extends Controller {
 
         if ($model = Profile::find()->where(['user_id' => Yii::$app->user->identity->id])->one()) {
             if ($model->load(Yii::$app->request->post()) && $model->save()) {
+                // Capturamos la instancia del fichero subido en el form y guardamos la imagen
+                $model->fichImage = UploadedFile::getInstance($model, 'fichImage');
+                    if ($model->fichImage !== null) {
+                    $nombreImagen = $model->username;
+                    $model->fichImage->saveAs('imagenes/imgPerfil/' . $nombreImagen . '.' . $model->fichImage->extension);
+                    // Guardo la trayectoria de la imagen en el campo img_perfil de la tabla profile.
+                    $model->img_perfil = 'imagenes/imgPerfil/' . $nombreImagen . '.' . $model->fichImage->extension;
+                }
+                $model->save();
                 return $this->redirect(['view']);
             } else {
                 return $this->render('update', [

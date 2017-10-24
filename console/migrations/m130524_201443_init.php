@@ -354,7 +354,7 @@ class m130524_201443_init extends Migration
             'cpostal' => $this->char(5),
             'provincia_id' => $this->integer(),
             'fecha_nac'=>$this->date(),
-            'img_perfil'=>$this->string(255),
+            'img_perfil'=>$this->string(255)->defaultValue('imagenes/imgPerfil/sinPerfil.jpg'),
             'created_at' => $this->date()->notNull(),
             'updated_at' => $this->date()->notNull(),
             ], $tableOptions);

@@ -147,16 +147,16 @@ nav ul li i {
 
 nav li a:link,
 nav li a:visited,
-nav li button {
+nav li button.btn-link {
     color: #d0d0d0;
 }
 
-#w1 li.active > a {
+nav li.active > a {
     background: none;
     color: #009bdb;
 }
 
-#w1 a:hover, #w1 button:hover {
+nav li:hover a:hover, nav li form button.btn-link:hover {
     background-color: #f0f0f0;
     color: #ff7e00;
 }

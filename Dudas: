@@ -9,3 +9,5 @@ Fallos:
 	BACKEND-> Profile->update->view la fecha se muestra y captura a mano en un formato no correcto y se guarda el 01/01/1970
 
 	BACKEND-> Varios-> index ->Meter un <i class="fa"></i> dentro del label del Collapse.
+
+	FRONTEND->Update Profile cuando cargo una imagen distinta peta: failed to open stream: No such file or directory
