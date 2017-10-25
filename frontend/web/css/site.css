@@ -122,6 +122,14 @@ a.desc:after {
 
 /* ESTILOS PROPIOS */
 
+
+/* TIPOGRAFIA */
+
+small {
+    font-size: 0.7em;
+    color: #0069fd;
+}
+
 #logo {
     height: 60px;
 }
@@ -162,5 +170,6 @@ nav li:hover a:hover, nav li form button.btn-link:hover {
 }
 
 #swImgPerfil {
-    height: 100px;
+    margin-top: 10px;
+    height: 110px;
 }
