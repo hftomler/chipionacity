@@ -103,8 +103,16 @@ class ProfileController extends Controller
              ]);
 
          } elseif ($model->load(Yii::$app->request->post()) && $model->save()) {
+             // Capturamos la instancia del fichero subido en el form y guardamos la imagen
+             $model->fichImage = UploadedFile::getInstance($model, 'fichImage');
+                 if ($model->fichImage !== null) {
+                 $nomImg = $model->username;
+                 // Guardo la trayectoria de la imagen en el campo img_perfil de la tabla profile.
+                 $model->img_perfil = 'imagenes/imgPerfil/' . $nomImg . '.' . $model->fichImage->extension;
+                 $model->save();
+                 $model->fichImage->saveAs('imagenes/imgPerfil/' . $nomImg . '.' . $model->fichImage->extension);
+             }
              return $this->redirect(['view', 'id' => $model->id]);
-
          } else {
              return $this->render('create', [
                  'model' => $model,
@@ -123,7 +131,16 @@ class ProfileController extends Controller
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+            // Capturamos la instancia del fichero subido en el form y guardamos la imagen
+            $model->fichImage = UploadedFile::getInstance($model, 'fichImage');
+                if ($model->fichImage !== null) {
+                $nomImg = $model->username;
+                // Guardo la trayectoria de la imagen en el campo img_perfil de la tabla profile.
+                $model->img_perfil = 'imagenes/imgPerfil/' . $nomImg . '.' . $model->fichImage->extension;
+                $model->save();
+                $model->fichImage->saveAs('imagenes/imgPerfil/' . $nomImg . '.' . $model->fichImage->extension);
+            }
+            return $this->redirect(['view']);
         } else {
             return $this->render('update', [
                 'model' => $model,

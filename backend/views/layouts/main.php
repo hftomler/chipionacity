@@ -9,6 +9,8 @@ use common\widgets\Alert;
 use yii\helpers\Url;
 use common\models\ValueHelpers;
 use frontend\assets\FontAwesomeAsset;
+use frontend\models\Profile;
+use common\models\RecordHelpers;
 
 
 /* @var $this \yii\web\View */
@@ -67,14 +69,10 @@ FontAwesomeAsset::register($this);
     if (Yii::$app->user->isGuest) {
         $menuItems[] = ['label' => '<i class="fa fa-sign-in" aria-hidden="true"></i><br/>Login', 'url' => ['/site/login']];
     } else {
-        $menuItems[] = '<li>'
-            . Html::beginForm(['/site/logout'], 'post')
-            . Html::submitButton(
-                '<i class="fa fa-power-off" aria-hidden="true"></i><br/>'  . Yii::$app->user->identity->username,
-                ['class' => 'btn btn-link logout']
-            )
-            . Html::endForm()
-            . '</li>';
+        $imgNav =  RecordHelpers::userHas('profile') ?
+                            Profile::find()->where(['user_id' => Yii::$app->user->id])->one()->imgPath :
+                            "imagenes/imgPerfil/sinPerfil.jpg";
+        $menuItems[] = ['label' => '<i class="fa fa-user-plus" aria-hidden="true"></i><br/>Profile', 'url' => ['/profile/view']];
     }
 
     echo Nav::widget([

@@ -120,6 +120,11 @@ class Profile extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
+
+    public function getImgPath() {
+        return ($this->img_perfil) ? $this->img_perfil : 'imagenes/imgPerfil/sinPerfil.jpg';
+    }
+
     public function getGender()
     {
         return $this->hasOne(Gender::className(), ['id' => 'gender_id']);

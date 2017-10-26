@@ -169,7 +169,17 @@ nav li:hover a:hover, nav li form button.btn-link:hover {
     color: #ff7e00;
 }
 
-#swImgPerfil {
+.imgPerfil-md {
     margin-top: 10px;
     height: 110px;
+}
+
+.imgPerfil-sm {
+    margin-top: 10px;
+    height: 80px;
+}
+
+.imgPerfil-xs {
+    margin-left: 10px;
+    height: 40px;
 }

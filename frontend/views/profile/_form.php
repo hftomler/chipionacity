@@ -10,12 +10,11 @@ use kartik\select2\Select2;
 /* @var $model frontend\models\Profile */
 /* @var $form yii\widgets\ActiveForm */
 
-$url = ($model->img_perfil) ? $model->img_perfil : 'imagenes/imgPerfil/sinPerfil.jpg';
 ?>
 
 <div class="profile-form">
 
-    <?php $form = ActiveForm::begin(['options'=> ['enctype' => 'multipart/form-data']]); ?>
+    <?php $form = ActiveForm::begin(['options'=> ['class' => 'well', 'enctype' => 'multipart/form-data']]); ?>
 
     <div class="col-xs-10">
         <div class="col-xs-12 col-sm-4">
@@ -32,8 +31,8 @@ $url = ($model->img_perfil) ? $model->img_perfil : 'imagenes/imgPerfil/sinPerfil
         </div>
     </div>
     <div class="col-xs-2 text-center">
-        <?= Html::img($url, [ 'id' => 'swImgPerfil',
-                                            'class' => 'img-circle',
+        <?= Html::img($model->imgPath, [ 'id' => 'swImgPerfil',
+                                            'class' => 'imgPerfil-md img-circle img-thumbnail',
                                             'title' => 'Avatar - Clic para cambiar',
                                             'alt' => 'Imagen de perfil'
                                         ]);

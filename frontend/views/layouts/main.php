@@ -12,6 +12,8 @@ use common\widgets\Alert;
 use yii\helpers\Url;
 use yii\bootstrap\Modal;
 use frontend\assets\FontAwesomeAsset;
+use frontend\models\Profile;
+use common\models\RecordHelpers;
 
 AppAsset::register($this);
 FontAwesomeAsset::register($this);
@@ -39,24 +41,22 @@ FontAwesomeAsset::register($this);
            'class' => 'navbar',
         ],
     ]);
-    $menuItems = [
-        ['label' => '<i class="fa fa-home" aria-hidden="true"></i><br/>Home', 'url' => ['/site/index']],
-        ['label' => '<i class="fa fa-building-o" aria-hidden="true"></i><br/>About', 'url' => ['/site/about']],
-        ['label' => '<i class="fa fa-envelope-o" aria-hidden="true"></i><br/>Contact', 'url' => ['/site/contact']],
-    ];
     if (Yii::$app->user->isGuest) {
-        $menuItems[] = ['label' => '<i class="fa fa-id-card-o" aria-hidden="true"></i><br/>Signup', 'url' => ['/site/signup']];
+        $menuItems[] = ['label' => '<i class="fa fa-id-card-o" aria-hidden="true"></i><br/>Únete', 'url' => ['/site/signup']];
         $menuItems[] = ['label' => '<i class="fa fa-sign-in" aria-hidden="true"></i><br/>Login',  'url' => ['/site/login'],
                      'linkOptions' => [
                            'value' => Url::to('index.php?r=site/login'),
                            'id'=>'modalLogin'],
                      ];
     } else {
+        $imgNav =  RecordHelpers::userHas('profile') ?
+                            Profile::find()->where(['user_id' => Yii::$app->user->id])->one()->imgPath :
+                            "imagenes/imgPerfil/sinPerfil.jpg";
         $menuItems[] = ['label' => '<i class="fa fa-user-plus" aria-hidden="true"></i><br/>Profile', 'url' => ['/profile/view']];
         $menuItems[] = '<li>'
             . Html::beginForm(['/site/logout'], 'post')
             . Html::submitButton(
-                '<i class="fa fa-power-off" aria-hidden="true"></i><br/>'  . Yii::$app->user->identity->username,
+                '<img src="' . $imgNav . '" class="imgPerfil-xs img-circle" title="' . Yii::$app->user->identity->username . '"/>',
                 ['class' => 'btn btn-link logout']
             )
             . Html::endForm()

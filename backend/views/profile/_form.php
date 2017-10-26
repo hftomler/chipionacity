@@ -1,57 +1,91 @@
 <?php
 
 use yii\helpers\Html;
-use yii\widgets\ActiveForm;
+use yii\bootstrap\ActiveForm;
 use kartik\date\DatePicker;
 use kartik\select2\Select2;
+
 
 /* @var $this yii\web\View */
 /* @var $model frontend\models\Profile */
 /* @var $form yii\widgets\ActiveForm */
+
 ?>
 
 <div class="profile-form">
 
-    <?php $form = ActiveForm::begin(); ?>
+    <?php $form = ActiveForm::begin(['options'=> ['class' => 'well', 'enctype' => 'multipart/form-data']]); ?>
 
-    <?= $form->field($model, 'nombre')->textInput(['maxlength' => 45]) ?>
+    <div class="col-xs-10">
+        <div class="col-xs-12 col-sm-4">
+            <?= $form->field($model, 'nombre')->textInput(['maxlength' => 45]) ?>
+        </div>
+        <div class="col-xs-12 col-sm-8">
+            <?= $form->field($model, 'apellidos')->textInput(['maxlength' => 45]) ?>
+        </div>
+        <div class="col-xs-8">
+            <?= $form->field($model, 'direccion')->textInput(['maxlength' => true]) ?>
+        </div>
+        <div class="col-xs-4">
+            <?= $form->field($model, 'gender_id')->dropDownList($model->genderList, ['prompt' => 'Género' ]);?>
+        </div>
+    </div>
+    <div class="col-xs-2 text-center">
+        <?= Html::img($model->imgPath, [ 'id' => 'swImgPerfil',
+                                            'class' => 'imgPerfil-md img-circle img-thumbnail',
+                                            'title' => 'Avatar - Clic para cambiar',
+                                            'alt' => 'Imagen de perfil'
+                                        ]);
+        ?>
+        <?= $form->field($model, 'fichImage')->fileInput([
+                                        'id' => 'btImgPerfil',
+                                        'value' => 'Género',
+                                        'style' =>'display:none'
+                                    ])->label(''); ?>
+    </div>
 
-    <?= $form->field($model, 'apellidos')->textInput(['maxlength' => 45]) ?>
+    <div class="col-xs-12">
+        <div class="col-xs-12 col-md-4">
+            <?= $form->field($model, 'pais_id')->widget(Select2::classname(), [
+                        'data' => $model->listaPaises,
+                        'options' => ['placeholder' => 'País ...'],
+                        'pluginOptions' => [
+                            'allowClear' => true
+                        ],
+                    ]);
+            ?>
+        </div>
+        <div class="col-xs-12 col-md-4">
+            <?= $form->field($model, 'provincia_id')->widget(Select2::classname(), [
+                        'data' => $model->listaProvincias,
+                        'options' => ['placeholder' => 'Provincia ...'],
+                        'pluginOptions' => [
+                            'allowClear' => true
+                        ],
+                    ]);
+            ?>
+        </div>
+        <div class="col-xs-12 col-md-4">
+            <?= $form->field($model, 'municipio_id')->dropDownList($model->listaMunicipios, ['prompt' => 'Población' ]);?>
+        </div>
+    </div>
 
-    <?= $form->field($model, 'gender_id')->dropDownList($model->genderList, ['prompt' => 'Género' ]);?>
-
-    <?= $form->field($model, 'direccion')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'pais_id')->widget(Select2::classname(), [
-                'data' => $model->listaPaises,
-                'options' => ['placeholder' => 'País ...'],
-                'pluginOptions' => [
-                    'allowClear' => true
-                ],
-            ]);
-    ?>
-
-    <?= $form->field($model, 'provincia_id')->widget(Select2::classname(), [
-                'data' => $model->listaProvincias,
-                'options' => ['placeholder' => 'Provincia ...'],
-                'pluginOptions' => [
-                    'allowClear' => true
-                ],
-            ]);
-    ?>
-
-    <?= $form->field($model, 'municipio_id')->dropDownList($model->listaMunicipios, ['prompt' => 'Población' ]);?>
-
-    <?= $form->field($model, 'cpostal')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'fecha_nac')->widget(DatePicker::classname(), [
-        'language' => 'es',
-        'options' => ['placeholder' => 'Fecha de Nacimiento ...'],
-        'pluginOptions' => [
-            'autoclose'=>true,
-            'format' => 'dd/mm/yyyy'
-        ]
-    ]); ?>
+    <div class="col-xs-12">
+        <div class="col-xs-6">
+            <?= $form->field($model, 'cpostal')->textInput(['maxlength' => true]) ?>
+        </div>
+        <div class="col-xs-6">
+            <?= $form->field($model, 'fecha_nac')->widget(DatePicker::classname(), [
+                        'language' => 'es',
+                        'options' => ['placeholder' => 'Fecha de Nacimiento ...'],
+                        'pluginOptions' => [
+                            'autoclose'=>true,
+                            'format' => 'dd/mm/yyyy'
+                        ]
+                    ]);
+            ?>
+        </div>
+    </div>
 
     <div class="form-group">
         <?= Html::submitButton($model->isNewRecord ? Yii::t('app', 'Create') : Yii::t('app', 'Update'), ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
