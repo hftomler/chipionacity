@@ -17,4 +17,25 @@ $(function(){
 			$( "select#profile-municipio_id" ).html( data );
 		});
 	});
+
+	//Mapear el click de la imagen hacia el botón de fileUpload
+    $("#swImgPerfil").click(function () {
+         $("#btImgPerfil").trigger('click');
+    });
+
+	$("#btImgPerfil").change(function(){
+		cambiarImgPerfil(this);
+	})
+
+	function cambiarImgPerfil(input) {
+	    if (input.files && input.files[0]) {
+	        var reader = new FileReader();
+
+	        reader.onload = function (e) {
+	            $('#swImgPerfil').attr('src', e.target.result);
+	        }
+
+	        reader.readAsDataURL(input.files[0]);
+	    }
+	}
 });

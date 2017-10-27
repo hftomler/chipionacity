@@ -15,6 +15,7 @@ use common\models\RecordHelpers;
 use common\models\Pais;
 use common\models\Provincia;
 use common\models\Municipio;
+use yii\web\UploadedFile;
 
 /**
  * ProfileController implements the CRUD actions for Profile model.
@@ -32,7 +33,7 @@ class ProfileController extends Controller
                 'only' => ['index', 'view', 'create', 'update', 'delete'],
                 'rules' => [
                     [
-                        'actions' => ['index', 'view'],
+                        'actions' => ['index', 'view', 'create'],
                         'allow' => true,
                         'roles' => ['@'],
                         'matchCallback' => function ($rule, $action) {
@@ -40,7 +41,7 @@ class ProfileController extends Controller
                         }
                     ],
                     [
-                        'actions' => ['create', 'update', 'delete'],
+                        'actions' => ['update', 'delete'],
                         'allow' => true,
                         'roles' => ['@'],
                         'matchCallback' => function ($rule, $action) {
@@ -140,7 +141,7 @@ class ProfileController extends Controller
                 $model->save();
                 $model->fichImage->saveAs('imagenes/imgPerfil/' . $nomImg . '.' . $model->fichImage->extension);
             }
-            return $this->redirect(['view']);
+            return $this->redirect(['view', 'id' => $model->id]);
         } else {
             return $this->render('update', [
                 'model' => $model,

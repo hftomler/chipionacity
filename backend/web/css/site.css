@@ -122,6 +122,11 @@ a.desc:after {
 
 /* ESTILOS PROPIOS */
 
+small {
+    font-size: 0.7em;
+    color: #0069fd;
+}
+
 #logo {
     height: 60px;
 }
@@ -159,4 +164,19 @@ nav li.active > a {
 nav li:hover a:hover, nav li form button.btn-link:hover {
     background-color: #f0f0f0;
     color: #ff7e00;
+}
+
+.imgPerfil-md {
+    margin-top: 10px;
+    height: 110px;
+}
+
+.imgPerfil-sm {
+    margin-top: 10px;
+    height: 80px;
+}
+
+.imgPerfil-xs {
+    margin-left: 10px;
+    height: 40px;
 }

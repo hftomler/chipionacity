@@ -1,13 +1,11 @@
-¡ PELIGRO: ELIMINAR ULTIMO COMMIT DEL REMOTO, ANTES DE PUSH ORIGIN MASTER!
-
 Dudas:
+	BACKEND-> Varios-> index ->Meter un <i class="fa"></i> dentro del label del Collapse.
 
 Fallos:
-	SOLUCIONADO: BACKEND-> Al crear un perfil, la página de vuelta (view) me da error no existe ID, se ha creado bien
-							y después si entro al view desde el index aparece correctamente.
 
 	BACKEND-> Profile->update->view la fecha se muestra y captura a mano en un formato no correcto y se guarda el 01/01/1970
 
-	BACKEND-> Varios-> index ->Meter un <i class="fa"></i> dentro del label del Collapse.
+	SOLUCIONADO: FRONTEND->Update Profile cuando cargo una imagen distinta peta: failed to open stream: No such file or directory
 
-	FRONTEND->Update Profile cuando cargo una imagen distinta peta: failed to open stream: No such file or directory
+	SOLUCIONADO: BACKEND-> Al crear un perfil, la página de vuelta (view) me da error no existe ID, se ha creado bien
+	y después si entro al view desde el index aparece correctamente.

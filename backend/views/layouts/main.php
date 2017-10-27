@@ -1,5 +1,8 @@
 <?php
 
+/* @var $this \yii\web\View */
+/* @var $content string */
+
 use yii\helpers\Html;
 use yii\bootstrap\Nav;
 use yii\bootstrap\NavBar;
@@ -11,10 +14,6 @@ use common\models\ValueHelpers;
 use frontend\assets\FontAwesomeAsset;
 use frontend\models\Profile;
 use common\models\RecordHelpers;
-
-
-/* @var $this \yii\web\View */
-/* @var $content string */
 
 AppAsset::register($this);
 FontAwesomeAsset::register($this);
@@ -58,22 +57,27 @@ FontAwesomeAsset::register($this);
         ['label' => '<i class="fa fa-home" aria-hidden="true"></i><br/>Home', 'url' => ['/site/index']],
     ];
 
-    if (!Yii::$app->user->isGuest && Yii::$app->user->identity->rol_id >= $is_admin) {
+    if (Yii::$app->user->isGuest) {
+        $menuItems[] = ['label' => '<i class="fa fa-sign-in" aria-hidden="true"></i><br/>Login', 'url' => ['/site/login']];
+    } elseif (Yii::$app->user->identity->rol_id >= $is_admin) {
         $menuItems[] = ['label' => '<i class="fa fa-users" aria-hidden="true"></i><br/>Usuarios', 'url' => ['user/index']];
         $menuItems[] = ['label' => '<i class="fa fa-address-card-o" aria-hidden="true"></i><br/>Perfiles', 'url' => ['profile/index']];
         $menuItems[] = ['label' => '<i class="fa fa-universal-access" aria-hidden="true"></i><br/>Roles', 'url' => ['/rol/index']];
         $menuItems[] = ['label' => '<i class="fa fa-eye-slash" aria-hidden="true"></i><i class="fa fa-eye" aria-hidden="true"></i><br/>Tip. Usuarios', 'url' => ['/user-type/index']];
         $menuItems[] = ['label' => '<i class="fa fa-check" aria-hidden="true"></i><br/>Status', 'url' => ['/status/index']];
-    }
-
-    if (Yii::$app->user->isGuest) {
-        $menuItems[] = ['label' => '<i class="fa fa-sign-in" aria-hidden="true"></i><br/>Login', 'url' => ['/site/login']];
-    } else {
         $imgNav =  RecordHelpers::userHas('profile') ?
                             Profile::find()->where(['user_id' => Yii::$app->user->id])->one()->imgPath :
                             "imagenes/imgPerfil/sinPerfil.jpg";
-        $menuItems[] = ['label' => '<i class="fa fa-user-plus" aria-hidden="true"></i><br/>Profile', 'url' => ['/profile/view']];
+        $menuItems[] = '<li>'
+            . Html::beginForm(['/site/logout'], 'post')
+            . Html::submitButton(
+                '<img src="' . $imgNav . '" class="imgPerfil-xs img-circle" title="' . Yii::$app->user->identity->username . '"/>',
+                ['class' => 'btn btn-link logout']
+            )
+            . Html::endForm()
+            . '</li>';
     }
+
 
     echo Nav::widget([
         'options' => ['class' => 'navbar-nav navbar-right'],
