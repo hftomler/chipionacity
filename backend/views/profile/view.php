@@ -30,19 +30,19 @@ $this->params['breadcrumbs'][] = $this->title;
         }?>
     </p>
 
-    <?php $fechaFormat =  Yii::$app->formatter->asDate($model->fecha_nac, 'dd-mm-yyyy') ?>
     <?= DetailView::widget([
         'model' => $model,
         'attributes' => [
             ['attribute'=>'userLink', 'format'=>'raw'],
             'nombre',
             'apellidos',
+            'gender.gender_name',
             ['attribute'=>'fecha_nac', 'format' => ['date', 'php:d-m-Y']
             ],
-            'gender.gender_name',
-            'created_at',
-            'updated_at',
-            'id',
+            ['attribute'=>'created_at', 'format' => ['date', 'php:d-m-Y']
+            ],
+            ['attribute'=>'updated_at', 'format' => ['date', 'php:d-m-Y']
+            ],
         ],
     ]) ?>
 
