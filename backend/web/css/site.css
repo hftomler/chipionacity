@@ -127,10 +127,6 @@ small {
     color: #0069fd;
 }
 
-#logo {
-    height: 60px;
-}
-
 nav {
     height: 80px;
     background-color: #f0f0f0;
@@ -166,6 +162,12 @@ nav li:hover a:hover, nav li form button.btn-link:hover {
     color: #ff7e00;
 }
 
+/* IMAGENES */
+
+#logo {
+    height: 60px;
+}
+
 .imgPerfil-md {
     margin-top: 10px;
     height: 110px;
@@ -179,4 +181,10 @@ nav li:hover a:hover, nav li form button.btn-link:hover {
 .imgPerfil-xs {
     margin-left: 10px;
     height: 40px;
+}
+
+/* GRID-VIEW */
+
+.gvCenter td {
+    vertical-align: middle !important;
 }

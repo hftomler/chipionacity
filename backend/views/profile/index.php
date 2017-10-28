@@ -44,9 +44,8 @@ $tp = $usuario->getProfileId();
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
+        'options' => ['class' => 'grid-view gvCenter'],
         'columns' => [
-            ['class' => 'yii\grid\SerialColumn'],
-
             ['attribute'=>'profileIdLink', 'format'=>'raw'],
             //No funciona
             //['attribute'=>'userLink', 'format'=>'raw'],
@@ -54,6 +53,14 @@ $tp = $usuario->getProfileId();
             'nombre',
             'apellidos',
             ['attribute'=>'fecha_nac', 'format' => ['date', 'php:d-m-Y']
+            ],
+            ['attribute' => 'avatar',
+                'format' => 'html',
+                'label' => 'ImgPerfil',
+                'value' => function ($data) {
+                    return Html::img($data['img_perfil'],
+                        ['height' => '40px']);
+                },
             ],
             'genderName',
             ['class' => 'yii\grid\ActionColumn',
