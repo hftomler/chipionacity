@@ -12,6 +12,7 @@ return [
     'controllerNamespace' => 'backend\controllers',
     'bootstrap' => ['log'],
     'modules' => [],
+    'sourceLanguage' => 'en',
     'components' => [
         'request' => [
             'csrfParam' => '_csrf-backend',
@@ -21,6 +22,11 @@ return [
                     'app*' => [
                         'class' => 'yii\i18n\PhpMessageSource',
                         'basePath' => '@common/config/messages',
+                        'sourceLanguage' => 'en',
+                        'fileMap' => [
+                            'app' => 'app.php',
+                            'app/error' => 'error.php',
+                        ]
                     ],
                     'frontend*' => [
                         'class' => 'yii\i18n\PhpMessageSource',
@@ -61,6 +67,9 @@ return [
             ],
         ],
         */
+    ],
+    'as beforeRequest' => [
+        'class' => 'backend\components\CheckLanguage',
     ],
     'params' => $params,
 ];

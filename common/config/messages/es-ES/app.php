@@ -39,7 +39,7 @@ return [
     'User Type' => 'Tipo de Usuario',
     'User Types' => 'Tipos de Usuario',
     'Users' => 'Usuarios',
-    'Welcome to Administrator\'s Zone' => 'Bienvenido a la zona de administración',
+    'Welcome to Administrator\'s Zone' => 'Zona de administración',
     'You can add a new role if you like, just click the link below to get started.' => 'Puedes añadir nuevos roles, haz clic en el enlace.',
     'You can add a new status if you like, just click the link below to get started.' => 'Puedes añadir un nuevo estutus, haz clic en el enlace.',
     'You can add or delete.' => 'Puedes añadir o eliminar',

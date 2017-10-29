@@ -1,4 +1,14 @@
 $(function(){
+
+	// Cambiar idioma
+	$('.language').click(function() {
+		var lang = $(this).attr('id');
+
+		$.post('index.php?r=site/language', {'lang':lang}, function(data) {
+			location.reload();
+		});
+	});
+
 	$('#modalLogin').click(function(evento) {
 		evento.preventDefault();
 		$('#modalLoginContent').modal('show')
@@ -18,7 +28,7 @@ $(function(){
 		});
 	});
 
-	//Mapear el click de la imagen hacia el botón de fileUpload
+	//Mapear el click de la imagen de perfil hacia el botón de fileUpload que está oculto
     $("#swImgPerfil").click(function () {
          $("#btImgPerfil").trigger('click');
     });

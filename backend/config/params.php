@@ -1,5 +1,8 @@
 <?php
 return [
     'adminEmail' => 'admin@example.com',
-    'language' => 'es',
+    'languages' => [
+        'es' => 'Español',
+        'en' => 'english'
+        ]
 ];
