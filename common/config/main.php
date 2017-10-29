@@ -10,11 +10,11 @@ return [
             'translations' => [
                 'frontend*' => [
                     'class' => 'yii\i18n\PhpMessageSource',
-                    'basePath' => '@common/messages',
+                    'basePath' => '@common/config/messages',
                 ],
                 'backend*' => [
                     'class' => 'yii\i18n\PhpMessageSource',
-                    'basePath' => '@common/messages',
+                    'basePath' => '@common/config/messages',
                 ],
             ],
         ],

@@ -196,7 +196,7 @@ class Profile extends \yii\db\ActiveRecord
      */
     public function getPais()
     {
-        return $this->hasOne(Paises::className(), ['id' => 'pais_id']);
+        return $this->hasOne(Pais::className(), ['id' => 'pais_id']);
     }
 
     /**

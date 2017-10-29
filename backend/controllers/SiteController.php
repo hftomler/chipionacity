@@ -23,7 +23,7 @@ class SiteController extends Controller
                 'class' => AccessControl::className(),
                 'rules' => [
                     [
-                        'actions' => ['login', 'error'],
+                        'actions' => ['login', 'error', 'idioma'],
                         'allow' => true,
                     ],
                     [
@@ -93,6 +93,7 @@ class SiteController extends Controller
         }
     }
 
+
     /**
      * Logout action.
      *
@@ -104,4 +105,5 @@ class SiteController extends Controller
 
         return $this->goHome();
     }
+
 }

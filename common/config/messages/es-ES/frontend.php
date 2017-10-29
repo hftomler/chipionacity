@@ -27,6 +27,7 @@ return [
     'ID' => '',
     'Id' => '',
     'If you forgot your password you can' => '',
+    'Imagen' => '',
     'Municipio ID' => '',
     'Nombre' => '',
     'Pais ID' => '',

@@ -17,9 +17,6 @@
  * NOTE: this file must be saved in UTF-8 encoding.
  */
 return [
-    'Administrator\'s Zone' => 'Zona de administración',
-    'Are you sure you want to delete this item?' => '¿Está seguro  que desea borrar este item?',
-    'Are you sure you want to delete this user?' => '¿Está seguro que desea borrar este usuario?',
     'ID' => '',
     'Rol Name' => '',
     'Rol Value' => '',
@@ -27,4 +24,7 @@ return [
     'Status Value' => '',
     'User Type Name' => '',
     'User Type Value' => '',
+    'Administrator\'s Zone' => '@@Zona de administración@@',
+    'Are you sure you want to delete this item?' => '@@¿Está seguro  que desea borrar este item?@@',
+    'Are you sure you want to delete this user?' => '@@¿Está seguro que desea borrar este usuario?@@',
 ];

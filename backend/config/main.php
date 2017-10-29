@@ -18,13 +18,17 @@ return [
         ],
         'i18n' => [
                 'translations' => [
+                    'app*' => [
+                        'class' => 'yii\i18n\PhpMessageSource',
+                        'basePath' => '@common/config/messages',
+                    ],
+                    'frontend*' => [
+                        'class' => 'yii\i18n\PhpMessageSource',
+                        'basePath' => '@common/config/messages',
+                    ],
                     'backend*' => [
                         'class' => 'yii\i18n\PhpMessageSource',
-                        //'sourceLanguage' => 'en',
-                        'fileMap' => [
-                            'backend' => 'backend.php',
-                            'app/error' => 'error.php',
-                        ],
+                        'basePath' => '@common/config/messages',
                     ],
                 ],
         ],

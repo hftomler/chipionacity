@@ -185,6 +185,15 @@ nav li:hover a:hover, nav li form button.btn-link:hover {
 
 /* GRID-VIEW */
 
+.grid-view th{
+    text-align: center;
+    color: #337ab7;
+}
+
+.grid-view a, .grid-view a:focus, .grid-view a:visited {
+    color: #337ab7;
+}
+
 .gvCenter td {
     vertical-align: middle !important;
 }

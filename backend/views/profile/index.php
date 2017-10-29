@@ -19,7 +19,6 @@ $tp = $usuario->getProfileId();
 ?>
 
 <div class="profile-index">
-
     <h1>
         <?= Html::encode($this->title) ?>
         <?php
@@ -29,13 +28,13 @@ $tp = $usuario->getProfileId();
         ?>
     </h1>
     <?php echo Collapse::widget([
+            'encodeLabels' => false,
             'items' => [
                 [
-                    'label' =>   Yii::t('app', 'Search'),
-                    'encode' => true,
+                    'label' =>   '<i  class="fa fa-search" aria-hidden="true"></i> ' . Yii::t('app', 'Search'),
                     'content' => $this->render('_search', ['model' => $searchModel]),
                     // Descomentar lo siguiente si quiero que aparezca abierto por defecto
-                    // 'contentOptions' => ['class' => 'in']
+                    //'contentOptions' => ['class' => 'in'],
                 ],
             ]
         ]);
@@ -43,26 +42,30 @@ $tp = $usuario->getProfileId();
     ?>
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
-        'filterModel' => $searchModel,
         'options' => ['class' => 'grid-view gvCenter'],
         'columns' => [
-            ['attribute'=>'profileIdLink', 'format'=>'raw'],
-            //No funciona
-            //['attribute'=>'userLink', 'format'=>'raw'],
-            //'id', Ya aparece en el link de arriba
+            //['attribute'=>'profileIdLink', 'format'=>'raw'],
             'nombre',
             'apellidos',
-            ['attribute'=>'fecha_nac', 'format' => ['date', 'php:d-m-Y']
+            ['attribute'=>'fecha_nac', 'format' => ['date', 'php:d-m-Y'],
+            'contentOptions' => ['class' => 'text-center'],
             ],
             ['attribute' => 'avatar',
+                'contentOptions' => ['class' => 'text-center'],
                 'format' => 'html',
                 'label' => 'ImgPerfil',
                 'value' => function ($data) {
                     return Html::img($data['img_perfil'],
-                        ['height' => '40px']);
+                        ['height' => '40px',
+                         'class' => 'img-circle']);
                 },
             ],
-            'genderName',
+            ['attribute' => 'genderName',
+                'contentOptions' => ['class' => 'text-center'],
+            ],
+            ['attribute' => 'nombrePais',
+                'contentOptions' => ['class' => 'text-center'],
+            ],
             ['class' => 'yii\grid\ActionColumn',
                              'visibleButtons' => [
                                  'update' => $show_this_nav,
