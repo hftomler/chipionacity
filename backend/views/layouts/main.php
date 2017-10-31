@@ -99,9 +99,11 @@ FontAwesomeAsset::register($this);
 <footer class="footer">
     <div class="container text-center">
         <p class="pull-left">&copy; My Company <?= date('Y') ?></p>
+        <span class="small"><?= Yii::t('app', "Languages:") ?> </span>
         <?php
             foreach(Yii::$app->params['languages'] as $key => $language) {
-                echo ' <img src="imagenes/iconos/' . $key . '.png"  id="' . $key . '" class="language" title="' . $language . '"/> ';
+                //echo ' <a href="index.php?r=site/language&lang=' . $key . '"><img src="imagenes/iconos/' . $key . '.png"/></a> ';
+                echo ' <img src="imagenes/iconos/' . $key . '.png"  id="' . $key . '" class="language hoverable" title="' . $language . '"/>';
             }
         ?>
 

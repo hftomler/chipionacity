@@ -65,6 +65,7 @@ return [
     'Den Rol' => 'Rol',
     'Gender' => 'Género',
     'ID' => 'ID',
+    'Languages:' => 'Idioma:',
     'Login' => 'Login',
     'Need to review Profiles?' => '¿Necesita revisar Perfiles?',
     'Please fill out the following fields to login:' => 'Por favor rellene los siguientes campos para entrar',

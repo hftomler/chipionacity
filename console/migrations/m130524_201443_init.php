@@ -200,14 +200,6 @@ class m130524_201443_init extends Migration
             'rol_value' => '20',
         ]);
 
-        /*
-        $this->insert('roles', [
-            'rol_name' => 'Usuario Registrado',
-        ]);
-        $this->insert('roles', [
-            'rol_name' => 'Invitado',
-        ]);*/
-
         $this->createTable('user', [
             'id' => $this->primaryKey(),
             'username' => $this->string()->notNull()->unique(),
@@ -252,14 +244,6 @@ class m130524_201443_init extends Migration
 
         // Inserta el usuario Admin y usuarios de control
 
-        /*$this->insert('user', [
-            'username' => 'Agustin',
-            'email' => 'agustin_1997@yahoo.es',
-            'rol_id' => 30, // SuperAdmin
-            'user_type_id' => 20,
-            'password_hash' => Yii::$app->security->generatePasswordHash('123456'),
-            'auth_key' => Yii::$app->security->generateRandomString()
-        ]);*/
         $user = new User();
         $user->username = 'SuperAdmin';
         $user->email = 'sa@gmail.com';
@@ -422,10 +406,15 @@ class m130524_201443_init extends Migration
             'CASCADE'
         );
 
-        $this->createTable('pedidos', [
+        $this->createTable('ventas', [
             'id'=> $this->primaryKey(),
             'usuario_id'=>$this->integer()->notNull(),
-            'fecha_ped'=>$this->date(),
+            'fecha_venta'=>$this->date(),
+            'importe' =>$this->decimal(7,2)->notNull(),
+            'iva' =>$this->decimal(7,2)->notNull(),
+            'descuento' =>$this->decimal(7,2)->notNull(),
+            'total_venta' =>$this->decimal(7,2)->notNull(),
+            'total_comision' =>$this->decimal(7,2)->notNull(),
             ], $tableOptions);
 
         $this->addForeignKey(
