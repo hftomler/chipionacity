@@ -205,3 +205,7 @@ nav li:hover a:hover, nav li form button.btn-link:hover {
 .gvCenter td {
     vertical-align: middle !important;
 }
+
+.miPerfil {
+    background-color: #ffd7ac !important;
+}

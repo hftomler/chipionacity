@@ -43,8 +43,14 @@ $tp = $usuario->getProfileId();
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'options' => ['class' => 'grid-view gvCenter'],
+        'rowOptions' => function ($model, $key, $index, $grid) {
+                                        return PermissionHelpers::userMustBeOwner('profile', $key) ?
+                                                    ['class' => 'miPerfil'] :
+                                                    '';
+                                    },
         'columns' => [
             //['attribute'=>'profileIdLink', 'format'=>'raw'],
+            'id',
             'nombre',
             'apellidos',
             ['attribute'=>'fecha_nac', 'format' => ['date', 'php:d-m-Y'],
@@ -68,8 +74,12 @@ $tp = $usuario->getProfileId();
             ],
             ['class' => 'yii\grid\ActionColumn',
                              'visibleButtons' => [
-                                 'update' => $show_this_nav,
-                                 'delete' => $show_this_nav,
+                                 'update' => function ($data, $key, $show_this_nav) {
+                                                        return $show_this_nav && PermissionHelpers::userMustBeOwner('profile', $key);
+                                                    },
+                                 'delete' => function ($data, $key, $show_this_nav) {
+                                                        return $show_this_nav && PermissionHelpers::userMustBeOwner('profile', $key);
+                                                    },
                              ],
             ],
         ],
