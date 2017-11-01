@@ -16,7 +16,7 @@ class m130524_201443_init extends Migration
 
         $this->createTable('paises', [
             'id'=>$this->primaryKey(),
-            'nombre_pais'=>$this->string(255)->notNull()->unique(),
+            'nombre_pais'=>$this->string(100)->notNull()->unique(),
         ], $tableOptions);
 
         $this->batchInsert('paises',  ['nombre_pais'], [
@@ -25,7 +25,7 @@ class m130524_201443_init extends Migration
 
         $this->createTable('provincias', [
             'id'=>$this->primaryKey(),
-            'nombre_provincia'=>$this->string(25)->notNull()->unique(),
+            'nombre_provincia'=>$this->string(100)->notNull()->unique(),
             'pais_id'=>$this->integer()->notNull(),
         ], $tableOptions);
 
@@ -56,7 +56,7 @@ class m130524_201443_init extends Migration
 
         $this->createTable('municipios', [
             'id'=>$this->primaryKey(),
-            'nombre_municipio'=>$this->string(50)->notNull(),
+            'nombre_municipio'=>$this->string(100)->notNull(),
             'provincia_id'=>$this->integer()->notNull(),
         ], $tableOptions);
 
@@ -207,11 +207,11 @@ class m130524_201443_init extends Migration
             'password_hash' => $this->string()->notNull(),
             'password_reset_token' => $this->string()->unique(),
             'email' => $this->string()->notNull()->unique(),
-            'status_id' => $this->smallInteger()->notNull()->defaultValue(10),
+            'rol_id'=>$this->integer()->defaultValue(10),
+            'status_id' => $this->integer()->notNull()->defaultValue(10),
+            'user_type_id'=>$this->integer()->defaultValue(10),
             'created_at' => $this->date()->notNull(),
             'updated_at' => $this->date()->notNull(),
-            'rol_id'=>$this->integer()->defaultValue(10),
-            'user_type_id'=>$this->integer()->defaultValue(10),
             'proveedor'=>$this->boolean()->defaultValue(false),
         ], $tableOptions);
 
@@ -328,7 +328,7 @@ class m130524_201443_init extends Migration
 
         $this->createTable('profile', [
             'id'=> $this->primaryKey(),
-            'user_id' => $this->integer(),
+            'user_id' => $this->integer()->notNull()->unique(),
             'nombre' => $this->string(255),
             'apellidos' => $this->string(255),
             'gender_id' => $this->integer(),
@@ -388,8 +388,15 @@ class m130524_201443_init extends Migration
             'CASCADE'
         );
 
+
+        $this->createTable('etiquetas', [
+            'id'=> $this->primaryKey(),
+            'descripcion_etiqueta'=> $this->string(255)->notNull(),
+        ])
+
         $this->createTable('servicios', [
             'id'=> $this->primaryKey(),
+            'categoria_id'=> $this->integer()->notNull(),
             'descripcion'=>$this->string(255)->notNull(),
             'imagen'=>$this->string(255),
             'precio'=>$this->decimal(7,2)->notNull(),
@@ -406,40 +413,74 @@ class m130524_201443_init extends Migration
             'CASCADE'
         );
 
+        $this->createTable('servicios_etiquetas', [
+            'id'=> $this->primaryKey(),
+            'etiqueta_id'=> $this->integer()->notNull(),
+            'servicio_id'=> $this->integer()->notNull(),
+        ])
+
+        $this->addForeignKey(
+            'fk_servicios_etiquetas_servicios',
+            'servicios_etiquetas',
+            'servicio_id',
+            'servicios',
+            'id',
+            'CASCADE'
+        );
+
+        $this->addForeignKey(
+            'fk_servicios_etiquetas_etiquetas',
+            'servicios_etiquetas',
+            'etiqueta_id',
+            'etiquetas',
+            'id',
+            'CASCADE'
+        );
+
         $this->createTable('ventas', [
             'id'=> $this->primaryKey(),
             'usuario_id'=>$this->integer()->notNull(),
             'fecha_venta'=>$this->date(),
             'importe' =>$this->decimal(7,2)->notNull(),
             'iva' =>$this->decimal(7,2)->notNull(),
-            'descuento' =>$this->decimal(7,2)->notNull(),
+            'descuento' =>$this->decimal(7,2)->notNull()->defaultValue(0),
             'total_venta' =>$this->decimal(7,2)->notNull(),
             'total_comision' =>$this->decimal(7,2)->notNull(),
             ], $tableOptions);
 
         $this->addForeignKey(
-            'fk_pedidos_usuarios',
-            'pedidos',
+            'fk_ventas_usuarios',
+            'ventas',
             'usuario_id',
             'user',
             'id',
             'CASCADE'
         );
 
-        $this->createTable('lineas_pedido', [
+        $this->createTable('lineas_venta', [
             'id'=> $this->primaryKey(),
-            'pedido_id'=> $this->integer()->notNull(),
+            'venta_id'=> $this->integer()->notNull(),
             'cantidad'=>$this->integer()->notNull(),
-            'precio'=>$this->decimal()->notNull(),
-            'descuento'=>$this->decimal(),
-            'precio_linea'=>$this->decimal()->notNull(),
+            'precio_unit' =>$this->decimal(7,2)->notNull(),
+            'descuento_linea' =>$this->decimal(7,2)->notNull()->defaultValue(0),
+            'total_linea' =>$this->decimal(7,2)->notNull(),
+            'total_comision_linea' =>$this->decimal(7,2)->notNull(),
         ], $tableOptions);
 
         $this->addForeignKey(
-            'fk_lineas_pedido_pedidos',
-            'lineas_pedido',
-            'pedido_id',
-            'pedidos',
+            'fk_lineas_venta_servicios',
+            'lineas_venta',
+            'servicio_id',
+            'servicios',
+            'id',
+            'CASCADE'
+        );
+
+        $this->addForeignKey(
+            'fk_lineas_venta_ventas',
+            'lineas_venta',
+            'venta_id',
+            'ventas',
             'id',
             'CASCADE'
         );
