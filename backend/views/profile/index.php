@@ -5,6 +5,7 @@ use yii\grid\GridView;
 use yii\bootstrap\Collapse;
 use common\models\PermissionHelpers;
 use common\models\User;
+use backend\models\ImagenProfile;
 
 /* @var $this yii\web\View */
 /* @var $searchModel backend\models\search\ProfileSearch */
@@ -61,9 +62,9 @@ $tp = $usuario->getProfileId();
                 'format' => 'html',
                 'label' => 'ImgPerfil',
                 'value' => function ($data) {
-                    return Html::img($data['img_perfil'],
+                    return Html::img(ImagenProfile::getLastImg($data['id']),
                         ['height' => '40px',
-                         'class' => 'img-circle']);
+                         'class' => 'imgPerfil-xs img-circle']);
                 },
             ],
             ['attribute' => 'genderName',

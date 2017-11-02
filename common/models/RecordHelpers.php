@@ -18,4 +18,19 @@ Class RecordHelpers {
 			return $result['id'];
 		}
 	}
+
+	public static function profileHas($id, $model_name) {
+		$connection = \Yii::$app->db;
+		$sql = "SELECT id FROM $model_name WHERE profile_id=:id";
+		$command = $connection->createCommand($sql);
+		$command->bindValue(":id", $id);
+		$result = $command->queryOne();
+
+		if ($result == null) {
+			return false;
+		} else {
+			return $result['id'];
+		}
+	}
+	
 }

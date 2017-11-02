@@ -17,6 +17,7 @@ $this->params['breadcrumbs'][] = Yii::t('app', 'Update');
 
     <?= $this->render('_form', [
         'model' => $model,
+        'sinPerfil' => 'imagenes/imgPerfil/sinPerfil.jpg',
     ]) ?>
 
 </div>

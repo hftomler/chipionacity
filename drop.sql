@@ -11,3 +11,8 @@ drop table "gender" cascade;
 drop table "profile" cascade;
 drop table "status" cascade;
 drop table "user_type" cascade;
+drop table "etiquetas" cascade;
+drop table "imagen_profile" cascade;
+drop table "lineas_venta" cascade;
+drop table "servicios_etiquetas" cascade;
+drop table "ventas";

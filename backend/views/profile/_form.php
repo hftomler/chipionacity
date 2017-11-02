@@ -4,6 +4,7 @@ use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
 use kartik\date\DatePicker;
 use kartik\select2\Select2;
+use backend\models\ImagenProfile;
 
 
 /* @var $this yii\web\View */
@@ -31,7 +32,9 @@ use kartik\select2\Select2;
         </div>
     </div>
     <div class="col-xs-2 text-center">
-        <?= Html::img($model->imgPath, [ 'id' => 'swImgPerfil',
+        <?php $imgPerfil = ImagenProfile::getLastImg($model->id) ?  ImagenProfile::getLastImg($model->id) :
+                                    "imagenes/imgPerfil/sinPerfil.jpg"; ?>
+        <?= Html::img($imgPerfil, [ 'id' => 'swImgPerfil',
                                             'class' => 'imgPerfil-md img-circle img-thumbnail',
                                             'title' => 'Avatar - Clic para cambiar',
                                             'alt' => 'Imagen de perfil'

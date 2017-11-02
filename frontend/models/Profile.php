@@ -12,6 +12,7 @@ use yii\db\ActiveRecord;
 use common\models\Municipio;
 use common\models\Pais;
 use common\models\Provincia;
+use backend\models\ImagenProfile;
 
 /**
  * This is the model class for table "profile".
@@ -27,7 +28,6 @@ use common\models\Provincia;
  * @property string $cpostal
  * @property integer $provincia_id
  * @property string $fecha_nac
- * @property string img_perfil
  * @property string $created_at
  * @property string $updated_at
  *
@@ -36,6 +36,7 @@ use common\models\Provincia;
  * @property Paises $pais
  * @property Provincias $provincia
  * @property User $user
+ * @property ImageProfile $imageProfile
  */
 class Profile extends \yii\db\ActiveRecord
 {
@@ -81,7 +82,7 @@ class Profile extends \yii\db\ActiveRecord
                 'minHeight' => 100, 'maxHeight' => 400,
             ],
             [['gender_id'], 'in', 'range'=>array_keys($this->getGenderList())],
-            [['nombre', 'apellidos', 'direccion', 'img_perfil'], 'string', 'max' => 255],
+            [['nombre', 'apellidos', 'direccion'], 'string', 'max' => 255],
             [['cpostal'], 'string', 'max' => 5],
             [['gender_id'], 'exist', 'skipOnError' => true, 'targetClass' => Gender::className(), 'targetAttribute' => ['gender_id' => 'id']],
             [['municipio_id'], 'exist', 'skipOnError' => true, 'targetClass' => Municipio::className(), 'targetAttribute' => ['municipio_id' => 'id']],
@@ -108,7 +109,6 @@ class Profile extends \yii\db\ActiveRecord
             'cpostal' => Yii::t('frontend', 'Cpostal'),
             'provincia_id' => Yii::t('frontend', 'Provincia ID'),
             'fecha_nac' => Yii::t('frontend', 'Fecha Nac'),
-            'img_perfil' => Yii::t('frontend', 'Imagen'),
             'created_at' => Yii::t('frontend', 'Created At'),
             'updated_at' => Yii::t('frontend', 'Updated At'),
             'genderName' => Yii::t('app', 'Gender'),
@@ -120,11 +120,6 @@ class Profile extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-
-    public function getImgPath() {
-        return ($this->img_perfil) ? $this->img_perfil : 'imagenes/imgPerfil/sinPerfil.jpg';
-    }
-
     public function getGender()
     {
         return $this->hasOne(Gender::className(), ['id' => 'gender_id']);

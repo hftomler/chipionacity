@@ -13,6 +13,7 @@ use yii\helpers\Url;
 use common\models\ValueHelpers;
 use frontend\assets\FontAwesomeAsset;
 use frontend\models\Profile;
+use backend\models\ImagenProfile;
 use common\models\RecordHelpers;
 
 AppAsset::register($this);
@@ -65,9 +66,12 @@ FontAwesomeAsset::register($this);
         $menuItems[] = ['label' => '<i class="fa fa-universal-access" aria-hidden="true"></i><br/>Roles', 'url' => ['/rol/index']];
         $menuItems[] = ['label' => '<i class="fa fa-eye-slash" aria-hidden="true"></i><i class="fa fa-eye" aria-hidden="true"></i><br/>Tip. Usuarios', 'url' => ['/user-type/index']];
         $menuItems[] = ['label' => '<i class="fa fa-check" aria-hidden="true"></i><br/>Status', 'url' => ['/status/index']];
-        $imgNav =  RecordHelpers::userHas('profile') ?
-                            Profile::find()->where(['user_id' => Yii::$app->user->id])->one()->imgPath :
-                            "imagenes/imgPerfil/sinPerfil.jpg";
+        $profileId = RecordHelpers::userHas('profile') ? Profile::find()->where(['user_id' => Yii::$app->user->id])->one()->id : false;
+        if ($profileId) {
+            $imgNav = ImagenProfile::getLastImg($profileId);
+        } else {
+            $imgNav = "imagenes/imgPerfil/sinPerfil.jpg";
+        }
         $menuItems[] = '<li>'
             . Html::beginForm(['/site/logout'], 'post')
             . Html::submitButton(
@@ -97,17 +101,21 @@ FontAwesomeAsset::register($this);
 </div>
 
 <footer class="footer">
-    <div class="container text-center">
-        <p class="pull-left">&copy; My Company <?= date('Y') ?></p>
-        <span class="small"><?= Yii::t('app', "Languages:") ?> </span>
-        <?php
-            foreach(Yii::$app->params['languages'] as $key => $language) {
-                //echo ' <a href="index.php?r=site/language&lang=' . $key . '"><img src="imagenes/iconos/' . $key . '.png"/></a> ';
-                echo ' <img src="imagenes/iconos/' . $key . '.png"  id="' . $key . '" class="language hoverable" title="' . $language . '"/>';
-            }
-        ?>
-
-        <p class="pull-right"><?= Yii::powered() ?></p>
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="pull-left text-left col-xs-4">&copy; My Company <?= date('Y') ?></div>
+            <div class="text-center col-xs-4">
+                <div class="small col-xs-4"><?= Yii::t('app', "Languages:") ?> </div>
+                <?php
+                foreach(Yii::$app->params['languages'] as $key => $language) {
+                    echo '<div class="col-xs-2">';
+                    echo ' <img src="imagenes/iconos/' . $key . '.png"  id="' . $key . '" class="language" title="' . $language . '"/>';
+                    echo '</div>';
+                }
+                ?>
+            </div>
+            <div class="pull-right text-right col-xs-4"><?= Yii::powered() ?></div>
+        </div>
     </div>
 </footer>
 

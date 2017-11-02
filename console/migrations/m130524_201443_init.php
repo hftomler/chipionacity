@@ -326,6 +326,12 @@ class m130524_201443_init extends Migration
         ]);
         */
 
+       $this->createTable('imagen_profile', [
+           'id'=> $this->primaryKey(),
+           'profile_id' =>$this->integer(),
+           'url' => $this->string(255),
+       ], $tableOptions);
+
         $this->createTable('profile', [
             'id'=> $this->primaryKey(),
             'user_id' => $this->integer()->notNull()->unique(),
@@ -338,7 +344,6 @@ class m130524_201443_init extends Migration
             'cpostal' => $this->char(5),
             'provincia_id' => $this->integer(),
             'fecha_nac'=>$this->date(),
-            'img_perfil'=>$this->string(255)->defaultValue('imagenes/imgPerfil/sinPerfil.jpg'),
             'created_at' => $this->date()->notNull(),
             'updated_at' => $this->date()->notNull(),
             ], $tableOptions);
@@ -392,7 +397,7 @@ class m130524_201443_init extends Migration
         $this->createTable('etiquetas', [
             'id'=> $this->primaryKey(),
             'descripcion_etiqueta'=> $this->string(255)->notNull(),
-        ])
+        ], $tableOptions);
 
         $this->createTable('servicios', [
             'id'=> $this->primaryKey(),
@@ -417,7 +422,7 @@ class m130524_201443_init extends Migration
             'id'=> $this->primaryKey(),
             'etiqueta_id'=> $this->integer()->notNull(),
             'servicio_id'=> $this->integer()->notNull(),
-        ])
+        ], $tableOptions);
 
         $this->addForeignKey(
             'fk_servicios_etiquetas_servicios',
@@ -460,6 +465,7 @@ class m130524_201443_init extends Migration
         $this->createTable('lineas_venta', [
             'id'=> $this->primaryKey(),
             'venta_id'=> $this->integer()->notNull(),
+            'servicio_id' => $this->integer()->notNull(),
             'cantidad'=>$this->integer()->notNull(),
             'precio_unit' =>$this->decimal(7,2)->notNull(),
             'descuento_linea' =>$this->decimal(7,2)->notNull()->defaultValue(0),

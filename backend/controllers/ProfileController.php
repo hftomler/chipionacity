@@ -16,6 +16,7 @@ use common\models\Pais;
 use common\models\Provincia;
 use common\models\Municipio;
 use yii\web\UploadedFile;
+use backend\models\ImagenProfile;
 
 /**
  * ProfileController implements the CRUD actions for Profile model.
@@ -106,17 +107,33 @@ class ProfileController extends Controller
          } elseif ($model->load(Yii::$app->request->post()) && $model->save()) {
              // Capturamos la instancia del fichero subido en el form y guardamos la imagen
              $model->fichImage = UploadedFile::getInstance($model, 'fichImage');
-                 if ($model->fichImage !== null) {
-                 $nomImg = $model->username;
-                 // Guardo la trayectoria de la imagen en el campo img_perfil de la tabla profile.
-                 $model->img_perfil = 'imagenes/imgPerfil/' . $nomImg . '.' . $model->fichImage->extension;
-                 $model->save();
-                 $model->fichImage->saveAs('imagenes/imgPerfil/' . $nomImg . '.' . $model->fichImage->extension);
+             if ($model->fichImage !== null) {
+                 // Creamos el registro de ImagenProfile y Guardo la trayectoria de la imagen en el campo url.
+                 $imgPerfil = new ImagenProfile();
+                 $imgPerfil->profile_id = $model->id;
+                 $nomImg = 'imagenes/imgPerfil/' . $model->id . '-' .
+                                                                          $model->fichImage->baseName .
+                                                                          $model->fichImage->size .
+                                                                          '.' . $model->fichImage->extension;
+                 if (!file_exists($nomImg)) {
+                     $imgPerfil->url = $nomImg;
+                     $imgPerfil->save();
+                     $model->save();
+                     $model->fichImage->saveAs($nomImg);
+                 }
+             } else {
+                 if (!ImagenProfile::existsUrl($model->id, 'imagenes/imgPerfil/sinPerfil.jpg')) {
+                     $imgPerfil = new ImagenProfile();
+                     $imgPerfil->profile_id = $model->id;
+                     $imgPerfil->url = 'imagenes/imgPerfil/sinPerfil.jpg';
+                     $imgPerfil->save();
+                 }
              }
              return $this->redirect(['view', 'id' => $model->id]);
          } else {
              return $this->render('create', [
                  'model' => $model,
+                 'sinPerfil' => 'imagenes/imgPerfil/sinPerfil.jpg',
              ]);
          }
      }
@@ -134,17 +151,33 @@ class ProfileController extends Controller
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             // Capturamos la instancia del fichero subido en el form y guardamos la imagen
             $model->fichImage = UploadedFile::getInstance($model, 'fichImage');
-                if ($model->fichImage !== null) {
-                $nomImg = $model->username;
-                // Guardo la trayectoria de la imagen en el campo img_perfil de la tabla profile.
-                $model->img_perfil = 'imagenes/imgPerfil/' . $nomImg . '.' . $model->fichImage->extension;
-                $model->save();
-                $model->fichImage->saveAs('imagenes/imgPerfil/' . $nomImg . '.' . $model->fichImage->extension);
+            if ($model->fichImage !== null) {
+                // Creamos el registro de ImagenProfile y Guardo la trayectoria de la imagen en el campo url.
+                $imgPerfil = new ImagenProfile();
+                $imgPerfil->profile_id = $model->id;
+                $nomImg = 'imagenes/imgPerfil/' . $model->id . '-' .
+                                                                         $model->fichImage->baseName . '-' .
+                                                                         $model->fichImage->size .
+                                                                         '.' . $model->fichImage->extension;
+                if (!file_exists($nomImg)) {
+                    $imgPerfil->url = $nomImg;
+                    $imgPerfil->save();
+                    $model->save();
+                    $model->fichImage->saveAs($nomImg);
+                }
+            } else {
+                if (!ImagenProfile::existsUrl($model->id, 'imagenes/imgPerfil/sinPerfil.jpg')) {
+                    $imgPerfil = new ImagenProfile();
+                    $imgPerfil->profile_id = $model->id;
+                    $imgPerfil->url = 'imagenes/imgPerfil/sinPerfil.jpg';
+                    $imgPerfil->save();
+                }
             }
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
             return $this->render('update', [
                 'model' => $model,
+                'sinPerfil' => 'imagenes/imgPerfil/sinPerfil.jpg',
             ]);
         }
     }

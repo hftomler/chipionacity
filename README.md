@@ -1,7 +1,7 @@
-Chipiona City. Web online de contratacion de experiencias.
+Chipiona City. Web online de contratación de experiencias.
 ==========================================================
 
-La principal funcionalidad de la aplicación web es la de ofrecer la contratación anticipada de servicios relacionados con el ocio y tiempo libre. 
+La principal funcionalidad de la aplicación web es la de ofrecer la contratación anticipada de servicios relacionados con el ocio y tiempo libre.
 
 Pondrá a disposición del usuario la posibilidad de contratar y/o reservar online cualquier tipo de servicio disponible en la localidad y Costa Noroeste de la Provincia de Cádiz, desde alquiler de bicicletas hasta contratación de un guía turístico. Ofrecerá una amplísima variedad de servicios de ocio: Formación (clases de tenis, hípica, guitarra, inglés, vela, etc.), turismo tradicional (visita y entrada a los monumentos y museos de la localidad, con o sin guía), turismo medioambiental (rutas de senderismo, rutas en bicicleta, visita a corrales de pesca, visitas guiadas a parque dunar), Deporte (reserva de pistas deportivas, públicas o privadas), Náutica  (salidas en velero) o Restauración (reserva previa en restaurantes).
 
