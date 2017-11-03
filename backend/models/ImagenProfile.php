@@ -46,6 +46,10 @@ class ImagenProfile extends \yii\db\ActiveRecord
         ];
     }
 
+    public function getProfile() {
+        return $this->hasOne(Profile::className(), ['id' => 'profile_id']);
+    }
+
     private function getId($profile_id) {
         return ImagenProfile::find()->where(['profile_id' => $profile_id])->one();
     }
@@ -61,9 +65,4 @@ class ImagenProfile extends \yii\db\ActiveRecord
     public function existsUrl($profile_id, $url) {
         return ImagenProfile::find()->where(['profile_id' => $profile_id, 'url' => $url])->one();
     }
-
-    public function getAllImg($profile_id) {
-
-    }
-
 }

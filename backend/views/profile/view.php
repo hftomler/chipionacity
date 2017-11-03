@@ -3,6 +3,7 @@
 use yii\helpers\Html;
 use yii\widgets\DetailView;
 use common\models\PermissionHelpers;
+use backend\models\ImagenProfile;
 
 /* @var $this yii\web\View */
 /* @var $model frontend\models\Profile */
@@ -47,6 +48,17 @@ $this->params['breadcrumbs'][] = $this->title;
             ['attribute'=>'updated_at', 'format' => ['date', 'php:d-m-Y']
             ],
         ],
-    ]) ?>
+    ])?>
+    <p>
+        Imágenes usadas de perfil:
+    <?php
+        $imgs = ImagenProfile::findAll(['profile_id' => $model->id]);
+            foreach ($imgs as $key) {
+                echo Html::img($key->url,
+                                    ['height' => '60px',
+                                     'class' => 'imgPerfil-xs img-circle']);
+            }
+        ?>
+    </p>
 
 </div>

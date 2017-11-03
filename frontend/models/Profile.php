@@ -36,7 +36,7 @@ use backend\models\ImagenProfile;
  * @property Paises $pais
  * @property Provincias $provincia
  * @property User $user
- * @property ImageProfile $imageProfile
+ * @property ImagenProfile $imagenProfile
  */
 class Profile extends \yii\db\ActiveRecord
 {
@@ -249,11 +249,7 @@ class Profile extends \yii\db\ActiveRecord
         return Html::a($this->id, $url, $options);
     }
 
-    /*public function beforeValidate() {
-        if ($this->fecha_nac != null) {
-            $new_date_format = date('d-m-Y', strtotime($this->fecha_nac));
-            $this->fecha_nac = $new_date_format;
-        }
-            return parent::beforeValidate();
-    }*/
+    public function getImagenProfile() {
+        return $this->hasMany(ImagenProfile::className(), ['profile_id' => 'id']);
+    }
 }
