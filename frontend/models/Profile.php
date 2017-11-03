@@ -249,7 +249,17 @@ class Profile extends \yii\db\ActiveRecord
         return Html::a($this->id, $url, $options);
     }
 
-    public function getImagenProfile() {
-        return $this->hasMany(ImagenProfile::className(), ['profile_id' => 'id']);
+    public function getImagenProfile($id) {
+        $imgs = ImagenProfile::findAll(['profile_id' => $id]);
+        $strImgs = array();
+            foreach ($imgs as $key) {
+                $strImgs[] = Html::img($key->url,
+                                    ['height' => '60px',
+                                     'class' => 'imgPerfil-xs img-circle']);
+            }
+            $htmlResul = implode($strImgs);
+            //var_dump($htmlResul); die();
+        return $htmlResul;
+        //return $this->hasMany(ImagenProfile::className(), ['profile_id' => 'id']);
     }
 }

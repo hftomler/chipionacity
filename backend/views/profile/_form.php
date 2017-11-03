@@ -32,8 +32,7 @@ use backend\models\ImagenProfile;
         </div>
     </div>
     <div class="col-xs-2 text-center">
-        <?php $imgPerfil = ImagenProfile::getLastImg($model->id) ?  ImagenProfile::getLastImg($model->id) :
-                                    "imagenes/imgPerfil/sinPerfil.jpg"; ?>
+        <?php $imgPerfil = ImagenProfile::getLastImg($model->id); ?>
         <?= Html::img($imgPerfil, [ 'id' => 'swImgPerfil',
                                             'class' => 'imgPerfil-md img-circle img-thumbnail',
                                             'title' => 'Avatar - Clic para cambiar',

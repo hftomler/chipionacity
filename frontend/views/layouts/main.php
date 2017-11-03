@@ -13,6 +13,7 @@ use yii\helpers\Url;
 use yii\bootstrap\Modal;
 use frontend\assets\FontAwesomeAsset;
 use frontend\models\Profile;
+use backend\models\ImagenProfile;
 use common\models\RecordHelpers;
 
 AppAsset::register($this);
@@ -49,10 +50,14 @@ FontAwesomeAsset::register($this);
                            'id'=>'modalLogin'],
                      ];
     } else {
-        $imgNav =  RecordHelpers::userHas('profile') ?
-                            Profile::find()->where(['user_id' => Yii::$app->user->id])->one()->imgPath :
-                            "imagenes/imgPerfil/sinPerfil.jpg";
-        $menuItems[] = ['label' => '<i class="fa fa-user-plus" aria-hidden="true"></i><br/>Profile', 'url' => ['/profile/view']];
+        $profileId = RecordHelpers::userHas('profile') ? Profile::find()->where(['user_id' => Yii::$app->user->id])->one()->id : false;
+        if ($profileId) {
+            $menuItems[] = ['label' => '<i class="fa fa-eye" aria-hidden="true"></i><br/>Profile', 'url' => ['/profile/view']];
+            $imgNav = ImagenProfile::getLastImg($profileId);
+        } else {
+            $menuItems[] = ['label' => '<i class="fa fa-plus-square" aria-hidden="true"></i><br/>Profile', 'url' => ['/profile/view']];
+            $imgNav = "imagenes/imgPerfil/sinPerfil.jpg";
+        }
         $menuItems[] = '<li>'
             . Html::beginForm(['/site/logout'], 'post')
             . Html::submitButton(

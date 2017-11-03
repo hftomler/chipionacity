@@ -8,7 +8,7 @@ use backend\models\ImagenProfile;
 /* @var $this yii\web\View */
 /* @var $model frontend\models\Profile */
 
-$this->title = $model->username;
+$this->title = Yii::t('app', 'View Profile:') . $model->username;
 $show_this_nav = PermissionHelpers::requireMinRol('superAdmin');
 $owner = PermissionHelpers::userMustBeOwner('profile', $model->id);
 
@@ -17,7 +17,7 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="profile-view">
 
-    <h1><?= Yii::t('app', 'Profile:') ?><?= Html::encode($this->title) ?></h1>
+    <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
         <?php if ($owner) {
@@ -34,6 +34,8 @@ $this->params['breadcrumbs'][] = $this->title;
         }?>
     </p>
 
+    <?php // Recuperamos todas las imágenes de perfil que ha tenido el usuario.?>
+    <?php $imgs = $model->getImagenProfile($model->id); ?>
     <?= DetailView::widget([
         'model' => $model,
         'attributes' => [
@@ -41,6 +43,12 @@ $this->params['breadcrumbs'][] = $this->title;
             'nombre',
             'apellidos',
             'gender.gender_name',
+            ['attribute' => 'avatar',
+                //'contentOptions' => ['class' => 'text-center'],
+                'format' => 'html',
+                'label' => 'Imágenes perfil',
+                'value' => $imgs,
+            ],
             ['attribute'=>'fecha_nac', 'format' => ['date', 'php:d-m-Y']
             ],
             ['attribute'=>'created_at', 'format' => ['date', 'php:d-m-Y']
@@ -49,16 +57,4 @@ $this->params['breadcrumbs'][] = $this->title;
             ],
         ],
     ])?>
-    <p>
-        Imágenes usadas de perfil:
-    <?php
-        $imgs = ImagenProfile::findAll(['profile_id' => $model->id]);
-            foreach ($imgs as $key) {
-                echo Html::img($key->url,
-                                    ['height' => '60px',
-                                     'class' => 'imgPerfil-xs img-circle']);
-            }
-        ?>
-    </p>
-
 </div>
