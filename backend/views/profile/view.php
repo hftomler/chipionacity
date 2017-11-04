@@ -38,6 +38,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <?php $imgs = $model->getImagenProfile($model->id); ?>
     <?= DetailView::widget([
         'model' => $model,
+        'template' => '<tr><td class="col-xs-3">{label}</td><td class="col-xs-9">{value}</td></tr>',
         'attributes' => [
             ['attribute'=>'userLink', 'format'=>'raw'],
             'nombre',

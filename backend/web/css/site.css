@@ -224,3 +224,24 @@ nav li:hover a:hover, nav li form button.btn-link:hover {
 .miPerfil {
     background-color: #ffd7ac !important;
 }
+
+.imgWrap {
+  display: inline-block;
+  position: relative;
+  height: 3.5em;
+  margin-left: 15px;
+}
+
+.closeImg {
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  color: red;
+}
+
+.tickImg {
+    position: absolute;
+    top: -8px;
+    left: 5px;
+    color: green;
+}

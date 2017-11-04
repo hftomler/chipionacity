@@ -18,6 +18,13 @@ $(function(){
 		});
 	});
 
+	$('.imgWrap').hover(
+		function() {
+		  $('tickImg').css("visibility", 'visible');
+		}, function() {
+			$( this . 'tickImg').css("visibility", 'hidden');
+	});
+
     //Mapear el click de la imagen hacia el botón de fileUpload
     $("#swImgPerfil").click(function () {
          $("#btImgPerfil").trigger('click');

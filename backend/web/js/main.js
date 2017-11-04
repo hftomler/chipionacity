@@ -28,6 +28,13 @@ $(function(){
 		});
 	});
 
+	$('.imgWrap >img').hover(
+		function() {
+		  	$(this).siblings('i').css("visibility", 'visible');
+		}, function() {
+			$(this).siblings('i').css("visibility", 'hidden');
+  	});
+
 	//Mapear el click de la imagen de perfil hacia el botón de fileUpload que está oculto
     $("#swImgPerfil").click(function () {
          $("#btImgPerfil").trigger('click');

@@ -253,9 +253,13 @@ class Profile extends \yii\db\ActiveRecord
         $imgs = ImagenProfile::findAll(['profile_id' => $id]);
         $strImgs = array();
             foreach ($imgs as $key) {
-                $strImgs[] = Html::img($key->url,
+                $strImgs[] = '<div class="imgWrap">
+                <i class="fa fa-check tickImg invisible" aria-hidden="true"></i>'
+                . Html::img($key->url,
                                     ['height' => '60px',
-                                     'class' => 'imgPerfil-xs img-circle']);
+                                     'class' => 'imgPerfil-xs img-circle'])
+                .   '<i class="fa fa-times-circle closeImg invisible" aria-hidden="true"></i>
+                </div>';
             }
             $htmlResul = implode($strImgs);
             //var_dump($htmlResul); die();
