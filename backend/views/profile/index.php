@@ -4,6 +4,7 @@ use yii\helpers\Html;
 use yii\grid\GridView;
 use yii\bootstrap\Collapse;
 use common\models\PermissionHelpers;
+use common\models\RecordHelpers;
 use common\models\User;
 use backend\models\ImagenProfile;
 
@@ -14,16 +15,13 @@ use backend\models\ImagenProfile;
 $this->title = Yii::t('app', 'Profiles');
 $this->params['breadcrumbs'][] = $this->title;
 $show_this_nav = PermissionHelpers::requireMinRol('superAdmin');
-$usuario = new User();
-$usuario->id = Yii::$app->user->identity->id;
-$tp = $usuario->getProfileId();
 ?>
 
 <div class="profile-index">
     <h1>
         <?= Html::encode($this->title) ?>
         <?php
-            if ($tp == 'ninguno') {
+            if (!RecordHelpers::userHas('profile')) {
                     echo Html::a(Yii::t('app', 'Create Profile'), ['create'], ['class' => 'pull-right btn btn-success']);
             }
         ?>
@@ -56,11 +54,12 @@ $tp = $usuario->getProfileId();
             'apellidos',
             ['attribute'=>'fecha_nac', 'format' => ['date', 'php:d-m-Y'],
             'contentOptions' => ['class' => 'text-center'],
+            'label' => Yii::t('app', 'Birthday'),
             ],
             ['attribute' => 'avatar',
                 'contentOptions' => ['class' => 'text-center'],
                 'format' => 'html',
-                'label' => 'ImgPerfil',
+                'label' => Yii::t('app', 'Profile Img.'),
                 'value' => function ($data) {
                     return Html::img(ImagenProfile::getLastImg($data['id']),
                         ['height' => '40px',
@@ -72,6 +71,7 @@ $tp = $usuario->getProfileId();
             ],
             ['attribute' => 'nombrePais',
                 'contentOptions' => ['class' => 'text-center'],
+                'label' => Yii::t('app', 'Country'),
             ],
             ['class' => 'yii\grid\ActionColumn',
                              'visibleButtons' => [

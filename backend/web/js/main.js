@@ -19,6 +19,7 @@ $(function(){
 	$('#profile-pais_id').change(function(e) {
 		$.post( "index.php?r=profile/listaprov&id=" + $(this).val(), function ( data ) {
 			$( "select#profile-provincia_id" ).html( data );
+			$('#profile-provincia_id').trigger( "change" );
 		});
 	});
 
@@ -50,7 +51,7 @@ $(function(){
 		});
 	});
 
-	$('.imgWrap > i:last').click(function () {
+	$('.imgWrap > i[name^="d"]').click(function () {
 		var id = $(this).attr('name').substr(1);
 		$.post('index.php?r=imgprofile/delete&id=' + id, function(data) {
 			location.reload();

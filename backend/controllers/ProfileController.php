@@ -122,12 +122,12 @@ class ProfileController extends Controller
                      $model->fichImage->saveAs($nomImg);
                  }
              } else {
-                 if (!ImagenProfile::existsUrl($model->id, 'imagenes/imgPerfil/sinPerfil.jpg')) {
+                 /*if (!ImagenProfile::existsUrl($model->id, 'imagenes/imgPerfil/sinPerfil.jpg')) {
                      $imgPerfil = new ImagenProfile();
                      $imgPerfil->profile_id = $model->id;
                      $imgPerfil->url = 'imagenes/imgPerfil/sinPerfil.jpg';
                      $imgPerfil->save();
-                 }
+                 }*/
              }
              return $this->redirect(['view', 'id' => $model->id]);
          } else {
@@ -166,12 +166,12 @@ class ProfileController extends Controller
                     $model->fichImage->saveAs($nomImg);
                 }
             } else {
-                if (!ImagenProfile::existsUrl($model->id, 'imagenes/imgPerfil/sinPerfil.jpg')) {
+                /*if (!ImagenProfile::existsUrl($model->id, 'imagenes/imgPerfil/sinPerfil.jpg')) {
                     $imgPerfil = new ImagenProfile();
                     $imgPerfil->profile_id = $model->id;
                     $imgPerfil->url = 'imagenes/imgPerfil/sinPerfil.jpg';
                     $imgPerfil->save();
-                }
+                }*/
             }
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
