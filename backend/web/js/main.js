@@ -43,7 +43,21 @@ $(function(){
 			})
   	});
 
-	//Mapear el click de la imagen de perfil hacia el botón de fileUpload que está oculto
+	$('.imgWrap > i[name^="u"]').click(function () {
+		var id = $(this).attr('name').substr(1);
+		$.post('index.php?r=imgprofile/update&id=' + id, function(data) {
+			location.reload();
+		});
+	});
+
+	$('.imgWrap > i:last').click(function () {
+		var id = $(this).attr('name').substr(1);
+		$.post('index.php?r=imgprofile/delete&id=' + id, function(data) {
+			location.reload();
+		});
+	});
+
+	//Mapear el click de la imagen de perfil hacia el botón de fileUpload que está oculto en Create y Update profile
     $("#swImgPerfil").click(function () {
          $("#btImgPerfil").trigger('click');
     });

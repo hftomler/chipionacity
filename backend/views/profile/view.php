@@ -46,7 +46,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'gender.gender_name',
             ['attribute' => 'avatar',
                 //'contentOptions' => ['class' => 'text-center'],
-                'format' => 'html',
+                'format' => 'raw',
                 'label' => 'Imágenes perfil',
                 'value' => $imgs,
             ],

@@ -180,11 +180,6 @@ nav li:hover a:hover, nav li form button.btn-link:hover {
     filter: drop-shadow(4px 4px 6px #666);
 }
 
-.imgPerfil-sm:hover {
-    border: 1px solid #111;
-    filter: drop-shadow(2px 2px 3px #000);
-}
-
 .imgPerfil-xs {
     margin-left: 10px;
     height: 40px;
