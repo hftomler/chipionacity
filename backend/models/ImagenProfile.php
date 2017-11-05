@@ -3,6 +3,8 @@
 namespace backend\models;
 
 use Yii;
+use yii\db\ActiveRecord;
+use yii\db\Expression;
 
 /**
  * This is the model class for table "imagen_profile".
@@ -13,7 +15,7 @@ use Yii;
  *
  * @property Profile[] $profiles
  */
-class ImagenProfile extends \yii\db\ActiveRecord
+class Imagenprofile extends \yii\db\ActiveRecord
 {
     /**
      * @inheritdoc
@@ -22,6 +24,23 @@ class ImagenProfile extends \yii\db\ActiveRecord
     {
         return 'imagen_profile';
     }
+
+    /**
+      * @inheritdoc
+      */
+     public function behaviors()
+     {
+         return [
+             'timestamp' => [
+                 'class' => 'yii\behaviors\TimestampBehavior',
+                 'attributes' => [
+                     ActiveRecord::EVENT_BEFORE_INSERT => ['created_at', 'updated_at'],
+                     ActiveRecord::EVENT_BEFORE_UPDATE => ['updated_at'],
+                 ],
+                 'value' => new Expression('NOW()'),
+             ],
+         ];
+     }
 
     /**
      * @inheritdoc
@@ -43,6 +62,8 @@ class ImagenProfile extends \yii\db\ActiveRecord
             'id' => Yii::t('app', 'ID'),
             'profile_id' => Yii::t('app', 'Profile ID'),
             'url' => Yii::t('app', 'Url'),
+            'created_at' => Yii::t('frontend', 'Created At'),
+            'updated_at' => Yii::t('frontend', 'Updated At'),
         ];
     }
 
@@ -51,18 +72,18 @@ class ImagenProfile extends \yii\db\ActiveRecord
     }
 
     private function getId($profile_id) {
-        return ImagenProfile::find()->where(['profile_id' => $profile_id])->one();
+        return Imagenprofile::find()->where(['profile_id' => $profile_id])->one();
     }
 
     public function getLastImg($profile_id) {
-        if (ImagenProfile::getId($profile_id) !== null){
-            return ImagenProfile::find()->where(['profile_id' => $profile_id])->orderBy(['id' => SORT_DESC])->one()->url;
+        if (Imagenprofile::getId($profile_id) !== null){
+            return Imagenprofile::find()->where(['profile_id' => $profile_id])->orderBy(['updated_at' => SORT_DESC])->one()->url;
         } else {
             return "imagenes/imgPerfil/sinPerfil.jpg";
         }
     }
 
     public function existsUrl($profile_id, $url) {
-        return ImagenProfile::find()->where(['profile_id' => $profile_id, 'url' => $url])->one();
+        return Imagenprofile::find()->where(['profile_id' => $profile_id, 'url' => $url])->one();
     }
 }

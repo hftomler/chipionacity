@@ -254,11 +254,10 @@ class Profile extends \yii\db\ActiveRecord
         $strImgs = array();
             foreach ($imgs as $key) {
                 $strImgs[] = '<div class="imgWrap">
-                <i class="fa fa-check tickImg invisible" aria-hidden="true"></i>'
+                <i class="fa fa-check tickImg invisible" aria-hidden="true" title="' . Yii::t('app', 'Update Profile Image: ') . $this->username . '"></i>'
                 . Html::img($key->url,
-                                    ['height' => '60px',
-                                     'class' => 'imgPerfil-xs img-circle'])
-                .   '<i class="fa fa-times-circle closeImg invisible" aria-hidden="true"></i>
+                                    ['class' => 'imgPerfil-sm img-circle img-thumbnail'])
+                .   '<i class="fa fa-times-circle closeImg invisible" aria-hidden="true" title="' . Yii::t('app', 'Delete Profile Image: ') . $this->username . '"></i>
                 </div>';
             }
             $htmlResul = implode($strImgs);

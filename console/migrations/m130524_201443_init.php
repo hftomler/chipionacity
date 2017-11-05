@@ -330,6 +330,8 @@ class m130524_201443_init extends Migration
            'id'=> $this->primaryKey(),
            'profile_id' =>$this->integer(),
            'url' => $this->string(255),
+           'created_at' => $this->datetime()->notNull(),
+           'updated_at' => $this->datetime()->notNull(),
        ], $tableOptions);
 
         $this->createTable('profile', [

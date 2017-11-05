@@ -176,6 +176,13 @@ nav li:hover a:hover, nav li form button.btn-link:hover {
 .imgPerfil-sm {
     margin-top: 10px;
     height: 80px;
+    border: 1px solid #555;
+    filter: drop-shadow(4px 4px 6px #666);
+}
+
+.imgPerfil-sm:hover {
+    border: 1px solid #111;
+    filter: drop-shadow(2px 2px 3px #000);
 }
 
 .imgPerfil-xs {
@@ -225,23 +232,31 @@ nav li:hover a:hover, nav li form button.btn-link:hover {
     background-color: #ffd7ac !important;
 }
 
+
+/* Estilos para imágenes de perfil - View profile */
 .imgWrap {
   display: inline-block;
   position: relative;
-  height: 3.5em;
+  height: 110px;
   margin-left: 15px;
+  font-size: 20px;
+  padding: 5px;
+}
+
+.closeImg, .tickImg {
+  position: absolute;
+  top: 3px;
 }
 
 .closeImg {
-  position: absolute;
-  top: -8px;
-  right: -8px;
-  color: red;
+    right: 3px;
+    color: red;
+}
+.tickImg {
+    left: 3px;
+    color: green;
 }
 
-.tickImg {
-    position: absolute;
-    top: -8px;
-    left: 5px;
-    color: green;
+.closeImg:hover, .tickImg:hover {
+    filter: drop-shadow(2px 2px 3px #999);
 }
