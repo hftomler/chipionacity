@@ -25,13 +25,13 @@ use common\models\User;
         <?= $form->field($model, 'email') ?>
     </div>
     <div class="col-xs-12 col-sm-6">
-        <?= $form->field($model, 'rol_id')->dropDownList(User::getrolList(), [ 'prompt' => 'Rol' ]);?>
+        <?= $form->field($model, 'rol_id')->dropDownList(User::getrolList(), [ 'prompt' => Yii::t('app', 'Role') ]);?>
     </div>
     <div class="col-xs-12 col-sm-6">
-        <?= $form->field($model, 'user_type_id')->dropDownList(User::getuserTypeList(), [ 'prompt' => 'Tipo Usuario' ]);?>
+        <?= $form->field($model, 'user_type_id')->dropDownList(User::getuserTypeList(), [ 'prompt' => Yii::t('app', 'User Type')  ]);?>
     </div>
     <div class="col-xs-12 col-sm-6">
-        <?= $form->field($model, 'status_id')->dropDownList($model->statusList, [ 'prompt' => 'Estado' ]);?>
+        <?= $form->field($model, 'status_id')->dropDownList($model->statusList, [ 'prompt' => Yii::t('app', 'State') ]);?>
     </div>
     <div class="form-group col-xs-12">
         <?= Html::submitButton(Yii::t('app', 'Search'), ['class' => 'btn btn-primary']) ?>

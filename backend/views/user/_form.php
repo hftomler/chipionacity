@@ -12,9 +12,9 @@ use yii\widgets\ActiveForm;
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'status_id')->dropDownList($model->statusList, [ 'prompt' => 'Elige Estado' ]); ?>
+    <?= $form->field($model, 'status_id')->dropDownList($model->statusList, [ 'prompt' => Yii::t('app', 'Choose State') ]); ?>
     <?= $form->field($model, 'rol_id')->dropDownList($model->rolList, [ 'prompt' => 'Elige Rol' ]);?>
-    <?= $form->field($model, 'user_type_id')->dropDownList($model->userTypeList, [ 'prompt' => 'Elige Tipo de Usuario' ]);?>
+    <?= $form->field($model, 'user_type_id')->dropDownList($model->userTypeList, [ 'prompt' =>Yii::t('app', 'Choose User State') ]);?>
     <?= $form->field($model, 'username')->textInput(['maxlength' => 255]) ?>
     <?= $form->field($model, 'email')->textInput(['maxlength' => 255]) ?>
 

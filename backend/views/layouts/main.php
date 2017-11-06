@@ -59,13 +59,13 @@ FontAwesomeAsset::register($this);
     ];
 
     if (Yii::$app->user->isGuest) {
-        $menuItems[] = ['label' => '<i class="fa fa-sign-in" aria-hidden="true"></i><br/>Login', 'url' => ['/site/login']];
+        $menuItems[] = ['label' => '<i class="fa fa-sign-in" aria-hidden="true"></i><br/>' . Yii::t('app', 'Login') , 'url' => ['/site/login']];
     } elseif (Yii::$app->user->identity->rol_id >= $is_admin) {
-        $menuItems[] = ['label' => '<i class="fa fa-users" aria-hidden="true"></i><br/>Usuarios', 'url' => ['user/index']];
-        $menuItems[] = ['label' => '<i class="fa fa-address-card-o" aria-hidden="true"></i><br/>Perfiles', 'url' => ['profile/index']];
-        $menuItems[] = ['label' => '<i class="fa fa-universal-access" aria-hidden="true"></i><br/>Roles', 'url' => ['/rol/index']];
-        $menuItems[] = ['label' => '<i class="fa fa-eye-slash" aria-hidden="true"></i><i class="fa fa-eye" aria-hidden="true"></i><br/>Tip. Usuarios', 'url' => ['/user-type/index']];
-        $menuItems[] = ['label' => '<i class="fa fa-check" aria-hidden="true"></i><br/>Status', 'url' => ['/status/index']];
+        $menuItems[] = ['label' => '<i class="fa fa-users" aria-hidden="true"></i><br/>' . Yii::t('app', 'Users') , 'url' => ['user/index']];
+        $menuItems[] = ['label' => '<i class="fa fa-address-card-o" aria-hidden="true"></i><br/>' . Yii::t('app', 'Profiles') , 'url' => ['profile/index']];
+        $menuItems[] = ['label' => '<i class="fa fa-universal-access" aria-hidden="true"></i><br/>' . Yii::t('app', 'Roles') , 'url' => ['/rol/index']];
+        $menuItems[] = ['label' => '<i class="fa fa-eye-slash" aria-hidden="true"></i><i class="fa fa-eye" aria-hidden="true"></i><br/>' . Yii::t('app', 'User Types') , 'url' => ['/user-type/index']];
+        $menuItems[] = ['label' => '<i class="fa fa-check" aria-hidden="true"></i><br/>' . Yii::t('app', 'Status') , 'url' => ['/status/index']];
         $profileId = RecordHelpers::userHas('profile') ? Profile::find()->where(['user_id' => Yii::$app->user->id])->one()->id : false;
         if ($profileId) {
             $imgNav = ImagenProfile::getLastImg($profileId);
@@ -76,7 +76,9 @@ FontAwesomeAsset::register($this);
             . Html::beginForm(['/site/logout'], 'post')
             . Html::submitButton(
                 '<img src="' . $imgNav . '" class="imgPerfil-xs img-circle" title="' . Yii::$app->user->identity->username . '"/>',
-                ['class' => 'btn btn-link logout']
+                ['class' => 'btn btn-link logout',
+                 'title' => Yii::t('app', 'Logout')   . Yii::$app->user->identity->username
+                ]
             )
             . Html::endForm()
             . '</li>';

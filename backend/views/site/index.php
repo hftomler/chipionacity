@@ -27,7 +27,7 @@ $is_admin = ValueHelpers::getRolValue('Admin');
                 <p>
                     <?php
                         if (!Yii::$app->user->isGuest  && Yii::$app->user->identity->rol_id >=$is_admin) {
-                            echo Html::a('Manage Users', ['user/index'], ['class' => 'btn btn-success']);
+                            echo Html::a(Yii::t('app', 'Manage users'), ['user/index'], ['class' => 'btn btn-success']);
                         }
                     ?>
                 </p>
@@ -44,7 +44,7 @@ $is_admin = ValueHelpers::getRolValue('Admin');
                 <p>
                     <?php
                         if (!Yii::$app->user->isGuest  && Yii::$app->user->identity->rol_id >=$is_admin) {
-                            echo Html::a('Manage Roles', ['rol/index'], ['class' => 'btn btn-success']);
+                            echo Html::a(Yii::t('app', 'Manage roles'), ['rol/index'], ['class' => 'btn btn-success']);
                         }
                     ?>
                 </p>
@@ -61,7 +61,7 @@ $is_admin = ValueHelpers::getRolValue('Admin');
                 <p>
                     <?php
                         if (!Yii::$app->user->isGuest  && Yii::$app->user->identity->rol_id >=$is_admin) {
-                            echo Html::a('Manage Profiles', ['profile/index'], ['class' => 'btn btn-success']);
+                            echo Html::a(Yii::t('app', 'Manage profiles'), ['profile/index'], ['class' => 'btn btn-success']);
                         }
                     ?>
                 </p>
@@ -80,7 +80,7 @@ $is_admin = ValueHelpers::getRolValue('Admin');
                 <p>
                     <?php
                     if (!Yii::$app->user->isGuest  && Yii::$app->user->identity->rol_id >=$is_admin) {
-                        echo Html::a('Manage Statuses', ['status/index'], ['class' => 'btn btn-success']);
+                        echo Html::a(Yii::t('app', 'Manage statuses'), ['status/index'], ['class' => 'btn btn-success']);
                     }
                     ?>
                 </p>
@@ -99,7 +99,7 @@ $is_admin = ValueHelpers::getRolValue('Admin');
                 <p>
                     <?php
                     if (!Yii::$app->user->isGuest  && Yii::$app->user->identity->rol_id >=$is_admin) {
-                        echo Html::a('Manage User Types', ['user-type/index'], ['class' => 'btn btn-success']);
+                        echo Html::a(Yii::t('app', 'Manage users type'), ['user-type/index'], ['class' => 'btn btn-success']);
                     }
                     ?>
                 </p>
