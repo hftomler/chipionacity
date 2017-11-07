@@ -210,8 +210,8 @@ class m130524_201443_init extends Migration
             'rol_id'=>$this->integer()->defaultValue(10),
             'status_id' => $this->integer()->notNull()->defaultValue(10),
             'user_type_id'=>$this->integer()->defaultValue(10),
-            'created_at' => $this->date()->notNull(),
-            'updated_at' => $this->date()->notNull(),
+            'created_at' => $this->datetime()->notNull(),
+            'updated_at' => $this->datetime()->notNull(),
             'proveedor'=>$this->boolean()->defaultValue(false),
         ], $tableOptions);
 
@@ -326,14 +326,6 @@ class m130524_201443_init extends Migration
         ]);
         */
 
-       $this->createTable('imagen_profile', [
-           'id'=> $this->primaryKey(),
-           'profile_id' =>$this->integer(),
-           'url' => $this->string(255),
-           'created_at' => $this->datetime()->notNull(),
-           'updated_at' => $this->datetime()->notNull(),
-       ], $tableOptions);
-
         $this->createTable('profile', [
             'id'=> $this->primaryKey(),
             'user_id' => $this->integer()->notNull()->unique(),
@@ -395,11 +387,37 @@ class m130524_201443_init extends Migration
             'CASCADE'
         );
 
+        $this->createTable('imagen_profile', [
+            'id'=> $this->primaryKey(),
+            'profile_id' =>$this->integer()->notNull(),
+            'url' => $this->string(255)->notNull(),
+            'created_at' => $this->datetime()->notNull(),
+            'updated_at' => $this->datetime()->notNull(),
+        ], $tableOptions);
+
+        $this->addForeignKey(
+            'fk_imagen_profile_profile',
+            'imagen_profile',
+            'profile_id',
+            'profile',
+            'id',
+            'CASCADE'
+        );
 
         $this->createTable('etiquetas', [
             'id'=> $this->primaryKey(),
             'descripcion_etiqueta'=> $this->string(255)->notNull(),
         ], $tableOptions);
+
+        $this->createTable('tipos_iva', [
+            'id'=> $this->primaryKey(),
+            'descripcion_iva'=>$this->string(25),
+            'porcentaje_iva'=>$this->decimal(7,2),
+        ]);
+
+        $this->batchInsert('tipos_iva', ['descripcion_iva', 'porcentaje_iva'], [
+            ['Superreducido', 4], ['Reducido', 10], ['General', 21]
+        ]);
 
         $this->createTable('servicios', [
             'id'=> $this->primaryKey(),
@@ -409,6 +427,7 @@ class m130524_201443_init extends Migration
             'precio'=>$this->decimal(7,2)->notNull(),
             'proveedor_id'=>$this->integer()->notNull(),
             'activo'=>$this->boolean()->defaultValue(false),
+            'tipo_iva_id' => $this->integer()->notNull(),
         ], $tableOptions);
 
         $this->addForeignKey(
@@ -416,6 +435,32 @@ class m130524_201443_init extends Migration
             'servicios',
             'proveedor_id',
             'user',
+            'id',
+            'CASCADE'
+        );
+
+        $this->addForeignKey(
+            'fk_servicios_tipos_iva',
+            'servicios',
+            'tipo_iva_id',
+            'tipos_iva',
+            'id',
+            'CASCADE'
+        );
+
+        $this->createTable('imagen_servicio', [
+            'id'=> $this->primaryKey(),
+            'servicio_id' =>$this->integer()->notNull(),
+            'url' => $this->string(255)->notNull(),
+            'created_at' => $this->datetime()->notNull(),
+            'updated_at' => $this->datetime()->notNull(),
+        ], $tableOptions);
+
+        $this->addForeignKey(
+            'fk_imagen_servicio_servicio',
+            'imagen_servicio',
+            'servicio_id',
+            'servicios',
             'id',
             'CASCADE'
         );
