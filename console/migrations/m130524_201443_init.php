@@ -404,11 +404,6 @@ class m130524_201443_init extends Migration
             'CASCADE'
         );
 
-        $this->createTable('etiquetas', [
-            'id'=> $this->primaryKey(),
-            'descripcion_etiqueta'=> $this->string(255)->notNull(),
-        ], $tableOptions);
-
         $this->createTable('tipos_iva', [
             'id'=> $this->primaryKey(),
             'descripcion_iva'=>$this->string(25),
@@ -421,7 +416,6 @@ class m130524_201443_init extends Migration
 
         $this->createTable('servicios', [
             'id'=> $this->primaryKey(),
-            'categoria_id'=> $this->integer()->notNull(),
             'descripcion'=>$this->string(255)->notNull(),
             'imagen'=>$this->string(255),
             'precio'=>$this->decimal(7,2)->notNull(),
@@ -465,6 +459,11 @@ class m130524_201443_init extends Migration
             'CASCADE'
         );
 
+        $this->createTable('etiquetas', [
+            'id'=> $this->primaryKey(),
+            'descripcion_etiqueta'=> $this->string(255)->notNull(),
+        ], $tableOptions);
+
         $this->createTable('servicios_etiquetas', [
             'id'=> $this->primaryKey(),
             'etiqueta_id'=> $this->integer()->notNull(),
@@ -485,6 +484,35 @@ class m130524_201443_init extends Migration
             'servicios_etiquetas',
             'etiqueta_id',
             'etiquetas',
+            'id',
+            'CASCADE'
+        );
+
+        $this->createTable('categorias', [
+            'id'=> $this->primaryKey(),
+            'descripcion_cat'=> $this->string(255)->notNull(),
+        ], $tableOptions);
+
+        $this->createTable('servicios_categorias', [
+            'id'=> $this->primaryKey(),
+            'categoria_id'=> $this->integer()->notNull(),
+            'servicio_id'=> $this->integer()->notNull(),
+        ], $tableOptions);
+
+        $this->addForeignKey(
+            'fk_servicios_categorias_servicios',
+            'servicios_categorias',
+            'servicio_id',
+            'servicios',
+            'id',
+            'CASCADE'
+        );
+
+        $this->addForeignKey(
+            'fk_servicios_categorias_categorias',
+            'servicios_categorias',
+            'categoria_id',
+            'categorias',
             'id',
             'CASCADE'
         );
