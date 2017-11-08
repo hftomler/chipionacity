@@ -1,4 +1,14 @@
 $(function(){
+
+	// Cambiar idioma
+	$('.language').click(function() {
+		var lang = $(this).attr('id');
+
+		$.post('index.php?r=site/language', {'lang':lang}, function(data) {
+			location.reload();
+		});
+	});
+
 	$('#modalLogin').click(function(evento) {
 		evento.preventDefault();
 		$('#modalLoginContent').modal('show')
@@ -20,9 +30,31 @@ $(function(){
 
 	$('.imgWrap').hover(
 		function() {
-		  $('tickImg').css("visibility", 'visible');
+		  	$(this).children('i').css("visibility", 'visible');
+			$(this).children('img').css({
+				"border": "1px solid #111",
+				"filter": "drop-shadow(2px 2px 3px #000)"
+			})
 		}, function() {
-			$( this . 'tickImg').css("visibility", 'hidden');
+			$(this).children('i').css("visibility", 'hidden');
+			$(this).children('img').css({
+				"border": "1px solid #555",
+				"filter": "drop-shadow(4px 4px 6px #666)"
+			})
+  	});
+
+	$('.imgWrap > i[name^="u"]').click(function () {
+		var id = $(this).attr('name').substr(1);
+		$.post('index.php?r=imgprofile/update&id=' + id, function(data) {
+			location.reload();
+		});
+	});
+
+	$('.imgWrap > i[name^="d"]').click(function () {
+		var id = $(this).attr('name').substr(1);
+		$.post('index.php?r=imgprofile/delete&id=' + id, function(data) {
+			location.reload();
+		});
 	});
 
     //Mapear el click de la imagen hacia el botón de fileUpload

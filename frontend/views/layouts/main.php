@@ -86,9 +86,20 @@ FontAwesomeAsset::register($this);
 
 <footer class="footer">
     <div class="container">
-        <p class="pull-left"><img src="imagenes/logo.png" alt="logo" height="35"></p>
-
-        <p class="pull-right"><?= Yii::powered() ?></p>
+        <div class="row align-items-center">
+            <div class="pull-left text-left col-xs-4">&copy; My Company <?= date('Y') ?></div>
+            <div class="text-center col-xs-4">
+                <div class="small col-xs-4"><?= Yii::t('app', "Languages:") ?> </div>
+                <?php
+                foreach(Yii::$app->params['languages'] as $key => $language) {
+                    echo '<div class="col-xs-2">';
+                    echo ' <img src="imagenes/iconos/' . $key . '.png"  id="' . $key . '" class="language" title="' . $language . '"/>';
+                    echo '</div>';
+                }
+                ?>
+            </div>
+            <div class="pull-right text-right col-xs-4"><?= Yii::powered() ?></div>
+        </div>
     </div>
 </footer>
 
