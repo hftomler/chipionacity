@@ -8,11 +8,10 @@ $this->title = 'My Yii Application';
 <div class="site-index">
 
     <div class="jumbotron">
-        <h1><?= Yii::t('frontend','Congratulations!') ?></h1>
-
-        <p class="lead">You have successfully created your Yii-powered application.</p>
-
-        <p><a class="btn btn-lg btn-success" href="http://www.yiiframework.com">Get started with Yii</a></p>
+        <img id="logoInicio" src="imagenes/logoInicio.png" class="col-xs-5 col-xs-offset-1" alt="logo">
+        <p class="col-xs-6 titular">Experiencias inolvidables <i class="fa fa-heart" aria-hidden="true"></i>, 
+            en el lugar ideal <i class="fa fa-star" aria-hidden="true"></i><br/>
+            a un <i class="fa fa-eur" aria-hidden="true"></i> espectacular <i class="fa fa-arrow-down" aria-hidden="true"></i></p>
     </div>
 
     <div class="body-content">

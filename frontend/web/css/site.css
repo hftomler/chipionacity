@@ -24,6 +24,7 @@ body {
 .jumbotron {
     text-align: center;
     background-color: transparent;
+    padding-top: 0;
 }
 
 .jumbotron .btn {
@@ -228,6 +229,19 @@ nav.inicio li:hover a:hover, nav li form button.btn-link:hover {
 
 #logo {
     height: 60px;
+}
+
+#logoInicio {
+    border-right: 1px solid #009bff;
+}
+
+.titular {
+    color: #009bff;
+    font-size: 1.5em;
+}
+
+.titular i {
+    color: #ff7e00
 }
 
 .imgPerfil-md {
