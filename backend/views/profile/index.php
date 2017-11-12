@@ -14,7 +14,7 @@ use backend\models\ImagenProfile;
 
 $this->title = Yii::t('app', 'Profiles');
 $this->params['breadcrumbs'][] = $this->title;
-$show_this_nav = PermissionHelpers::requireMinRol('superAdmin');
+$show_this_nav = PermissionHelpers::requireMinRol('admin');
 ?>
 
 <div class="profile-index">
@@ -75,11 +75,11 @@ $show_this_nav = PermissionHelpers::requireMinRol('superAdmin');
             ],
             ['class' => 'yii\grid\ActionColumn',
                              'visibleButtons' => [
-                                 'update' => function ($data, $key, $show_this_nav) {
-                                                        return $show_this_nav && PermissionHelpers::userMustBeOwner('profile', $key);
+                                 'update' => function ($data, $key) {
+                                                        return PermissionHelpers::requireMinRol('admin') && PermissionHelpers::userMustBeOwner('profile', $key);
                                                     },
-                                 'delete' => function ($data, $key, $show_this_nav) {
-                                                        return $show_this_nav && PermissionHelpers::userMustBeOwner('profile', $key);
+                                 'delete' => function ($data, $key) {
+                                                        return PermissionHelpers::requireMinRol('admin') && PermissionHelpers::userMustBeOwner('profile', $key);
                                                     },
                              ],
             ],

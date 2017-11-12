@@ -9,6 +9,7 @@ use frontend\models\search\ProfileSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\filters\AccessControl;
 use common\models\PermissionHelpers;
 use common\models\RecordHelpers;
 use common\models\Pais;
@@ -28,22 +29,21 @@ class ProfileController extends Controller {
     public function behaviors()
     {
         return [
-
             'access' => [
-                'class' => \yii\filters\AccessControl::className(),
-                'only'  => ['index', 'view', 'create', 'update', 'delete'],
+                'class' => AccessControl::className(), // \yii\filters\AccessControl::className(),
+                'only' => ['index', 'view', 'create', 'update', 'delete'],
                 'rules' => [
                     [
                         'actions' => ['index', 'view', 'create', 'update', 'delete'],
                         'allow' => true,
                         'roles' => ['@'],
                         'matchCallback' => function ($rule, $action) {
-                            return PermissionHelpers::requireStatus('Activo');
+                            return PermissionHelpers::userMustBeOwner('profile', RecordHelpers::userHas('profile'))
+                                      && PermissionHelpers::requireStatus('Activo');
                         }
                     ],
                 ],
             ],
-
             'verbs' => [
                 'class' => VerbFilter::className(),
                 'actions' => [

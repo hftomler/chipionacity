@@ -32,7 +32,7 @@ use backend\models\ImagenProfile;
  * @property string $updated_at
  *
  * @property Gender $gender
- * @property Municipios $municipio
+ * @property Municipio $municipio
  * @property Paises $pais
  * @property Provincias $provincia
  * @property User $user
@@ -78,8 +78,8 @@ class Profile extends \yii\db\ActiveRecord
             [['fecha_nac'], 'safe'],
             ['fichImage', 'file'],
             ['fichImage', 'image', 'extensions' => 'png, jpg',
-                'minWidth' => 100, 'maxWidth' => 400,
-                'minHeight' => 100, 'maxHeight' => 400,
+                'minWidth' => 200, 'maxWidth' => 300,
+                'minHeight' => 200, 'maxHeight' => 300,
             ],
             [['gender_id'], 'in', 'range'=>array_keys($this->getGenderList())],
             [['nombre', 'apellidos', 'direccion'], 'string', 'max' => 255],
@@ -145,7 +145,7 @@ class Profile extends \yii\db\ActiveRecord
      */
     public function getMunicipio()
     {
-        return $this->hasOne(Municipios::className(), ['id' => 'municipio_id']);
+        return $this->hasOne(Municipio::className(), ['id' => 'municipio_id']);
     }
 
     /**
@@ -168,7 +168,7 @@ class Profile extends \yii\db\ActiveRecord
      */
     public function getProvincia()
     {
-        return $this->hasOne(Provincias::className(), ['id' => 'provincia_id']);
+        return $this->hasOne(Provincia::className(), ['id' => 'provincia_id']);
     }
 
     /**
@@ -263,4 +263,13 @@ class Profile extends \yii\db\ActiveRecord
             $htmlResul = implode($strImgs);
         return $htmlResul;
     }
+
+    public function getFullName() {
+        return $this->nombre . ' ' . $this->apellidos . ' <b><i>(' . $this->userLink . ')</i></b>';
+    }
+
+    public function getFullAdress() {
+        return $this->direccion . ' - ' . $this->nombreMunicipio . ' (' . $this->nombreProvincia . ') - ' . $this->nombrePais;
+    }
+
 }

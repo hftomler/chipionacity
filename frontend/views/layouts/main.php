@@ -35,37 +35,53 @@ FontAwesomeAsset::register($this);
 
 <div class="wrap">
     <?php
+    $controller = Yii::$app->controller;
+    $default_controller = Yii::$app->defaultRoute;
+    $isHome = (($controller->id === $default_controller) && ($controller->action->id === $controller->defaultAction)) ? true : false;
+    $navClass = $isHome ? 'navbar inicio' : 'navbar';
     NavBar::begin([
-        'brandLabel' => '<img id="logo" src="imagenes/logo.png" alt="logo">',
+        'brandLabel' => $isHome ? '' : '<img id="logo" src="imagenes/logo.png" alt="logo">',
         'brandUrl' => Yii::$app->homeUrl,
         'options' => [
-           'class' => 'navbar',
+           'class' => $navClass,
         ],
     ]);
     if (Yii::$app->user->isGuest) {
-        $menuItems[] = ['label' => '<i class="fa fa-id-card-o" aria-hidden="true"></i><br/>Únete', 'url' => ['/site/signup']];
-        $menuItems[] = ['label' => '<i class="fa fa-sign-in" aria-hidden="true"></i><br/>Login',  'url' => ['/site/login'],
-                     'linkOptions' => [
-                           'value' => Url::to('index.php?r=site/login'),
-                           'id'=>'modalLogin'],
-                     ];
+        $menuItems[] = [ 'label' => '<i class="fa fa-id-card-o" aria-hidden="true"></i> Mi perfil',
+                     'items' => [
+                          ['label' => '<i class="fa fa-id-card-o" aria-hidden="true"></i> ¿Eres nuevo?', 'url' => ['/site/signup']],
+                          ['label' => '<i class="fa fa-sign-in" aria-hidden="true"></i> Identifícate',  'url' => ['/site/login'],
+                                       'linkOptions' => [
+                                             'value' => Url::to('index.php?r=site/login'),
+                                             'id'=>'modalLogin'],
+                                       ],
+                      ],
+                  ];
     } else {
         $profileId = RecordHelpers::userHas('profile') ? Profile::find()->where(['user_id' => Yii::$app->user->id])->one()->id : false;
         if ($profileId) {
-            $menuItems[] = ['label' => '<i class="fa fa-eye" aria-hidden="true"></i><br/>Profile', 'url' => ['/profile/view']];
+            $prof = ['label' => '<i class="fa fa-eye" aria-hidden="true"></i> Profile', 'url' => ['/profile/view']];
             $imgNav = ImagenProfile::getLastImg($profileId);
         } else {
-            $menuItems[] = ['label' => '<i class="fa fa-plus-square" aria-hidden="true"></i><br/>Profile', 'url' => ['/profile/view']];
+            $prof = ['label' => '<i class="fa fa-plus-square" aria-hidden="true"></i> Profile', 'url' => ['/profile/view']];
             $imgNav = "imagenes/imgPerfil/sinPerfil.jpg";
         }
-        $menuItems[] = '<li>'
+        /*$menuItems[] = '<li>'
             . Html::beginForm(['/site/logout'], 'post')
             . Html::submitButton(
                 '<img src="' . $imgNav . '" class="imgPerfil-xs img-circle" title="' . Yii::$app->user->identity->username . '"/>',
                 ['class' => 'btn btn-link logout']
             )
             . Html::endForm()
-            . '</li>';
+            . '</li>';*/
+
+            $menuItems[] = [ 'label' => '<img src="' . $imgNav . '" class="imgPerfil-xs img-circle" title="' . Yii::$app->user->identity->username . '"/>',
+                        'items' => [
+                             ['label' => 'Logout', 'url' => ['/site/logout'], 'linkOptions' => ['data' => ['method' => 'post']]],
+                             '<li class="divider"></li>',
+                             $prof,
+                        ],
+                    ];
     }
     echo Nav::widget([
         'options' => ['class' => 'navbar-nav navbar-right'],

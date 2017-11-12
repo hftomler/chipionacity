@@ -150,16 +150,19 @@ class ProfileController extends Controller
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             // Capturamos la instancia del fichero subido en el form y guardamos la imagen
+            $mensajeFlash = Yii::t('app', 'Saved record successfully') . '<br/>';
             $model->fichImage = UploadedFile::getInstance($model, 'fichImage');
             if ($model->fichImage !== null) {
                 // Creamos el registro de ImagenProfile y Guardo la trayectoria de la imagen en el campo url.
                 $imgPerfil = new ImagenProfile();
                 $imgPerfil->profile_id = $model->id;
+                $nomImg = "";
                 $nomImg = 'imagenes/imgPerfil/' . $model->id . '-' .
                                                                          $model->fichImage->baseName . '-' .
                                                                          $model->fichImage->size .
                                                                          '.' . $model->fichImage->extension;
                 if (!file_exists($nomImg)) {
+                    $mensajeFlash += Yii::t('app', 'The new profile image has been saved.');
                     $imgPerfil->url = $nomImg;
                     $imgPerfil->save();
                     $model->save();
@@ -173,6 +176,7 @@ class ProfileController extends Controller
                     $imgPerfil->save();
                 }*/
             }
+            //Yii::$app->session->setFlash('success', $mensajeFlash);
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
             return $this->render('update', [

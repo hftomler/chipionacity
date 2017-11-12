@@ -461,7 +461,7 @@ class m130524_201443_init extends Migration
 
         $this->createTable('etiquetas', [
             'id'=> $this->primaryKey(),
-            'descripcion_etiqueta'=> $this->string(255)->notNull(),
+            'descripcion_tag'=> $this->string(255)->notNull(),
         ], $tableOptions);
 
         $this->createTable('servicios_etiquetas', [
@@ -522,8 +522,8 @@ class m130524_201443_init extends Migration
             'usuario_id'=>$this->integer()->notNull(),
             'fecha_venta'=>$this->date(),
             'importe' =>$this->decimal(7,2)->notNull(),
-            'iva' =>$this->decimal(7,2)->notNull(),
             'descuento' =>$this->decimal(7,2)->notNull()->defaultValue(0),
+            'importe_iva' =>$this->decimal(7,2)->notNull(),
             'total_venta' =>$this->decimal(7,2)->notNull(),
             'total_comision' =>$this->decimal(7,2)->notNull(),
             ], $tableOptions);
