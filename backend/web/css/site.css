@@ -171,6 +171,8 @@ nav li:hover a:hover, nav li form button.btn-link:hover {
 .imgPerfil-md {
     margin-top: 10px;
     height: 110px;
+    border: 1px solid #555;
+    filter: drop-shadow(4px 4px 6px #666);
 }
 
 .imgPerfil-sm {

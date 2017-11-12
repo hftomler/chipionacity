@@ -97,6 +97,8 @@ class ImgprofileController extends Controller
      */
     public function actionDelete($id)
     {
+        $imgBorrar = $this->findModel($id)->url;
+        unlink($imgBorrar);
         $this->findModel($id)->delete();
     }
 

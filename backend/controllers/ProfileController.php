@@ -38,7 +38,7 @@ class ProfileController extends Controller
                         'allow' => true,
                         'roles' => ['@'],
                         'matchCallback' => function ($rule, $action) {
-                            return PermissionHelpers::requireMinRol('admin') && PermissionHelpers::requireStatus('Activo');
+                            return (PermissionHelpers::requireMinRol('admin') && PermissionHelpers::requireStatus('Activo'));
                         }
                     ],
                     [
@@ -46,7 +46,8 @@ class ProfileController extends Controller
                         'allow' => true,
                         'roles' => ['@'],
                         'matchCallback' => function ($rule, $action) {
-                            return PermissionHelpers::requireMinRol('superAdmin') && PermissionHelpers::requireStatus('Activo');
+                            return (PermissionHelpers::requireMinRol('superAdmin') && PermissionHelpers::requireStatus('Activo'))
+                                        /*|| PermissionHelpers::userMustBeOwner('profile', $this->findModel(Yii::$app->user->identity->id))*/;
                         }
                     ],
                 ],
@@ -120,6 +121,8 @@ class ProfileController extends Controller
                      $imgPerfil->save();
                      $model->save();
                      $model->fichImage->saveAs($nomImg);
+                 } else {
+                     $model->save();
                  }
              } else {
                  /*if (!ImagenProfile::existsUrl($model->id, 'imagenes/imgPerfil/sinPerfil.jpg')) {
@@ -161,6 +164,7 @@ class ProfileController extends Controller
                                                                          $model->fichImage->baseName . '-' .
                                                                          $model->fichImage->size .
                                                                          '.' . $model->fichImage->extension;
+
                 if (!file_exists($nomImg)) {
                     $mensajeFlash += Yii::t('app', 'The new profile image has been saved.');
                     $imgPerfil->url = $nomImg;
