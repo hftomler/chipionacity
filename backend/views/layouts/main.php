@@ -36,6 +36,7 @@ FontAwesomeAsset::register($this);
 <div class="wrap">
     <?php
     $is_admin = ValueHelpers::getRolValue('admin');
+    $isAvatar = ((Yii::$app->controller->action->id == 'avatar') ? true : false);
     if (!Yii::$app->user->isGuest) { //Logo para administradores
         NavBar::begin([
             'brandLabel' => '<img id="logo" src="imagenes/logo70px.png" alt="logo">',
@@ -54,13 +55,17 @@ FontAwesomeAsset::register($this);
         ]);
     }
 
-    $menuItems = [
-        ['label' => '<i class="fa fa-home" aria-hidden="true"></i><br/>Home', 'url' => ['/site/index']],
-    ];
+    if (!$isAvatar) {
+        $menuItems = [
+            ['label' => '<i class="fa fa-home" aria-hidden="true"></i><br/>Home', 'url' => ['/site/index']],
+        ];
+    } else {
+        $menuItems = [];
+    }
 
     if (Yii::$app->user->isGuest) {
         $menuItems[] = ['label' => '<i class="fa fa-sign-in" aria-hidden="true"></i><br/>' . Yii::t('app', 'Login') , 'url' => ['/site/login']];
-    } elseif (Yii::$app->user->identity->rol_id >= $is_admin) {
+    } elseif (Yii::$app->user->identity->rol_id >= $is_admin && !$isAvatar) {
         $menuItems[] = ['label' => '<i class="fa fa-users" aria-hidden="true"></i><br/>' . Yii::t('app', 'Users') , 'url' => ['user/index']];
         $menuItems[] = ['label' => '<i class="fa fa-address-card-o" aria-hidden="true"></i><br/>' . Yii::t('app', 'Profiles') , 'url' => ['profile/index']];
         $menuItems[] = ['label' => '<i class="fa fa-universal-access" aria-hidden="true"></i><br/>' . Yii::t('app', 'Roles') , 'url' => ['/rol/index']];

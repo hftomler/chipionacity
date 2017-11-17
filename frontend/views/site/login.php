@@ -6,12 +6,14 @@
 
 use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
+use yii\bootstrap\Alert;
+use yii\backend\controllers\UserController;
 
 $this->title = Yii::t('frontend', 'Login');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="site-login">
-    
+
     <div class="col-lg-1 col-md-1 col-sm-1"></div>
 
     <div class="row">
@@ -33,10 +35,43 @@ $this->params['breadcrumbs'][] = $this->title;
                 </div>
 
                 <div class="form-group">
-                    <?= Html::submitButton('Login', ['class' => 'btn btn-primary', 'name' => 'login-button', 'id' => 'login-button']) ?>
+                    <?= Html::submitButton('<i class="fa fa-check-circle" aria-hidden="true"></i> Continuar', ['class' => 'btn btn-success btn-login collapse col-xs-12', 'name' => 'login-button', 'id' => 'login-button']) ?>
                 </div>
-
             <?php ActiveForm::end(); ?>
         </div>
     </div>
 </div>
+<script>
+		$('#loginform-username').change(function() {
+            if ($('#loginform-password').val()) {
+                $.post('index.php?r=user/usexists&username=' +
+                                                 $(this).val() + '&password=' + $('#loginform-password').val() ,
+                    function(data) {
+                        if (!data) {
+                            $('#login-button').collapse("hide");
+                            $('#loginform-username').select();
+                            $('#loginform-username').focus();
+                        } else {
+                            $('#login-button').collapse("show");
+                        };
+                    });
+            }
+		});
+
+        $('#loginform-password').change(function() {
+            if ($('#loginform-username').val()) {
+                $.post('index.php?r=user/usexists&username=' +
+                                                 $('#loginform-username').val() + '&password=' + $(this).val() ,
+                    function(data) {
+                        if (!data) {
+                            $('#login-button').collapse("hide");
+                            $('#loginform-username').select();
+                            $('#loginform-username').focus();
+                        } else {
+                            $('#login-button').collapse("show");
+                        };
+                    });
+            }
+        });
+
+</script>

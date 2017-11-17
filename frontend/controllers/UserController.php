@@ -1,6 +1,6 @@
 <?php
 
-namespace backend\controllers;
+namespace frontend\controllers;
 
 use Yii;
 use common\models\User;
@@ -157,7 +157,16 @@ class UserController extends Controller
      * @throws NotFoundHttpException if the model cannot be found
      */
 
-    public function actionUsexists($username) {
-        return User::find()->where(['username' => $username])->one();
+    public function actionUsexists($username, $password) {
+        $session = Yii::$app->session;
+        $user = User::findByUsername($username);
+        if ($user !== null) {
+            if ($user->validatePassword($password)) {
+                $session->addFlash('mensaje', 'You have successfully deleted your post.');
+                return true;
+            };
+        }
+        $session->addFlash('mensaje', 'You have NOT successfully deleted your post.');
+        return false;
     }
 }

@@ -59,8 +59,12 @@ $(function(){
 	});
 
 	//Mapear el click de la imagen de perfil hacia el botón de fileUpload que está oculto en Create y Update profile
-    $("#swImgPerfil").click(function () {
-         $("#btImgPerfil").trigger('click');
+	$("#swImgPerfil").click(function () {
+		if ( $("#checkAvatar").is(':checked')) {
+			abrirpopup('index.php?r=profile/avatar','800','600');
+		} else {
+			$("#btImgPerfil").trigger('click');
+		}
     });
 
 	$("#btImgPerfil").change(function(){
@@ -78,4 +82,18 @@ $(function(){
 	        reader.readAsDataURL(input.files[0]);
 	    }
 	}
+
+	// Función auxiliar para abrir nueva ventana galería avatar
+	function abrirpopup(url,ancho,alto){
+			//Ajustar horizontalmente
+		var x=(screen.width/2)-(ancho/2);
+		//Ajustar verticalmente
+		var y=(screen.height/2)-(alto/2);
+		window.open(url, 'popup', 'width=' + ancho + ', height=' + alto + ', left=' + x + ', top=' + y +'');
+	}
+
+	$("#valueAvatar").change(function () {
+		$('#swImgPerfil').attr('src', $(this).val());
+	});
+
 });

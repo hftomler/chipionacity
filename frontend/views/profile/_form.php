@@ -39,9 +39,12 @@ use backend\models\ImagenProfile;
                                             'alt' => 'Imagen de perfil'
                                         ]);
         ?>
+        <div class="check-sm">
+            <input id="checkAvatar" name="checkAvatar" class="check" type="checkbox" checked="cheked"> <?= Yii::t('app', 'Avatar List') ?>
+            <input id="valueAvatar" name="valueAvatar" type="hidden" class="form-control" />
+        </div>
         <?= $form->field($model, 'fichImage')->fileInput([
                                         'id' => 'btImgPerfil',
-                                        'value' => 'Género',
                                         'style' =>'display:none'
                                     ])->label(''); ?>
     </div>

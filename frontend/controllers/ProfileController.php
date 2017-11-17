@@ -31,10 +31,10 @@ class ProfileController extends Controller {
         return [
             'access' => [
                 'class' => AccessControl::className(), // \yii\filters\AccessControl::className(),
-                'only' => ['index', 'view', 'create', 'update', 'delete'],
+                'only' => ['index', 'view', 'create', 'update', 'avatar', 'delete'],
                 'rules' => [
                     [
-                        'actions' => ['index', 'view', 'create', 'update', 'delete'],
+                        'actions' => ['index', 'view', 'create', 'update', 'avatar', 'delete'],
                         'allow' => true,
                         'roles' => ['@'],
                         'matchCallback' => function ($rule, $action) {
@@ -104,26 +104,31 @@ class ProfileController extends Controller {
 
          } elseif ($model->load(Yii::$app->request->post()) && $model->save()) {
              // Capturamos la instancia del fichero subido en el form y guardamos la imagen
+             // Si no hay fichero y existe un avatar subido lo guardamos.
+             $mensajeFlash = Yii::t('app', 'Saved record successfully') . '<br/>';
              $model->fichImage = UploadedFile::getInstance($model, 'fichImage');
              if ($model->fichImage !== null) {
                  // Creamos el registro de ImagenProfile y Guardo la trayectoria de la imagen en el campo url.
                  $imgPerfil = new ImagenProfile();
                  $imgPerfil->profile_id = $model->id;
+                 $nomImg = "";
                  $nomImg = 'imagenes/imgPerfil/' . $model->id . '-' .
-                                                                          $model->fichImage->baseName .
+                                                                          $model->fichImage->baseName . '-' .
                                                                           $model->fichImage->size .
                                                                           '.' . $model->fichImage->extension;
+
                  if (!file_exists($nomImg)) {
+                     $mensajeFlash += Yii::t('app', 'The new profile image has been saved.');
                      $imgPerfil->url = $nomImg;
                      $imgPerfil->save();
                      $model->save();
                      $model->fichImage->saveAs($nomImg);
                  }
              } else {
-                 if (!ImagenProfile::existsUrl($model->id, 'imagenes/imgPerfil/sinPerfil.jpg')) {
+                 if (Yii::$app->request->post('valueAvatar')) {
                      $imgPerfil = new ImagenProfile();
                      $imgPerfil->profile_id = $model->id;
-                     $imgPerfil->url = 'imagenes/imgPerfil/sinPerfil.jpg';
+                     $imgPerfil->url = Yii::$app->request->post('valueAvatar');
                      $imgPerfil->save();
                  }
              }
@@ -149,26 +154,30 @@ class ProfileController extends Controller {
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             // Capturamos la instancia del fichero subido en el form y guardamos la imagen
+            $mensajeFlash = Yii::t('app', 'Saved record successfully') . '<br/>';
             $model->fichImage = UploadedFile::getInstance($model, 'fichImage');
             if ($model->fichImage !== null) {
                 // Creamos el registro de ImagenProfile y Guardo la trayectoria de la imagen en el campo url.
                 $imgPerfil = new ImagenProfile();
                 $imgPerfil->profile_id = $model->id;
+                $nomImg = "";
                 $nomImg = 'imagenes/imgPerfil/' . $model->id . '-' .
                                                                          $model->fichImage->baseName . '-' .
                                                                          $model->fichImage->size .
                                                                          '.' . $model->fichImage->extension;
+
                 if (!file_exists($nomImg)) {
+                    $mensajeFlash += Yii::t('app', 'The new profile image has been saved.');
                     $imgPerfil->url = $nomImg;
                     $imgPerfil->save();
                     $model->save();
                     $model->fichImage->saveAs($nomImg);
                 }
             } else {
-                if (!ImagenProfile::existsUrl($model->id, 'imagenes/imgPerfil/sinPerfil.jpg')) {
+                if (Yii::$app->request->post('valueAvatar')) {
                     $imgPerfil = new ImagenProfile();
                     $imgPerfil->profile_id = $model->id;
-                    $imgPerfil->url = 'imagenes/imgPerfil/sinPerfil.jpg';
+                    $imgPerfil->url = Yii::$app->request->post('valueAvatar');
                     $imgPerfil->save();
                 }
             }
@@ -236,6 +245,18 @@ class ProfileController extends Controller {
         } else {
             echo "<option> -- </option>";
         }
+    }
+
+    /**
+     * Muestra página de avatar para selección.
+     * @return mixed
+     */
+    public function actionAvatar()
+    {
+
+        return $this->render('avatar', [
+            'model' => 'profile',
+        ]);
     }
 
 }

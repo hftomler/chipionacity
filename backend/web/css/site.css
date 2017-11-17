@@ -11,7 +11,7 @@ body {
 }
 
 .wrap > .container {
-    padding: 70px 15px 20px;
+    padding: 10px 15px 20px;
 }
 
 .footer {
@@ -169,7 +169,7 @@ nav li:hover a:hover, nav li form button.btn-link:hover {
 }
 
 .imgPerfil-md {
-    margin-top: 10px;
+    margin-top: 0;
     height: 110px;
     border: 1px solid #555;
     filter: drop-shadow(4px 4px 6px #666);
@@ -180,6 +180,11 @@ nav li:hover a:hover, nav li form button.btn-link:hover {
     height: 80px;
     border: 1px solid #555;
     filter: drop-shadow(4px 4px 6px #666);
+}
+
+.imgPerfil-sm:hover {
+    border: 1px solid #111;
+    filter: drop-shadow(2px 2px 3px #000);
 }
 
 .imgPerfil-xs {
@@ -229,6 +234,21 @@ nav li:hover a:hover, nav li form button.btn-link:hover {
     background-color: #ffd7ac !important;
 }
 
+/* Estilos para diversos tamaños y controles */
+    input[type=checkbox].check {
+      /* Double-sized Checkboxes */
+      -ms-transform: scale(0.7); /* IE */
+      -moz-transform: scale(0.7); /* FF */
+      -webkit-transform: scale(0.7); /* Safari and Chrome */
+      -o-transform: scale(0.7); /* Opera */
+      padding: 10px;
+      vertical-align: bottom;
+    }
+
+.check-sm {
+    font-size: 0.7em;
+    color: #337ab7;
+}
 
 /* Estilos para imágenes de perfil - View profile */
 .imgWrap {

@@ -35,10 +35,14 @@ use backend\models\ImagenProfile;
         <?php $imgPerfil = ImagenProfile::getLastImg($model->id); ?>
         <?= Html::img($imgPerfil, [ 'id' => 'swImgPerfil',
                                             'class' => 'imgPerfil-md img-circle img-thumbnail',
-                                            'title' => 'Avatar - Clic para cambiar',
-                                            'alt' => 'Imagen de perfil'
+                                            'title' => 'Avatar - ' . Yii::t('app', 'Click to change'),
+                                            'alt' => Yii::t('app', 'Imagen de perfil')
                                         ]);
         ?>
+        <div class="check-sm">
+            <input id="checkAvatar" name="checkAvatar" class="check" type="checkbox" checked="cheked"> <?= Yii::t('app', 'Avatar List') ?>
+            <input id="valueAvatar" name="valueAvatar" type="hidden" class="form-control" />
+        </div>
         <?= $form->field($model, 'fichImage')->fileInput([
                                         'id' => 'btImgPerfil',
                                         'value' => 'Género',

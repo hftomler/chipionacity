@@ -30,7 +30,6 @@ use backend\models\ImagenProfile;
  * @property string $fecha_nac
  * @property string $created_at
  * @property string $updated_at
- *
  * @property Gender $gender
  * @property Municipio $municipio
  * @property Paises $pais
