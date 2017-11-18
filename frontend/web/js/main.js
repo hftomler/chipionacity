@@ -93,8 +93,14 @@ $(function(){
 	$('#modalLogin').click(function(evento) {
 		evento.preventDefault();
 		$('#modalLoginContent').modal('show')
-		.find('#modalContent')
+		.find('#modalContentLogin')
 		.load($(this).attr('value'));
 	});
 
+	$('#modalSignup').click(function(evento) {
+		evento.preventDefault();
+		$('#modalSignupContent').modal('show')
+		.find('#modalContentSignup')
+		.load($(this).attr('value'));
+	});
 });

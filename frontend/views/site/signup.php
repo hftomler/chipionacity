@@ -7,20 +7,17 @@
 use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
 use yii\helpers\ArrayHelper;
-use common\models\Pais;
-use common\models\Provincia;
-use kartik\date\DatePicker;
+
 
 $this->title = Yii::t('frontend', 'Signup');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="site-signup">
-    <h1><?= Html::encode($this->title) ?></h1>
 
-    <p><?= Yii::t('frontend','Please fill out the following fields to signup:') ?></p>
 
     <div class="row">
-        <div class="col-lg-5">
+        <div class="col-xs-8 col-xs-offset-2">
+            <p><?= Yii::t('frontend','Please fill out the following fields to signup:') ?></p>
             <?php $form = ActiveForm::begin(['id' => 'form-signup', 'enableAjaxValidation' => true]); ?>
 
                 <?= $form->field($model, 'username')->textInput(['autofocus' => true]) ?>
@@ -30,10 +27,29 @@ $this->params['breadcrumbs'][] = $this->title;
                 <?= $form->field($model, 'password')->passwordInput() ?>
 
                 <div class="form-group">
-                    <?= Html::submitButton('Signup', ['class' => 'btn btn-primary', 'name' => 'signup-button']) ?>
+                    <?= Html::submitButton('<i class="fa fa-check-circle" aria-hidden="true"></i> Continuar', ['class' => 'btn btn-success btn-login collapse col-xs-12', 'name' => 'signup-button', 'id' => 'signup-button']) ?>
                 </div>
 
             <?php ActiveForm::end(); ?>
         </div>
     </div>
 </div>
+<script>
+    $('#form-signup input').blur (function () {
+        var camposRellenados = true;
+        $('#form-signup').find("input").each(function() {
+        var $this = $(this);
+                if( $this.val().length <= 0 ) {
+                    camposRellenados = false;
+                    return false;
+                }
+        });
+        if(camposRellenados == false) {
+            $('#signup-button').collapse("hide");
+        }
+        else {
+            $('#signup-button').collapse("show");
+        }
+    });
+
+</script>

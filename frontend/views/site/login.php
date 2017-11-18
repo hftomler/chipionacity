@@ -14,10 +14,8 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="site-login">
 
-    <div class="col-lg-1 col-md-1 col-sm-1"></div>
-
     <div class="row">
-        <div class="col-lg-10 col-md-10 col-sm-10">
+        <div class="col-xs-8 col-xs-offset-2">
             <p>
                 <?= Yii::t('frontend','Please fill out the following fields to login:') ?>
             </p>

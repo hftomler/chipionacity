@@ -49,12 +49,16 @@ FontAwesomeAsset::register($this);
     if (Yii::$app->user->isGuest) {
         $menuItems[] = [ 'label' => '<i class="fa fa-id-card-o" aria-hidden="true"></i> Mi perfil',
                      'items' => [
-                          ['label' => '<i class="fa fa-id-card-o" aria-hidden="true"></i> ¿Eres nuevo?', 'url' => ['/site/signup']],
-                          ['label' => '<i class="fa fa-sign-in" aria-hidden="true"></i> Identifícate',  'url' => ['/site/login'],
+                         ['label' => '<i class="fa fa-sign-in" aria-hidden="true"></i> Identifícate',  'url' => ['/site/login'],
+                         'linkOptions' => [
+                             'value' => Url::to('index.php?r=site/login'),
+                             'id'=>'modalLogin'],
+                         ],
+                          ['label' => '<i class="fa fa-id-card-o" aria-hidden="true"></i> ¿Eres nuevo?', 'url' => ['/site/signup'],
                                        'linkOptions' => [
-                                             'value' => Url::to('index.php?r=site/login'),
-                                             'id'=>'modalLogin'],
-                                       ],
+                                             'value' => Url::to('index.php?r=site/signup'),
+                                             'id'=>'modalSignup'],
+                            ],
                       ],
                   ];
     } else {
@@ -121,14 +125,33 @@ FontAwesomeAsset::register($this);
 
 <?php $this->endBody() ?>
 <?php
+$modalHeader = '<p class="text-center">
+                                <img class="text-center" id="logo" src="imagenes/logo.png" alt="logo">
+                            </p>';
+$modalFooter = '<p>
+                                <i class="fa fa-copyright" aria-hidden="true"></i> Chipiona City ' .
+                                date('Y') .
+                           '</p>';
 Modal::begin([
-    'header'=>'<h3>Login</h3>',
+    'header'=>$modalHeader,
     'id'=>'modalLoginContent',
     'size'=>'modal-md',
-    'footer'=>'<h3>Pié de modal',
+    'footer'=>$modalFooter,
 ]);
 
-echo "<div id='modalContent'></div>";
+echo "<div id='modalContentLogin'></div>";
+
+Modal::end();
+?>
+<?php
+Modal::begin([
+    'header'=>$modalHeader,
+    'id'=>'modalSignupContent',
+    'size'=>'modal-md',
+    'footer'=>$modalFooter,
+]);
+
+echo "<div id='modalContentSignup'></div>";
 
 Modal::end();
 ?>
