@@ -38,8 +38,9 @@ class ProfileController extends Controller {
                         'allow' => true,
                         'roles' => ['@'],
                         'matchCallback' => function ($rule, $action) {
-                            return PermissionHelpers::userMustBeOwner('profile', RecordHelpers::userHas('profile'))
-                                      && PermissionHelpers::requireStatus('Activo');
+                            return PermissionHelpers::requireStatus('Activo');
+                            /*return PermissionHelpers::userMustBeOwner('profile', (RecordHelpers::userHas('profile')) ? RecordHelpers::userHas('profile') : 0)
+                                      && PermissionHelpers::requireStatus('Activo');*/
                         }
                     ],
                 ],

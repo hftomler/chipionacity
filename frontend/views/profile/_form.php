@@ -32,15 +32,41 @@ use backend\models\ImagenProfile;
         </div>
     </div>
     <div class="col-xs-2 text-center">
-        <?php $imgPerfil = ImagenProfile::getLastImg($model->id); ?>
-        <?= Html::img($imgPerfil, [ 'id' => 'swImgPerfil',
-                                            'class' => 'imgPerfil-md img-circle img-thumbnail',
-                                            'title' => 'Avatar - Clic para cambiar',
-                                            'alt' => 'Imagen de perfil'
-                                        ]);
-        ?>
+        <div id="balloon1" class="opener box"
+                data-addoverlay="true"
+                data-css="balloon-large"
+                data-highlight="true"
+                data-overlaycolor="linear-gradient(135deg, #337ab7 0%, #ff7e00 100%)"
+                data-overlayopacity=".10"
+                data-bgcolor="#ffa227"
+                data-position="right"
+                data-balloon= "Haz clic en la imagen para cargar una imagen de perfil o seleccionar una de la galería"
+                data-timer="10000"
+                data-onlyonce="false"
+                style="">
+            <?php $imgPerfil = ImagenProfile::getLastImg($model->id); ?>
+            <?= Html::img($imgPerfil, [ 'id' => 'swImgPerfil',
+                                                'class' => 'imgPerfil-md img-circle img-thumbnail',
+                                                'title' => 'Avatar - Clic para cambiar',
+                                                'alt' => 'Imagen de perfil'
+                                            ]);
+            ?>
+        </div>
         <div class="check-sm">
-            <input id="checkAvatar" name="checkAvatar" class="check" type="checkbox" checked="cheked"> <?= Yii::t('app', 'Avatar List') ?>
+            <div id="balloon2" class="opener box"
+                    data-addoverlay="true"
+                    data-css="balloon-large"
+                    data-highlight="true"
+                    data-overlaycolor="linear-gradient(135deg, #337ab7 0%, #ff7e00 100%)"
+                    data-overlayopacity=".10"
+                    data-bgcolor="#ffa227"
+                    data-position="down"
+                    data-balloon= "Desmarque para seleccionar un fichero propio"
+                    data-timer="5000"
+                    data-onlyonce="false"
+                    style="">
+                    <input id="checkAvatar" name="checkAvatar" class="check" type="checkbox" checked="cheked"> <?= Yii::t('app', 'Avatar List') ?>
+            </div>
             <input id="valueAvatar" name="valueAvatar" type="hidden" class="form-control" />
         </div>
         <?= $form->field($model, 'fichImage')->fileInput([

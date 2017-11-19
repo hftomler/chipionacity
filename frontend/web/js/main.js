@@ -103,4 +103,12 @@ $(function(){
 		.find('#modalContentSignup')
 		.load($(this).attr('value'));
 	});
+
+		jQuery.balloon.init();
+		setTimeout(function(){
+		  	$("#balloon1").showBalloon();
+	  	},1000);
+	    setTimeout(function(){
+		  	$("#balloon2").showBalloon();
+	  	},11500);
 });
