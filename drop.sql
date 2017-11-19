@@ -20,3 +20,4 @@ drop table "servicios_etiquetas" cascade;
 drop table "categorias" cascade;
 drop table "servicios_categorias" cascade;
 drop table "ventas";
+drop table "unidades_tiempo";

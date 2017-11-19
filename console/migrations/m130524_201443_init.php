@@ -268,6 +268,7 @@ class m130524_201443_init extends Migration
         $user->email = 'proveedor1@gmail.com';
         $user->rol_id = 20; // proveedor
         $user->user_type_id = 20; // suscrito
+        $user->proveedor = true;
         $user->setPassword('123456');
         $user->generateAuthKey();
         $user->save() ? $user : null;
@@ -297,34 +298,9 @@ class m130524_201443_init extends Migration
             'gender_name'=> $this->string(45)->notNull()->unique(),
         ], $tableOptions);
 
-        $this->insert('gender', [
-            'gender_name' => 'Hombre',
+        $this->batchInsert('gender', ['gender_name'], [
+            ['Hombre'], ['Mujer'], /* ['Trans'], ['Gay'], ['Lesbiana'], ['Bisexual'], ['Intersexual'],*/
         ]);
-
-        $this->insert('gender', [
-            'gender_name' => 'Mujer',
-        ]);
-        /* ACTIVAR PARA SENSIBILIDAD LGBTI
-        $this->insert('gender', [
-            'gender_name' => 'Trans',
-        ]);
-
-        $this->insert('gender', [
-            'gender_name' => 'Gay',
-        ]);
-
-        $this->insert('gender', [
-            'gender_name' => 'Lesbiana',
-        ]);
-
-        $this->insert('gender', [
-            'gender_name' => 'Bisexual',
-        ]);
-
-        $this->insert('gender', [
-            'gender_name' => 'Intersexual',
-        ]);
-        */
 
         $this->createTable('profile', [
             'id'=> $this->primaryKey(),
@@ -414,14 +390,25 @@ class m130524_201443_init extends Migration
             ['Superreducido', 4], ['Reducido', 10], ['General', 21]
         ]);
 
+        $this->createTable('unidades_tiempo', [
+            'id'=> $this->primaryKey(),
+            'plural'=>$this->string(15),
+            'singular'=>$this->string(15),
+        ]);
+
+        $this->batchInsert('unidades_tiempo', ['plural', 'singular'], [
+            ['Horas', 'Hora'], ['Días', 'Día'], ['Semanas', 'Semana'], ['Meses', 'Mes'], ['Años', 'Año'],
+        ]);
+
         $this->createTable('servicios', [
             'id'=> $this->primaryKey(),
             'descripcion'=>$this->string(255)->notNull(),
-            'imagen'=>$this->string(255),
             'precio'=>$this->decimal(7,2)->notNull(),
             'proveedor_id'=>$this->integer()->notNull(),
-            'activo'=>$this->boolean()->defaultValue(false),
-            'tipo_iva_id' => $this->integer()->notNull(),
+            'activo'=>$this->boolean()->defaultValue(true),
+            'tipo_iva_id' => $this->integer()->notNull()->defaultValue(3),
+            'duracion' => $this->integer()->notNull()->defaultValue(1),
+            'duracion_unidad_id' => $this->integer()->notNull()->defaultValue(1),
         ], $tableOptions);
 
         $this->addForeignKey(
@@ -441,6 +428,21 @@ class m130524_201443_init extends Migration
             'id',
             'CASCADE'
         );
+
+        $this->addForeignKey(
+            'fk_servicios_unidades_tiempo',
+            'servicios',
+            'duracion_unidad_id',
+            'unidades_tiempo',
+            'id',
+            'CASCADE'
+        );
+
+        $this->batchInsert('servicios', ['descripcion', 'precio', 'proveedor_id', 'duracion', 'duracion_unidad_id'], [
+            ['Vuelta en Barco por la Desembocadura del Guadalquivir', 15, 3, 6, 1],
+            ['Paseo en bicicleta por la Vía Verde', 10, 3, 2, 1],
+            ['Aprende a tocar la guitarra', 60, 3, 10, 2],
+        ]);
 
         $this->createTable('imagen_servicio', [
             'id'=> $this->primaryKey(),
