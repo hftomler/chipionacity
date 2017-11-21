@@ -53,12 +53,17 @@ $(function(){
 
 	//Mapear el click de la imagen de perfil hacia el botón de fileUpload que está oculto en Create y Update profile
 	$("#swImgPerfil").click(function () {
+		$(this).parents("#balloon1").remove();
 		if ( $("#checkAvatar").is(':checked')) {
 			abrirpopup('index.php?r=profile/avatar','800','600');
 		} else {
 			$("#btImgPerfil").trigger('click');
 		}
     });
+
+	$("#checkAvatar").click(function () {
+		$("#balloon2").remove();
+	})
 
 	$("#btImgPerfil").change(function(){
 		cambiarImgPerfil(this);
@@ -110,5 +115,5 @@ $(function(){
 	  	},1000);
 	    setTimeout(function(){
 		  	$("#balloon2").showBalloon();
-	  	},11500);
+	  	},7000);
 });

@@ -50,12 +50,12 @@
 			highlight    : true,
 			justonce     : false,
 			ease         : [0, .96, 0, 1.02],
-			animTime     : 250,
+			animTime     : 450,
 			bgcolor      : "#333333",
 			bordercolor  : "#ffffff",
 			textcolor    : "#ffffff",
 			oncursor     : false,
-			forceposition: "auto", // or: up, down, left, right
+			forceposition: "up", // or: up, down, left, right
 			timer        : 0, // close the balloon after x millis (0 = never)
 			balloon      : "This is an mb.balloon"
 		},

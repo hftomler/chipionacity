@@ -5,9 +5,9 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model frontend\models\Profile */
 
-$this->title = Yii::t('app', 'Update Profile: ', [
+$this->title = Yii::t('app', 'Update Profile:', [
     'modelClass' => 'Profile',
-]) . $model->user->username;
+]) . ' ' . $model->user->username;
 $this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Profile'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = Yii::t('app', 'Update');
 ?>

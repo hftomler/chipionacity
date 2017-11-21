@@ -33,17 +33,19 @@ use backend\models\ImagenProfile;
     </div>
     <div class="col-xs-2 text-center">
         <div id="balloon1" class="opener box"
-                data-addoverlay="true"
+                data-addoverlay="false"
                 data-css="balloon-large"
-                data-highlight="true"
+                data-highlight="false"
                 data-overlaycolor="linear-gradient(135deg, #337ab7 0%, #ff7e00 100%)"
                 data-overlayopacity=".10"
-                data-bgcolor="#ffa227"
-                data-position="right"
-                data-balloon= "Haz clic en la imagen para cargar una imagen de perfil o seleccionar una de la galería"
-                data-timer="10000"
-                data-onlyonce="false"
+                data-bgcolor="#337ab7"
+                data-forceposition="up"
+                data-balloon= "Haz clic en <i class='fa fa-user-circle-o' aria-hidden='true'></i>
+                                         para cargar una imagen de perfil o seleccionar una de la galería"
+                data-timer="6000"
+                data-onlyonce="true"
                 style="">
+            </div>
             <?php $imgPerfil = ImagenProfile::getLastImg($model->id); ?>
             <?= Html::img($imgPerfil, [ 'id' => 'swImgPerfil',
                                                 'class' => 'imgPerfil-md img-circle img-thumbnail',
@@ -51,24 +53,24 @@ use backend\models\ImagenProfile;
                                                 'alt' => 'Imagen de perfil'
                                             ]);
             ?>
-        </div>
         <div class="check-sm">
-            <div id="balloon2" class="opener box"
-                    data-addoverlay="true"
-                    data-css="balloon-large"
-                    data-highlight="true"
-                    data-overlaycolor="linear-gradient(135deg, #337ab7 0%, #ff7e00 100%)"
-                    data-overlayopacity=".10"
-                    data-bgcolor="#ffa227"
-                    data-position="down"
-                    data-balloon= "Desmarque para seleccionar un fichero propio"
-                    data-timer="5000"
-                    data-onlyonce="false"
-                    style="">
-                    <input id="checkAvatar" name="checkAvatar" class="check" type="checkbox" checked="cheked"> <?= Yii::t('app', 'Avatar List') ?>
-            </div>
+            <input id="checkAvatar" name="checkAvatar" class="check" type="checkbox" checked="cheked"> <?= Yii::t('app', 'Avatar List') ?>
             <input id="valueAvatar" name="valueAvatar" type="hidden" class="form-control" />
         </div>
+        <div id="balloon2" class="opener box"
+        data-addoverlay="false"
+        data-css="balloon-large"
+        data-highlight="false"
+        data-overlaycolor="linear-gradient(135deg, #337ab7 0%, #ff7e00 100%)"
+        data-overlayopacity=".10"
+        data-bgcolor="#337ab7"
+        data-forceposition="down"
+        data-balloon= "Desmarque el <i class='fa fa-check-square-o' aria-hidden='true'></i>
+        para seleccionar una imagen de su propio dispositivo"
+        data-timer="6000"
+        data-onlyonce="true"
+        style="">
+    </div>
         <?= $form->field($model, 'fichImage')->fileInput([
                                         'id' => 'btImgPerfil',
                                         'style' =>'display:none'
