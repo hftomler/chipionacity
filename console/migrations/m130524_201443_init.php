@@ -409,6 +409,9 @@ class m130524_201443_init extends Migration
             'tipo_iva_id' => $this->integer()->notNull()->defaultValue(3),
             'duracion' => $this->integer()->notNull()->defaultValue(1),
             'duracion_unidad_id' => $this->integer()->notNull()->defaultValue(1),
+            'puntuacion' => $this->integer()->defaultValue(0),
+            'num_votos' => $this->integer()->defaultValue(0),
+            'media_punt' => $this->decimal(4,2)->defaultValue(0),
         ], $tableOptions);
 
         $this->addForeignKey(
@@ -443,6 +446,68 @@ class m130524_201443_init extends Migration
             ['Paseo en bicicleta por la Vía Verde', 10, 3, 2, 1],
             ['Aprende a tocar la guitarra', 60, 3, 10, 2],
         ]);
+
+        $this->createTable('comentarios', [
+            'id'=> $this->primaryKey(),
+            'servicio_id' => $this->integer()->notNull(),
+            'profile_id' => $this->integer()->notNull(),
+            'padre_id' => $this->integer(),
+            'comentario' => $this->string(255)->notNull(),
+            'created_at' => $this->datetime()->notNull(),
+        ]);
+
+        $this->addForeignKey(
+            'fk_comentarios_servicio',
+            'comentarios',
+            'servicio_id',
+            'servicios',
+            'id',
+            'CASCADE'
+        );
+
+        $this->addForeignKey(
+            'fk_comentarios_profile',
+            'comentarios',
+            'profile_id',
+            'profile',
+            'id',
+            'CASCADE'
+        );
+
+        $this->addForeignKey(
+            'fk_comentarios_comentarios',
+            'comentarios',
+            'padre_id',
+            'comentarios',
+            'id',
+            'CASCADE'
+        );
+
+        $this->createTable('votaciones', [
+            'id'=> $this->primaryKey(),
+            'servicio_id' => $this->integer()->notNull(),
+            'profile_id' => $this->integer()->notNull(),
+            'puntuacion' => $this->integer(),
+            'created_at' => $this->datetime()->notNull(),
+        ]);
+
+        $this->addForeignKey(
+            'fk_votaciones_servicios',
+            'votaciones',
+            'servicio_id',
+            'servicios',
+            'id',
+            'CASCADE'
+        );
+
+        $this->addForeignKey(
+            'fk_votaciones_profile',
+            'votaciones',
+            'profile_id',
+            'profile',
+            'id',
+            'CASCADE'
+        );
 
         $this->createTable('imagen_servicio', [
             'id'=> $this->primaryKey(),

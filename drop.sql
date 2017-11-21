@@ -21,3 +21,5 @@ drop table "categorias" cascade;
 drop table "servicios_categorias" cascade;
 drop table "ventas";
 drop table "unidades_tiempo";
+drop table "comentarios";
+drop table "votaciones";
