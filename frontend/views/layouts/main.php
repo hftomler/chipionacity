@@ -70,18 +70,11 @@ FontAwesomeAsset::register($this);
             $prof = ['label' => '<i class="fa fa-plus-square" aria-hidden="true"></i> Profile', 'url' => ['/profile/view']];
             $imgNav = "imagenes/imgPerfil/sinPerfil.jpg";
         }
-        /*$menuItems[] = '<li>'
-            . Html::beginForm(['/site/logout'], 'post')
-            . Html::submitButton(
-                '<img src="' . $imgNav . '" class="imgPerfil-xs img-circle" title="' . Yii::$app->user->identity->username . '"/>',
-                ['class' => 'btn btn-link logout']
-            )
-            . Html::endForm()
-            . '</li>';*/
-
-            $menuItems[] = [ 'label' => '<img src="' . $imgNav . '" class="imgPerfil-xs img-circle" title="' . Yii::$app->user->identity->username . '"/>',
+        $menuItems[] = [ 'label' => '<img src="' . $imgNav . '" class="imgPerfil-xs img-circle" title="' . Yii::$app->user->identity->username . '"/>',
                         'items' => [
-                             ['label' => 'Logout', 'url' => ['/site/logout'], 'linkOptions' => ['data' => ['method' => 'post']]],
+                             ['label' => '<i class="fa fa-sign-out" aria-hidden="true"></i>' . Yii::t('app', 'Logout') .
+                                         ' <span class="cnred">(' . Yii::$app->user->identity->username . ')</span>',
+                                         'url' => ['/site/logout'], 'linkOptions' => ['data' => ['method' => 'post']]],
                              '<li class="divider"></li>',
                              $prof,
                         ],

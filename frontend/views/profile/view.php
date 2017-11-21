@@ -16,7 +16,7 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="profile-view">
 
-    <h1><?= Yii::t('app', 'Profile:') ?><?= Html::encode($this->title) ?></h1>
+    <h1><?= Yii::t('app', 'Profile:') . ' ' . Html::encode($this->title) ?></h1>
 
     <p>
         <?php if ($owner){

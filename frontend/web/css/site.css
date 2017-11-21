@@ -311,19 +311,25 @@ nav.inicio li:hover a:hover, nav li form button.btn-link:hover {
 }
 
 /* Estilos para diversos tamaños y controles */
-    input[type=checkbox].check {
-      /* Double-sized Checkboxes */
-      -ms-transform: scale(0.7); /* IE */
-      -moz-transform: scale(0.7); /* FF */
-      -webkit-transform: scale(0.7); /* Safari and Chrome */
-      -o-transform: scale(0.7); /* Opera */
-      padding: 10px;
-      vertical-align: bottom;
-    }
+input[type=checkbox].check {
+  /* Double-sized Checkboxes */
+  -ms-transform: scale(0.7); /* IE */
+  -moz-transform: scale(0.7); /* FF */
+  -webkit-transform: scale(0.7); /* Safari and Chrome */
+  -o-transform: scale(0.7); /* Opera */
+  padding: 10px;
+  vertical-align: bottom;
+}
 
 .check-sm {
     font-size: 0.7em;
     color: #337ab7;
+}
+
+.cnred {
+    font-weight: bold;
+    font-style: italic;
+    font-size: 0.9em;
 }
 
 /* Estilos para imágenes de perfil - View profile */
@@ -359,4 +365,10 @@ nav.inicio li:hover a:hover, nav li form button.btn-link:hover {
 .btn-login {
     font-size: 28px;
     filter: drop-shadow(2px 2px 3px #999);
+}
+
+/* ESTILOS PARA PROFILE */
+
+.profile-view a.btn {
+    margin-right: 10px;
 }

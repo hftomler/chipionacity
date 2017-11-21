@@ -71,11 +71,11 @@ class Imagenprofile extends \yii\db\ActiveRecord
         return $this->hasOne(Profile::className(), ['id' => 'profile_id']);
     }
 
-    private function getId($profile_id) {
+    private static function getId($profile_id) {
         return Imagenprofile::find()->where(['profile_id' => $profile_id])->one();
     }
 
-    public function getLastImg($profile_id) {
+    public static function getLastImg($profile_id) {
         if (Imagenprofile::getId($profile_id) !== null){
             return Imagenprofile::find()->where(['profile_id' => $profile_id])->orderBy(['updated_at' => SORT_DESC])->one()->url;
         } else {
