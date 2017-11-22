@@ -397,7 +397,7 @@ class m130524_201443_init extends Migration
         ]);
 
         $this->batchInsert('unidades_tiempo', ['plural', 'singular'], [
-            ['Horas', 'Hora'], ['Días', 'Día'], ['Semanas', 'Semana'], ['Meses', 'Mes'], ['Años', 'Año'],
+            ['Hours', 'Hour'], ['Days', 'Day'], ['Weeks', 'Week'], ['Months', 'Month'], ['Years', 'Year'],
         ]);
 
         $this->createTable('servicios', [
