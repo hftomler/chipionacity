@@ -137,14 +137,8 @@ class m130524_201443_init extends Migration
             'user_type_value'=> $this->integer()->notNull()->unique(),
         ], $tableOptions);
 
-        $this->insert('user_type', [
-            'user_type_name' => 'Gratuito',
-            'user_type_value' => '10',
-        ]);
-
-        $this->insert('user_type', [
-            'user_type_name' => 'Suscrito',
-            'user_type_value' => '20',
+        $this->batchInsert('user_type', ['user_type_name', 'user_type_value'], [
+            ['Gratuito', 10], ['Suscrito', 20]
         ]);
 
         $this->createTable('status', [
@@ -153,26 +147,9 @@ class m130524_201443_init extends Migration
             'status_value'=> $this->integer()->notNull()->unique(),
         ], $tableOptions);
 
-        $this->insert('status', [
-            'status_name' => 'Activo',
-            'status_value' => '10',
+        $this->batchInsert('status', ['status_name', 'status_value'], [
+            ['Activo', 10], ['Inactivo', 5], ['Pendiente', 4], ['Bloqueado', 0]
         ]);
-
-        $this->insert('status', [
-            'status_name' => 'Inactivo',
-            'status_value' => '5',
-        ]);
-
-        $this->insert('status', [
-            'status_name' => 'Pendiente',
-            'status_value' => '4',
-        ]);
-
-        $this->insert('status', [
-            'status_name' => 'Bloqueado',
-            'status_value' => '0',
-        ]);
-
 
         $this->createTable('roles', [
             'id'=> $this->primaryKey(),
@@ -180,24 +157,8 @@ class m130524_201443_init extends Migration
             'rol_value'=> $this->integer()->notNull()->unique(),
         ], $tableOptions);
 
-        $this->insert('roles', [
-            'rol_name' => 'user',
-            'rol_value' => '10',
-        ]);
-
-        $this->insert('roles', [
-            'rol_name' => 'admin',
-            'rol_value' => '25',
-        ]);
-
-        $this->insert('roles', [
-            'rol_name' => 'superAdmin',
-            'rol_value' => '30',
-        ]);
-
-        $this->insert('roles', [
-            'rol_name' => 'proveedor',
-            'rol_value' => '20',
+        $this->batchInsert('roles', ['rol_name', 'rol_value'], [
+            ['user', 10], ['admin', 25], ['superAdmin', 30], ['proveedor', 20]
         ]);
 
         $this->createTable('user', [
@@ -584,6 +545,15 @@ class m130524_201443_init extends Migration
             'CASCADE'
         );
 
+        $this->createTable('estado_ventas', [
+            'id'=> $this->primaryKey(),
+            'estado'=> $this->string(25)->notNull(),
+        ], $tableOptions);
+
+        $this->batchInsert('estado_ventas',  ['estado'], [
+            ['En curso'], ['Pendiente Pago'], ['Borrador'], ['Finalizada']
+        ]);
+
         $this->createTable('ventas', [
             'id'=> $this->primaryKey(),
             'usuario_id'=>$this->integer()->notNull(),
@@ -593,6 +563,7 @@ class m130524_201443_init extends Migration
             'importe_iva' =>$this->decimal(7,2)->notNull(),
             'total_venta' =>$this->decimal(7,2)->notNull(),
             'total_comision' =>$this->decimal(7,2)->notNull(),
+            'estado_id' => $this->integer()->notNull(),
             ], $tableOptions);
 
         $this->addForeignKey(
@@ -600,6 +571,15 @@ class m130524_201443_init extends Migration
             'ventas',
             'usuario_id',
             'user',
+            'id',
+            'CASCADE'
+        );
+
+        $this->addForeignKey(
+            'fk_ventas_estado_ventas',
+            'ventas',
+            'estado_id',
+            'estado_ventas',
             'id',
             'CASCADE'
         );
@@ -637,18 +617,28 @@ class m130524_201443_init extends Migration
 
     public function down()
     {
+        $this->dropTable('lineas_venta');
+        $this->dropTable('ventas');
+        $this->dropTable('estado_ventas');
+        $this->dropTable('servicios_categorias');
+        $this->dropTable('categorias');
+        $this->dropTable('servicios_etiquetas');
+        $this->dropTable('etiquetas');
+        $this->dropTable('imagen_servicio');
+        $this->dropTable('votaciones');
+        $this->dropTable('comentarios');
+        $this->dropTable('servicios');
+        $this->dropTable('unidades_tiempo');
+        $this->dropTable('tipos_iva');
+        $this->dropTable('imagen_profile');
+        $this->dropTable('profile');
+        $this->dropTable('gender');
         $this->dropTable('user');
         $this->dropTable('roles');
-        $this->dropTable('provincias');
-        $this->dropTable('municipios');
-        $this->dropTable('paises');
-        $this->dropTable('lineas_pedido');
-        $this->dropTable('pedidos');
-        $this->dropTable('servicios');
-        $this->dropTable('migration');
-        $this->dropTable('gender');
         $this->dropTable('status');
         $this->dropTable('user_type');
-
+        $this->dropTable('municipios');
+        $this->dropTable('provincias');
+        $this->dropTable('paises');
     }
 }
