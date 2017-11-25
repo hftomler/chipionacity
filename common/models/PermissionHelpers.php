@@ -39,7 +39,7 @@ Class PermissionHelpers {
 	 * @return \yii\web\Response
 	*/
 	public static function requireUpgradeTo($user_type_name) {
-		if (Yii::$app->user->identity->user_type_id != 
+		if (Yii::$app->user->identity->user_type_id !=
 			ValueHelpers::getUserTypeValue($user_type_name)) {
 			return Yii::$app->getResponse()->redirect(Url::to(['upgrade/index']));
 		}
@@ -63,12 +63,13 @@ Class PermissionHelpers {
 	 * @param mixed $status_name
  	*/
  	public static function requireMinStatus($status_name) {
- 		if (Yii::$app->user->identity->status_id >=
- 			ValueHelpers::getStatusValue($status_name)) {
- 			return true;
- 		} else {
- 			return false;
- 		}
+		if (!Yii::$app->user->isGuest) {
+	 		if (Yii::$app->user->identity->status_id >=
+	 			ValueHelpers::getStatusValue($status_name)) {
+	 			return true;
+	 		}
+		}
+		return false;
  	}
 
 	/**
@@ -89,11 +90,12 @@ Class PermissionHelpers {
 	 * @param mixed $rol_name
  	*/
  	public static function requireMinRol($rol_name) {
- 		if (Yii::$app->user->identity->rol_id >=
- 			ValueHelpers::getRolValue($rol_name)) {
- 			return true;
- 		} else {
- 			return false;
- 		}
+		if (!Yii::$app->user->isGuest) {
+	 		if (Yii::$app->user->identity->rol_id >=
+	 			ValueHelpers::getRolValue($rol_name)) {
+	 			return true;
+	 		}
+		}
+		return false;
  	}
 }

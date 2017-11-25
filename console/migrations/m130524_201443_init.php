@@ -410,10 +410,12 @@ class m130524_201443_init extends Migration
             'CASCADE'
         );
 
-        $this->batchInsert('servicios', ['descripcion', 'precio', 'proveedor_id', 'duracion', 'duracion_unidad_id'], [
-            ['Vuelta en Barco por la Desembocadura del Guadalquivir', 15, 3, 6, 1],
-            ['Paseo en bicicleta por la Vía Verde', 10, 2, 2, 1],
-            ['Aprende a tocar la guitarra', 60, 1, 10, 2],
+        $this->batchInsert('servicios', ['descripcion', 'precio', 'proveedor_id',
+                                         'duracion', 'duracion_unidad_id',
+                                         'puntuacion', 'num_votos', 'media_punt'], [
+            ['Vuelta en Barco por la Desembocadura del Guadalquivir', 15, 3, 6, 1, 128, 32, 4 ],
+            ['Paseo en bicicleta por la Vía Verde', 10, 2, 2, 1, 95, 25, 3.8 ],
+            ['Aprende a tocar la guitarra', 60, 1, 10, 2, 65, 26, 2.5 ],
         ]);
 
         $this->createTable('comentarios', [

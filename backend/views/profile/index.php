@@ -68,6 +68,7 @@ $show_this_nav = PermissionHelpers::requireMinRol('admin');
             ],
             ['attribute' => 'genderName',
                 'contentOptions' => ['class' => 'text-center'],
+                'label' => Yii::t('app', 'Gender'),
             ],
             ['attribute' => 'nombrePais',
                 'contentOptions' => ['class' => 'text-center'],
