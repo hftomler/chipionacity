@@ -129,7 +129,7 @@ small {
 
 nav {
     height: 80px;
-    background-color: #f0f0f0;
+    background-color: #333;
     box-shadow: 5px 5px 5px #d0d0d0;
     border-color: #d0d0d0;
 }
@@ -142,14 +142,14 @@ nav ul li {
 }
 
 nav ul li i {
-    background-color: #f0f0f0;
+    background-color: transparent;
     text-align: center;
 }
 
 nav li a:link,
 nav li a:visited,
 nav li button.btn-link {
-    color: #d0d0d0;
+    color: #fff;
 }
 
 nav li.active > a {
@@ -158,7 +158,7 @@ nav li.active > a {
 }
 
 nav li:hover a:hover, nav li form button.btn-link:hover {
-    background-color: #f0f0f0;
+    background-color: transparent;
     color: #ff7e00;
 }
 
@@ -276,4 +276,18 @@ nav li:hover a:hover, nav li form button.btn-link:hover {
 
 .closeImg:hover, .tickImg:hover {
     filter: drop-shadow(2px 2px 3px #999);
+}
+
+.ribbon {
+    height: 85px;
+    position:absolute;
+    top:0;
+    right:0;
+}
+
+.ribbon-left {
+    height: 85px;
+    position:absolute;
+    top:0;
+    left:0;
 }

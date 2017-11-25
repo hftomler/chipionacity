@@ -10,11 +10,11 @@ use yii\widgets\Breadcrumbs;
 use backend\assets\AppAsset;
 use common\widgets\Alert;
 use yii\helpers\Url;
-use common\models\ValueHelpers;
 use frontend\assets\FontAwesomeAsset;
 use frontend\models\Profile;
 use backend\models\ImagenProfile;
 use common\models\RecordHelpers;
+use common\models\PermissionHelpers;
 
 AppAsset::register($this);
 FontAwesomeAsset::register($this);
@@ -35,11 +35,11 @@ FontAwesomeAsset::register($this);
 
 <div class="wrap">
     <?php
-    $is_admin = ValueHelpers::getRolValue('admin');
+    $is_admin = PermissionHelpers::requireMinRol('admin');
     $isAvatar = ((Yii::$app->controller->action->id == 'avatar') ? true : false);
     if (!Yii::$app->user->isGuest) { //Logo para administradores
         NavBar::begin([
-            'brandLabel' => '<img id="logo" src="imagenes/logo70px.png" alt="logo">',
+            'brandLabel' => '<img id="logo" src="imagenes/logofb.png" alt="logo">',
             'brandUrl' => Yii::$app->homeUrl,
             'options' => [
                'class' => 'navbar',
@@ -65,7 +65,7 @@ FontAwesomeAsset::register($this);
 
     if (Yii::$app->user->isGuest) {
         $menuItems[] = ['label' => '<i class="fa fa-sign-in" aria-hidden="true"></i><br/>' . Yii::t('app', 'Login') , 'url' => ['/site/login']];
-    } elseif (Yii::$app->user->identity->rol_id >= $is_admin && !$isAvatar) {
+    } elseif ($is_admin && !$isAvatar) {
         $menuItems[] = ['label' => '<i class="fa fa-users" aria-hidden="true"></i><br/>' . Yii::t('app', 'Users') , 'url' => ['user/index']];
         $menuItems[] = ['label' => '<i class="fa fa-address-card-o" aria-hidden="true"></i><br/>' . Yii::t('app', 'Profiles') , 'url' => ['profile/index']];
         $menuItems[] = ['label' => '<i class="fa fa-universal-access" aria-hidden="true"></i><br/>' . Yii::t('app', 'Roles') , 'url' => ['/rol/index']];
@@ -96,6 +96,8 @@ FontAwesomeAsset::register($this);
         'items' => $menuItems,
     ]);
     NavBar::end();
+    echo ' <img src="imagenes/iconos/adminzone.png" class="ribbon-left" />';
+    echo ' <img src="imagenes/iconos/restrictedAreaOr.png" class="ribbon" />';
     ?>
 
     <div class="container">
