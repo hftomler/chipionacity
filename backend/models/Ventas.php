@@ -15,8 +15,10 @@ use Yii;
  * @property string $importe_iva
  * @property string $total_venta
  * @property string $total_comision
+ * @property integer $estado_id
  *
  * @property LineasVenta[] $lineasVentas
+ * @property EstadoVentas $estado
  * @property User $usuario
  */
 class Ventas extends \yii\db\ActiveRecord
@@ -35,10 +37,11 @@ class Ventas extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['usuario_id', 'importe', 'importe_iva', 'total_venta', 'total_comision'], 'required'],
-            [['usuario_id'], 'integer'],
+            [['usuario_id', 'importe', 'importe_iva', 'total_venta', 'total_comision', 'estado_id'], 'required'],
+            [['usuario_id', 'estado_id'], 'integer'],
             [['fecha_venta'], 'safe'],
             [['importe', 'descuento', 'importe_iva', 'total_venta', 'total_comision'], 'number'],
+            [['estado_id'], 'exist', 'skipOnError' => true, 'targetClass' => EstadoVentas::className(), 'targetAttribute' => ['estado_id' => 'id']],
             [['usuario_id'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['usuario_id' => 'id']],
         ];
     }
@@ -57,6 +60,7 @@ class Ventas extends \yii\db\ActiveRecord
             'importe_iva' => Yii::t('app', 'Vat amount'),
             'total_venta' => Yii::t('app', 'Total Sale'),
             'total_comision' => Yii::t('app', 'Total Commission'),
+            'estado_id' => Yii::t('app', 'Status Id'),
         ];
     }
 
@@ -66,6 +70,14 @@ class Ventas extends \yii\db\ActiveRecord
     public function getLineasVentas()
     {
         return $this->hasMany(LineasVenta::className(), ['venta_id' => 'id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getEstado()
+    {
+        return $this->hasOne(EstadoVentas::className(), ['id' => 'estado_id']);
     }
 
     /**

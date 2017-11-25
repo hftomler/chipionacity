@@ -335,7 +335,7 @@ class User extends ActiveRecord implements IdentityInterface
         if ($this->profileId == 'ninguno') {
             return 'ninguno';
         } else {
-            return Html::a($this->profile ? 'profile' : 'ninguno', $url, $options);    
+            return Html::a($this->profile ? 'profile' : 'ninguno', $url, $options);
 
         }
     }
@@ -377,7 +377,7 @@ class User extends ActiveRecord implements IdentityInterface
     public function getUserIdLink() {
         $url = Url::to(['user/update', 'id'=>$this->id]);
         $options = [];
-        return Html::a($this->id, $url, $options);            
+        return Html::a($this->id, $url, $options);
     }
 
     /**
@@ -386,6 +386,13 @@ class User extends ActiveRecord implements IdentityInterface
     public function getUserLink() {
         $url = Url::to(['user/view', 'id'=>$this->id]);
         $options = [];
-        return Html::a($this->username, $url, $options);            
+        return Html::a($this->username, $url, $options);
+    }
+
+    /**
+     * Consultar si es proveedor()
+     */
+    public static function isProveedor($id) {
+        return User::findIdentity($id)->proveedor;
     }
 }

@@ -65,10 +65,10 @@ class LoginForm extends Model
     }
 
     public function loginAdmin() {
-        if (($this->validate()) && $this->getUser()->rol_id >= ValueHelpers::getRolValue('admin') && $this->getUser()->status_id == ValueHelpers::getStatusValue('Activo')) {
+        if (($this->validate()) && $this->getUser()->rol_id >= ValueHelpers::getRolValue('proveedor') && $this->getUser()->status_id == ValueHelpers::getStatusValue('Activo')) {
                 return Yii::$app->user->login($this->getUser(), $this->rememberMe ? 3600 * 24 * 30 : 0);
         } else {
-            Yii::$app->session->setFlash('error', 'No tienes acceso a este apartado de la aplicacion');           
+            Yii::$app->session->setFlash('error', 'No tienes acceso a este apartado de la aplicacion');
         }
     }
 

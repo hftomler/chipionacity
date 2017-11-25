@@ -205,6 +205,14 @@ class m130524_201443_init extends Migration
 
         // Inserta el usuario Admin y usuarios de control
 
+        /*$this->batchInsert('user', ['username', 'email', 'rol_id', 'user_type_id', 'statud_id', 'password_hash', 'auth_key', 'proveedor'], [
+            ['SuperAdmin', 'sa@gmail.com', 30, 20, 10, User::setPassword('123456'), User::generateAuthKey(), false],
+            ['Administrador', 'admin@gmail.com', 25, 20, 10, User::setPassword('123456'), User::generateAuthKey(), false],
+            ['InvitadoActivo', 'invitadoActivo@gmail.com', 10, 10, 10, User::setPassword('123456'), User::generateAuthKey(), false],
+            ['Proveedor1', 'proveedor1@gmail.com', 10, 10, 10, User::setPassword('123456'), User::generateAuthKey(), true],
+            ['Inactivo', ', invitadoInactivo@gmail.com', 10, 10, 5, User::setPassword('123456'), User::generateAuthKey(), true],
+        ]);*/
+
         $user = new User();
         $user->username = 'SuperAdmin';
         $user->email = 'sa@gmail.com';
@@ -404,8 +412,8 @@ class m130524_201443_init extends Migration
 
         $this->batchInsert('servicios', ['descripcion', 'precio', 'proveedor_id', 'duracion', 'duracion_unidad_id'], [
             ['Vuelta en Barco por la Desembocadura del Guadalquivir', 15, 3, 6, 1],
-            ['Paseo en bicicleta por la Vía Verde', 10, 3, 2, 1],
-            ['Aprende a tocar la guitarra', 60, 3, 10, 2],
+            ['Paseo en bicicleta por la Vía Verde', 10, 2, 2, 1],
+            ['Aprende a tocar la guitarra', 60, 1, 10, 2],
         ]);
 
         $this->createTable('comentarios', [

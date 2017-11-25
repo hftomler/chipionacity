@@ -3,6 +3,8 @@
 namespace backend\models;
 
 use Yii;
+use common\models\User;
+use common\models\PermissionHelpers;
 
 /**
  * This is the model class for table "servicios".
@@ -11,13 +13,13 @@ use Yii;
  * @property string $descripcion
  * @property string $precio
  * @property integer $proveedor_id
- * @property boolean $activo
  * @property integer $tipo_iva_id
  * @property integer $duracion
  * @property integer $duracion_unidad_id
  * @property integer $puntuacion
  * @property integer $num_votos
  * @property string $media_punt
+ * @property boolean $activo
  *
  * @property Comentarios[] $comentarios
  * @property ImagenServicio[] $imagenServicios
@@ -147,4 +149,5 @@ class Servicios extends \yii\db\ActiveRecord
     {
         return $this->hasMany(Votaciones::className(), ['servicio_id' => 'id']);
     }
+
 }
