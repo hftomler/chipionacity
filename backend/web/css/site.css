@@ -278,16 +278,32 @@ nav li:hover a:hover, nav li form button.btn-link:hover {
     filter: drop-shadow(2px 2px 3px #999);
 }
 
+@keyframes ribbonRight {
+    from {right: -80px;}
+    to {right: 0;}
+}
+
 .ribbon {
     height: 85px;
     position:absolute;
     top:0;
     right:0;
+    animation-name: ribbonRight;
+    animation-duration: 2s;
+    animation-iteration-count: 1;
+}
+
+@keyframes ribbonLeft {
+    from {left: -80px;}
+    to {right: 0;}
 }
 
 .ribbon-left {
     height: 85px;
     position:absolute;
     top:0;
-    left:0;
+    left: 0;
+    animation-name: ribbonLeft;
+    animation-duration: 2s;
+    animation-iteration-count: 1;
 }
