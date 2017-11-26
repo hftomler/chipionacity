@@ -289,13 +289,14 @@ nav li:hover a:hover, nav li form button.btn-link:hover {
     top:0;
     right:0;
     animation-name: ribbonRight;
+    animation-delay: 3s;
     animation-duration: 2s;
     animation-iteration-count: 1;
 }
 
 @keyframes ribbonLeft {
     from {left: -80px;}
-    to {right: 0;}
+    to {left: 0;}
 }
 
 .ribbon-left {
@@ -304,6 +305,7 @@ nav li:hover a:hover, nav li form button.btn-link:hover {
     top:0;
     left: 0;
     animation-name: ribbonLeft;
+    animation-delay: 5s;
     animation-duration: 2s;
     animation-iteration-count: 1;
 }

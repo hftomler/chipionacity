@@ -17,6 +17,7 @@ class AppAsset extends AssetBundle
     public $js = [
         'js/main.js',
         'js/avatar.js',
+        'js/tilt.jquery.js',
     ];
     public $depends = [
         'yii\web\YiiAsset',

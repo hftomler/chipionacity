@@ -39,7 +39,7 @@ FontAwesomeAsset::register($this);
     $isAvatar = ((Yii::$app->controller->action->id == 'avatar') ? true : false);
     if (!Yii::$app->user->isGuest) { //Logo para administradores
         NavBar::begin([
-            'brandLabel' => '<img id="logo" src="imagenes/logofb.png" alt="logo">',
+            'brandLabel' => '<img id="logo" class="js-tilt" src="imagenes/logofb.png" alt="logo">',
             'brandUrl' => Yii::$app->homeUrl,
             'options' => [
                'class' => 'navbar',
@@ -47,7 +47,7 @@ FontAwesomeAsset::register($this);
         ]);
     } else {  //Logo para usuarios NO administradores
         NavBar::begin([
-            'brandLabel' => '<img id="logo" src="imagenes/logo70px.png" alt="logo">',
+            'brandLabel' => '<img id="logo" class="js-tilt" src="imagenes/logo70px.png" alt="logo">',
             'brandUrl' => Yii::$app->homeUrl,
             'options' => [
                'class' => 'navbar',
@@ -127,7 +127,7 @@ FontAwesomeAsset::register($this);
         </div>
     </div>
 </footer>
-
+})
 <?php $this->endBody() ?>
 </body>
 </html>

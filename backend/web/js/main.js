@@ -96,4 +96,8 @@ $(function(){
 		$('#swImgPerfil').attr('src', $(this).val());
 	});
 
+	$('.js-tilt').tilt({
+		scale: 1.2,
+    });
+
 });
