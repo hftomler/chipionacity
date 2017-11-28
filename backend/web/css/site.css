@@ -157,6 +157,31 @@ nav li.active > a {
     color: #009bdb;
 }
 
+nav .open >a {
+    background-color: transparent !important;
+}
+
+.dropdown-menu {
+    background-color: #333;
+    box-shadow: 5px 5px 5px #999;
+}
+
+.dropdown-menu > .active > a,
+.dropdown-menu > .active > a:hover,
+.dropdown-menu > .active {
+    background-color: transparent;
+    color: #ff7e00;
+}
+.dropdown-menu > li{
+    height: 30px;
+    margin-left: 0;
+}
+
+.dropdown-menu > i {
+    background-color: #ffffff;
+    text-align: center;
+}
+
 nav li:hover a:hover, nav li form button.btn-link:hover {
     background-color: transparent;
     color: #ff7e00;
@@ -197,6 +222,17 @@ nav li:hover a:hover, nav li form button.btn-link:hover {
 .imgPerfil-xs:hover {
     border: 1px solid #111;
     filter: drop-shadow(1px 1px 2px #000);
+}
+
+.imgPerfilInicio-xs {
+    margin-left: 10px;
+    height: 40px;
+    border: 1px solid #111;
+    filter: drop-shadow(2px 2px 3px #000);
+}
+
+.imgPerfilInicio-xs:hover {
+    border: 1px solid #ff7e00;
 }
 
 .language {
@@ -250,6 +286,12 @@ nav li:hover a:hover, nav li form button.btn-link:hover {
     color: #337ab7;
 }
 
+.cnred {
+    font-weight: bold;
+    font-style: italic;
+    font-size: 0.9em;
+}
+
 /* Estilos para imágenes de perfil - View profile */
 .imgWrap {
   display: inline-block;
@@ -277,6 +319,8 @@ nav li:hover a:hover, nav li form button.btn-link:hover {
 .closeImg:hover, .tickImg:hover {
     filter: drop-shadow(2px 2px 3px #999);
 }
+
+/* RIBBONS del header del Backend */
 
 @keyframes ribbonRight {
     from {right: -80px;}

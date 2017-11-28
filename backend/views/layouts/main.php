@@ -36,6 +36,7 @@ FontAwesomeAsset::register($this);
 <div class="wrap">
     <?php
     $is_admin = PermissionHelpers::requireMinRol('admin');
+    $is_prov = PermissionHelpers::requireMinRol('proveedor');
     $isAvatar = ((Yii::$app->controller->action->id == 'avatar') ? true : false);
     if (!Yii::$app->user->isGuest) { //Logo para administradores
         NavBar::begin([
@@ -65,30 +66,35 @@ FontAwesomeAsset::register($this);
 
     if (Yii::$app->user->isGuest) {
         $menuItems[] = ['label' => '<i class="fa fa-sign-in" aria-hidden="true"></i><br/>' . Yii::t('app', 'Login') , 'url' => ['/site/login']];
-    } elseif ($is_admin && !$isAvatar) {
-        $menuItems[] = ['label' => '<i class="fa fa-users" aria-hidden="true"></i><br/>' . Yii::t('app', 'Users') , 'url' => ['user/index']];
-        $menuItems[] = ['label' => '<i class="fa fa-address-card-o" aria-hidden="true"></i><br/>' . Yii::t('app', 'Profiles') , 'url' => ['profile/index']];
-        $menuItems[] = ['label' => '<i class="fa fa-universal-access" aria-hidden="true"></i><br/>' . Yii::t('app', 'Roles') , 'url' => ['/rol/index']];
-        $menuItems[] = ['label' => '<i class="fa fa-eye-slash" aria-hidden="true"></i><i class="fa fa-eye" aria-hidden="true"></i><br/>' . Yii::t('app', 'User Types') , 'url' => ['/user-type/index']];
-        $menuItems[] = ['label' => '<i class="fa fa-check" aria-hidden="true"></i><br/>' . Yii::t('app', 'Status') , 'url' => ['/status/index']];
+    } else {
+        if ($is_admin && !$isAvatar) {
+            $menuItems[] = ['label' => '<i class="fa fa-users" aria-hidden="true"></i><br/>' . Yii::t('app', 'Users') , 'url' => ['user/index']];
+            $menuItems[] = ['label' => '<i class="fa fa-address-card-o" aria-hidden="true"></i><br/>' . Yii::t('app', 'Profiles') , 'url' => ['profile/index']];
+            $menuItems[] = ['label' => '<i class="fa fa-universal-access" aria-hidden="true"></i><br/>' . Yii::t('app', 'Roles') , 'url' => ['/rol/index']];
+            $menuItems[] = ['label' => '<i class="fa fa-eye-slash" aria-hidden="true"></i><i class="fa fa-eye" aria-hidden="true"></i><br/>' . Yii::t('app', 'User Types') , 'url' => ['/user-type/index']];
+            $menuItems[] = ['label' => '<i class="fa fa-check" aria-hidden="true"></i><br/>' . Yii::t('app', 'Status') , 'url' => ['/status/index']];
+        }
+        if ($is_prov) {
+            $menuItems[] = ['label' => '<i class="fa fa-users" aria-hidden="true"></i><br/>' . Yii::t('app', 'Services') , 'url' => ['/servicio']];
+        }
         $profileId = RecordHelpers::userHas('profile') ? Profile::find()->where(['user_id' => Yii::$app->user->id])->one()->id : false;
         if ($profileId) {
+            $prof = ['label' => '<i class="fa fa-eye" aria-hidden="true"></i> Profile', 'url' => ['/profile/view']];
             $imgNav = ImagenProfile::getLastImg($profileId);
         } else {
+            $prof = ['label' => '<i class="fa fa-plus-square" aria-hidden="true"></i> Profile', 'url' => ['/profile/view']];
             $imgNav = "imagenes/imgPerfil/sinPerfil.jpg";
         }
-        $menuItems[] = '<li>'
-            . Html::beginForm(['/site/logout'], 'post')
-            . Html::submitButton(
-                '<img src="' . $imgNav . '" class="imgPerfil-xs img-circle" title="' . Yii::$app->user->identity->username . '"/>',
-                ['class' => 'btn btn-link logout',
-                 'title' => Yii::t('app', 'Logout')   . Yii::$app->user->identity->username
-                ]
-            )
-            . Html::endForm()
-            . '</li>';
+        $menuItems[] = [ 'label' => '<img src="' . $imgNav . '" class="imgPerfilInicio-xs img-circle" title="' . Yii::$app->user->identity->username . '"/>',
+                        'items' => [
+                             ['label' => '<i class="fa fa-sign-out" aria-hidden="true"></i>' . Yii::t('app', 'Logout') .
+                                         ' <span class="cnred">(' . Yii::$app->user->identity->username . ')</span>',
+                                         'url' => ['/site/logout'], 'linkOptions' => ['data' => ['method' => 'post']]],
+                             '<li class="divider"></li>',
+                             $prof,
+                        ],
+                    ];
     }
-
 
     echo Nav::widget([
         'options' => ['class' => 'navbar-nav navbar-right'],
