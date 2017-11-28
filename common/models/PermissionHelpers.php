@@ -3,7 +3,7 @@
 namespace common\models;
 
 use common\models\ValueHelpers;
-use yii;
+use Yii;
 use yii\web\Controller;
 use yii\helpers\Url;
 
@@ -50,12 +50,13 @@ Class PermissionHelpers {
 	 * @param mixed $status_name
  	*/
  	public static function requireStatus($status_name) {
- 		if (Yii::$app->user->identity->status_id ==
- 			ValueHelpers::getStatusValue($status_name)) {
- 			return true;
- 		} else {
- 			return false;
- 		}
+		if (!Yii::$app->user->isGuest) {
+	 		if (Yii::$app->user->identity->status_id ==
+	 			ValueHelpers::getStatusValue($status_name)) {
+	 			return true;
+	 		}
+		}
+		return false;
  	}
 
 	/**
@@ -77,25 +78,26 @@ Class PermissionHelpers {
 	 * @param mixed $rol_name
  	*/
  	public static function requireRol($rol_name) {
- 		if (Yii::$app->user->identity->rol_id ==
- 			ValueHelpers::getRolValue($rol_name)) {
- 			return true;
- 		} else {
- 			return false;
- 		}
+		if (!Yii::$app->user->isGuest) {
+	 		if (Yii::$app->user->identity->rol_id ==
+	 			ValueHelpers::getRolValue($rol_name)) {
+	 			return true;
+	 		}
+		}
+		return false;
  	}
 
 	/**
 	 * @requireMinRol
 	 * @param mixed $rol_name
  	*/
- 	public static function requireMinRol($rol_name) {
-		if (!Yii::$app->user->isGuest) {
-	 		if (Yii::$app->user->identity->rol_id >=
+	public static function requireMinRol($rol_name) {
+ 		if (!Yii::$app->user->isGuest) {
+			if (Yii::$app->user->identity->rol_id >=
 	 			ValueHelpers::getRolValue($rol_name)) {
 	 			return true;
-	 		}
-		}
+ 			}
+ 		}
 		return false;
  	}
 }

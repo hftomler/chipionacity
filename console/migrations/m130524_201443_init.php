@@ -171,8 +171,8 @@ class m130524_201443_init extends Migration
             'rol_id'=>$this->integer()->defaultValue(10),
             'status_id' => $this->integer()->notNull()->defaultValue(10),
             'user_type_id'=>$this->integer()->defaultValue(10),
-            'created_at' => $this->datetime()->notNull(),
-            'updated_at' => $this->datetime()->notNull(),
+            'created_at' => $this->datetime()->notNull()->defaultExpression('now()'),
+            'updated_at' => $this->datetime()->notNull()->defaultExpression('now()'),
             'proveedor'=>$this->boolean()->defaultValue(false),
         ], $tableOptions);
 
@@ -205,15 +205,34 @@ class m130524_201443_init extends Migration
 
         // Inserta el usuario Admin y usuarios de control
 
-        /*$this->batchInsert('user', ['username', 'email', 'rol_id', 'user_type_id', 'statud_id', 'password_hash', 'auth_key', 'proveedor'], [
-            ['SuperAdmin', 'sa@gmail.com', 30, 20, 10, User::setPassword('123456'), User::generateAuthKey(), false],
-            ['Administrador', 'admin@gmail.com', 25, 20, 10, User::setPassword('123456'), User::generateAuthKey(), false],
-            ['InvitadoActivo', 'invitadoActivo@gmail.com', 10, 10, 10, User::setPassword('123456'), User::generateAuthKey(), false],
-            ['Proveedor1', 'proveedor1@gmail.com', 10, 10, 10, User::setPassword('123456'), User::generateAuthKey(), true],
-            ['Inactivo', ', invitadoInactivo@gmail.com', 10, 10, 5, User::setPassword('123456'), User::generateAuthKey(), true],
-        ]);*/
+        $this->batchInsert('user', ['username', 'email', 'rol_id', 'user_type_id', 'status_id', 'password_hash', 'auth_key', 'proveedor'], [
+            ['SuperAdmin', 'sa@gmail.com', 30, 20, 10,
+                Yii::$app->security->generatePasswordHash('123456'),
+                Yii::$app->security->generateRandomString(), false
+            ],
+            ['Administrador', 'admin@gmail.com', 25, 20, 10,
+                Yii::$app->security->generatePasswordHash('123456'),
+                Yii::$app->security->generateRandomString(), false
+            ],
+            ['InvitadoActivo', 'invitadoActivo@gmail.com', 10, 10, 10,
+                Yii::$app->security->generatePasswordHash('123456'),
+                Yii::$app->security->generateRandomString(), false
+            ],
+            ['Proveedor1', 'proveedor1@gmail.com', 20, 20, 10,
+                Yii::$app->security->generatePasswordHash('123456'),
+                Yii::$app->security->generateRandomString(), true
+            ],
+            ['Proveedor2', 'proveedor2@gmail.com', 20, 20, 10,
+                Yii::$app->security->generatePasswordHash('123456'),
+                Yii::$app->security->generateRandomString(), true
+            ],
+            ['Inactivo', ', invitadoInactivo@gmail.com', 10, 10, 5,
+                Yii::$app->security->generatePasswordHash('123456'),
+                Yii::$app->security->generateRandomString(), false
+            ],
+        ]);
 
-        $user = new User();
+        /*$user = new User();
         $user->username = 'SuperAdmin';
         $user->email = 'sa@gmail.com';
         $user->rol_id = 30; // superAdmin
@@ -260,7 +279,7 @@ class m130524_201443_init extends Migration
         $user->status_id = 5; // Inactivo
         $user->setPassword('123456');
         $user->generateAuthKey();
-        $user->save() ? $user : null;
+        $user->save() ? $user : null;*/
 
         $this->createTable('gender', [
             'id'=> $this->primaryKey(),
@@ -283,7 +302,7 @@ class m130524_201443_init extends Migration
             'municipio_id' => $this->integer()->defaultValue(1),
             'cpostal' => $this->char(5),
             'fecha_nac'=>$this->date(),
-            'created_at' => $this->date()->notNull(),
+            'created_at' => $this->date()->notNull()->defaultExpression('now()'),
             'updated_at' => $this->date()->notNull(),
             ], $tableOptions);
 
@@ -332,12 +351,20 @@ class m130524_201443_init extends Migration
             'CASCADE'
         );
 
+        $this->batchInsert('profile', ['user_id', 'nombre', 'apellidos', 'gender_id', 'created_at', 'updated_at'], [
+            [1, 'Juan', 'Lorenzo Jiménez', 1, '2017-10-10', '2017-10-10'],
+            [2, 'María', 'Lorenzo Jiménez', 1, '2017-10-10', '2017-10-10'],
+            [3, 'Luis', 'Lorenzo Jiménez', 1, '2017-10-10', '2017-10-10'],
+            [4, 'Isabel', 'Lorenzo Jiménez', 1, '2017-10-10', '2017-10-10'],
+            [5, 'Manuel', 'Lorenzo Jiménez', 1, '2017-10-10', '2017-10-10'],
+        ]);
+
         $this->createTable('imagen_profile', [
             'id'=> $this->primaryKey(),
             'profile_id' =>$this->integer()->notNull(),
             'url' => $this->string(255)->notNull(),
-            'created_at' => $this->datetime()->notNull(),
-            'updated_at' => $this->datetime()->notNull(),
+            'created_at' => $this->datetime()->notNull()->defaultExpression('now()'),
+            'updated_at' => $this->datetime()->notNull()->defaultExpression('now()'),
         ], $tableOptions);
 
         $this->addForeignKey(
@@ -348,6 +375,15 @@ class m130524_201443_init extends Migration
             'id',
             'CASCADE'
         );
+
+        $this->batchInsert('imagen_profile', ['profile_id', 'url'], [
+            [1, 'imagenes/imgAva/user-9.png'],
+            [2, 'imagenes/imgAva/user-2.png'],
+            [3, 'imagenes/imgAva/user-3.png'],
+            [4, 'imagenes/imgAva/user-5.png'],
+            [5, 'imagenes/imgAva/user-7.png'],
+
+        ]);
 
         $this->createTable('tipos_iva', [
             'id'=> $this->primaryKey(),
@@ -413,9 +449,12 @@ class m130524_201443_init extends Migration
         $this->batchInsert('servicios', ['descripcion', 'precio', 'proveedor_id',
                                          'duracion', 'duracion_unidad_id',
                                          'puntuacion', 'num_votos', 'media_punt'], [
-            ['Vuelta en Barco por la Desembocadura del Guadalquivir', 15, 3, 6, 1, 128, 32, 4 ],
-            ['Paseo en bicicleta por la Vía Verde', 10, 2, 2, 1, 95, 25, 3.8 ],
-            ['Aprende a tocar la guitarra', 60, 1, 10, 2, 65, 26, 2.5 ],
+            ['Vuelta en Barco por la Desembocadura del Guadalquivir', 15, 4, 6, 1, 128, 32, 4 ],
+            ['Paseo en bicicleta por la Vía Verde', 10, 5, 2, 1, 95, 25, 3.8 ],
+            ['Aprende a tocar la guitarra', 60, 4, 10, 2, 65, 26, 2.5 ],
+            ['Cena romántica a pie de corral de pesca', 75, 4, 10, 2, 65, 26, 2.5 ],
+            ['Subida al faro de Chipiona', 60, 5, 10, 2, 65, 26, 2.5 ],
+            ['Clases de tenis', 60, 5, 10, 2, 65, 26, 2.5 ],
         ]);
 
         $this->createTable('comentarios', [
@@ -424,7 +463,7 @@ class m130524_201443_init extends Migration
             'profile_id' => $this->integer()->notNull(),
             'padre_id' => $this->integer(),
             'comentario' => $this->string(255)->notNull(),
-            'created_at' => $this->datetime()->notNull(),
+            'created_at' => $this->datetime()->notNull()->defaultExpression('now()'),
         ]);
 
         $this->addForeignKey(
@@ -459,7 +498,7 @@ class m130524_201443_init extends Migration
             'servicio_id' => $this->integer()->notNull(),
             'profile_id' => $this->integer()->notNull(),
             'puntuacion' => $this->integer(),
-            'created_at' => $this->datetime()->notNull(),
+            'created_at' => $this->datetime()->notNull()->defaultExpression('now()'),
         ]);
 
         $this->addForeignKey(
@@ -484,9 +523,32 @@ class m130524_201443_init extends Migration
             'id'=> $this->primaryKey(),
             'servicio_id' =>$this->integer()->notNull(),
             'url' => $this->string(255)->notNull(),
-            'created_at' => $this->datetime()->notNull(),
-            'updated_at' => $this->datetime()->notNull(),
+            'created_at' => $this->datetime()->notNull()->defaultExpression('now()'),
+            'updated_at' => $this->datetime()->notNull()->defaultExpression('now()'),
         ], $tableOptions);
+
+        $this->batchInsert('imagen_servicio', ['servicio_id', 'url'], [
+            [1, 'imagenes/imgServ/paseoBarca1.jpg'],
+            [1, 'imagenes/imgServ/paseoBarca2.jpg'],
+            [1, 'imagenes/imgServ/paseoBarca3.jpg'],
+            [2, 'imagenes/imgServ/bicicleta1.jpg'],
+            [2, 'imagenes/imgServ/bicicleta2.jpg'],
+            [2, 'imagenes/imgServ/bicicleta3.jpg'],
+            [2, 'imagenes/imgServ/bicicleta4.jpg'],
+            [3, 'imagenes/imgServ/guitarra1.jpg'],
+            [3, 'imagenes/imgServ/guitarra2.jpg'],
+            [3, 'imagenes/imgServ/guitarra3.jpg'],
+            [4, 'imagenes/imgServ/cenacorral1.jpg'],
+            [4, 'imagenes/imgServ/cenacorral2.jpg'],
+            [4, 'imagenes/imgServ/cenacorral3.jpg'],
+            [5, 'imagenes/imgServ/faro1.png'],
+            [5, 'imagenes/imgServ/faro2.jpg'],
+            [5, 'imagenes/imgServ/faro3.jpg'],
+            [6, 'imagenes/imgServ/tenis1.jpg'],
+            [6, 'imagenes/imgServ/tenis2.jpg'],
+            [6, 'imagenes/imgServ/tenis3.jpg'],
+            [6, 'imagenes/imgServ/tenis4.jpg'],
+        ]);
 
         $this->addForeignKey(
             'fk_imagen_servicio_servicio',

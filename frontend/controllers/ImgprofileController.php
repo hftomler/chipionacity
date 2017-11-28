@@ -98,8 +98,11 @@ class ImgprofileController extends Controller
     public function actionDelete($id)
     {
         $imgBorrar = $this->findModel($id)->url;
-        unlink($imgBorrar);
+        if (!strstr($imgBorrar, 'imgAva')) {
+            unlink($imgBorrar);
+        }
         $this->findModel($id)->delete();
+    }
     }
 
     /**

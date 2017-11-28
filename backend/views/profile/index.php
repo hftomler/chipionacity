@@ -5,7 +5,6 @@ use yii\grid\GridView;
 use yii\bootstrap\Collapse;
 use common\models\PermissionHelpers;
 use common\models\RecordHelpers;
-use common\models\User;
 use backend\models\ImagenProfile;
 
 /* @var $this yii\web\View */
@@ -14,7 +13,6 @@ use backend\models\ImagenProfile;
 
 $this->title = Yii::t('app', 'Profiles');
 $this->params['breadcrumbs'][] = $this->title;
-$show_this_nav = PermissionHelpers::requireMinRol('admin');
 ?>
 
 <div class="profile-index">
@@ -26,6 +24,7 @@ $show_this_nav = PermissionHelpers::requireMinRol('admin');
             }
         ?>
     </h1>
+
     <?php echo Collapse::widget([
             'encodeLabels' => false,
             'items' => [
@@ -77,6 +76,7 @@ $show_this_nav = PermissionHelpers::requireMinRol('admin');
             ['class' => 'yii\grid\ActionColumn',
                              'visibleButtons' => [
                                  'update' => function ($data, $key) {
+
                                                         return PermissionHelpers::requireMinRol('admin') && PermissionHelpers::userMustBeOwner('profile', $key);
                                                     },
                                  'delete' => function ($data, $key) {
@@ -85,5 +85,6 @@ $show_this_nav = PermissionHelpers::requireMinRol('admin');
                              ],
             ],
         ],
+
     ]); ?>
 </div>

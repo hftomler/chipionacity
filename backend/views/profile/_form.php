@@ -28,7 +28,7 @@ use backend\models\ImagenProfile;
             <?= $form->field($model, 'direccion')->textInput(['maxlength' => true]) ?>
         </div>
         <div class="col-xs-4">
-            <?= $form->field($model, 'gender_id')->dropDownList($model->genderList, ['prompt' => 'Género' ]);?>
+            <?= $form->field($model, 'gender_id')->dropDownList($model->genderList, ['prompt' => Yii::t('app', 'Gender') ]);?>
         </div>
     </div>
     <div class="col-xs-2 text-center">
