@@ -320,7 +320,7 @@ nav li:hover a:hover, nav li form button.btn-link:hover {
     filter: drop-shadow(2px 2px 3px #999);
 }
 
-/* RIBBONS del header del Backend */
+/* RIBBONS del header del Backend
 
 @keyframes ribbonRight {
     from {right: -80px;}
@@ -352,4 +352,17 @@ nav li:hover a:hover, nav li form button.btn-link:hover {
     animation-delay: 5s;
     animation-duration: 2s;
     animation-iteration-count: 1;
+}*/
+.ribbon {
+    height: 85px;
+    position:absolute;
+    top:0;
+    right:-90px;
+}
+
+.ribbon-left {
+    height: 85px;
+    position:absolute;
+    top:0;
+    left: -90px;
 }

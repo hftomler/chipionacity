@@ -100,4 +100,27 @@ $(function(){
 		scale: 1.2,
     });
 
+	$(document).ready( function() {
+		indice = leerCookie("isIndex");
+		setTimeout(animaRibbons(indice), 5000);
+	});
+
+	function leerCookie(nombre) {
+         var lista = document.cookie.split(";");
+         for (i in lista) {
+             var busca = lista[i].search(nombre);
+             if (busca > -1) {micookie=lista[i]}
+             }
+         var igual = micookie.indexOf("=");
+         var valor = micookie.substring(igual+1);
+         return valor;
+    }
+
+	function animaRibbons(pagInicio) {
+		if (pagInicio) {
+			$(".ribbon-left").animate({left: '20px'}, 1500).animate({left: '0'}, 500);
+			$(".ribbon").animate({right: '20px'}, 1500).animate({right: '0'}, 500);
+		}
+	}
+
 });
