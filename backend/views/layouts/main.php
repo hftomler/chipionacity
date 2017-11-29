@@ -38,8 +38,9 @@ FontAwesomeAsset::register($this);
     $is_admin = PermissionHelpers::requireMinRol('admin');
     $is_prov = PermissionHelpers::requireMinRol('proveedor');
     $isAvatar = ((Yii::$app->controller->action->id == 'avatar') ? true : false);
+    $isSite = ((Yii::$app->controller->id == 'site') ? true : false);
     $isIndex =  ((Yii::$app->controller->action->id == 'index') ? true : false);
-    setcookie("isIndex", $isIndex);
+    setcookie("inicio", ($isSite && $isIndex));
     if (!Yii::$app->user->isGuest) { //Logo para administradores
         NavBar::begin([
             'brandLabel' => '<img id="logo" class="js-tilt" src="imagenes/logofb.png" alt="logo">',

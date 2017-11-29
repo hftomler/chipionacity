@@ -101,7 +101,7 @@ $(function(){
     });
 
 	$(document).ready( function() {
-		indice = leerCookie("isIndex");
+		indice = leerCookie("inicio");
 		setTimeout(animaRibbons(indice), 5000);
 	});
 
@@ -118,8 +118,12 @@ $(function(){
 
 	function animaRibbons(pagInicio) {
 		if (pagInicio) {
-			$(".ribbon-left").animate({left: '20px'}, 1500).animate({left: '0'}, 500);
-			$(".ribbon").animate({right: '20px'}, 1500).animate({right: '0'}, 500);
+			$(".ribbon-left").animate({left: '20px'}, 500).animate({left: '0'}, 250);
+			$(".ribbon").animate({right: '10px'}, 500).animate({right: '0'}, 250);
+		} else {
+			alert("Ha entrado");
+			$(".ribbon-left").css("left", '0');
+			$(".ribbon").css("right", '0');
 		}
 	}
 
