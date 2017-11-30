@@ -235,6 +235,23 @@ nav li:hover a:hover, nav li form button.btn-link:hover {
     border: 1px solid #ff7e00;
 }
 
+.imgServicio-xs {
+    margin-left: 10px;
+    height: 50px;
+    border: 1px solid #555;
+    filter: drop-shadow(2px 2px 3px #666);
+}
+
+.imgServicio-xs:hover {
+    border: 1px solid #111;
+    filter: drop-shadow(1px 1px 2px #000);
+}
+
+/*Sobreescribiendo img-thumbnail de bootstrap */
+.img-thumbnail {
+    padding: 1px;
+}
+
 .language {
     margin: -10px 5px;
     border-radius: 50%;

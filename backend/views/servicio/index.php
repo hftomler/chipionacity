@@ -4,6 +4,7 @@ use yii\helpers\Html;
 use yii\grid\GridView;
 use common\models\PermissionHelpers;
 use common\models\User;
+use backend\models\ImagenServicio;
 
 /* @var $this yii\web\View */
 /* @var $searchModel backend\models\ServicioSearch */
@@ -26,7 +27,12 @@ $isProveedor = User::isProveedor(Yii::$app->user->identity->id);
     </h1>
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
-        'filterModel' => $searchModel,
+        'options' => ['class' => 'grid-view gvCenter'],
+        /*'rowOptions' => function ($model, $key, $index, $grid) {
+                                        return PermissionHelpers::userMustBeOwner('servicios', $key) ?
+                                                    ['class' => 'miPerfil'] :
+                                                    '';
+                                    },*/
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
             'id',
@@ -37,6 +43,15 @@ $isProveedor = User::isProveedor(Yii::$app->user->identity->id);
                                 return $model->proveedor->username;
                             },
                             'visible' => (!$isProveedor),
+            ],
+            ['attribute' => 'ultImg',
+                'contentOptions' => ['class' => 'text-center'],
+                'format' => 'html',
+                'label' => Yii::t('app', 'Profile Img.'),
+                'value' => function ($data) {
+                    return Html::img(ImagenServicio::getLastImg($data['id']),
+                        ['class' => 'imgServicio-xs img-thumbnail']);
+                },
             ],
             'activo:boolean',
             // 'tipo_iva_id',

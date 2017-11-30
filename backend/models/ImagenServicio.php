@@ -91,9 +91,11 @@ class ImagenServicio extends \yii\db\ActiveRecord
      */
     public static function getLastImg($servicio_id) {
         if (ImagenServicio::getId($servicio_id) !== null){
-            return ImagenServicio::find()->where(['servicio_id' => $servicio_id])->orderBy(['updated_at' => SORT_DESC])->one()->url;
+            return ImagenServicio::find()->where(['servicio_id' => $servicio_id])
+                                         ->orderBy(['updated_at' => SORT_DESC])
+                                         ->one()->url;
         } else {
-            return "imagenes/imgServ/noServImg.jpg";
+            return 'imagenes/imgServ/noServImg.png';
         }
     }
 
