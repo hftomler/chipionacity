@@ -43,9 +43,9 @@ class Rol extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id' => Yii::t('backend', 'ID'),
-            'rol_name' => Yii::t('backend', 'Rol Name'),
-            'rol_value' => Yii::t('backend', 'Rol Value'),
+            'id' => Yii::t('app', 'ID'),
+            'rol_name' => Yii::t('app', 'Rol Name'),
+            'rol_value' => Yii::t('app', 'Rol Value'),
         ];
     }
 

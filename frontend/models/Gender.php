@@ -40,7 +40,7 @@ class Gender extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id' => Yii::t('backend', 'ID'),
+            'id' => Yii::t('app', 'ID'),
             'gender_name' => Yii::t('frontend', 'Gender'),
         ];
     }
