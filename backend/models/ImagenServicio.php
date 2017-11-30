@@ -3,6 +3,8 @@
 namespace backend\models;
 
 use Yii;
+use yii\db\ActiveRecord;
+use yii\db\Expression;
 
 /**
  * This is the model class for table "imagen_servicio".
@@ -26,16 +28,30 @@ class ImagenServicio extends \yii\db\ActiveRecord
     }
 
     /**
+      * @inheritdoc
+      */
+     public function behaviors()
+     {
+         return [
+             'timestamp' => [
+                 'class' => 'yii\behaviors\TimestampBehavior',
+                 'attributes' => [
+                     ActiveRecord::EVENT_BEFORE_INSERT => ['created_at', 'updated_at'],
+                     ActiveRecord::EVENT_BEFORE_UPDATE => ['updated_at'],
+                 ],
+                 'value' => new Expression('NOW()'),
+             ],
+         ];
+     }
+
+    /**
      * @inheritdoc
      */
     public function rules()
     {
         return [
-            [['servicio_id', 'url', 'created_at', 'updated_at'], 'required'],
             [['servicio_id'], 'integer'],
-            [['created_at', 'updated_at'], 'safe'],
             [['url'], 'string', 'max' => 255],
-            [['servicio_id'], 'exist', 'skipOnError' => true, 'targetClass' => Servicios::className(), 'targetAttribute' => ['servicio_id' => 'id']],
         ];
     }
 

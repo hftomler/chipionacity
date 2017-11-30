@@ -107,7 +107,6 @@ class ProfileController extends Controller
 
          } elseif ($model->load(Yii::$app->request->post()) && $model->save()) {
              // Capturamos la instancia del fichero subido en el form y guardamos la imagen
-             // Capturamos la instancia del fichero subido en el form y guardamos la imagen
              $mensajeFlash = Yii::t('app', 'Saved record successfully') . '<br/>';
              $model->fichImage = UploadedFile::getInstance($model, 'fichImage');
              if ($model->fichImage !== null) {

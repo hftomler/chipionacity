@@ -37,6 +37,13 @@ class Servicios extends \yii\db\ActiveRecord
     /**
      * @inheritdoc
      */
+
+    /**
+     * Almacén para las imágenes subidas
+     * @var array $fichImage;
+     */
+    public $fichImage;
+
     public static function tableName()
     {
         return 'servicios';
@@ -57,6 +64,12 @@ class Servicios extends \yii\db\ActiveRecord
             [['tipo_iva_id'], 'exist', 'skipOnError' => true, 'targetClass' => TiposIva::className(), 'targetAttribute' => ['tipo_iva_id' => 'id']],
             [['duracion_unidad_id'], 'exist', 'skipOnError' => true, 'targetClass' => UnidadesTiempo::className(), 'targetAttribute' => ['duracion_unidad_id' => 'id']],
             [['proveedor_id'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['proveedor_id' => 'id']],
+            ['fichImage', 'file', 'maxFiles' => 5],
+            ['fichImage', 'image', 'extensions' => 'png, jpg',
+                'minWidth' => 640, 'maxWidth' => 800,
+                'minHeight' => 480, 'maxHeight' => 600,
+                'maxFiles' => 5
+            ],
         ];
     }
 

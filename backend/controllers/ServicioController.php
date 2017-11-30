@@ -10,6 +10,9 @@ use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
 use common\models\PermissionHelpers;
+use yii\web\UploadedFile;
+use backend\models\ImagenServicio;
+
 
 /**
  * ServicioController implements the CRUD actions for Servicios model.
@@ -86,12 +89,29 @@ class ServicioController extends Controller
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
-    public function actionCreate()
-    {
+    public function actionCreate() {
         $model = new Servicios();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+            // Capturamos la instancia de los ficheros subidos en el form y guardamos las imágenes
+            $mensajeFlash = Yii::t('app', 'Saved record successfully') . '<br/>';
+            $model->fichImage = UploadedFile::getInstances($model, 'fichImage');
+            if ($model->fichImage !== null) {
+                foreach ($model->fichImage as $key => $file) {
+                    // Creamos el registro de ImagenServicio y Guardo la trayectoria de la imagen en el campo url.
+                    $imgServicio = new ImagenServicio();
+                    $imgServicio->servicio_id = $model->id;
+                    $nomImg = "";
+                    $nomImg = 'imagenes/imgServ/' . $model->id . '-' .
+                    $file->baseName . '-' . $file->size .  '.' . $file->extension;
+                    $imgServicio->url = $nomImg;
+                    $imgServicio->save();
+                    $model->fichImage = null;
+                    $model->save();
+                    $file->saveAs($nomImg);
+                }
+            }
+            return $this->redirect(['index']);
         } else {
             return $this->render('create', [
                 'model' => $model,

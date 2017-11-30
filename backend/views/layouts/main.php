@@ -35,8 +35,8 @@ FontAwesomeAsset::register($this);
 
 <div class="wrap">
     <?php
-    $is_admin = PermissionHelpers::requireMinRol('admin');
-    $is_prov = PermissionHelpers::requireMinRol('proveedor');
+    $isAdmin = PermissionHelpers::requireMinRol('admin');
+    $isProv = PermissionHelpers::requireMinRol('proveedor');
     $isAvatar = ((Yii::$app->controller->action->id == 'avatar') ? true : false);
     $isSite = ((Yii::$app->controller->id == 'site') ? true : false);
     $isIndex =  ((Yii::$app->controller->action->id == 'index') ? true : false);
@@ -70,15 +70,17 @@ FontAwesomeAsset::register($this);
     if (Yii::$app->user->isGuest) {
         $menuItems[] = ['label' => '<i class="fa fa-sign-in" aria-hidden="true"></i><br/>' . Yii::t('app', 'Login') , 'url' => ['/site/login']];
     } else {
-        if ($is_admin && !$isAvatar) {
+        if ($isAdmin && !$isAvatar) {
             $menuItems[] = ['label' => '<i class="fa fa-users" aria-hidden="true"></i><br/>' . Yii::t('app', 'Users') , 'url' => ['user/index']];
             $menuItems[] = ['label' => '<i class="fa fa-address-card-o" aria-hidden="true"></i><br/>' . Yii::t('app', 'Profiles') , 'url' => ['profile/index']];
             $menuItems[] = ['label' => '<i class="fa fa-universal-access" aria-hidden="true"></i><br/>' . Yii::t('app', 'Roles') , 'url' => ['/rol/index']];
             $menuItems[] = ['label' => '<i class="fa fa-eye-slash" aria-hidden="true"></i><i class="fa fa-eye" aria-hidden="true"></i><br/>' . Yii::t('app', 'User Types') , 'url' => ['/user-type/index']];
             $menuItems[] = ['label' => '<i class="fa fa-check" aria-hidden="true"></i><br/>' . Yii::t('app', 'Status') , 'url' => ['/status/index']];
         }
-        if ($is_prov) {
-            $menuItems[] = ['label' => '<i class="fa fa-users" aria-hidden="true"></i><br/>' . Yii::t('app', 'Services') , 'url' => ['/servicio']];
+        if ($isProv || $isAdmin) {
+            $menuItems[] = ['label' => '<i class="fa fa-comments" aria-hidden="true"></i> ' .
+                                       '<i class="fa fa-map-signs" aria-hidden="true"></i><br/>' .
+                                       Yii::t('app', 'Services') , 'url' => ['/servicio']];
         }
         $profileId = RecordHelpers::userHas('profile') ? Profile::find()->where(['user_id' => Yii::$app->user->id])->one()->id : false;
         if ($profileId) {

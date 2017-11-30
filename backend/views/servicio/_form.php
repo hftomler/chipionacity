@@ -1,7 +1,9 @@
 <?php
 
 use yii\helpers\Html;
+use yii\helpers\Url;
 use yii\widgets\ActiveForm;
+use kartik\file\FileInput;
 
 /* @var $this yii\web\View */
 /* @var $model backend\models\Servicios */
@@ -35,6 +37,12 @@ use yii\widgets\ActiveForm;
             <?= $form->field($model, 'activo')->checkbox() ?>
         </div>
     </div>
+    <div class="col-xs-12">
+    <?= $form->field($model, 'fichImage[]')->widget(FileInput::classname(), [
+        'options'=>['accept'=>'image/*', 'multiple'=>true],
+        ]);?>
+    </div>
+
     <div class="form-group">
         <?= Html::submitButton($model->isNewRecord ? Yii::t('app', 'Create') : Yii::t('app', 'Update'), ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
     </div>
