@@ -1,13 +1,15 @@
 <?php
 
 use yii\helpers\Html;
-use yii\helpers\Url;
 use yii\widgets\ActiveForm;
 use kartik\file\FileInput;
+use common\models\User;
 
 /* @var $this yii\web\View */
 /* @var $model backend\models\Servicios */
 /* @var $form yii\widgets\ActiveForm */
+$isProv = User::isProveedor(Yii::$app->user->identity->id);
+($isProv)? $model->proveedor_id = Yii::$app->user->identity->id : "";
 ?>
 
 <div class="servicios-form">
@@ -18,9 +20,24 @@ use kartik\file\FileInput;
         <div class="col-xs-12 col-sm-8">
             <?= $form->field($model, 'descripcion')->textInput(['maxlength' => true]) ?>
         </div>
+
         <div class="col-xs-12 col-sm-4">
-            <?= $form->field($model, 'proveedor_id')->dropDownList($model->proveedorList, ['prompt' => Yii::t('app', 'Supplier Id') ]);?>
+            <?php
+                if (!$isProv) {
+                        echo $form->field($model, 'proveedor_id')->dropDownList($model->proveedorList, ['prompt' => Yii::t('app', 'Supplier Id') ]);
+                } else {
+                        echo Html::activeTextInput($model, 'proveedor_id', ['value'=> Yii::$app->user->identity->id, 'style' => 'display:none']);
+                        echo Html::beginTag('div', ['class' => 'form-group field-servicios-proveedor_id required']);
+                            echo '<label class="control-label" for=servicios-proveedor_id" >' . Yii::t('app', 'Supplier Id') . '</label>';
+                            echo Html::textInput('prov',
+                                                 Yii::$app->user->identity->id . ': ' . Yii::$app->user->identity->username,
+                                                 ['class' => 'form-control', 'disabled' => true ]);
+                            echo Html::tag('div', '', ['class' => 'help-block']);
+                        echo Html::endTag('div');
+                }
+            ?>
         </div>
+
         <div class="col-xs-6 col-md-3">
             <?= $form->field($model, 'precio')->textInput() ?>
         </div>
@@ -38,9 +55,16 @@ use kartik\file\FileInput;
         </div>
     </div>
     <div class="col-xs-12">
-    <?= $form->field($model, 'fichImage[]')->widget(FileInput::classname(), [
-        'options'=>['accept'=>'image/*', 'multiple'=>true],
-        ]);?>
+        <?= $form->field($model, 'fichImage[]')->widget(FileInput::classname(), [
+            'options'=>[
+                'accept'=>'image/*', 'multiple'=>true
+            ]
+            /*'pluginOptions'=>[
+                'previewClass' => 'col-xs-12',
+                'frameClass' => 'col-xs-6 col-sm-4 col-md-3 krajee-default'
+            ]*/
+            ]);
+        ?>
     </div>
 
     <div class="form-group">

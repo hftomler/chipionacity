@@ -76,4 +76,34 @@ class ImagenServicio extends \yii\db\ActiveRecord
     {
         return $this->hasOne(Servicios::className(), ['id' => 'servicio_id']);
     }
+
+    /**
+     * @param int $servicio_id
+     * @return \yii\db\ActiveQuery
+     */
+    private static function getId($servicio_id) {
+        return ImagenServicio::find()->where(['servicio_id' => $servicio_id])->one();
+    }
+
+    /**
+     * @param int $servicio_id
+     * @return \yii\db\ActiveQuery
+     */
+    public static function getLastImg($servicio_id) {
+        if (ImagenServicio::getId($servicio_id) !== null){
+            return ImagenServicio::find()->where(['servicio_id' => $servicio_id])->orderBy(['updated_at' => SORT_DESC])->one()->url;
+        } else {
+            return "imagenes/imgServ/noServImg.jpg";
+        }
+    }
+
+    /**
+     * @param string $url
+     * @param int $servicio_id
+     * @return \yii\db\ActiveQuery
+     */
+
+    public function existsUrl($servicio_id, $url) {
+        return ImagenServicio::find()->where(['servicio_id' => $servicio_id, 'url' => $url])->one();
+    }
 }
