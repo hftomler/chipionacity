@@ -335,6 +335,16 @@ nav li:hover a:hover, nav li form button.btn-link:hover {
     text-align: center;
 }
 
+.indented {
+    text-indent: 20px;
+}
+
+.tbn {
+    font-size: 1.5em !important;
+    color: #ffffff;
+    font-weight: bolder;
+}
+
 /* Estilos para imágenes de perfil - View profile */
 .imgWrap {
   display: inline-block;
@@ -450,22 +460,14 @@ nav li:hover a:hover, nav li form button.btn-link:hover {
 
 /* ESTILOS PARA MENSAJES DE CONFIRMACION DE BORRADO  */
 
-.modal-header {
-    text-align: center;
+.panel-title {
+    text-align: center !important;
 }
 
-.bootstrap-dialog-header .bootstrap-dialog-title {
-    color: #fff;
-    text-align: center;
-    display: inline-block;
-    text-align: center;
-    font-size: 24px;
+.panel-body {
+    text-align: justify !important;
 }
 
-.bootstrap-dialog-body {
-    margin: 25px 10px;
-}
-
-.bootstrap-dialog-message {
-    font-size: 1.2em !important;
+.panel-heading {
+    background-color: #286090 !important;
 }
