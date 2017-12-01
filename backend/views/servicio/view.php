@@ -25,6 +25,8 @@ $this->params['breadcrumbs'][] = $this->title;
         ]) ?>
     </p>
 
+    <?php // Recuperamos todas las imágenes de perfil que ha tenido el usuario.?>
+    <?php $imgs = $model->getImagenServicio($model->id); ?>
     <?= DetailView::widget([
         'model' => $model,
         'attributes' => [
@@ -33,6 +35,12 @@ $this->params['breadcrumbs'][] = $this->title;
             'precio',
             'proveedor_id',
             'activo:boolean',
+            ['attribute' => 'foto',
+                //'contentOptions' => ['class' => 'text-center'],
+                'format' => 'raw',
+                'label' => 'Imágenes perfil',
+                'value' => $imgs,
+            ],
             'tipo_iva_id',
             'duracion',
             'duracion_unidad_id',

@@ -4,6 +4,7 @@ namespace backend\models;
 
 use Yii;
 use common\models\User;
+use yii\helpers\Html;
 use common\models\PermissionHelpers;
 use yii\helpers\ArrayHelper;
 
@@ -188,6 +189,28 @@ class Servicios extends \yii\db\ActiveRecord
     public function getVotaciones()
     {
         return $this->hasMany(Votaciones::className(), ['servicio_id' => 'id']);
+    }
+
+    /**
+     * @param int $id
+     * @return $htmlResul
+     */
+    public function getImagenServicio($id) {
+        $imgs = ImagenServicio::findAll(['servicio_id' => $id]);
+        $formatter = \Yii::$app->formatter;
+
+        $strImgs = array();
+            foreach ($imgs as $key) {
+                $strImgs[] = '<div class="imgWrapServ">
+                <i name="u' .$key->id . '" class="fa fa-eye tickImgServ invisible" aria-hidden="true" title="' . Yii::t('app', 'View Service Image: ') . $this->descripcion . '"></i>'
+                . '<span class="fa fa-calendar fecha" aria-hidden="true"> ' . $formatter->asDate($key->created_at, 'short') .'</span>'
+                . Html::img($key->url,
+                                    ['class' => 'imgServicio-sm img-thumbnail imgServ-thumbnail'])
+                . '<i name="d' .$key->id . '" class="fa fa-trash closeImgServ invisible" aria-hidden="true" title="' . Yii::t('app', 'Delete Service Image: ') . $this->descripcion . '"></i>
+                </div>';
+            }
+            $htmlResul = implode($strImgs);
+        return $htmlResul;
     }
 
 }
