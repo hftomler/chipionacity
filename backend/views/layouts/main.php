@@ -15,7 +15,23 @@ use frontend\models\Profile;
 use backend\models\ImagenProfile;
 use common\models\RecordHelpers;
 use common\models\PermissionHelpers;
+use kartik\dialog\Dialog;
 
+// Inializando la instancia del Kartik Dialog
+echo Dialog::widget([
+   'libName' => 'krajeeDialog',
+   'options' => [
+        'title' => '<i class="fa fa-exclamation-circle" aria-hidden="true"></i> '
+                  . Yii::t('app', 'Confirmación de borrado')
+                  . ' <i class="fa fa-exclamation-circle" aria-hidden="true"></i>',
+        'draggable' => true,
+        'type' => Dialog::TYPE_PRIMARY,
+        'btnOKClass' => 'btn-danger',
+        'btnOKLabel' => '<i class="fa fa-exclamation-circle" aria-hidden="true"></i> ' . Yii::t('app', 'Confirm'),
+        'btnCancelClass' => 'btn-success',
+        'btnCancelLabel' => '<i class="fa fa-bullseye" aria-hidden="true"></i> ' . Yii::t('app', 'Exit')
+   ], // default options
+]);
 AppAsset::register($this);
 FontAwesomeAsset::register($this);
 ?>

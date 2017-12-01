@@ -62,8 +62,8 @@ class Imagenprofile extends \yii\db\ActiveRecord
             'id' => Yii::t('app', 'ID'),
             'profile_id' => Yii::t('app', 'Profile ID'),
             'url' => Yii::t('app', 'Url'),
-            'created_at' => Yii::t('frontend', 'Created At'),
-            'updated_at' => Yii::t('frontend', 'Updated At'),
+            'created_at' => Yii::t('app', 'Created At'),
+            'updated_at' => Yii::t('app', 'Updated At'),
         ];
     }
 

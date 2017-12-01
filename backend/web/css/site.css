@@ -447,3 +447,25 @@ nav li:hover a:hover, nav li form button.btn-link:hover {
     90% { transform: translate(1px, 2px) rotate(0deg); }
     100% { transform: translate(1px, -2px) rotate(-1deg); }
 }
+
+/* ESTILOS PARA MENSAJES DE CONFIRMACION DE BORRADO  */
+
+.modal-header {
+    text-align: center;
+}
+
+.bootstrap-dialog-header .bootstrap-dialog-title {
+    color: #fff;
+    text-align: center;
+    display: inline-block;
+    text-align: center;
+    font-size: 24px;
+}
+
+.bootstrap-dialog-body {
+    margin: 25px 10px;
+}
+
+.bootstrap-dialog-message {
+    font-size: 1.2em !important;
+}

@@ -84,10 +84,16 @@ $(function(){
 	});
 
 	$('.imgWrapServ > i[name^="ds"]').click(function () {
-		var id = $('.imgWrapServ > i[name^="ds"]').attr('name').substr(2);
-		$.post('index.php?r=imgservicio/deleteajax&id=' + id, function(data) {
-			location.reload();
-		});
+
+	    krajeeDialog.confirm('¿Seguro que desea borrar esta imagen? Esta acción no tiene vuelta atrás. La imagen será definitivamente eliminada.', function(out){
+	        if(out) {
+				var id = $('.imgWrapServ > i[name^="ds"]').attr('name').substr(2);
+				$.post('index.php?r=imgservicio/deleteajax&id=' + id, function(data) {
+					location.reload();
+				});
+	            alert('Yes'); // or do something on confirmation
+	        }
+	    });
 	});
 
 	//Mapear el click de la imagen de perfil hacia el botón de fileUpload que está oculto en Create y Update profile

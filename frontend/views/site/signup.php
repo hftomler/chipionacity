@@ -9,7 +9,7 @@ use yii\bootstrap\ActiveForm;
 use yii\helpers\ArrayHelper;
 
 
-$this->title = Yii::t('frontend', 'Signup');
+$this->title = Yii::t('app', 'Signup');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="site-signup">
@@ -17,7 +17,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <div class="row">
         <div class="col-xs-8 col-xs-offset-2">
-            <p><?= Yii::t('frontend','Please fill out the following fields to signup:') ?></p>
+            <p><?= Yii::t('app','Please fill out the following fields to signup:') ?></p>
             <?php $form = ActiveForm::begin(['id' => 'form-signup', 'enableAjaxValidation' => true]); ?>
 
                 <?= $form->field($model, 'username')->textInput(['autofocus' => true]) ?>

@@ -30,7 +30,7 @@ class ProfileSearch extends Profile {
 
     public function attributeLabels() {
         return [
-            'gender_id' => Yii::t('frontend', 'Gender'),
+            'gender_id' => Yii::t('app', 'Gender'),
         ];
     }
 
@@ -65,17 +65,17 @@ class ProfileSearch extends Profile {
                 'genderName' => [
                     'asc' => ['gender.gender_name' => SORT_ASC],
                     'desc' =>  ['gender.gender_name' => SORT_DESC],
-                    'label' => Yii::t('frontend', 'Gender'),
+                    'label' => Yii::t('app', 'Gender'),
                 ],
                 'profileIdLink' =>  [
                     'asc' => ['profile.id' => SORT_ASC],
                     'desc' =>  ['profile.id' => SORT_DESC],
-                    'label' => Yii::t('frontend', 'Id'),
+                    'label' => Yii::t('app', 'Id'),
                 ],
                 'userLink' =>  [
                     'asc' => ['user.username' => SORT_ASC],
                     'desc' =>  ['user.username' => SORT_DESC],
-                    'label' => Yii::t('frontend', 'User'),
+                    'label' => Yii::t('app', 'User'),
                 ],
             ]
         ]);

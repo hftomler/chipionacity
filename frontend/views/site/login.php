@@ -9,7 +9,7 @@ use yii\bootstrap\ActiveForm;
 use yii\bootstrap\Alert;
 use yii\backend\controllers\UserController;
 
-$this->title = Yii::t('frontend', 'Login');
+$this->title = Yii::t('app', 'Login');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="site-login">
@@ -17,7 +17,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <div class="row">
         <div class="col-xs-8 col-xs-offset-2">
             <p>
-                <?= Yii::t('frontend','Please fill out the following fields to login:') ?>
+                <?= Yii::t('app','Please fill out the following fields to login:') ?>
             </p>
             <?php $form = ActiveForm::begin(['id' => 'login-form']); ?>
 
@@ -28,7 +28,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 <?= $form->field($model, 'rememberMe')->checkbox() ?>
 
                 <div style="color:#999;margin:1em 0">
-                    <?= Yii::t('frontend','If you forgot your password you can') ?>
+                    <?= Yii::t('app','If you forgot your password you can') ?>
                     <?= Html::a('reset it', ['site/request-password-reset']) ?>.
                 </div>
 
