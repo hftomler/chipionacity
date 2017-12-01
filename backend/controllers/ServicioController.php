@@ -71,6 +71,7 @@ class ServicioController extends Controller
     {
         $searchModel = new ServicioSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        $dataProvider->pagination->pageSize = 10;
 
         return $this->render('index', [
             'searchModel' => $searchModel,
@@ -170,7 +171,7 @@ class ServicioController extends Controller
             }
             return $this->redirect(['index']);
         } else {
-            return $this->render('create', [
+            return $this->render('update', [
                 'model' => $model,
             ]);
         }

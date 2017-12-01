@@ -76,7 +76,7 @@ $(function(){
 			})
   	});
 
-		$('.imgWrapServ > i[name^="vs"]').click(function () {
+	$('.imgWrapServ > i[name^="vs"]').click(function () {
 		var id = $(this).attr('name').substr(2);
 		$.post('index.php?r=imgservicio/updateajax&id=' + id, function(data) {
 			location.reload();
@@ -84,7 +84,7 @@ $(function(){
 	});
 
 	$('.imgWrapServ > i[name^="ds"]').click(function () {
-		var id = $(this).attr('name').substr(2);
+		var id = $('.imgWrapServ > i[name^="ds"]').attr('name').substr(2);
 		$.post('index.php?r=imgservicio/deleteajax&id=' + id, function(data) {
 			location.reload();
 		});

@@ -103,7 +103,6 @@ class ImgprofileController extends Controller
         }
         $this->findModel($id)->delete();
     }
-    }
 
     /**
      * Finds the ImagenProfile model based on its primary key value.

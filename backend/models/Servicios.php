@@ -203,10 +203,14 @@ class Servicios extends \yii\db\ActiveRecord
             foreach ($imgs as $key) {
                 $strImgs[] = '<div class="imgWrapServ">
                 <i name="vs' .$key->id . '" class="fa fa-eye tickImgServ invisible" aria-hidden="true" title="' . Yii::t('app', 'View Service Image: ') . $this->descripcion . '"></i>'
-                . '<span class="fa fa-calendar fecha" aria-hidden="true"> ' . $formatter->asDate($key->created_at, 'short') .'</span>'
+                . '<span class="fa fa-calendar fecha" aria-hidden="true"> ' .
+                        $formatter->asDate($key->created_at, 'short') .'</span>'
                 . Html::img($key->urlthumb,
                                     ['class' => 'imgServicio-sm img-thumbnail imgServ-thumbnail'])
-                . '<i name="ds' .$key->id . '" class="fa fa-trash closeImgServ invisible" aria-hidden="true" title="' . Yii::t('app', 'Delete Service Image: ') . $this->descripcion . '"></i>
+                                    . '<i name="ds' .$key->id . '"
+                                    class="fa fa-trash closeImgServ invisible" aria-hidden="true"
+                                    title="' . Yii::t('app', 'Delete Service Image: ')
+                                    . $this->descripcion . '"></i>
                 </div>';
             }
             $htmlResul = implode($strImgs);

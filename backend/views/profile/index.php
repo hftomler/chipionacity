@@ -44,7 +44,7 @@ $this->params['breadcrumbs'][] = $this->title;
         'rowOptions' => function ($model, $key, $index, $grid) {
                                         return PermissionHelpers::userMustBeOwner('profile', $key) ?
                                                     ['class' => 'miPerfil'] :
-                                                    '';
+                                                    [];
                                     },
         'columns' => [
             //['attribute'=>'profileIdLink', 'format'=>'raw'],

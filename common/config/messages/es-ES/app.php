@@ -88,7 +88,7 @@ return [
     'Profile' => 'Perfil',
     'Profile ID' => 'Id Perfil',
     'Profile Id' => 'Id. Perfil',
-    'Profile Img.' => 'Imágen Perfil',
+    'Profile Img.' => 'Imagen Perfil',
     'Profile:' => 'Perfil:',
     'Profiles' => 'Perfiles',
     'Province ID' => 'Id Provincia',

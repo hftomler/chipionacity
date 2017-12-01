@@ -65,12 +65,16 @@ $isProv = User::isProveedor(Yii::$app->user->identity->id);
             ]*/
             ]);
         ?>
-    </div>
 
+    </div>
     <div class="form-group">
         <?= Html::submitButton($model->isNewRecord ? Yii::t('app', 'Create') : Yii::t('app', 'Update'), ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
     </div>
-
     <?php ActiveForm::end(); ?>
+
+    <div class="col-xs-12 well">
+        <p class="tituloForms"><?= Yii::t('app', 'Actually images of the Service') ?></p>
+        <?= $model->getImagenServicio($model->id); ?>
+    </div>
 
 </div>

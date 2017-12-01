@@ -34,8 +34,6 @@ $isProveedor = User::isProveedor(Yii::$app->user->identity->id);
                                                     '';
                                     },*/
         'columns' => [
-            ['class' => 'yii\grid\SerialColumn'],
-            'id',
             'descripcion',
             'precio',
             ['attribute'=>(Yii::t('app', 'Supplier')),

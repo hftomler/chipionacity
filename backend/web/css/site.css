@@ -328,6 +328,13 @@ nav li:hover a:hover, nav li form button.btn-link:hover {
     font-size: 0.9em;
 }
 
+.tituloForms {
+    max-width: 100%;
+    margin-bottom: 15px;
+    font-weight: bold;
+    text-align: center;
+}
+
 /* Estilos para imágenes de perfil - View profile */
 .imgWrap {
   display: inline-block;

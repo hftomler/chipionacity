@@ -30,8 +30,8 @@ class ProfileSearch extends Profile {
 
     public function attributeLabels() {
         return [
-            'gender_id' => 'Yii::t('frontend', 'Gender'),'
-        ]
+            'gender_id' => Yii::t('frontend', 'Gender'),
+        ];
     }
 
     /**
@@ -95,9 +95,9 @@ class ProfileSearch extends Profile {
         $this->addSearchParameter($query, 'user_id');
 
         // filtrado por el género
-        $query->joinWith('gender' => function ($q) {
+        $query->joinWith(['gender' => function ($q) {
             $q->where("gender.gender_name LIKE '%" . $this->genderName . "%''");
-        })
+        }])
         ->joinWith(['user' => function ($q) {
             $q->where("user.id LIKE '%" . $this->userId . "%''");
         }]);
