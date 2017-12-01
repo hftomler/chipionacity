@@ -29,22 +29,9 @@ $(function(){
 		});
 	});
 
-	$('.imgWrap').hover(
-		function() {
-		  	$(this).children('i').css("visibility", 'visible');
-			$(this).children('img').css({
-				"border": "1px solid #111",
-				"filter": "drop-shadow(2px 2px 3px #000)"
-			})
-		}, function() {
-			$(this).children('i').css("visibility", 'hidden');
-			$(this).children('img').css({
-				"border": "1px solid #555",
-				"filter": "drop-shadow(4px 4px 6px #666)"
-			})
-  	});
 
-	$('.imgWrapServ').hover(
+	// Eliminar y actualizar imagen de perfil //
+	$('.imgWrap').hover(
 		function() {
 		  	$(this).children('i').css("visibility", 'visible');
 			$(this).children('img').css({
@@ -61,14 +48,44 @@ $(function(){
 
 	$('.imgWrap > i[name^="u"]').click(function () {
 		var id = $(this).attr('name').substr(1);
-		$.post('index.php?r=imgprofile/update&id=' + id, function(data) {
+		$.post('index.php?r=imgprofile/updateajax&id=' + id, function(data) {
 			location.reload();
 		});
 	});
 
 	$('.imgWrap > i[name^="d"]').click(function () {
 		var id = $(this).attr('name').substr(1);
-		$.post('index.php?r=imgprofile/delete&id=' + id, function(data) {
+		$.post('index.php?r=imgprofile/deleteajax&id=' + id, function(data) {
+			location.reload();
+		});
+	});
+
+	// Ver y actualizar imagen de servicios //
+	$('.imgWrapServ').hover(
+		function() {
+		  	$(this).children('i').css("visibility", 'visible');
+			$(this).children('img').css({
+				"border": "1px solid #111",
+				"filter": "drop-shadow(2px 2px 3px #000)"
+			})
+		}, function() {
+			$(this).children('i').css("visibility", 'hidden');
+			$(this).children('img').css({
+				"border": "1px solid #555",
+				"filter": "drop-shadow(4px 4px 6px #666)"
+			})
+  	});
+
+		$('.imgWrapServ > i[name^="vs"]').click(function () {
+		var id = $(this).attr('name').substr(2);
+		$.post('index.php?r=imgservicio/updateajax&id=' + id, function(data) {
+			location.reload();
+		});
+	});
+
+	$('.imgWrapServ > i[name^="ds"]').click(function () {
+		var id = $(this).attr('name').substr(2);
+		$.post('index.php?r=imgservicio/deleteajax&id=' + id, function(data) {
 			location.reload();
 		});
 	});

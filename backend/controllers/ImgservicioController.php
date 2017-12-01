@@ -3,17 +3,18 @@
 namespace backend\controllers;
 
 use Yii;
-use backend\models\ImagenProfile;
-use backend\models\search\Imgprofile;
+use backend\models\ImagenServicio;
+use backend\models\search\ImagenServicioSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use yii\db\Expression;
 
+
 /**
- * ImgprofileController implements the CRUD actions for ImagenProfile model.
+ * ImgservicioController implements the CRUD actions for ImagenServicio model.
  */
-class ImgprofileController extends Controller
+class ImgservicioController extends Controller
 {
     /**
      * @inheritdoc
@@ -31,12 +32,12 @@ class ImgprofileController extends Controller
     }
 
     /**
-     * Lists all ImagenProfile models.
+     * Lists all ImagenServicio models.
      * @return mixed
      */
     public function actionIndex()
     {
-        $searchModel = new Imgprofile();
+        $searchModel = new ImagenServicioSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
@@ -46,7 +47,7 @@ class ImgprofileController extends Controller
     }
 
     /**
-     * Displays a single ImagenProfile model.
+     * Displays a single ImagenServicio model.
      * @param integer $id
      * @return mixed
      */
@@ -58,13 +59,13 @@ class ImgprofileController extends Controller
     }
 
     /**
-     * Creates a new ImagenProfile model.
+     * Creates a new ImagenServicio model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
     public function actionCreate()
     {
-        $model = new ImagenProfile();
+        $model = new ImagenServicio();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
@@ -95,21 +96,19 @@ class ImgprofileController extends Controller
     }
 
     /**
-     * Updates an existing ImagenProfile model.
-     * If update is successful, the browser will be redirected to the 'view' page.
+     * Updates an existing ImagenServicio model desde ajax.
+     * no devuelve nada
      * @param int $id
-     * @return mixed
      */
     public function actionUpdateajax($id)
     {
         $model = $this->findModel($id);
         $model->updated_at = new Expression('NOW()');
         $model->update();
-
     }
 
     /**
-     * Deletes an existing ImagenProfile model.
+     * Deletes an existing ImagenServicio model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param int $id
      * @return mixed
@@ -122,7 +121,7 @@ class ImgprofileController extends Controller
     }
 
     /**
-     * Deletes an existing ImagenProfile model.
+     * Deletes an existing ImagenServicio model desde ajax.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param int $id
      * @return mixed
@@ -137,15 +136,15 @@ class ImgprofileController extends Controller
     }
 
     /**
-     * Finds the ImagenProfile model based on its primary key value.
+     * Finds the ImagenServicio model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $id
-     * @return ImagenProfile the loaded model
+     * @return ImagenServicio the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = ImagenProfile::findOne($id)) !== null) {
+        if (($model = ImagenServicio::findOne($id)) !== null) {
             return $model;
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');

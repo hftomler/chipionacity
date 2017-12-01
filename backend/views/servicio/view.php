@@ -25,7 +25,7 @@ $this->params['breadcrumbs'][] = $this->title;
         ]) ?>
     </p>
 
-    <?php // Recuperamos todas las imágenes de perfil que ha tenido el usuario.?>
+    <?php // Recuperamos todas las imágenes de que tiene el servicio ?>
     <?php $imgs = $model->getImagenServicio($model->id); ?>
     <?= DetailView::widget([
         'model' => $model,

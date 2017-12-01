@@ -65,11 +65,11 @@ class Servicios extends \yii\db\ActiveRecord
             [['tipo_iva_id'], 'exist', 'skipOnError' => true, 'targetClass' => TiposIva::className(), 'targetAttribute' => ['tipo_iva_id' => 'id']],
             [['duracion_unidad_id'], 'exist', 'skipOnError' => true, 'targetClass' => UnidadesTiempo::className(), 'targetAttribute' => ['duracion_unidad_id' => 'id']],
             [['proveedor_id'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['proveedor_id' => 'id']],
-            ['fichImage', 'file', 'maxFiles' => 5],
+            ['fichImage', 'file', 'maxFiles' => 20],
             ['fichImage', 'image', 'extensions' => 'png, jpg',
                 'minWidth' => 640, 'maxWidth' => 800,
                 'minHeight' => 480, 'maxHeight' => 600,
-                'maxFiles' => 5
+                'maxFiles' => 20
             ],
         ];
     }
@@ -202,11 +202,11 @@ class Servicios extends \yii\db\ActiveRecord
         $strImgs = array();
             foreach ($imgs as $key) {
                 $strImgs[] = '<div class="imgWrapServ">
-                <i name="u' .$key->id . '" class="fa fa-eye tickImgServ invisible" aria-hidden="true" title="' . Yii::t('app', 'View Service Image: ') . $this->descripcion . '"></i>'
+                <i name="vs' .$key->id . '" class="fa fa-eye tickImgServ invisible" aria-hidden="true" title="' . Yii::t('app', 'View Service Image: ') . $this->descripcion . '"></i>'
                 . '<span class="fa fa-calendar fecha" aria-hidden="true"> ' . $formatter->asDate($key->created_at, 'short') .'</span>'
                 . Html::img($key->url,
                                     ['class' => 'imgServicio-sm img-thumbnail imgServ-thumbnail'])
-                . '<i name="d' .$key->id . '" class="fa fa-trash closeImgServ invisible" aria-hidden="true" title="' . Yii::t('app', 'Delete Service Image: ') . $this->descripcion . '"></i>
+                . '<i name="ds' .$key->id . '" class="fa fa-trash closeImgServ invisible" aria-hidden="true" title="' . Yii::t('app', 'Delete Service Image: ') . $this->descripcion . '"></i>
                 </div>';
             }
             $htmlResul = implode($strImgs);
