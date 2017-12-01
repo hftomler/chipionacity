@@ -12,6 +12,12 @@ use yii\filters\AccessControl;
 use common\models\PermissionHelpers;
 use yii\web\UploadedFile;
 use backend\models\ImagenServicio;
+use yii\imagine\Image;
+use Imagine\Gd;
+use Imagine\Image\Box;
+use Imagine\Image\BoxInterface;
+
+
 
 
 /**
@@ -74,7 +80,7 @@ class ServicioController extends Controller
 
     /**
      * Displays a single Servicios model.
-     * @param integer $id
+     * @param int $id
      * @return mixed
      */
     public function actionView($id)
@@ -103,12 +109,18 @@ class ServicioController extends Controller
                     $imgServicio->servicio_id = $model->id;
                     $nomImg = "";
                     $nomImg = 'imagenes/imgServ/' . $model->id . '-' .
-                    $file->baseName . '-' . $file->size .  '.' . $file->extension;
+                                $file->baseName . '-' . $file->size .  '.' . $file->extension;
+                    $nomThumb = 'imagenes/thumbs/' . $model->id . '-' .
+                                $file->baseName . '-' . $file->size .  '-thumb.' . $file->extension;
                     $imgServicio->url = $nomImg;
+                    $imgServicio->urlthumb = $nomThumb;
                     $imgServicio->save();
                     $model->fichImage = null;
                     $model->save();
                     $file->saveAs($nomImg);
+                    // Creamos la miniatura
+
+                    Image::getImagine()->open($nomImg)->thumbnail(new Box(144, 108))->save($nomThumb , ['quality' => 70]);
                 }
             }
             return $this->redirect(['index']);
@@ -122,7 +134,7 @@ class ServicioController extends Controller
     /**
      * Updates an existing Servicios model.
      * If update is successful, the browser will be redirected to the 'view' page.
-     * @param integer $id
+     * @param int $id
      * @return mixed
      */
     public function actionUpdate($id)
@@ -140,12 +152,20 @@ class ServicioController extends Controller
                     $imgServicio->servicio_id = $model->id;
                     $nomImg = "";
                     $nomImg = 'imagenes/imgServ/' . $model->id . '-' .
-                    $file->baseName . '-' . $file->size .  '.' . $file->extension;
+                                $file->baseName . '-' . $file->size .  '.' . $file->extension;
+                    $nomThumb = 'imagenes/thumbs/' . $model->id . '-' .
+                                $file->baseName . '-' . $file->size .  '-thumb.' . $file->extension;
                     $imgServicio->url = $nomImg;
-                    $imgServicio->save();
+                    $imgServicio->urlthumb = $nomThumb;
+                    if (!$imgServicio->existsUrl($model->id, $nomImg)) {
+                        var_dump("No Existe y se crea");
+                        $imgServicio->save();
+                    }
                     $model->fichImage = null;
                     $model->save();
                     $file->saveAs($nomImg);
+                    // Creamos la miniatura
+                    Image::getImagine()->open($nomImg)->thumbnail(new Box(144, 108))->save($nomThumb , ['quality' => 70]);
                 }
             }
             return $this->redirect(['index']);
@@ -159,7 +179,7 @@ class ServicioController extends Controller
     /**
      * Deletes an existing Servicios model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
-     * @param integer $id
+     * @param int $id
      * @return mixed
      */
     public function actionDelete($id)
@@ -172,7 +192,7 @@ class ServicioController extends Controller
     /**
      * Finds the Servicios model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
-     * @param integer $id
+     * @param int $id
      * @return Servicios the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */

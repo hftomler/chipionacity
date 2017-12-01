@@ -49,7 +49,7 @@ $isProveedor = User::isProveedor(Yii::$app->user->identity->id);
                 'format' => 'html',
                 'label' => Yii::t('app', 'Profile Img.'),
                 'value' => function ($data) {
-                    return Html::img(ImagenServicio::getLastImg($data['id']),
+                    return Html::img(ImagenServicio::getLastImgThumb($data['id']),
                         ['class' => 'imgServicio-xs img-thumbnail']);
                 },
             ],

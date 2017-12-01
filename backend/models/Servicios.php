@@ -67,8 +67,8 @@ class Servicios extends \yii\db\ActiveRecord
             [['proveedor_id'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['proveedor_id' => 'id']],
             ['fichImage', 'file', 'maxFiles' => 20],
             ['fichImage', 'image', 'extensions' => 'png, jpg',
-                'minWidth' => 640, 'maxWidth' => 800,
-                'minHeight' => 480, 'maxHeight' => 600,
+                'minWidth' => 240, 'maxWidth' => 800,
+                'minHeight' => 120, 'maxHeight' => 600,
                 'maxFiles' => 20
             ],
         ];
@@ -204,7 +204,7 @@ class Servicios extends \yii\db\ActiveRecord
                 $strImgs[] = '<div class="imgWrapServ">
                 <i name="vs' .$key->id . '" class="fa fa-eye tickImgServ invisible" aria-hidden="true" title="' . Yii::t('app', 'View Service Image: ') . $this->descripcion . '"></i>'
                 . '<span class="fa fa-calendar fecha" aria-hidden="true"> ' . $formatter->asDate($key->created_at, 'short') .'</span>'
-                . Html::img($key->url,
+                . Html::img($key->urlthumb,
                                     ['class' => 'imgServicio-sm img-thumbnail imgServ-thumbnail'])
                 . '<i name="ds' .$key->id . '" class="fa fa-trash closeImgServ invisible" aria-hidden="true" title="' . Yii::t('app', 'Delete Service Image: ') . $this->descripcion . '"></i>
                 </div>';

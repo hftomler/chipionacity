@@ -48,7 +48,7 @@ class ImgservicioController extends Controller
 
     /**
      * Displays a single ImagenServicio model.
-     * @param integer $id
+     * @param int $id
      * @return mixed
      */
     public function actionView($id)
@@ -129,8 +129,10 @@ class ImgservicioController extends Controller
     public function actionDeleteajax($id)
     {
         $imgBorrar = $this->findModel($id)->url;
-        if (!strstr($imgBorrar, 'imgAva')) {
+        $imgThumbBorrar = $this->findModel($id)->urlthumb;
+        if (!strstr($imgBorrar, 'imgServ')) {
             unlink($imgBorrar);
+            unlink($imgThumbBorrar);
         }
         $this->findModel($id)->delete();
     }
@@ -138,7 +140,7 @@ class ImgservicioController extends Controller
     /**
      * Finds the ImagenServicio model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
-     * @param integer $id
+     * @param int $id
      * @return ImagenServicio the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
