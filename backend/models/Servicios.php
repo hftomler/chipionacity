@@ -65,11 +65,11 @@ class Servicios extends \yii\db\ActiveRecord
             [['tipo_iva_id'], 'exist', 'skipOnError' => true, 'targetClass' => TiposIva::className(), 'targetAttribute' => ['tipo_iva_id' => 'id']],
             [['duracion_unidad_id'], 'exist', 'skipOnError' => true, 'targetClass' => UnidadesTiempo::className(), 'targetAttribute' => ['duracion_unidad_id' => 'id']],
             [['proveedor_id'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['proveedor_id' => 'id']],
-            ['fichImage', 'file', 'maxFiles' => 20],
+            ['fichImage', 'file', 'maxFiles' => 80],
             ['fichImage', 'image', 'extensions' => 'png, jpg',
-                'minWidth' => 240, 'maxWidth' => 800,
-                'minHeight' => 120, 'maxHeight' => 600,
-                'maxFiles' => 20
+                'minWidth' => 80, 'maxWidth' => 800,
+                'minHeight' => 60, 'maxHeight' => 600,
+                'maxFiles' => 80
             ],
         ];
     }

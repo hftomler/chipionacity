@@ -7,7 +7,7 @@ use yii\grid\GridView;
 /* @var $searchModel backend\models\search\ImagenServicioSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = Yii::t('app', 'Imagen Servicios');
+$this->title = Yii::t('app', 'Service image');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="imagen-servicio-index">

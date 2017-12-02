@@ -159,7 +159,6 @@ class ServicioController extends Controller
                     $imgServicio->url = $nomImg;
                     $imgServicio->urlthumb = $nomThumb;
                     if (!$imgServicio->existsUrl($model->id, $nomImg)) {
-                        var_dump("No Existe y se crea");
                         $imgServicio->save();
                     }
                     $model->fichImage = null;

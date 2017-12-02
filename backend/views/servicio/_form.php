@@ -82,14 +82,18 @@ $isProv = User::isProveedor(Yii::$app->user->identity->id);
                     [
                         'label' =>   '<i class="fa fa-info-circle tbn" aria-hidden="true"> ' . Yii::t('app', 'About Service Images') . '</i> ',
                         'content' =>
-                        '<p>
-                        Las imágenes que se muestran a su izquierda son las que actualmente están guardadas y enlazadas con el servicio <span class="text-primary">
-                        ' . $model->descripcion . '</span>.<br />
-                        Al situarse sobre ellas, aparecerán dos iconos:<br/>
-                        <i class="fa fa-eye text-success indented"></i> Este sirve para establecer la imagen como predeterminada, actualizando el campo updated_at.</br/>
-                        <i class="fa fa-trash text-danger indented"></i> Este elimina la imagen de la base de datos y también del servidor, por lo que se borra completamente.</br/>
-                        </p>
-                        '
+                        '<p>'
+                            . Yii::t('app', 'The images shown below are the ones that are currently saved and linked to the service ')
+                            . '<span class="text-primary">' . $model->descripcion . '</span>.<br />'
+                            . Yii::t('app', 'When placed on them, two icons will appear:')
+                            . '<br/><i class="fa fa-eye text-success indented"> </i> '
+                            . Yii::t('app', 'This is used to view the image and set it as a highlighted image.')
+                            . '</br/><i class="fa fa-trash text-danger indented"> </i> '
+                            .  Yii::t('app', 'This removes the image from the database and also from the server, so it is completely deleted.')
+                            . '</br/><i class="fa fa-download text-danger indented"> </i> '
+                            . Yii::t('app', 'Download a copy of the image if you want to keep it.')
+                            . '</br/>
+                        </p>'
                         // Descomentar lo siguiente si quiero que aparezca abierto por defecto
                         //'contentOptions' => ['class' => 'in'],
                     ],

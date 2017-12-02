@@ -22,7 +22,7 @@ echo Dialog::widget([
    'libName' => 'krajeeDialog',
    'options' => [
         'title' => '<i class="fa fa-exclamation-circle" aria-hidden="true"></i> '
-                  . Yii::t('app', 'Confirmación de borrado')
+                  . Yii::t('app', 'Delete confirm')
                   . ' <i class="fa fa-exclamation-circle" aria-hidden="true"></i>',
         'draggable' => true,
         'type' => Dialog::TYPE_PRIMARY,

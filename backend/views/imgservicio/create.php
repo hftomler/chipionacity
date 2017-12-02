@@ -7,7 +7,7 @@ use yii\helpers\Html;
 /* @var $model backend\models\ImagenServicio */
 
 $this->title = Yii::t('app', 'Create Imagen Servicio');
-$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Imagen Servicios'), 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Imagen de servicio'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="imagen-servicio-create">

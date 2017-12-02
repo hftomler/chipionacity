@@ -168,12 +168,18 @@ class m171202_111329_datos_iniciales extends Migration
         ]);
 
         $this->batchInsert('servicios', ['descripcion', 'precio', 'proveedor_id', 'duracion', 'duracion_unidad_id', 'puntuacion', 'num_votos', 'media_punt'], [
-            ['Vuelta en Barco por la Desembocadura del Guadalquivir', 15, 4, 6, 1, 128, 32, 4 ],
-            ['Paseo en bicicleta por la Vía Verde', 10, 5, 2, 1, 95, 25, 3.8 ],
-            ['Aprende a tocar la guitarra', 60, 4, 10, 2, 65, 26, 2.5 ],
-            ['Cena romántica a pie de corral de pesca', 75, 4, 10, 2, 65, 26, 2.5 ],
-            ['Subida al faro de Chipiona', 60, 5, 10, 2, 65, 26, 2.5 ],
-            ['Clases de tenis', 60, 5, 10, 2, 65, 26, 2.5 ],
+            ['Vuelta en Barco por la Desembocadura del Guadalquivir', 15, 4, 6, 1, 128, 32, 4],
+            ['Paseo en bicicleta por la Vía Verde', 10, 5, 2, 1, 95, 25, 3.8],
+            ['Aprende a tocar la guitarra', 60, 4, 10, 2, 65, 26, 2.5],
+            ['Cena romántica a pie de corral de pesca', 75, 4, 10, 2, 65, 26, 2.5],
+            ['Subida al faro de Chipiona', 30, 7, 10, 2, 65, 26, 2.5],
+            ['Clases de tenis', 12, 4, 10, 2, 65, 26, 2.5],
+            ['Museo del Moscatel', 6, 5, 10, 2, 65, 26, 2.5],
+            ['Visita al CINLAC', 14, 7, 10, 2, 65, 26, 2.5],
+            ['Almuerzo Chiringuito Las Delicias', 19, 4, 10, 2, 65, 26, 2.5],
+            ['Visita Isla Salmedina y Barco del Arroz', 45, 5, 10, 2, 65, 26, 2.5],
+            ['Museo del Santuario de Regla', 33, 5, 10, 2, 65, 26, 2.5],
+            ['Exposición Nuevo Mundo', 22, 7, 10, 2, 65, 26, 2.5],
         ]);
 
         $this->batchInsert('imagen_servicio', ['servicio_id', 'url', 'urlthumb'], [
@@ -197,6 +203,27 @@ class m171202_111329_datos_iniciales extends Migration
             [6, 'imagenes/imgServ/tenis2.jpg', 'imagenes/thumbs/tenis2-thumb.jpg'],
             [6, 'imagenes/imgServ/tenis3.jpg', 'imagenes/thumbs/tenis3-thumb.jpg'],
             [6, 'imagenes/imgServ/tenis4.jpg', 'imagenes/thumbs/tenis4-thumb.jpg'],
+            [7, 'imagenes/imgServ/marcielo.jpg', 'imagenes/thumbs/marcielo-thumb.jpg'],
+            [7, 'imagenes/imgServ/fondomar.jpg', 'imagenes/thumbs/fondomar-thumb.jpg'],
+            [7, 'imagenes/imgServ/abstracta.jpg', 'imagenes/thumbs/abstracta-thumb.jpg'],
+            [7, 'imagenes/imgServ/bosque.jpg', 'imagenes/thumbs/bosque-thumb.jpg'],
+            [8, 'imagenes/imgServ/bosquemontaña.jpg', 'imagenes/thumbs/bosquemontaña-thumb.jpg'],
+            [8, 'imagenes/imgServ/hoja.jpg', 'imagenes/thumbs/hoja-thumb.jpg'],
+            [8, 'imagenes/imgServ/gaviota.jpg', 'imagenes/thumbs/gaviota-thumb.jpg'],
+            [9, 'imagenes/imgServ/lago2.jpg', 'imagenes/thumbs/lago2-thumb.jpg'],
+            [9, 'imagenes/imgServ/dienteleon.jpg', 'imagenes/thumbs/dienteleon-thumb.jpg'],
+            [9, 'imagenes/imgServ/rocas.jpg', 'imagenes/thumbs/rocas-thumb.jpg'],
+            [10, 'imagenes/imgServ/lagoInvierno.jpg', 'imagenes/thumbs/lagoInvierno-thumb.jpg'],
+            [10, 'imagenes/imgServ/lagoHelado.jpg', 'imagenes/thumbs/lagoHelado-thumb.jpg'],
+            [10, 'imagenes/imgServ/lago.jpg', 'imagenes/thumbs/lago-thumb.jpg'],
+            [10, 'imagenes/imgServ/playa.jpg', 'imagenes/thumbs/trigal-thumb.jpg'],
+            [10, 'imagenes/imgServ/trigoseco.jpg', 'imagenes/thumbs/trigoseco-thumb.jpg'],
+            [11, 'imagenes/imgServ/trigalverde.jpg', 'imagenes/thumbs/trigalverde-thumb.jpg'],
+            [11, 'imagenes/imgServ/tractor.jpg', 'imagenes/thumbs/tractor-thumb.jpg'],
+            [11, 'imagenes/imgServ/fondowindows.jpg', 'imagenes/thumbs/fondowindows-thumb.jpg'],
+            [12, 'imagenes/imgServ/sunset.jpg', 'imagenes/thumbs/sunset-thumb.jpg'],
+            [12, 'imagenes/imgServ/mago.jpg', 'imagenes/thumbs/mago-thumb.jpg'],
+            [12, 'imagenes/imgServ/catarata.jpg', 'imagenes/thumbs/catarata-thumb.jpg'],
         ]);
 
         $this->batchInsert('estado_ventas',  ['estado'], [
