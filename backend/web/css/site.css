@@ -379,6 +379,8 @@ nav li:hover a:hover, nav li form button.btn-link:hover {
   display: inline-block;
   position: relative;
   height: 130px;
+  min-width: 142px;
+  max-width: 142px;
   margin-left: 15px;
   margin-bottom: 15px;
   font-size: 20px;

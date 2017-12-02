@@ -65,13 +65,11 @@ $(function(){
 		function() {
 		  	$(this).children('i').css("visibility", 'visible');
 			$(this).children('img').css({
-				"border": "1px solid #111",
 				"filter": "drop-shadow(2px 2px 3px #000)"
 			})
 		}, function() {
 			$(this).children('i').css("visibility", 'hidden');
 			$(this).children('img').css({
-				"border": "1px solid #555",
 				"filter": "drop-shadow(4px 4px 6px #666)"
 			})
   	});
