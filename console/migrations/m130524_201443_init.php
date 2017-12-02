@@ -337,6 +337,7 @@ class m130524_201443_init extends Migration
             [3, 'imagenes/imgAva/user-3.png'],
             [4, 'imagenes/imgAva/user-5.png'],
             [5, 'imagenes/imgAva/user-7.png'],
+            [6, 'imagenes/imgAva/user-10.png'],
 
         ]);
 
