@@ -73,39 +73,8 @@ $isProv = User::isProveedor(Yii::$app->user->identity->id);
         <?= Html::submitButton($model->isNewRecord ? Yii::t('app', 'Create') : Yii::t('app', 'Update'), ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
     </div>
     <?php ActiveForm::end(); ?>
-    <?php $iNR = $model->isNewRecord ? '1' : '0' ?>
-    <div id="infoImagenes" data-inr="<?= $iNR ?>" class="col-xs-12 well">
-        <div class="col-xs-12">
-            <?php echo Collapse::widget([
-                'class' => 'btn-primary',
-                'encodeLabels' => false,
-                'items' => [
-                    [
-                        'label' =>   '<i class="fa fa-info-circle tbn" aria-hidden="true"> ' . Yii::t('app', 'About Service Images') . '</i> ',
-                        'content' =>
-                        '<p>'
-                            . Yii::t('app', 'The images shown below are the ones that are currently saved and linked to the service ')
-                            . '<span class="text-primary">' . $model->descripcion . '</span>.<br />'
-                            . Yii::t('app', 'When placed on them, two icons will appear:')
-                            . '<br/><i class="fa fa-eye text-success indented"> </i> '
-                            . Yii::t('app', 'This is used to view the image and set it as a highlighted image.')
-                            . '</br/><i class="fa fa-trash text-danger indented"> </i> '
-                            .  Yii::t('app', 'This removes the image from the database and also from the server, so it is completely deleted.')
-                            . '</br/><i class="fa fa-download text-danger indented"> </i> '
-                            . Yii::t('app', 'Download a copy of the image if you want to keep it.')
-                            . '</br/>
-                        </p>'
-                        // Descomentar lo siguiente si quiero que aparezca abierto por defecto
-                        //'contentOptions' => ['class' => 'in'],
-                    ],
-                ]
-            ]);
-
-            ?>
-        </div>
-        <div class="col-xs-12">
-            <?= $model->getImagenServicio($model->id); ?>
-        </div>
-    </div>
+    <?php if (!$model->isNewRecord) {
+                echo $model->creaPanelImgServ($model->id);
+          } ?>
 
 </div>
