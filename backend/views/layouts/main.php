@@ -100,10 +100,10 @@ FontAwesomeAsset::register($this);
         }
         $profileId = RecordHelpers::userHas('profile') ? Profile::find()->where(['user_id' => Yii::$app->user->id])->one()->id : false;
         if ($profileId) {
-            $prof = ['label' => '<i class="fa fa-eye" aria-hidden="true"></i> Profile', 'url' => ['/profile/view']];
+            $prof = ['label' => '<i class="fa fa-eye" aria-hidden="true"></i> Profile', 'url' => Url::toRoute(['profile/view', 'id' => $profileId])];
             $imgNav = ImagenProfile::getLastImg($profileId);
         } else {
-            $prof = ['label' => '<i class="fa fa-plus-square" aria-hidden="true"></i> Profile', 'url' => ['/profile/view']];
+            $prof = ['label' => '<i class="fa fa-plus-square" aria-hidden="true"></i> Profile', 'url' => ['/profile/create']];
             $imgNav = "imagenes/imgPerfil/sinPerfil.jpg";
         }
         $menuItems[] = [ 'label' => '<img src="' . $imgNav . '" class="imgPerfilInicio-xs img-circle" title="' . Yii::$app->user->identity->username . '"/>',

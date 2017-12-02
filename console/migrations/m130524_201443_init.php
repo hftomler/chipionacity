@@ -230,56 +230,11 @@ class m130524_201443_init extends Migration
                 Yii::$app->security->generatePasswordHash('123456'),
                 Yii::$app->security->generateRandomString(), false
             ],
+            ['ProveedorAdmin', 'proveedor3@gmail.com', 25, 20, 10,
+                Yii::$app->security->generatePasswordHash('123456'),
+                Yii::$app->security->generateRandomString(), true
+            ],
         ]);
-
-        /*$user = new User();
-        $user->username = 'SuperAdmin';
-        $user->email = 'sa@gmail.com';
-        $user->rol_id = 30; // superAdmin
-        $user->user_type_id = 20; // suscrito
-        $user->setPassword('123456');
-        $user->generateAuthKey();
-        $user->save() ? $user : null;
-
-        $user = new User();
-        $user->username = 'Administrador';
-        $user->email = 'admin@gmail.com';
-        $user->rol_id = 25; // usuario
-        $user->user_type_id = 20; // gratuito
-        $user->status_id = 10; // Activo (Valor defecto, pero lo pongo a tit. inform.)
-        $user->setPassword('123456');
-        $user->generateAuthKey();
-        $user->save() ? $user : null;
-
-        $user = new User();
-        $user->username = 'Proveedor1';
-        $user->email = 'proveedor1@gmail.com';
-        $user->rol_id = 20; // proveedor
-        $user->user_type_id = 20; // suscrito
-        $user->proveedor = true;
-        $user->setPassword('123456');
-        $user->generateAuthKey();
-        $user->save() ? $user : null;
-
-        $user = new User();
-        $user->username = 'InvitadoActivo';
-        $user->email = 'invitadoActivo@gmail.com';
-        $user->rol_id = 10; // usuario
-        $user->user_type_id = 10; // gratuito
-        $user->status_id = 10; // Activo (Valor defecto, pero lo pongo a tit. inform.)
-        $user->setPassword('123456');
-        $user->generateAuthKey();
-        $user->save() ? $user : null;
-
-        $user = new User();
-        $user->username = 'InvitadoInactivo';
-        $user->email = 'invitadoInactivo@gmail.com';
-        $user->rol_id = 10; // usuario
-        $user->user_type_id = 10; // gratuito
-        $user->status_id = 5; // Inactivo
-        $user->setPassword('123456');
-        $user->generateAuthKey();
-        $user->save() ? $user : null;*/
 
         $this->createTable('gender', [
             'id'=> $this->primaryKey(),
@@ -446,9 +401,7 @@ class m130524_201443_init extends Migration
             'CASCADE'
         );
 
-        $this->batchInsert('servicios', ['descripcion', 'precio', 'proveedor_id',
-                                         'duracion', 'duracion_unidad_id',
-                                         'puntuacion', 'num_votos', 'media_punt'], [
+        $this->batchInsert('servicios', ['descripcion', 'precio', 'proveedor_id', 'duracion', 'duracion_unidad_id', 'puntuacion', 'num_votos', 'media_punt'], [
             ['Vuelta en Barco por la Desembocadura del Guadalquivir', 15, 4, 6, 1, 128, 32, 4 ],
             ['Paseo en bicicleta por la Vía Verde', 10, 5, 2, 1, 95, 25, 3.8 ],
             ['Aprende a tocar la guitarra', 60, 4, 10, 2, 65, 26, 2.5 ],

@@ -7,6 +7,7 @@ use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
 use common\models\LoginForm;
 use common\models\PermissionHelpers;
+use common\models\User;
 
 /**
  * Site controller
@@ -31,7 +32,7 @@ class SiteController extends Controller
                         'allow' => true,
                         'roles' => ['@'],
                         'matchCallback' => function ($rule, $action) {
-                            return PermissionHelpers::requireMinRol('admin') && PermissionHelpers::requireStatus('Activo');
+                            return PermissionHelpers::requireMinRol('proveedor') && PermissionHelpers::requireStatus('Activo');
                         }
                     ],
                     [
@@ -69,7 +70,11 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
-        return $this->render('index');
+        if (User::isProveedor(Yii::$app->user->identity->id) && !PermissionHelpers::RequireMinRol('admin')) {
+            $this->redirect(['/servicio/index']);
+        } else {
+            return $this->render('index');
+        }
     }
 
     /**
