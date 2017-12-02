@@ -236,27 +236,16 @@ nav li:hover a:hover, nav li form button.btn-link:hover {
 }
 
 .imgServicio-xs {
-    margin-left: 10px;
-    height: 50px;
-    border: 1px solid #555;
-    filter: drop-shadow(2px 2px 3px #666);
+    height: 48px;
+    border: none;
 }
 
 .imgServicio-xs:hover {
-    border: 1px solid #111;
-    filter: drop-shadow(1px 1px 2px #000);
+
 }
 
 .imgServicio-sm {
     height: 100%;
-    border: 1px solid #555;
-    filter: drop-shadow(4px 4px 6px #666);
-    z-index: 1;
-}
-
-.imgServicio-sm:hover {
-    border: 1px solid #111;
-    filter: drop-shadow(2px 2px 3px #000);
     z-index: 1;
 }
 
@@ -335,6 +324,11 @@ nav li:hover a:hover, nav li form button.btn-link:hover {
     text-align: center;
 }
 
+.titUpdate {
+    text-align: center;
+    color: #286090;
+}
+
 .indented {
     text-indent: 20px;
 }
@@ -376,15 +370,37 @@ nav li:hover a:hover, nav li form button.btn-link:hover {
 }
 
 .imgWrapServ {
-  display: inline-block;
-  position: relative;
-  height: 130px;
-  min-width: 142px;
-  max-width: 142px;
-  margin-left: 15px;
-  margin-bottom: 15px;
-  font-size: 20px;
-  padding: 0;
+    display: inline-block;
+    position: relative;
+    background-color: #ffffff;
+    border: 1px solid #555;
+    border-radius: 4px;
+    height: 130px;
+    width: 140px;
+    margin-left: 15px;
+    margin-bottom: 15px;
+    font-size: 20px;
+    text-align: center;
+    padding: 0;
+    filter: drop-shadow(4px 4px 6px #666);
+}
+
+.imgWrapServ-xs {
+    display: inline-block;
+    position: relative;
+    background-color: #ffffff;
+    border: 1px solid #555;
+    border-radius: 4px;
+    height: 50px;
+    width: 66px;
+    text-align: center;
+    padding: 0;
+    filter: drop-shadow(2px 2px 3px #666);
+}
+
+.imgWrapServ-xs:hover {
+    filter: drop-shadow(1px 1px 1px #000);
+    border: 1px solid #222;
 }
 
 .fecha {

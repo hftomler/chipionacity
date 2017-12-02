@@ -5,6 +5,7 @@ use yii\widgets\ActiveForm;
 use kartik\file\FileInput;
 use common\models\User;
 use yii\bootstrap\Collapse;
+//use yii\base\View;
 
 /* @var $this yii\web\View */
 /* @var $model backend\models\Servicios */
@@ -72,8 +73,8 @@ $isProv = User::isProveedor(Yii::$app->user->identity->id);
         <?= Html::submitButton($model->isNewRecord ? Yii::t('app', 'Create') : Yii::t('app', 'Update'), ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
     </div>
     <?php ActiveForm::end(); ?>
-
-    <div class="col-xs-12 well">
+    <?php $iNR = $model->isNewRecord ? '1' : '0' ?>
+    <div id="infoImagenes" data-inr="<?= $iNR ?>" class="col-xs-12 well">
         <div class="col-xs-12">
             <?php echo Collapse::widget([
                 'class' => 'btn-primary',

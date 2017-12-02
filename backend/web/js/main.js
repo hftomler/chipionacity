@@ -64,12 +64,12 @@ $(function(){
 	$('.imgWrapServ').hover(
 		function() {
 		  	$(this).children('i').css("visibility", 'visible');
-			$(this).children('img').css({
+			$(this).css({
 				"filter": "drop-shadow(2px 2px 3px #000)"
 			})
 		}, function() {
 			$(this).children('i').css("visibility", 'hidden');
-			$(this).children('img').css({
+			$(this).css({
 				"filter": "drop-shadow(4px 4px 6px #666)"
 			})
   	});
@@ -82,14 +82,13 @@ $(function(){
 	});
 
 	$('.imgWrapServ > i[name^="ds"]').click(function () {
-
+		var item = $(this);
 	    krajeeDialog.confirm('¿Seguro que desea borrar esta imagen? Esta acción no tiene vuelta atrás. La imagen será definitivamente eliminada.', function(out){
 	        if(out) {
-				var id = $('.imgWrapServ > i[name^="ds"]').attr('name').substr(2);
+				var id = item.attr('name').substr(2);
 				$.post('index.php?r=imgservicio/deleteajax&id=' + id, function(data) {
 					location.reload();
 				});
-	            alert('Yes'); // or do something on confirmation
 	        }
 	    });
 	});
@@ -137,6 +136,9 @@ $(function(){
     });
 
 	$(document).ready( function() {
+		if ($('#infoImagenes').attr('data-inr') == '1') {
+			$('#infoImagenes').remove();
+		}
 		indice = leerCookie("inicio");
 		setTimeout(animaRibbons(indice), 5000);
 	});

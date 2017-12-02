@@ -206,7 +206,7 @@ class Servicios extends \yii\db\ActiveRecord
                 . '<span class="fa fa-calendar fecha" aria-hidden="true"> ' .
                         $formatter->asDate($key->created_at, 'short') .'</span>'
                 . Html::img($key->urlthumb,
-                                    ['class' => 'imgServicio-sm img-thumbnail imgServ-thumbnail'])
+                                    ['class' => 'imgServicio-sm imgServ-thumbnail'])
                                     . '<i name="ds' .$key->id . '"
                                     class="fa fa-trash closeImgServ invisible" aria-hidden="true"
                                     title="' . Yii::t('app', 'Delete Service Image: ')
