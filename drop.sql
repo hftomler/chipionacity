@@ -22,4 +22,3 @@ drop table "estado_ventas";
 drop table "unidades_tiempo";
 drop table "comentarios";
 drop table "votaciones";
-drop table "migration";
