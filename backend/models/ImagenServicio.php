@@ -12,6 +12,7 @@ use yii\db\Expression;
  *
  * @property integer $id
  * @property integer $servicio_id
+ * @property integer $descripcion
  * @property string $url
  * @property string $urlthumb
  * @property string $created_at
@@ -53,6 +54,7 @@ class ImagenServicio extends \yii\db\ActiveRecord
     {
         return [
             [['servicio_id'], 'integer'],
+            [['descripcion'], 'string', 'max' => 50],
             [['url'], 'string', 'max' => 255],
             [['urlthumb'], 'string', 'max' => 255],
         ];
@@ -66,6 +68,7 @@ class ImagenServicio extends \yii\db\ActiveRecord
         return [
             'id' => Yii::t('app', 'Id'),
             'servicio_id' => Yii::t('app', 'Service Id'),
+            'descripcion' => Yii::t('app', 'Descripion'),
             'url' => Yii::t('app', 'Url'),
             'url' => Yii::t('app', 'Url Thumbnail'),
             'created_at' => Yii::t('app', 'Created At'),
