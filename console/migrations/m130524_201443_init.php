@@ -311,6 +311,7 @@ class m130524_201443_init extends Migration
         $this->createTable('imagen_servicio', [
             'id'=> $this->primaryKey(),
             'servicio_id' =>$this->integer()->notNull(),
+            'descripcion' => $this->string(50)->notNull(),
             'url' => $this->string(255)->notNull(),
             'urlthumb' => $this->string(255)->notNull(),
             'created_at' => $this->datetime()->notNull()->defaultExpression('now()'),

@@ -53,7 +53,17 @@ $isProveedor = User::isProveedor(Yii::$app->user->identity->id);
                     '</div>';
                 },
             ],
-            'activo:boolean',
+            ['attribute' => 'activo',
+                'contentOptions' => ['class' => 'text-center'],
+                'format' => 'html',
+                'value' => function ($data) {
+                    $valor = '<i class="fa fa-check-square-o text-primary unoymedio"></i>';
+                    if (!$data->activo) {
+                        $valor = '<i class="fa fa-times-circle text-danger unoymedio"></i>';
+                    }
+                    return $valor;
+                }
+            ],
             // 'tipo_iva_id',
             // 'duracion',
             // 'duracion_unidad_id',
