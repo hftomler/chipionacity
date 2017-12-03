@@ -34,17 +34,30 @@ $isProveedor = User::isProveedor(Yii::$app->user->identity->id);
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
+        'options' => ['class' => 'grid-view gvCenter'],
         'columns' => [
-            ['class' => 'yii\grid\SerialColumn'],
-
-            'id',
-            'servicio_id',
-            'descripcion',
-            'url:url',
-            'urlthumb:url',
-            // 'created_at',
-            // 'updated_at',
-
+            ['attribute'=>'servicioLink', 'format'=>'raw'],
+            ['attribute' => 'descripcion',
+                'format' => 'html',
+                'label' =>  Yii::t('app', 'Description'),
+                'format'=>'raw',
+                'value' => function ($data) {
+                    return '<input class="form-control" name="ced' . $data->id . '" value="' . $data->descripcion . '" />';
+                }
+            ],
+            ['attribute' => 'ultImg',
+                'contentOptions' => ['class' => 'text-center'],
+                'format' => 'html',
+                'label' => Yii::t('app', 'Profile Img.'),
+                'value' => function ($data) {
+                    return '<div class="imgWrapServ-xs">'
+                              . Html::img($data['urlthumb'],
+                                  ['class' => 'imgServicio-xs img-thumbnail',
+                                   'title' => $data['descripcion']
+                                  ]) .
+                    '</div>';
+                },
+            ],
             ['class' => 'yii\grid\ActionColumn'],
         ],
     ]); ?>

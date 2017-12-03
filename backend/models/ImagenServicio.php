@@ -5,6 +5,8 @@ namespace backend\models;
 use Yii;
 use yii\db\ActiveRecord;
 use yii\db\Expression;
+use yii\helpers\Url;
+use yii\helpers\Html;
 
 
 /**
@@ -90,6 +92,22 @@ class ImagenServicio extends \yii\db\ActiveRecord
      */
     private static function getId($servicio_id) {
         return ImagenServicio::find()->where(['servicio_id' => $servicio_id])->one();
+    }
+
+    /**
+     * @return string descripcion del servicio
+     */
+    private function getDescripcionServicio() {
+        return $this->servicio->descripcion;
+    }
+
+    /**
+     * @getServicioLink
+     */
+    public function getServicioLink() {
+        $url = Url::to(['servicio/view', 'id'=>$this->servicio_id]);
+        $options = [];
+        return Html::a($this->getDescripcionServicio(), $url, $options);
     }
 
     /**

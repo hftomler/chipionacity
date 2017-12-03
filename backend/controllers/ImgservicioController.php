@@ -38,6 +38,7 @@ class ImgservicioController extends Controller
     {
         $searchModel = new ImagenServicioSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        $dataProvider->pagination->pageSize = 10;
 
         return $this->render('index', [
             'searchModel' => $searchModel,
@@ -92,6 +93,21 @@ class ImgservicioController extends Controller
                 'model' => $model,
             ]);
         }
+    }
+
+    /**
+     * Updates an existing ImagenServicio model->description.
+     * @param int $id
+     * @param string $desc
+     * @return mixed
+     */
+    public function actionUpdatedescajax($id, $desc)
+    {
+        var_dump($id, $desc);
+        $model = $this->findModel($id);
+        $model->descripcion = $desc;
+        $model->update();
+
     }
 
     /**

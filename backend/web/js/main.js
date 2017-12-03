@@ -93,6 +93,17 @@ $(function(){
 	    });
 	});
 
+	// Actualizar la descripción de la imagen de servicio desde el GridView
+
+	$('.grid-view input[name^="ced"]').change(function () {
+		var codigo = $(this).attr('name').substr(3);
+		$(this).serialize();
+		var desc = $(this).val();
+		$.post('index.php?r=imgservicio/updatedescajax&id=' + codigo + '&desc=' + desc, function(data) {
+			location.reload();
+		});
+	});
+
 	//Mapear el click de la imagen de perfil hacia el botón de fileUpload que está oculto en Create y Update profile
 	$("#swImgPerfil").click(function () {
 		if ( $("#checkAvatar").is(':checked')) {
