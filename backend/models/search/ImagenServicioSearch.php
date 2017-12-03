@@ -6,6 +6,7 @@ use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
 use backend\models\ImagenServicio;
+use common\models\User;
 
 /**
  * ImagenServicioSearch represents the model behind the search form about `backend\models\ImagenServicio`.
@@ -19,7 +20,7 @@ class ImagenServicioSearch extends ImagenServicio
     {
         return [
             [['id', 'servicio_id'], 'integer'],
-            [['url', 'created_at', 'updated_at'], 'safe'],
+            [['descripcion', 'url', 'urlthumb', 'created_at', 'updated_at'], 'safe'],
         ];
     }
 
@@ -41,7 +42,11 @@ class ImagenServicioSearch extends ImagenServicio
      */
     public function search($params)
     {
-        $query = ImagenServicio::find();
+        $isProv = User::isProveedor(Yii::$app->user->identity->id);
+        ($isProv) ? $query = ImagenServicio::find()->joinWith('servicio')->where(['proveedor_id' => Yii::$app->user->identity->id]) :
+                    $query = ImagenServicio::find();
+
+
 
         // add conditions that should always apply here
 
@@ -58,6 +63,7 @@ class ImagenServicioSearch extends ImagenServicio
         }
 
         // grid filtering conditions
+
         $query->andFilterWhere([
             'id' => $this->id,
             'servicio_id' => $this->servicio_id,
@@ -65,7 +71,9 @@ class ImagenServicioSearch extends ImagenServicio
             'updated_at' => $this->updated_at,
         ]);
 
-        $query->andFilterWhere(['like', 'url', $this->url]);
+        $query->andFilterWhere(['like', 'descripcion', $this->descripcion])
+            ->andFilterWhere(['like', 'url', $this->url])
+            ->andFilterWhere(['like', 'urlthumb', $this->urlthumb]);
 
         return $dataProvider;
     }

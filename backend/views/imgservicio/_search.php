@@ -19,11 +19,15 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'servicio_id') ?>
 
+    <?= $form->field($model, 'descripcion') ?>
+
     <?= $form->field($model, 'url') ?>
 
-    <?= $form->field($model, 'created_at') ?>
+    <?= $form->field($model, 'urlthumb') ?>
 
-    <?= $form->field($model, 'updated_at') ?>
+    <?php // echo $form->field($model, 'created_at') ?>
+
+    <?php // echo $form->field($model, 'updated_at') ?>
 
     <div class="form-group">
         <?= Html::submitButton(Yii::t('app', 'Search'), ['class' => 'btn btn-primary']) ?>

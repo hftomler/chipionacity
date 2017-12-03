@@ -10,7 +10,6 @@ use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use yii\db\Expression;
 
-
 /**
  * ImgservicioController implements the CRUD actions for ImagenServicio model.
  */
@@ -122,7 +121,7 @@ class ImgservicioController extends Controller
 
     /**
      * Deletes an existing ImagenServicio model desde ajax.
-     * @param integer $id
+     * @param int $id
      * @return mixed
      */
     public function actionDeleteajax($id)
