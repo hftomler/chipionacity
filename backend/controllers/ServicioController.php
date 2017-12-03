@@ -108,6 +108,7 @@ class ServicioController extends Controller
                     // Creamos el registro de ImagenServicio y Guardo la trayectoria de la imagen en el campo url.
                     $imgServicio = new ImagenServicio();
                     $imgServicio->servicio_id = $model->id;
+                    $imgServicio->descripcion = $file->baseName;
                     $nomImg = "";
                     $nomImg = 'imagenes/imgServ/' . $model->id . '-' .
                                 $file->baseName . '-' . $file->size .  '.' . $file->extension;
@@ -151,6 +152,7 @@ class ServicioController extends Controller
                     // Creamos el registro de ImagenServicio y Guardo la trayectoria de la imagen en el campo url.
                     $imgServicio = new ImagenServicio();
                     $imgServicio->servicio_id = $model->id;
+                    $imgServicio->descripcion = $file->baseName;
                     $nomImg = "";
                     $nomImg = 'imagenes/imgServ/' . $model->id . '-' .
                                 $file->baseName . '-' . $file->size .  '.' . $file->extension;

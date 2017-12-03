@@ -66,7 +66,7 @@ class ImagenServicioSearch extends ImagenServicio
 
         $query->andFilterWhere([
             'id' => $this->id,
-            'servicio_id' => $this->servicio_id,
+            'servicio_id' => (!isset($serv_id)) ? $this->servicio_id : $serv_id,
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
         ]);

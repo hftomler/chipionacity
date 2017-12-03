@@ -25,6 +25,20 @@ $isProveedor = User::isProveedor(Yii::$app->user->identity->id);
             }
         ?>
     </h1>
+        <div id="balloon1" class="opener box"
+                data-addoverlay="false"
+                data-css="balloon-large"
+                data-highlight="false"
+                data-overlaycolor="linear-gradient(135deg, #337ab7 0%, #ff7e00 100%)"
+                data-overlayopacity=".10"
+                data-bgcolor="#337ab7"
+                data-forceposition="up"
+                data-balloon= "Haz clic en <i class='fa fa-user-circle-o' aria-hidden='true'></i>
+                                         para cargar una imagen de perfil o seleccionar una de la galería"
+                data-timer="6000"
+                data-onlyonce="true"
+                style="">
+        </div>
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'options' => ['class' => 'grid-view gvCenter'],
@@ -47,10 +61,10 @@ $isProveedor = User::isProveedor(Yii::$app->user->identity->id);
                 'format' => 'html',
                 'label' => Yii::t('app', 'Profile Img.'),
                 'value' => function ($data) {
-                    return '<div class="imgWrapServ-xs">'
+                    return '<div class="imgWrapServ-xs"><a href="index.php?ImagenServicioSearch[servicio_id]=' . $data->id . '&r=imgservicio%2Findex">'
                               . Html::img(ImagenServicio::getLastImgThumb($data['id']),
                                   ['class' => 'imgServicio-xs img-thumbnail']) .
-                    '</div>';
+                    '</a></div>';
                 },
             ],
             ['attribute' => 'activo',

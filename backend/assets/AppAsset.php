@@ -14,12 +14,14 @@ class AppAsset extends AssetBundle
     public $css = [
         'css/site.css',
         'css/jquery-confirm.min',
+        'css/mb.balloon.css',
     ];
     public $js = [
         'js/main.js',
         'js/avatar.js',
         'js/tilt.jquery.js',
         'js/jquery-confirm.min.js',
+        'js/jquery.mb.balloon.js',
     ];
     public $depends = [
         'yii\web\YiiAsset',

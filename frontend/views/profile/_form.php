@@ -45,14 +45,14 @@ use backend\models\ImagenProfile;
                 data-timer="6000"
                 data-onlyonce="true"
                 style="">
-            </div>
-            <?php $imgPerfil = ImagenProfile::getLastImg($model->id); ?>
-            <?= Html::img($imgPerfil, [ 'id' => 'swImgPerfil',
-                                                'class' => 'imgPerfil-md img-circle img-thumbnail',
-                                                'title' => 'Avatar - Clic para cambiar',
-                                                'alt' => 'Imagen de perfil'
-                                            ]);
-            ?>
+        </div>
+        <?php $imgPerfil = ImagenProfile::getLastImg($model->id); ?>
+        <?= Html::img($imgPerfil, [ 'id' => 'swImgPerfil',
+                                            'class' => 'imgPerfil-md img-circle img-thumbnail',
+                                            'title' => 'Avatar - Clic para cambiar',
+                                            'alt' => 'Imagen de perfil'
+                                        ]);
+        ?>
         <div class="check-sm">
             <input id="checkAvatar" name="checkAvatar" class="check" type="checkbox" checked="cheked"> <?= Yii::t('app', 'Avatar List') ?>
             <input id="valueAvatar" name="valueAvatar" type="hidden" class="form-control" />

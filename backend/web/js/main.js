@@ -176,4 +176,9 @@ $(function(){
 		}
 	}
 
+	jQuery.balloon.init();
+	setTimeout(function(){
+		$("#balloon1").showBalloon();
+	},2000);
+
 });
