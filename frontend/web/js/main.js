@@ -116,4 +116,9 @@ $(function(){
     setTimeout(function(){
 	  	$("#balloon2").showBalloon();
   	},7000);
+
+	$(document).ready( function () {
+
+		$('.select2-selection__arrow').remove();
+	});
 });

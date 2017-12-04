@@ -372,3 +372,19 @@ input[type=checkbox].check {
 .profile-view a.btn {
     margin-right: 10px;
 }
+
+.select2-bootstrap-prepend > .input-group-addon:first-child {
+    background-color: #ff7e00;
+    color: #ffffff;
+    padding: 5px 16px;
+}
+
+.select2-bootstrap-prepend > .input-group-addon:last-child {
+    background-color: #337ab7;
+    color: #ffffff;
+    padding: 5px 16px;
+}
+
+.unoymedio {
+    font-size: 1.5em !important;
+}

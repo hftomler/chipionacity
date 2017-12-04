@@ -253,4 +253,12 @@ class Servicios extends \yii\db\ActiveRecord
 
     }
 
+    /**
+     * Obtener el listado de paises para Dropdown
+    */
+    public static function getListaDescripciones() {
+        $droptions = self::find()->orderBy('descripcion')->asArray()->all();
+        return ArrayHelper::map($droptions, 'id', 'descripcion');
+    }
+
 }
