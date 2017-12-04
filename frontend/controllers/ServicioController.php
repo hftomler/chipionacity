@@ -217,15 +217,16 @@ class ServicioController extends Controller
         $out = ['results' => ['id' => '', 'descripcion' => '', 'url' => '']];
         if (!is_null($q)) {
             $query = new Query;
-            $query->select('id, descripcion AS text')
+            $query->select('id, descripcion AS text, precio')
                 ->from('servicios')
                 ->where(['like', 'descripcion', $q])
+                ->orderBy('precio')
                 ->limit(20);
             $command = $query->createCommand();
             $data = $command->queryAll();
             $final = [];
             foreach ($data as $key) {
-                $final[] = ['id' => $key['id'], 'text' => $key['text'], 'url' => ImagenServicio::getLastImgThumb($key['id'])];
+                $final[] = ['id' => $key['id'], 'text' => $key['text'], 'url' => ImagenServicio::getLastImgThumb($key['id']), 'precio' => $key['precio']];
             }
             $out['results'] = array_values($final);
             //var_dump($out['results']);die();

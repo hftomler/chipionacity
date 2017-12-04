@@ -28,7 +28,7 @@ $this->title = 'My Yii Application';
             <?php
                 $model = new Servicios();
                 echo $form->field($model, 'id')->widget(Select2::classname(), [
-                    'initValueText' => "hola esto es una prueba con imágenes", // set the initial display text
+                    'initValueText' => "", // set the initial display text
                     'options' => ['placeholder' => '¿Estás buscando algo que hacer ...?'],
                     'pluginOptions' => [
                         'allowClear' => true,
@@ -43,12 +43,14 @@ $this->title = 'My Yii Application';
                         ],
                         'escapeMarkup' => new JsExpression('function (markup) { return markup; }'),
                         'templateResult' => new JsExpression('function(results) {
-                                                                img = "<img class=\'imgServicio-xs img-thumbnail\' src=\'" + results.url + "\'/>" + results.text;
+                                                                img = "<div class=\'imgWrapServ-xs\'>" +
+                                                                           "<img class=\'imgServicio-xs img-thumbnail\' src=\'" + results.url + "\'/>" +
+                                                                       "</div>" + results.text + "<i class=\'pull-right\'>" + results.precio + "</i>";
                                                                 return img;
                                                             }'),
                         'templateSelection' => new JsExpression('function (results) { return results.text; }'),
                     ],
-                ]);?>
+                ])->label('');?>
             </div>
         <?php ActiveForm::end(); ?></div>
     </div>
