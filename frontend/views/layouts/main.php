@@ -100,7 +100,7 @@ FontAwesomeAsset::register($this);
 <footer class="footer">
     <div class="container">
         <div class="row align-items-center">
-            <div class="pull-left text-left col-xs-4">&copy; My Company <?= date('Y') ?></div>
+            <div class="pull-left text-left col-xs-4">&copy; Chipiona City<?= date('Y') ?></div>
             <div class="text-center col-xs-4">
                 <div class="small col-xs-4"><?= Yii::t('app', "Languages:") ?> </div>
                 <?php

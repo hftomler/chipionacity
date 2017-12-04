@@ -5,6 +5,8 @@ use kartik\helpers\Html;
 use yii\bootstrap\ActiveForm;
 use kartik\select2\Select2;
 use backend\models\Servicios;
+use yii\web\JsExpression;
+use yii\helpers\Url;
 /* @var $this yii\web\View */
 
 
@@ -22,24 +24,31 @@ $this->title = 'My Yii Application';
     <div class="body-content">
         <div class="col-xs-12"><?php $form = ActiveForm::begin(['options'=> ['enctype' => 'multipart/form-data']]); ?>
             <div class="col-xs-8 col-xs-offset-2">
-                <?php $model = new Servicios(); ?>
-                <?= $form->field($model, 'id')->widget(Select2::classname(), [
-                            'data' => $model->listaDescripciones,
-                            'options' => ['placeholder' => '¿Qué buscas  ...?'],
-                            'size' => Select2::LARGE,
-                            'pluginOptions' => [
-                                'allowClear' => true
-                            ],
-                            'addon' => [
-                                'prepend' => [
-                                    'content' => Html::icon('lightbulb-o', ['class' => 'unoymedio'], 'fa fa-')
-                                ],
-                                'append' => [
-                                    'content' => Html::icon('search', ['class' => 'unoymedio'], 'fa fa-')
-                                ]
-                            ],
-                        ])->label('');
-                ?>
+
+            <?php
+                $model = new Servicios();
+                echo $form->field($model, 'id')->widget(Select2::classname(), [
+                    'initValueText' => "hola esto es una prueba con imágenes", // set the initial display text
+                    'options' => ['placeholder' => '¿Estás buscando algo que hacer ...?'],
+                    'pluginOptions' => [
+                        'allowClear' => true,
+                        'minimumInputLength' => 3,
+                        'language' => [
+                            'errorLoading' => new JsExpression("function () { return 'Esperando resultados...'; }"),
+                        ],
+                        'ajax' => [
+                            'url' => Url::to('index.php?r=servicio/listaservicios'),
+                            'dataType' => 'json',
+                            'data' => new JsExpression('function(params) { return {q:params.term}; }')
+                        ],
+                        'escapeMarkup' => new JsExpression('function (markup) { return markup; }'),
+                        'templateResult' => new JsExpression('function(results) {
+                                                                img = "<img class=\'imgServicio-xs img-thumbnail\' src=\'" + results.url + "\'/>" + results.text;
+                                                                return img;
+                                                            }'),
+                        'templateSelection' => new JsExpression('function (results) { return results.text; }'),
+                    ],
+                ]);?>
             </div>
         <?php ActiveForm::end(); ?></div>
     </div>

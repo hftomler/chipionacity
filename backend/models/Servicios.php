@@ -8,7 +8,6 @@ use yii\helpers\Html;
 use common\models\PermissionHelpers;
 use yii\helpers\ArrayHelper;
 use yii\bootstrap\Collapse;
-
 /**
  * This is the model class for table "servicios".
  *
@@ -256,8 +255,12 @@ class Servicios extends \yii\db\ActiveRecord
     /**
      * Obtener el listado de paises para Dropdown
     */
-    public static function getListaDescripciones() {
-        $droptions = self::find()->orderBy('descripcion')->asArray()->all();
+    public static function getListadescripciones() {
+        $droptions = self::find()->orderBy('descripcion')->all();
+        foreach($droptions as $key) {
+            $imagen = '<img src="' . ImagenServicio::getLastImgThumb($key->id) . '" />';
+            $key->descripcion = '<span class="title">' . $key->descripcion . '</span>' . $imagen;
+        }
         return ArrayHelper::map($droptions, 'id', 'descripcion');
     }
 

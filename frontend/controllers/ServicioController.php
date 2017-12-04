@@ -1,6 +1,6 @@
 <?php
 
-namespace backend\controllers;
+namespace frontend\controllers;
 
 use Yii;
 use backend\models\Servicios;
@@ -214,7 +214,7 @@ class ServicioController extends Controller
 
     public function actionListaservicios($q = null, $id = null) {
         \Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
-        $out = ['results' => ['id' => '', 'descripcion' => '']];
+        $out = ['results' => ['id' => '', 'descripcion' => '', 'url' => '']];
         if (!is_null($q)) {
             $query = new Query;
             $query->select('id, descripcion AS text')
@@ -223,7 +223,12 @@ class ServicioController extends Controller
                 ->limit(20);
             $command = $query->createCommand();
             $data = $command->queryAll();
-            $out['results'] = array_values($data);
+            $final = [];
+            foreach ($data as $key) {
+                $final[] = ['id' => $key['id'], 'text' => $key['text'], 'url' => ImagenServicio::getLastImgThumb($key['id'])];
+            }
+            $out['results'] = array_values($final);
+            //var_dump($out['results']);die();
         }
         elseif ($id > 0) {
             $out['results'] = ['id' => $id, 'descripcion' => Servicios::find($id)->descripcion];
