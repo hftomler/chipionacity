@@ -76,11 +76,10 @@ $this->params['breadcrumbs'][] = $this->title;
             ['class' => 'yii\grid\ActionColumn',
                              'visibleButtons' => [
                                  'update' => function ($data, $key) {
-
-                                                        return PermissionHelpers::requireMinRol('admin') && PermissionHelpers::userMustBeOwner('profile', $key);
+                                                        return PermissionHelpers::requireMinRol('admin');
                                                     },
                                  'delete' => function ($data, $key) {
-                                                        return PermissionHelpers::requireMinRol('admin') && PermissionHelpers::userMustBeOwner('profile', $key);
+                                                        return PermissionHelpers::requireMinRol('superAdmin') || PermissionHelpers::userMustBeOwner('profile', $key);
                                                     },
                              ],
             ],

@@ -21,16 +21,13 @@ $isProveedor = User::isProveedor(Yii::$app->user->identity->id);
         <?= Html::encode($this->title) ?>
         <?php
             if ($show_this) {
-                    echo Html::a(Yii::t('app', 'Create Service'), ['create'], ['class' => 'pull-right btn btn-success']);
+                    echo Html::a(Yii::t('app', 'Create Service Image'), ['create'], ['class' => 'pull-right btn btn-success']);
             }
         ?>
     </h1>
 
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
-    <p>
-        <?= Html::a(Yii::t('app', 'Create Imagen Servicio'), ['create'], ['class' => 'btn btn-success']) ?>
-    </p>
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,

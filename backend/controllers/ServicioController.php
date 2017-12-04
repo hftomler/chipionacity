@@ -16,6 +16,7 @@ use yii\imagine\Image;
 use Imagine\Gd;
 use Imagine\Image\Box;
 use Imagine\Image\BoxInterface;
+use common\models\User;
 
 
 
@@ -48,7 +49,10 @@ class ServicioController extends Controller
                         'allow' => true,
                         'roles' => ['@'],
                         'matchCallback' => function ($rule, $action) {
-                            return (PermissionHelpers::requireMinRol('superAdmin') && PermissionHelpers::requireStatus('Activo'))
+                            $model = Servicios::findOne($_GET['id']);
+                            return ((PermissionHelpers::requireMinRol('superAdmin') ||
+                                    (User::isProveedor(Yii::$app->user->identity->id) && $model->proveedor_id == Yii::$app->user->identity->id))
+                                    && PermissionHelpers::requireStatus('Activo'))
                                         /*|| PermissionHelpers::userMustBeOwner('profile', $this->findModel(Yii::$app->user->identity->id))*/;
                         }
                     ],
