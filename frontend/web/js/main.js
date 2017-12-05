@@ -118,9 +118,57 @@ $(function(){
   	},7000);
 
 	$(document).ready( function () {
-		$('#list').click(function(event){event.preventDefault();$('#products .item').removeClass('col-xs-4 col-lg-4 col-xs-6 col-lg-6').addClass('list-group-item');});
-		$('#big').click(function(event){event.preventDefault();$('#products .item').removeClass('list-group-item col-xs-4 col-lg-4').addClass('col-xs-6 col-lg-6');});
-		$('#grid').click(function(event){event.preventDefault();$('#products .item').removeClass('col-xs-6 col-lg-6 list-group-item').addClass('col-xs-4 col-lg-4');});
+		$('#list').click(function(event){
+			event.preventDefault();
+			$('#products .item')
+				.removeClass('col-xs-4 col-lg-4 col-xs-6 col-lg-6')
+				.addClass('list-group-item col-xs-12');
+		});
+		$('#big').click(function(event){
+			event.preventDefault();$
+			('#products .item')
+				.removeClass('list-group-item col-xs-4 col-lg-4')
+				.addClass('col-xs-6 col-lg-6');
+		});
+		$('#grid').click(function(event){
+			event.preventDefault();
+			$('#products .item')
+				.removeClass('col-xs-6 col-lg-6 list-group-item')
+				.addClass('col-xs-4 col-lg-4');
+		});
+		$('#products figure').mouseover(function (){
+			$this = $(this);
+			var id = $this.children(":first").attr('id').substr(4);
+			//	eval('var ' + 'h' + id + '=' + 'setInterval(cambiaImagen, 5000)');
+			array = [];
+			var currentImage = -1;
+			$.post('index.php?r=servicio/listaurls&id=' + id)
+			 	.done (function(data) {
+					array = jQuery.parseJSON(data);
+				});
+			cambiaImagen();
+
+			slideImages = setInterval(cambiaImagen, 2500);
+
+			function cambiaImagen() {
+			   currentImage++;
+			   if (currentImage > array.length - 1)
+				   currentImage = 0;
+				   $this.children(":first").fadeOut(150, function() {
+				   $this.children(":first").attr("src", array[currentImage]);
+				   $this.children(":first").fadeIn(150);
+			   });
+		   }
+
+		});
+
+		$('#products figure').mouseout(function (){
+			$this = $(this);
+			var id = $this.children(":first").attr('id').substr(4);
+			clearInterval(slideImages);
+			array.splice(0,array.length);
+		});
+
 		$('.select2-selection__arrow').remove();
 	});
 });

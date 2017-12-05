@@ -18,6 +18,7 @@ use Imagine\Image\Box;
 use Imagine\Image\BoxInterface;
 use common\models\User;
 use yii\db\Query;
+use yii\helpers\Json;
 
 
 
@@ -235,5 +236,11 @@ class ServicioController extends Controller
             $out['results'] = ['id' => $id, 'descripcion' => Servicios::find($id)->descripcion];
         }
         return $out;
+    }
+
+
+    public function actionListaurls($id) {
+        $urls = Servicios::getImagenesServicioUrl($id);
+        return Json::encode($urls);
     }
 }

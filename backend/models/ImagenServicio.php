@@ -144,7 +144,7 @@ class ImagenServicio extends \yii\db\ActiveRecord
      * @return \yii\db\ActiveQuery
      */
 
-    public function existsUrl($servicio_id, $url) {
+    public static function existsUrl($servicio_id, $url) {
         return ImagenServicio::find()->where(['servicio_id' => $servicio_id, 'url' => $url])->one();
     }
 }

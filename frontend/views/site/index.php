@@ -12,7 +12,6 @@ use yii\helpers\Url;
 
 $this->title = 'My Yii Application';
 $model = new Servicios();
-var_dump($model->getImagenServicioUrl(1));
 
 ?>
 <div class="site-index">
@@ -62,9 +61,15 @@ var_dump($model->getImagenServicioUrl(1));
             <div class="well well-sm">
                 <strong>Display</strong>
                 <div class="btn-group">
-                    <a href="#container" id="list" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-th-list"></span>List</a>
-                    <a href="#container" id="big" class="btn btn-default btn-sm"><i class="fa fa-th-large" aria-hidden="true"></i> Big</a>
-                    <a href="#container" id="grid" class="btn btn-default btn-sm"><i class="fa fa-th" aria-hidden="true"></i> Medium</a>
+                    <a href="#container" id="list" class="btn btn-default btn-sm">
+                        <i class="fa fa-th-list" aria-hidden="true" title="<?= Yii::t('app', 'List') ?>"></i>
+                    </a>
+                    <a href="#container" id="big" class="btn btn-default btn-sm">
+                        <i class="fa fa-th-large" aria-hidden="true" title="<?= Yii::t('app', 'Big Photos') ?>"></i>
+                    </a>
+                    <a href="#container" id="grid" class="btn btn-default btn-sm">
+                        <i class="fa fa-th" aria-hidden="true" title="<?= Yii::t('app', 'Medium Photos') ?>"></i>
+                    </a>
                 </div>
             </div>
             <div id="products" class="row list-group">

@@ -244,9 +244,22 @@ class Servicios extends \yii\db\ActiveRecord
      * @param int $id
      * @return $htmlResul
      */
-    public function getImagenServicioUrl($id) {
+    public static function getImagenesServicioUrl($id) {
         $imgs = ImagenServicio::findAll(['servicio_id' => $id]);
-        return ArrayHelper::map($imgs, 'id', 'url');
+        $urls = [];
+        foreach($imgs as $key) {
+            $urls[] = $key->url;
+        }
+        return $urls;
+    }
+
+    /**
+     * @param int $id
+     * @return $htmlResul
+     */
+    public function getImagenesServicioUrlThumb($id) {
+        $imgs = ImagenServicio::findAll(['servicio_id' => $id]);
+        return ArrayHelper::map($imgs, 'id', 'urlthumb');
     }
 
     public function creaPanelImgServ($id) {
@@ -296,6 +309,10 @@ class Servicios extends \yii\db\ActiveRecord
         return ArrayHelper::map($droptions, 'id', 'descripcion');
     }
 
+    public function isInTop($id, $limit) {
+        $servs = self::find()->orderBy('puntuacion')->limit($limit)->all();
+    }
+
 
     /**
      * @param int $num
@@ -306,16 +323,24 @@ class Servicios extends \yii\db\ActiveRecord
         $formatter = \Yii::$app->formatter;
         $strImgs = array();
             foreach ($imgs as $key) {
+                $url = ImagenServicio::getLastImg($key->id);
+                $title = ImagenServicio::existsUrl($key->id, $url)->descripcion;
                 $strImgs[] = '<div class="item col-xs-4 col-lg-4">
-                                <div class="thumbnail"><figure class="snip1295">'
-                                . Html::img(ImagenServicio::getLastImg($key->id),
-                                ['class' => 'group list-group-image'])
+                                <div class="thumbnail col-xs-12"><figure class="snip1295">'
+                                . Html::img($url,
+                                [
+                                    'class' => 'group list-group-image',
+                                    'alt' => $title,
+                                    'title' => $title,
+                                    'id' => "serv" . $key->id,
+                                ])
                                 . '<div class="border one">
                                   <div></div>
                                 </div>
-                                <div class="border two">
+                                <div class="border two" title="' . $title . '">
                                   <div></div>
                                 </div>
+                                <div class="ribete ribete-top-right"><span><i class="fa fa-star" aria-hidden="true"></i> Top</span></div>
                               </figure>'
                                 . '<div class="caption">
                                   <h4 class="group inner list-group-item-heading">'

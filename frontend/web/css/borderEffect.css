@@ -10,15 +10,19 @@
   -webkit-box-sizing: padding-box;
   box-sizing: padding-box;
 }
+
 .snip1295 img {
   max-width: 100%;
+  width: 100%;
   vertical-align: top;
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.15);
 }
+
 .snip1295 .border {
   position: absolute;
   opacity: 0.45;
 }
+
 .snip1295 .border:before,
 .snip1295 .border:after,
 .snip1295 .border div:before,
@@ -51,17 +55,20 @@
   left: 0;
   top: 0;
 }
+
 .snip1295 .border.one:after,
 .snip1295 .border.one div:after {
   bottom: 0;
   right: 0;
 }
+
 .snip1295 .border.two {
   left: 12px;
   top: 12px;
   right: 0;
   bottom: 0;
 }
+
 .snip1295 .border.two:before,
 .snip1295 .border.two div:before {
   right: 0;
@@ -80,15 +87,100 @@
   position: absolute;
   z-index: 1;
 }
+
 .snip1295:hover .border:before,
 .snip1295.hover .border:before,
 .snip1295:hover .border:after,
 .snip1295.hover .border:after {
   width: 100%;
 }
+
 .snip1295:hover .border div:before,
 .snip1295.hover .border div:before,
 .snip1295:hover .border div:after,
 .snip1295.hover .border div:after {
   height: 100%;
+}
+
+/* common */
+.ribete {
+  width: 150px;
+  height: 150px;
+  overflow: hidden;
+  position: absolute;
+}
+
+.ribete::before,
+.ribete::after {
+  position: absolute;
+  z-index: -1;
+  content: '';
+  display: block;
+  border: 5px solid #2980b9;
+}
+
+.ribete span {
+  position: absolute;
+  display: block;
+  width: 225px;
+  padding: 10px 0;
+  background-color: #3498db;
+  box-shadow: 0 5px 10px rgba(0,0,0,.1);
+  color: #fff;
+  font: 700 18px/1 'Lato', sans-serif;
+  text-shadow: 0 1px 1px rgba(0,0,0,.2);
+  text-transform: uppercase;
+  text-align: center;
+}
+
+/* top left*/
+.ribete-top-left {
+  top: -10px;
+  left: -10px;
+}
+
+.ribete-top-left::before,
+.ribete-top-left::after {
+  border-top-color: transparent;
+  border-left-color: transparent;
+}
+
+.ribete-top-left::before {
+  top: 0;
+  right: 0;
+}
+
+.ribete-top-left::after {
+  bottom: 0;
+  left: 0;
+}
+
+.ribete-top-left span {
+  right: -15px;
+  top: 25px;
+  transform: rotate(-45deg);
+}
+
+/* top right*/
+.ribete-top-right {
+  top: -10px;
+  right: -10px;
+}
+.ribete-top-right::before,
+.ribete-top-right::after {
+  border-top-color: transparent;
+  border-right-color: transparent;
+}
+.ribete-top-right::before {
+  top: 0;
+  left: 0;
+}
+.ribete-top-right::after {
+  bottom: 0;
+  right: 0;
+}
+.ribete-top-right span {
+  left: -25px;
+  top: 30px;
+  transform: rotate(45deg);
 }
