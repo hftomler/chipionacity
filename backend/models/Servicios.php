@@ -311,8 +311,13 @@ class Servicios extends \yii\db\ActiveRecord
 
     public function isInTop($id, $limit) {
         $servs = self::find()->orderBy('puntuacion')->limit($limit)->all();
+        return (array_key_exists($id, $servs) ? true : false);
     }
 
+    public function isInNew($id, $limit) {
+        $servs = self::find()->orderBy('created_at')->limit($limit)->all();
+        return (array_key_exists($id, $servs) ? true : false);
+    }
 
     /**
      * @param int $num
@@ -323,6 +328,7 @@ class Servicios extends \yii\db\ActiveRecord
         $formatter = \Yii::$app->formatter;
         $strImgs = array();
             foreach ($imgs as $key) {
+                //var_dump(self::isInTop($key->id, 9));
                 $url = ImagenServicio::getLastImg($key->id);
                 $title = ImagenServicio::existsUrl($key->id, $url)->descripcion;
                 $strImgs[] = '<div class="item col-xs-4 col-lg-4">
@@ -339,10 +345,11 @@ class Servicios extends \yii\db\ActiveRecord
                                 </div>
                                 <div class="border two" title="' . $title . '">
                                   <div></div>
-                                </div>
-                                <div class="ribete ribete-top-right"><span><i class="fa fa-star" aria-hidden="true"></i> Top</span></div>
-                              </figure>'
-                                . '<div class="caption">
+                                </div>'
+                                //. (self::isInTop($key->id,6) ? '<div class="ribete ribete-top-right"><span><i class="fa fa-star" aria-hidden="true"></i> Top</span></div>' : "")
+                                . (self::isInNew($key->id,6) ? '<div class="ribete ribete-top-left"><span><i class="fa fa-fire" aria-hidden="true"></i> New</span></div>' : "")
+                                . '</figure>
+                                <div class="caption">
                                   <h4 class="group inner list-group-item-heading">'
                                 . $key->descripcion
                                 . '</h4>
