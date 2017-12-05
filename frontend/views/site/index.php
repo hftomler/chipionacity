@@ -73,7 +73,7 @@ $model = new Servicios();
                 </div>
             </div>
             <div id="products" class="row list-group">
-                <?= $model->getImagenTop(20); ?>
+                <?= $model->getImagenTop(9); ?>
             </div>
         </div>
 

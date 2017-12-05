@@ -184,3 +184,15 @@
   top: 30px;
   transform: rotate(45deg);
 }
+
+
+/* Estilo para la estrella de rating */
+
+.imgStar {
+    position: absolute;
+    height: 32px;
+    width: 32px;
+    right: 10px;
+    top: 10px;
+    z-index: 10001;
+}

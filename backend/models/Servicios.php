@@ -332,7 +332,9 @@ class Servicios extends \yii\db\ActiveRecord
                 $url = ImagenServicio::getLastImg($key->id);
                 $title = ImagenServicio::existsUrl($key->id, $url)->descripcion;
                 $strImgs[] = '<div class="item col-xs-4 col-lg-4">
-                                <div class="thumbnail col-xs-12"><figure class="snip1295">'
+                                <div class="thumbnail col-xs-12">'
+                                . (self::isInTop($key->id,6) ? '<img src="imagenes/iconos/5star.png" class="imgStar" />' : "") 
+                                . '<figure class="snip1295">'
                                 . Html::img($url,
                                 [
                                     'class' => 'group list-group-image',
