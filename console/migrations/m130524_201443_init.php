@@ -216,6 +216,8 @@ class m130524_201443_init extends Migration
             'puntuacion' => $this->integer()->defaultValue(0),
             'num_votos' => $this->integer()->defaultValue(0),
             'media_punt' => $this->decimal(4,2)->defaultValue(0),
+            'created_at' => $this->datetime()->notNull()->defaultExpression('now()'),
+            'updated_at' => $this->datetime()->notNull()->defaultExpression('now()'),
         ], $tableOptions);
 
         $this->addForeignKey(

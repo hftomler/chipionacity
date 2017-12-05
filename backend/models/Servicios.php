@@ -3,6 +3,8 @@
 namespace backend\models;
 
 use Yii;
+use yii\db\ActiveRecord;
+use yii\db\Expression;
 use common\models\User;
 use yii\helpers\Html;
 use common\models\PermissionHelpers;
@@ -22,6 +24,8 @@ use yii\bootstrap\Collapse;
  * @property integer $num_votos
  * @property string $media_punt
  * @property boolean $activo
+ * @property string $created_at
+ * @property string $updated_at
  *
  * @property Comentarios[] $comentarios
  * @property ImagenServicio[] $imagenServicios
@@ -49,6 +53,23 @@ class Servicios extends \yii\db\ActiveRecord
     {
         return 'servicios';
     }
+
+    /**
+      * @inheritdoc
+      */
+     public function behaviors()
+     {
+         return [
+             'timestamp' => [
+                 'class' => 'yii\behaviors\TimestampBehavior',
+                 'attributes' => [
+                     ActiveRecord::EVENT_BEFORE_INSERT => ['created_at', 'updated_at'],
+                     ActiveRecord::EVENT_BEFORE_UPDATE => ['updated_at'],
+                 ],
+                 'value' => new Expression('NOW()'),
+             ],
+         ];
+     }
 
     /**
      * @inheritdoc
@@ -91,6 +112,8 @@ class Servicios extends \yii\db\ActiveRecord
             'puntuacion' => Yii::t('app', 'Score'),
             'num_votos' => Yii::t('app', 'Votes'),
             'media_punt' => Yii::t('app', 'Score Average'),
+            'created_at' => Yii::t('app', 'Created At'),
+            'updated_at' => Yii::t('app', 'Updated At'),
         ];
     }
 
@@ -217,6 +240,15 @@ class Servicios extends \yii\db\ActiveRecord
         return $htmlResul;
     }
 
+    /**
+     * @param int $id
+     * @return $htmlResul
+     */
+    public function getImagenServicioUrl($id) {
+        $imgs = ImagenServicio::findAll(['servicio_id' => $id]);
+        return ArrayHelper::map($imgs, 'id', 'url');
+    }
+
     public function creaPanelImgServ($id) {
 
         $str =  '<div id="infoImagenes" class="col-xs-12 well">
@@ -264,4 +296,50 @@ class Servicios extends \yii\db\ActiveRecord
         return ArrayHelper::map($droptions, 'id', 'descripcion');
     }
 
+
+    /**
+     * @param int $num
+     * @return $htmlResul
+     */
+    public function getImagenTop($num) {
+        $imgs = self::find()->orderBy('puntuacion')->limit($num)->all();
+        $formatter = \Yii::$app->formatter;
+        $strImgs = array();
+            foreach ($imgs as $key) {
+                $strImgs[] = '<div class="item col-xs-4 col-lg-4">
+                                <div class="thumbnail"><figure class="snip1295">'
+                                . Html::img(ImagenServicio::getLastImg($key->id),
+                                ['class' => 'group list-group-image'])
+                                . '<div class="border one">
+                                  <div></div>
+                                </div>
+                                <div class="border two">
+                                  <div></div>
+                                </div>
+                              </figure>'
+                                . '<div class="caption">
+                                  <h4 class="group inner list-group-item-heading">'
+                                . $key->descripcion
+                                . '</h4>
+                                  <p class="group inner list-group-item-text">'
+                                . $key->descripcion
+                                . '</p>
+                                  <div class="row">
+                                    <div class="col-xs-12 col-md-6">
+                                        <p class="lead">'
+                                            . $key->precio . ' €
+                                        </p>
+                                    </div>
+                                    <div class="col-xs-12 col-md-6 text-right">'
+                                . Html::a("<i class='fa fa-cart-plus' aria-hidden='true'></i>", ["venta/addCart", "id" => $key->id], ["class" => "btn btn-success unoymedio", "title" => "Añadir al pedido" ])
+                                .   '</div>
+                                  </div>
+                                </div>
+                                </div>
+                                </div>';
+
+            }
+            $htmlResul = implode($strImgs);
+        return $htmlResul;
+    }
 }

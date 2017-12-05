@@ -118,7 +118,9 @@ $(function(){
   	},7000);
 
 	$(document).ready( function () {
-
+		$('#list').click(function(event){event.preventDefault();$('#products .item').removeClass('col-xs-4 col-lg-4 col-xs-6 col-lg-6').addClass('list-group-item');});
+		$('#big').click(function(event){event.preventDefault();$('#products .item').removeClass('list-group-item col-xs-4 col-lg-4').addClass('col-xs-6 col-lg-6');});
+		$('#grid').click(function(event){event.preventDefault();$('#products .item').removeClass('col-xs-6 col-lg-6 list-group-item').addClass('col-xs-4 col-lg-4');});
 		$('.select2-selection__arrow').remove();
 	});
 });

@@ -70,7 +70,7 @@ class ImagenServicio extends \yii\db\ActiveRecord
         return [
             'id' => Yii::t('app', 'Id'),
             'servicio_id' => Yii::t('app', 'Service Id'),
-            'descripcion' => Yii::t('app', 'Descripion'),
+            'descripcion' => Yii::t('app', 'Description'),
             'url' => Yii::t('app', 'Url'),
             'url' => Yii::t('app', 'Url Thumbnail'),
             'created_at' => Yii::t('app', 'Created At'),

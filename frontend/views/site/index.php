@@ -11,11 +11,14 @@ use yii\helpers\Url;
 
 
 $this->title = 'My Yii Application';
+$model = new Servicios();
+var_dump($model->getImagenServicioUrl(1));
+
 ?>
 <div class="site-index">
 
     <div class="jumbotron">
-        <img id="logoInicio" src="imagenes/logoInicio.png" class="col-xs-5 col-xs-offset-1" alt="logo">
+        <img id="logoInicio" src="imagenes/logohome.png" class="col-xs-5 col-xs-offset-1" alt="logo">
         <p class="col-xs-5 titular">Experiencias inolvidables <i class="fa fa-heart" aria-hidden="true"></i>,
             en el lugar ideal <i class="fa fa-star" aria-hidden="true"></i><br/>
             a un <i class="fa fa-eur" aria-hidden="true"></i> espectacular <i class="fa fa-arrow-down" aria-hidden="true"></i></p>
@@ -26,7 +29,6 @@ $this->title = 'My Yii Application';
             <div class="col-xs-8 col-xs-offset-2">
 
             <?php
-                $model = new Servicios();
                 echo $form->field($model, 'id')->widget(Select2::classname(), [
                     'initValueText' => "", // set the initial display text
                     'options' => ['placeholder' => '¿Estás buscando algo que hacer ...?'],
@@ -54,4 +56,20 @@ $this->title = 'My Yii Application';
             </div>
         <?php ActiveForm::end(); ?></div>
     </div>
+
+        <div class="clearfix"></div>
+        <div name="container" class="container">
+            <div class="well well-sm">
+                <strong>Display</strong>
+                <div class="btn-group">
+                    <a href="#container" id="list" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-th-list"></span>List</a>
+                    <a href="#container" id="big" class="btn btn-default btn-sm"><i class="fa fa-th-large" aria-hidden="true"></i> Big</a>
+                    <a href="#container" id="grid" class="btn btn-default btn-sm"><i class="fa fa-th" aria-hidden="true"></i> Medium</a>
+                </div>
+            </div>
+            <div id="products" class="row list-group">
+                <?= $model->getImagenTop(20); ?>
+            </div>
+        </div>
+
 </div>

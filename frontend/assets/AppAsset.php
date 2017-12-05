@@ -14,6 +14,7 @@ class AppAsset extends AssetBundle
     public $css = [
         'css/site.css',
         'css/mb.balloon.css',
+        'css/borderEffect.css'
     ];
     public $js = [
         'js/main.js',

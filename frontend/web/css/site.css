@@ -294,9 +294,23 @@ nav.inicio li:hover a:hover, nav li form button.btn-link:hover {
     border: none;
 }
 
+.imgServicio-sm {
+    height: 100%;
+    z-index: 1;
+}
+
+
+/*Sobreescribiendo img-thumbnail de bootstrap */
 .img-thumbnail {
     padding: 1px;
 }
+
+/* Miniatura para imágenes de servicio */
+.imgServ-thumbnail {
+    padding: 3px;
+    padding-bottom: 25px;
+}
+
 
 
 .language {
@@ -411,4 +425,67 @@ input[type=checkbox].check {
 
 .unoymedio {
     font-size: 1.5em !important;
+}
+
+/* Estilos para mostrar lista de servicios */
+
+.thumbnail
+{
+    margin-bottom: 20px;
+    padding: 0px;
+    -webkit-border-radius: 0px;
+    -moz-border-radius: 0px;
+    border-radius: 0px;
+}
+
+
+.item.list-group-item
+{
+    float: none;
+    width: 100%;
+    background-color: #fff;
+    margin-bottom: 10px;
+}
+.item.list-group-item:nth-of-type(odd):hover,.item.list-group-item:hover
+{
+    background: #428bca;
+}
+
+.item.list-group-item .list-group-image
+{
+    margin-right: 10px;
+    width: 33%;
+}
+.item.list-group-item .thumbnail
+{
+    margin-bottom: 0px;
+}
+.item.list-group-item .caption
+{
+    padding: 9px 9px 0px 9px;
+}
+.item.list-group-item:nth-of-type(odd)
+{
+    background: #eeeeee;
+}
+
+.item.list-group-item:before, .item.list-group-item:after
+{
+    display: table;
+    content: " ";
+}
+
+.item.list-group-item img
+{
+    float: left;
+}
+
+.item.list-group-item:after
+{
+    clear: both;
+}
+
+.list-group-item-text
+{
+    margin: 0 0 11px;
 }
