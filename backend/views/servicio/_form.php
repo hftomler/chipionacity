@@ -39,7 +39,9 @@ $isProv = User::isProveedor(Yii::$app->user->identity->id);
                 }
             ?>
         </div>
-
+        <div class="col-xs-12 col-sm-12">
+            <?= $form->field($model, 'descripcion_lg')->textInput(['maxlength' => true]) ?>
+        </div>
         <div class="col-xs-6 col-md-3">
             <?= $form->field($model, 'precio')->textInput() ?>
         </div>

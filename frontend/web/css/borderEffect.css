@@ -102,6 +102,21 @@
   height: 100%;
 }
 
+.item.col-xs-4 .snip1295 + .caption  {
+    min-height: 430px;
+}
+
+.item.col-xs-6 .snip1295 + .caption  {
+    min-height: 550px;
+}
+
+.snip1295 + .caption > .row {
+    position: absolute;
+    width: 100%;
+    bottom: 0;
+}
+
+
 /* common */
 .ribete {
   width: 150px;

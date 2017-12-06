@@ -17,9 +17,13 @@
  * NOTE: this file must be saved in UTF-8 encoding.
  */
 return [
-    'Description' => 'Descripcion',
-    'Service Image' => 'Imagen de Servicio',
-    'Service Images' => 'Imágenes de Servicio',
+    'Unforgettable experiences <i class = "fa fa-heart" aria-hidden = "true"> </ i>,
+            in the ideal place <i class = "fa fa-star" aria-hidden = "true"> </ i> <br/>
+            to a spectacular <i class = "fa fa-arrow-down" aria-hidden = "true"> </ i> <i class = "fa fa-eur" aria-hidden = "true"> </ i>' => 'Experiencias inolvidables <i class="fa fa-heart" aria-hidden="true"></i>,
+                    en el lugar ideal <i class="fa fa-star" aria-hidden="true"></i><br/>
+                    a un  espectacular <i class="fa fa-arrow-down" aria-hidden="true"></i> <i class="fa fa-eur" aria-hidden="true"></i>',
+    'Waiting results...' => 'Esperando resultados ...',
+    'Are you looking for something to do ...?' => '¿Estás buscando algo que hacer ...?',
     'About Service Images' => 'Sobre las imágenes de Servicio',
     'Active' => 'Activo',
     'Address' => 'Dirección',
@@ -28,6 +32,7 @@ return [
     'Are you sure you want to delete this item?' => '¿Está seguro  que desea borrar este item?',
     'Are you sure you want to delete this user?' => '¿Está seguro que desea borrar este usuario?',
     'Avatar List' => 'Lista de Avatares',
+    'Big Photos' => 'Tamaño grande',
     'Birthday' => 'Fecha Nac.',
     'Choose State' => 'Elige estado',
     'Choose User State' => 'Elige estado Usuario',
@@ -73,6 +78,7 @@ return [
     'Languages:' => 'Idioma:',
     'Last Name' => 'Apellidos',
     'Line Discount' => 'Descuento de línea',
+    'List' => 'Lista',
     'Login' => 'Login',
     'Logout' => 'Logout',
     'Manage profiles' => 'Adm. Perfiles',
@@ -80,6 +86,7 @@ return [
     'Manage statuses' => 'Adm. Estatus',
     'Manage users' => 'Adm. Usuarios',
     'Manage users type' => 'Adm. Tipos Usuario',
+    'Medium Photos' => 'Tamaño mediano',
     'Municipios' => 'Municipios',
     'Name' => 'Nombre',
     'Need to review Profiles?' => '¿Necesita revisar Perfiles?',
@@ -117,6 +124,8 @@ return [
     'Search' => 'Buscar',
     'Selecciona tu Avatar' => 'Selecciona tu Avatar',
     'Service Id' => 'Id Servicio',
+    'Service Image' => 'Imagen de Servicio',
+    'Service Images' => 'Imágenes de Servicio',
     'Services' => 'Servicios',
     'Servicios' => 'Servicios',
     'Signup' => 'Registro',

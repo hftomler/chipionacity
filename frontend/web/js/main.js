@@ -121,20 +121,20 @@ $(function(){
 		$('#list').click(function(event){
 			event.preventDefault();
 			$('#products .item')
-				.removeClass('col-xs-4 col-lg-4 col-xs-6 col-lg-6')
+				.removeClass('col-xs-4 col-xs-6')
 				.addClass('list-group-item col-xs-12');
 		});
 		$('#big').click(function(event){
 			event.preventDefault();$
 			('#products .item')
-				.removeClass('list-group-item col-xs-4 col-lg-4')
-				.addClass('col-xs-6 col-lg-6');
+				.removeClass('list-group-item col-xs-4')
+				.addClass('col-xs-6');
 		});
 		$('#grid').click(function(event){
 			event.preventDefault();
 			$('#products .item')
-				.removeClass('col-xs-6 col-lg-6 list-group-item')
-				.addClass('col-xs-4 col-lg-4');
+				.removeClass('col-xs-6 list-group-item')
+				.addClass('col-xs-4');
 		});
 		$('#products figure').mouseover(function (){
 			$this = $(this);

@@ -18,9 +18,9 @@ $model = new Servicios();
 
     <div class="jumbotron">
         <img id="logoInicio" src="imagenes/logohome.png" class="col-xs-5 col-xs-offset-1" alt="logo">
-        <p class="col-xs-5 titular">Experiencias inolvidables <i class="fa fa-heart" aria-hidden="true"></i>,
-            en el lugar ideal <i class="fa fa-star" aria-hidden="true"></i><br/>
-            a un <i class="fa fa-eur" aria-hidden="true"></i> espectacular <i class="fa fa-arrow-down" aria-hidden="true"></i></p>
+        <p class="col-xs-5 titular"><?= Yii::t('app', 'Unforgettable experiences <i class = "fa fa-heart" aria-hidden = "true"> </ i>,
+            in the ideal place <i class = "fa fa-star" aria-hidden = "true"> </ i> <br/>
+            to a spectacular <i class = "fa fa-arrow-down" aria-hidden = "true"> </ i> <i class = "fa fa-eur" aria-hidden = "true"> </ i>') ?></p>
     </div>
 
     <div class="body-content">
@@ -28,9 +28,10 @@ $model = new Servicios();
             <div class="col-xs-8 col-xs-offset-2">
 
             <?php
+                $waiting = "function () { return '" . Yii::t('app', 'Waiting results...') . "'; }";
                 echo $form->field($model, 'id')->widget(Select2::classname(), [
                     'initValueText' => "", // set the initial display text
-                    'options' => ['placeholder' => '¿Estás buscando algo que hacer ...?'],
+                    'options' => ['placeholder' => Yii::t('app', 'Are you looking for something to do ...?')],
                     'pluginOptions' => [
                         'allowClear' => true,
                         'minimumInputLength' => 3,
@@ -58,9 +59,8 @@ $model = new Servicios();
 
         <div class="clearfix"></div>
         <div name="container" class="container">
-            <div class="well well-sm">
-                <strong>Display</strong>
-                <div class="btn-group">
+            <div class="well well-sm col-xs-12">
+                <div class="pull-right">
                     <a href="#container" id="list" class="btn btn-default btn-sm">
                         <i class="fa fa-th-list" aria-hidden="true" title="<?= Yii::t('app', 'List') ?>"></i>
                     </a>
@@ -71,9 +71,10 @@ $model = new Servicios();
                         <i class="fa fa-th" aria-hidden="true" title="<?= Yii::t('app', 'Medium Photos') ?>"></i>
                     </a>
                 </div>
+                <div class="text-center"><h4><?= Yii::t('app', 'Descubre nuestros servicios más recientes') ?></h4></div>
             </div>
             <div id="products" class="row list-group">
-                <?= $model->getImagenTop(9); ?>
+                <?= $model->getImagenTop(20); ?>
             </div>
         </div>
 

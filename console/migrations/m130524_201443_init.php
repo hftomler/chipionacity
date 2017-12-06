@@ -206,7 +206,8 @@ class m130524_201443_init extends Migration
 
         $this->createTable('servicios', [
             'id'=> $this->primaryKey(),
-            'descripcion'=>$this->string(255)->notNull(),
+            'descripcion'=>$this->string(60)->notNull(),
+            'descripcion_lg'=>$this->string(200)->notNull(),
             'precio'=>$this->decimal(7,2)->notNull(),
             'proveedor_id'=>$this->integer()->notNull(),
             'activo'=>$this->boolean()->defaultValue(true),
@@ -218,6 +219,7 @@ class m130524_201443_init extends Migration
             'media_punt' => $this->decimal(4,2)->defaultValue(0),
             'created_at' => $this->datetime()->notNull()->defaultExpression('now()'),
             'updated_at' => $this->datetime()->notNull()->defaultExpression('now()'),
+            'promocion' => $this->boolean()->defaultValue(false),
         ], $tableOptions);
 
         $this->addForeignKey(

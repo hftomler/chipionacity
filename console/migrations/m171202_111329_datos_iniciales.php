@@ -86,19 +86,19 @@ class m171202_111329_datos_iniciales extends Migration
             ['Hours', 'Hour'], ['Days', 'Day'], ['Weeks', 'Week'], ['Months', 'Month'], ['Years', 'Year'],
         ]);
 
-        $this->batchInsert('servicios', ['descripcion', 'precio', 'proveedor_id', 'duracion', 'duracion_unidad_id', 'puntuacion', 'num_votos', 'media_punt'], [
-            ['Vuelta en Barco por la Desembocadura del Guadalquivir', 15, 4, 6, 1, 128, 32, 4],
-            ['Paseo en bicicleta por la Vía Verde', 10, 5, 2, 1, 95, 25, 3.8],
-            ['Aprende a tocar la guitarra', 60, 4, 10, 2, 65, 26, 2.5],
-            ['Cena romántica a pie de corral de pesca', 75, 4, 10, 2, 50, 26, 2.5],
-            ['Subida al faro de Chipiona', 30, 7, 10, 2, 42, 26, 2.5],
-            ['Clases de tenis', 12, 4, 10, 2, 13, 26, 2.5],
-            ['Museo del Moscatel', 6, 5, 10, 2, 18, 26, 2.5],
-            ['Visita al CINLAC', 14, 7, 10, 2, 57, 26, 2.5],
-            ['Almuerzo Chiringuito Las Delicias', 19, 4, 10, 2, 85, 26, 2.5],
-            ['Visita Isla Salmedina y Barco del Arroz', 45, 5, 10, 2, 42, 26, 2.5],
-            ['Museo del Santuario de Regla', 33, 5, 10, 2, 37, 26, 2.5],
-            ['Exposición Nuevo Mundo', 22, 7, 10, 2, 5, 26, 2.5],
+        $this->batchInsert('servicios', ['descripcion', 'descripcion_lg', 'precio', 'proveedor_id', 'duracion', 'duracion_unidad_id', 'puntuacion', 'num_votos', 'media_punt', 'created_at', 'promocion'], [
+            ['Paseo en Barco por la Desembocadura del Guadalquivir', 'Pasa un día estupendo con un paseo por las plácidas aguas del Guadalquivir. Incluye Amuerzo-Picnic en la Playa de Doñana', 15, 4, 6, 1, 128, 32, 4, '2017-09-15', false],
+            ['Paseo en bicicleta por la Vía Verde', 'La vía verde Entre Ríos discurre por la antigua vía del tren, entre las localidades del Pto. de Santa Mª. hasta Sanlúcar, pasando por Rota y Chipiona.',10, 5, 2, 1, 95, 25, 3.8, '2017-09-18', false],
+            ['Aprende a tocar la guitarra', 'Aprende en una semana a acompañar tus propias canciones de la mano de un Licenciado en Guitarra Flamenca.', 60, 4, 10, 2, 65, 26, 2.5, '2017-09-22', true],
+            ['Cena romántica a pie de corral de pesca', 'Los corrales de pesca a pie son un monumento artificial que se remonta a la época de los fenicios. Ahora puedes cenar prácticamente a su orilla.', 75, 4, 10, 2, 50, 12, 2.5, '2017-08-10', false],
+            ['Subida al faro de Chipiona', 'El Faro de Chipiona es el más alto de España y el 5º de Europa. Desde su mirador se puede disfrutar de las mejores vistas de la Desembocadura del Guadalquivir.', 30, 7, 10, 2, 42, 41, 2.5, '2017-06-04', false],
+            ['Clases de tenis', 'Aprovecha este verano y aprende a jugar al tenis mientras te diviertes y haces amigos', 12, 4, 10, 2, 13, 33, 2.5, '2017-01-11', true],
+            ['Museo del Moscatel', 'El moscatel de Chipiona es considerado uno de los mejores de España. Aquí te contamos su historia y el proceso de su fabricación.', 6, 5, 10, 2, 18, 11, 2.5, '2017-02-12', false],
+            ['Visita al CINLAC', 'El Centro de Interpretación de la Naturaleza y el Litoral "El Camaléon" es un referente en la preservación de nuestas dunas y de una especie en peligro de extinción, el Camaleón Común', 14, 7, 10, 2, 57, 16, 2.5, '2017-05-28', false],
+            ['Almuerzo Chiringuito Las Delicias', 'Disfruta de la playa de "Las Delicias" y difruta de los manjares del mar, recién traídos de la lonja', 19, 4, 10, 2, 85, 12, 2.5, '2017-09-15', true],
+            ['Visita Isla Salmedina y Barco del Arroz', 'La visita a la isla semisumergida de Salmedina y el barco hundido frente a Doñana, te sumergirá en la historia de los naufragios de la desembocadura del Guadalquivir.',45, 5, 10, 2, 42, 14, 2.5, '2017-09-19', false],
+            ['Museo del Santuario de Regla', 'La orden franciscana es la regente del Santuario de Regla. Con esta visita podrás entender la importancia de su misión en nuestra tierra y la historia de Ntra. Sra. de Regla.', 33, 5, 10, 2, 37, 5, 2.5, '2017-09-24', false],
+            ['Exposición Nuevo Mundo', 'Este año se conmemoran los 500 años de la I Circunnavegación y no puede ser mejor momento para disfrutar de la historia del descubrimiento, de la que fue gran testigo toda nuestra costa.', 22, 7, 10, 2, 5, 3, 2.5, '2017-11-22', false],
         ]);
 
         $this->batchInsert('imagen_servicio', ['servicio_id', 'descripcion', 'url', 'urlthumb'], [

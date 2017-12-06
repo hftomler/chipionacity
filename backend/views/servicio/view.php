@@ -33,6 +33,7 @@ $this->params['breadcrumbs'][] = $this->title;
         'attributes' => [
             'id',
             'descripcion',
+            'descripcion_lg',
             'precio',
             'proveedor_id',
             'activo:boolean',

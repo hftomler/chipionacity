@@ -15,6 +15,7 @@ use yii\bootstrap\Collapse;
  *
  * @property integer $id
  * @property string $descripcion
+ * @property string $descripcion_lg
  * @property string $precio
  * @property integer $proveedor_id
  * @property integer $tipo_iva_id
@@ -77,11 +78,12 @@ class Servicios extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['descripcion', 'precio', 'proveedor_id'], 'required'],
+            [['descripcion', 'descripcion_lg', 'precio', 'proveedor_id'], 'required'],
             [['precio', 'media_punt'], 'number'],
             [['proveedor_id', 'tipo_iva_id', 'duracion', 'duracion_unidad_id', 'puntuacion', 'num_votos'], 'integer'],
             [['activo'], 'boolean'],
-            [['descripcion'], 'string', 'max' => 255],
+            [['descripcion'], 'string', 'max' => 60],
+            [['descripcion_lg'], 'string', 'max' => 200],
             [['tipo_iva_id'], 'in', 'range'=>array_keys($this->getIvaList())],
             [['tipo_iva_id'], 'exist', 'skipOnError' => true, 'targetClass' => TiposIva::className(), 'targetAttribute' => ['tipo_iva_id' => 'id']],
             [['duracion_unidad_id'], 'exist', 'skipOnError' => true, 'targetClass' => UnidadesTiempo::className(), 'targetAttribute' => ['duracion_unidad_id' => 'id']],
@@ -103,6 +105,7 @@ class Servicios extends \yii\db\ActiveRecord
         return [
             'id' => Yii::t('app', 'ID'),
             'descripcion' => Yii::t('app', 'Description'),
+            'descripcion' => Yii::t('app', 'Large Description'),
             'precio' => Yii::t('app', 'Price'),
             'proveedor_id' => Yii::t('app', 'Supplier Id'),
             'activo' => Yii::t('app', 'Active'),
@@ -298,7 +301,7 @@ class Servicios extends \yii\db\ActiveRecord
     }
 
     /**
-     * Obtener el listado de paises para Dropdown
+     * Obtener el listado de servicios para el Select2 de Inicio
     */
     public static function getListadescripciones() {
         $droptions = self::find()->orderBy('descripcion')->all();
@@ -309,14 +312,12 @@ class Servicios extends \yii\db\ActiveRecord
         return ArrayHelper::map($droptions, 'id', 'descripcion');
     }
 
-    public function isInTop($id, $limit) {
-        $servs = self::find()->orderBy('puntuacion')->limit($limit)->all();
-        return (array_key_exists($id, $servs) ? true : false);
+    public function isTop($limit) {
+        return $this->find()->select(['id', 'descripcion'])->orderBy(['puntuacion'=>SORT_DESC])->limit($limit)->indexBy('id')->all();
     }
 
-    public function isInNew($id, $limit) {
-        $servs = self::find()->orderBy('created_at')->limit($limit)->all();
-        return (array_key_exists($id, $servs) ? true : false);
+    public function isNew($limit) {
+        return $this->find()->select(['id', 'descripcion'])->orderBy(['created_at' => SORT_DESC])->limit($limit)->indexBy('id')->all();
     }
 
     /**
@@ -324,56 +325,57 @@ class Servicios extends \yii\db\ActiveRecord
      * @return $htmlResul
      */
     public function getImagenTop($num) {
-        $imgs = self::find()->orderBy('puntuacion')->limit($num)->all();
-        $formatter = \Yii::$app->formatter;
+        $limit = 5;
+        $imgs = self::find()->orderBy(['num_votos' => SORT_DESC])->limit($num)->all();
+        $servsTop = $this->isTop($limit);
+        $servsNew = $this->isNew($limit);
         $strImgs = array();
-            foreach ($imgs as $key) {
-                //var_dump(self::isInTop($key->id, 9));
-                $url = ImagenServicio::getLastImg($key->id);
-                $title = ImagenServicio::existsUrl($key->id, $url)->descripcion;
-                $strImgs[] = '<div class="item col-xs-4 col-lg-4">
-                                <div class="thumbnail col-xs-12">'
-                                . (self::isInTop($key->id,6) ? '<img src="imagenes/iconos/5star.png" class="imgStar" />' : "") 
-                                . '<figure class="snip1295">'
-                                . Html::img($url,
-                                [
-                                    'class' => 'group list-group-image',
-                                    'alt' => $title,
-                                    'title' => $title,
-                                    'id' => "serv" . $key->id,
-                                ])
-                                . '<div class="border one">
-                                  <div></div>
+        foreach ($imgs as $key) {
+            //var_dump(self::isInTop($key->id, 6) . " - " . $key->id . " - " . self::isInNew($key->id, 6));
+            $url = ImagenServicio::getLastImg($key->id);
+            $title = Yii::t('app', ImagenServicio::existsUrl($key->id, $url)->descripcion);
+            $strImgs[] = '<div class="item col-xs-4">
+                            <div class="thumbnail col-xs-12">'
+                            . (array_key_exists($key->id, $servsTop) ? '<img src="imagenes/iconos/5star.png" class="imgStar" />' : '')
+                            . '<figure class="snip1295">'
+                            . Html::img($url,
+                            [
+                                'class' => 'group list-group-image',
+                                'alt' => $title,
+                                'title' => $title,
+                                'id' => "serv" . $key->id,
+                            ])
+                            . '<div class="border one">
+                              <div></div>
+                            </div>
+                            <div class="border two" title="' . $title . '">
+                              <div></div>
+                            </div>'
+                            //. (self::isInTop($key->id,6) ? '<div class="ribete ribete-top-right"><span><i class="fa fa-star" aria-hidden="true"></i> Top</span></div>' : "")
+                            . (array_key_exists($key->id, $servsNew) ? '<div class="ribete ribete-top-left"><span><i class="fa fa-fire" aria-hidden="true"></i> New</span></div>' : '')
+                            . '</figure>
+                            <div class="caption">
+                              <h4 class="group inner list-group-item-heading">'
+                            . $key->descripcion
+                            . '</h4>
+                              <p class="group inner list-group-item-text">'
+                            . $key->descripcion_lg
+                            . '</p>
+                              <div class="row">
+                                <div class="col-xs-12 col-md-6">
+                                    <p class="lead">'
+                                        . $key->precio . ' €
+                                    </p>
                                 </div>
-                                <div class="border two" title="' . $title . '">
-                                  <div></div>
-                                </div>'
-                                //. (self::isInTop($key->id,6) ? '<div class="ribete ribete-top-right"><span><i class="fa fa-star" aria-hidden="true"></i> Top</span></div>' : "")
-                                . (self::isInNew($key->id,6) ? '<div class="ribete ribete-top-left"><span><i class="fa fa-fire" aria-hidden="true"></i> New</span></div>' : "")
-                                . '</figure>
-                                <div class="caption">
-                                  <h4 class="group inner list-group-item-heading">'
-                                . $key->descripcion
-                                . '</h4>
-                                  <p class="group inner list-group-item-text">'
-                                . $key->descripcion
-                                . '</p>
-                                  <div class="row">
-                                    <div class="col-xs-12 col-md-6">
-                                        <p class="lead">'
-                                            . $key->precio . ' €
-                                        </p>
-                                    </div>
-                                    <div class="col-xs-12 col-md-6 text-right">'
-                                . Html::a("<i class='fa fa-cart-plus' aria-hidden='true'></i>", ["venta/addCart", "id" => $key->id], ["class" => "btn btn-success unoymedio", "title" => "Añadir al pedido" ])
-                                .   '</div>
-                                  </div>
-                                </div>
-                                </div>
-                                </div>';
-
+                                <div class="col-xs-12 col-md-6 text-right">'
+                            . Html::a("<i class='fa fa-cart-plus' aria-hidden='true'></i>", ["venta/addCart", "id" => $key->id], ["class" => "btn btn-success unoymedio", "title" => "Añadir al pedido" ])
+                            .   '</div>
+                              </div>
+                            </div>
+                            </div>
+                            </div>';
             }
-            $htmlResul = implode($strImgs);
+        $htmlResul = implode($strImgs);
         return $htmlResul;
     }
 }
