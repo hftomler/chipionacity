@@ -321,12 +321,13 @@ class Servicios extends \yii\db\ActiveRecord
     }
 
     /**
-     * @param int $num
+     * @param int $num Número de servicios a mostrar
+     * @param bool $promo Indica si se muestran primero los servicios promocionados
      * @return $htmlResul
      */
-    public function getImagenTop($num) {
+    public function getImagenTop($num, $promo) {
         $limit = 5;
-        $imgs = self::find()->orderBy(['num_votos' => SORT_DESC])->limit($num)->all();
+        $imgs = ($promo) ? self::find()->orderBy(['promocion' => SORT_DESC, 'num_votos' => SORT_DESC])->limit($num)->all() : self::find()->orderBy(['num_votos' => SORT_DESC])->limit($num)->all();
         $servsTop = $this->isTop($limit);
         $servsNew = $this->isNew($limit);
         $strImgs = array();
@@ -349,8 +350,9 @@ class Servicios extends \yii\db\ActiveRecord
                               <div></div>
                             </div>
                             <div class="border two" title="' . $title . '">
-                              <div></div>
-                            </div>'
+                              <div></div>'
+                              . (($key->promocion) ? '<span class="promo">Anuncio</span>' : '')
+                            . '</div>'
                             //. (self::isInTop($key->id,6) ? '<div class="ribete ribete-top-right"><span><i class="fa fa-star" aria-hidden="true"></i> Top</span></div>' : "")
                             . (array_key_exists($key->id, $servsNew) ? '<div class="ribete ribete-top-left"><span><i class="fa fa-fire" aria-hidden="true"></i> New</span></div>' : '')
                             . '</figure>

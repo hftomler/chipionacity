@@ -74,7 +74,7 @@ $model = new Servicios();
                 <div class="text-center"><h4><?= Yii::t('app', 'Descubre nuestros servicios más recientes') ?></h4></div>
             </div>
             <div id="products" class="row list-group">
-                <?= $model->getImagenTop(20); ?>
+                <?= $model->getImagenTop(20, true); ?>
             </div>
         </div>
 

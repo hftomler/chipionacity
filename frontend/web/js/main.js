@@ -137,9 +137,8 @@ $(function(){
 				.addClass('col-xs-4');
 		});
 		$('#products figure').mouseover(function (){
-			$this = $(this);
-			var id = $this.children(":first").attr('id').substr(4);
-			//	eval('var ' + 'h' + id + '=' + 'setInterval(cambiaImagen, 5000)');
+			elem = $(this);
+			var id = elem.children(":first").attr('id').substr(4);
 			array = [];
 			var currentImage = -1;
 			$.post('index.php?r=servicio/listaurls&id=' + id)
@@ -152,21 +151,21 @@ $(function(){
 
 			function cambiaImagen() {
 			   currentImage++;
-			   if (currentImage > array.length - 1)
-				   currentImage = 0;
-				   $this.children(":first").fadeOut(150, function() {
-				   $this.children(":first").attr("src", array[currentImage]);
-				   $this.children(":first").fadeIn(150);
-			   });
+			   if (currentImage > array.length - 1) { currentImage = 0; }
+				   elem.children(":first").fadeOut(150, function() {
+						   elem.children(":first").attr("src", array[currentImage]);
+						   elem.children(":first").fadeIn();
+						   // Muchas veces se queda la imagen en display:none
+						   // Como si no le diera tiempo a hacer el fadeIn() porque me salgo
+			   		});
 		   }
 
 		});
 
 		$('#products figure').mouseout(function (){
-			$this = $(this);
-			var id = $this.children(":first").attr('id').substr(4);
+			elem = $(this);
 			clearInterval(slideImages);
-			array.splice(0,array.length);
+			setTimeout(array.splice(0,array.length), 1000);
 		});
 
 		$('.select2-selection__arrow').remove();
