@@ -118,25 +118,36 @@ $(function(){
   	},7000);
 
 	$(document).ready( function () {
-		$('#list').click(function(event){
+		$('.listServ').click(function(event){
+			var th = $(this);
 			event.preventDefault();
-			$('#products .item')
-				.removeClass('col-xs-4 col-xs-6')
-				.addClass('list-group-item col-xs-12');
+			th.parent().parent().siblings('.products').children('.item')
+				.removeClass('col-md-3 col-md-4 col-md-6')
+				.addClass('list-group-item col-md-12');
 		});
-		$('#big').click(function(event){
+		$('.bigServ').click(function(event){
+			var th = $(this);
 			event.preventDefault();$
-			('#products .item')
-				.removeClass('list-group-item col-xs-4')
-				.addClass('col-xs-6');
+			th.parent().parent().siblings('.products').children('.item')
+				.removeClass('list-group-item col-md-12 col-md-3 col-md-4')
+				.addClass('col-md-6');
 		});
-		$('#grid').click(function(event){
+		$('.gridServ').click(function(event){
+			var th = $(this);
 			event.preventDefault();
-			$('#products .item')
-				.removeClass('col-xs-6 list-group-item')
-				.addClass('col-xs-4');
+			th.parent().parent().siblings('.products').children('.item')
+				.removeClass('col-md-6 col-md-3 list-group-item col-md-12')
+				.addClass('col-md-4');
 		});
-		$('#products figure').mouseover(function (){
+		$('.gridSmallServ').click(function(event){
+			var th = $(this);
+			event.preventDefault();
+			th.parent().parent().siblings('.products').children('.item')
+				.removeClass('col-md-6 col-md-4 list-group-item col-md-12')
+				.addClass('col-md-3');
+		});
+
+		$('.products figure').mouseover(function (){
 			elem = $(this);
 			var id = elem.children(":first").attr('id').substr(4);
 			array = [];
@@ -147,17 +158,18 @@ $(function(){
 				});
 			cambiaImagen();
 
-			slideImages = setInterval(cambiaImagen, 2500);
+			if (array.length > 1) { slideImages = setInterval(cambiaImagen, 2500);}
 
 			function cambiaImagen() {
 			   currentImage++;
 			   if (currentImage > array.length - 1) { currentImage = 0; }
-				   elem.children(":first").fadeOut(150, function() {
-						   elem.children(":first").attr("src", array[currentImage]);
-						   elem.children(":first").fadeIn();
-						   // Muchas veces se queda la imagen en display:none
-						   // Como si no le diera tiempo a hacer el fadeIn() porque me salgo
-			   		});
+			   elem.children(":first").fadeOut(150, function() {
+					   elem.children(":first").attr("src", array[currentImage]);
+					   elem.children(":first").fadeIn();
+					   // Muchas veces se queda la imagen en display:none
+					   // Como si no le diera tiempo a hacer el fadeIn() porque
+					   // me salgo del elemento
+		   		});
 		   }
 
 		});

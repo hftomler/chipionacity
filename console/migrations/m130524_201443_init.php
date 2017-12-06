@@ -1,6 +1,5 @@
 <?php
 use yii\db\Migration;
-use common\models\User;
 class m130524_201443_init extends Migration
 {
     public function up()

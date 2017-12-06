@@ -4,8 +4,6 @@ use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 use kartik\file\FileInput;
 use common\models\User;
-use yii\bootstrap\Collapse;
-//use yii\base\View;
 
 /* @var $this yii\web\View */
 /* @var $model backend\models\Servicios */

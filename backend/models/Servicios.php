@@ -7,9 +7,9 @@ use yii\db\ActiveRecord;
 use yii\db\Expression;
 use common\models\User;
 use yii\helpers\Html;
-use common\models\PermissionHelpers;
 use yii\helpers\ArrayHelper;
 use yii\bootstrap\Collapse;
+
 /**
  * This is the model class for table "servicios".
  *
@@ -41,12 +41,8 @@ use yii\bootstrap\Collapse;
 class Servicios extends \yii\db\ActiveRecord
 {
     /**
-     * @inheritdoc
-     */
-
-    /**
      * Almacén para las imágenes subidas
-     * @var array $fichImage;
+     * @var array $fichImage
      */
     public $fichImage;
 
@@ -265,6 +261,10 @@ class Servicios extends \yii\db\ActiveRecord
         return ArrayHelper::map($imgs, 'id', 'urlthumb');
     }
 
+    /**
+     * @param int $id Id del servicio del que se quiere ver las imágenes relacionadas
+     * @return $htmlResult
+     */
     public function creaPanelImgServ($id) {
 
         $str =  '<div id="infoImagenes" class="col-xs-12 well">
@@ -312,22 +312,45 @@ class Servicios extends \yii\db\ActiveRecord
         return ArrayHelper::map($droptions, 'id', 'descripcion');
     }
 
+    /**
+     * @param int $limit Número de servicios a mostrar
+     * @return array
+     */
     public function isTop($limit) {
         return $this->find()->select(['id', 'descripcion'])->orderBy(['puntuacion'=>SORT_DESC])->limit($limit)->indexBy('id')->all();
     }
 
+    /**
+     * @param int $limit Número de servicios a mostrar
+     * @return array
+     */
     public function isNew($limit) {
-        return $this->find()->select(['id', 'descripcion'])->orderBy(['created_at' => SORT_DESC])->limit($limit)->indexBy('id')->all();
+        return $this->find()->select(['id', 'descripcion'])->orderBy(['updated_at' => SORT_DESC])->limit($limit)->indexBy('id')->all();
     }
 
     /**
      * @param int $num Número de servicios a mostrar
+     * @param string $grid Tipo de display: col-xs-4 muestra 3 imgs, col-xs-6 muestra solo 2
      * @param bool $promo Indica si se muestran primero los servicios promocionados
+     * @param bool $nuevos Indica si mostrar los servicios más actualizados o los más puntuados.
      * @return $htmlResul
      */
-    public function getImagenTop($num, $promo) {
-        $limit = 5;
-        $imgs = ($promo) ? self::find()->orderBy(['promocion' => SORT_DESC, 'num_votos' => SORT_DESC])->limit($num)->all() : self::find()->orderBy(['num_votos' => SORT_DESC])->limit($num)->all();
+    public function getImagenTop($num, $grid, $promo = true, $nuevos = false) {
+        $limit = 3;
+        if ($promo) {
+            if ($nuevos) {
+                $imgs = self::find()->orderBy(['promocion' => SORT_DESC, 'updated_at' => SORT_DESC])->limit($num)->all();
+            } else {
+                $imgs = self::find()->orderBy(['promocion' => SORT_DESC, 'num_votos' => SORT_DESC])->limit($num)->all();
+            }
+        } else {
+            if ($nuevos) {
+                $imgs = self::find()->orderBy(['updated_at' => SORT_DESC])->limit($num)->all();
+            } else {
+                $imgs = self::find()->orderBy(['num_votos' => SORT_DESC])->limit($num)->all();
+            }
+        }
+        //$imgs = ($promo) ? self::find()->orderBy(['promocion' => SORT_DESC, 'num_votos' => SORT_DESC])->limit($num)->all() : self::find()->orderBy(['num_votos' => SORT_DESC])->limit($num)->all();
         $servsTop = $this->isTop($limit);
         $servsNew = $this->isNew($limit);
         $strImgs = array();
@@ -335,7 +358,7 @@ class Servicios extends \yii\db\ActiveRecord
             //var_dump(self::isInTop($key->id, 6) . " - " . $key->id . " - " . self::isInNew($key->id, 6));
             $url = ImagenServicio::getLastImg($key->id);
             $title = Yii::t('app', ImagenServicio::existsUrl($key->id, $url)->descripcion);
-            $strImgs[] = '<div class="item col-xs-4">
+            $strImgs[] = '<div class="item col-xs-12 col-sm-6 ' . $grid . '">
                             <div class="thumbnail col-xs-12">'
                             . (array_key_exists($key->id, $servsTop) ? '<img src="imagenes/iconos/5star.png" class="imgStar" />' : '')
                             . '<figure class="snip1295">'
@@ -351,7 +374,7 @@ class Servicios extends \yii\db\ActiveRecord
                             </div>
                             <div class="border two" title="' . $title . '">
                               <div></div>'
-                              . (($key->promocion) ? '<span class="promo">Anuncio</span>' : '')
+                              . (($key->promocion && $promo) ? '<span class="promo">Anuncio</span>' : '')
                             . '</div>'
                             //. (self::isInTop($key->id,6) ? '<div class="ribete ribete-top-right"><span><i class="fa fa-star" aria-hidden="true"></i> Top</span></div>' : "")
                             . (array_key_exists($key->id, $servsNew) ? '<div class="ribete ribete-top-left"><span><i class="fa fa-fire" aria-hidden="true"></i> New</span></div>' : '')
@@ -363,16 +386,9 @@ class Servicios extends \yii\db\ActiveRecord
                               <p class="group inner list-group-item-text">'
                             . $key->descripcion_lg
                             . '</p>
-                              <div class="row">
-                                <div class="col-xs-12 col-md-6">
-                                    <p class="lead">'
-                                        . $key->precio . ' €
-                                    </p>
-                                </div>
-                                <div class="col-xs-12 col-md-6 text-right">'
-                            . Html::a("<i class='fa fa-cart-plus' aria-hidden='true'></i>", ["venta/addCart", "id" => $key->id], ["class" => "btn btn-success unoymedio", "title" => "Añadir al pedido" ])
-                            .   '</div>
-                              </div>
+                              <div class="row col-xs-12 text-center">'
+                            . Html::a($key->precio .  " € <i class='fa fa-cart-plus unoymedio' aria-hidden='true'> </i>", ["venta/addCart", "id" => $key->id], ["class" => "btn btn-success unoymedio", "title" => "Añadir al pedido" ])
+                            . '</div>
                             </div>
                             </div>
                             </div>';

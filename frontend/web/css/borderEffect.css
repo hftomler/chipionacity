@@ -1,3 +1,6 @@
+body {
+    min-width: 480px;
+}
 .snip1295 {
   position: relative;
   float: left;
@@ -102,18 +105,37 @@
   height: 100%;
 }
 
-.item.col-xs-4 .snip1295 + .caption  {
+.item.col-md-3 .snip1295 + .caption  {
+    min-height: 400px;
+}
+
+.item.col-md-4 .snip1295 + .caption  {
     min-height: 430px;
 }
 
-.item.col-xs-6 .snip1295 + .caption  {
-    min-height: 550px;
+.item.col-md-6 .snip1295 + .caption  {
+    min-height: 520px;
+}
+
+
+@media screen and (max-width: 800px) {
+    .item.col-md-3 .snip1295 + .caption  {
+        min-height: 450px;
+    }
+
+    .item.col-md-4 .snip1295 + .caption  {
+        min-height: 450px;
+    }
+
+    .item.col-md-6 .snip1295 + .caption  {
+        min-height: 450px;
+    }
 }
 
 .snip1295 + .caption > .row {
     position: absolute;
     width: 100%;
-    bottom: 0;
+    bottom: 5px;
 }
 
 
@@ -225,4 +247,8 @@
     border: 1px solid #006621;
     padding: 1px 3px 0 2px;
     line-height: 11px;
+}
+
+.lead {
+    vertical-align: middle;
 }

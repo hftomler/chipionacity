@@ -244,6 +244,53 @@ nav.inicio li:hover a:hover, nav li form button.btn-link:hover {
     color: #ff7e00
 }
 
+.check-sm {
+    font-size: 0.7em;
+    color: #337ab7;
+}
+
+.cnred {
+    font-weight: bold;
+    font-style: italic;
+    font-size: 0.9em;
+}
+
+.tituloForms {
+    max-width: 100%;
+    margin-bottom: 15px;
+    font-weight: bold;
+    text-align: center;
+}
+
+.unoymedio {
+    font-size: 1.5em !important;
+}
+
+.titUpdate {
+    text-align: center;
+    color: #286090;
+}
+
+.titUpdateBig {
+    text-align: left;
+    padding-left: 10px;
+    color: #286090;
+    font-size: 200% !important;
+    line-height: 100% !important;
+}
+
+.indented {
+    text-indent: 20px;
+}
+
+.tbn {
+    font-size: 1.5em !important;
+    color: #ffffff;
+    font-weight: bolder;
+}
+
+/* Estilos para imágenes de perfil - View profile */
+
 .imgPerfil-md {
     margin-top: 0;
     height: 110px;

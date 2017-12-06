@@ -12,7 +12,9 @@ use yii\helpers\Url;
 
 $this->title = 'My Yii Application';
 $model = new Servicios();
-
+$big = "col-md-6";
+$small = "col-md-4";
+$xsmall = "col-md-3";
 ?>
 <div class="site-index">
 
@@ -52,29 +54,63 @@ $model = new Servicios();
                                                             }'),
                         'templateSelection' => new JsExpression('function (results) { return results.text; }'),
                     ],
+                    'addon' => [
+                        'prepend' => [
+                            'content' => Html::icon('lightbulb-o', ['class' => 'unoymedio', 'id' => 'tenerSuerte'], 'fa fa-')
+                        ],
+                        'append' => [
+                            'content' => Html::icon('search', ['class' => 'unoymedio'], 'fa fa-')
+                        ]
+                    ],
                 ])->label('');?>
             </div>
         <?php ActiveForm::end(); ?></div>
     </div>
 
         <div class="clearfix"></div>
-        <div name="container" class="container">
+        <div id="top1" class="container">
             <div class="well well-sm col-xs-12">
                 <div class="pull-right">
-                    <a href="#container" id="list" class="btn btn-default btn-sm">
+                    <a href="#container" class="btn btn-default btn-sm listServ">
+                        <i class="fa fa-th-list text-primary" aria-hidden="true" title="<?= Yii::t('app', 'List') ?>"></i>
+                    </a>
+                    <a href="#container" class="btn btn-default btn-sm bigServ">
+                        <i class="fa fa-th-large text-primary" aria-hidden="true" title="<?= Yii::t('app', 'Big Photos') ?>"></i>
+                    </a>
+                    <a href="#container" class="btn btn-default btn-sm gridServ">
+                        <i class="fa fa-th text-primary" aria-hidden="true" title="<?= Yii::t('app', 'Medium Photos') ?>"></i>
+                    </a>
+                    <a href="#container" class="btn btn-default btn-sm gridSmallServ">
+                        <i class="fa fa-braille text-primary" aria-hidden="true" title="<?= Yii::t('app', 'Big Photos') ?>"></i>
+                    </a>
+                </div>
+                <div class="titUpdateBig"><i class="fa fa-picture-o" aria-hidden="true"></i> <?= Yii::t('app', 'Discover our latest services') ?></div>
+            </div>
+            <div class="row list-group products">
+                <?= $model->getImagenTop(12, $big, true, true); // Muestra los que tienen promo y ordenados por puntuacion?>
+            </div>
+        </div>
+
+        <div id="top2" class="container">
+            <div class="well well-sm col-xs-12">
+                <div class="pull-right">
+                    <a href="#container" class="btn btn-default btn-sm listServ">
                         <i class="fa fa-th-list" aria-hidden="true" title="<?= Yii::t('app', 'List') ?>"></i>
                     </a>
-                    <a href="#container" id="big" class="btn btn-default btn-sm">
+                    <a href="#container" class="btn btn-default btn-sm bigServ">
                         <i class="fa fa-th-large" aria-hidden="true" title="<?= Yii::t('app', 'Big Photos') ?>"></i>
                     </a>
-                    <a href="#container" id="grid" class="btn btn-default btn-sm">
+                    <a href="#container" class="btn btn-default btn-sm gridServ">
+                        <i class="fa fa-th" aria-hidden="true" title="<?= Yii::t('app', 'Medium Photos') ?>"></i>
+                    </a>
+                    <a href="#container" class="btn btn-default btn-sm gridSmallServ">
                         <i class="fa fa-th" aria-hidden="true" title="<?= Yii::t('app', 'Medium Photos') ?>"></i>
                     </a>
                 </div>
-                <div class="text-center"><h4><?= Yii::t('app', 'Descubre nuestros servicios más recientes') ?></h4></div>
+                <div class="text-center"><h4><?= Yii::t('app', 'Discover our latest services') ?></h4></div>
             </div>
-            <div id="products" class="row list-group">
-                <?= $model->getImagenTop(20, true); ?>
+            <div class="row list-group products">
+                <?= $model->getImagenTop(12, $xsmall, false, true); // Muestra los que NO tienen promo y los más nuevos?>
             </div>
         </div>
 
