@@ -147,6 +147,17 @@ class m171202_111329_datos_iniciales extends Migration
             [12, 'Cataratas en el río Majaceite', 'imagenes/imgServ/catarata.jpg', 'imagenes/thumbs/catarata-thumb.jpg'],
         ]);
 
+        $this->batchInsert('etiquetas',  ['descripcion_tag'], [
+            ['Deporte'], ['Fiesta'], ['Cultura'], ['Música']
+        ]);
+
+        $this->batchInsert('imagen_publi', ['etiqueta_id', 'descripcion', 'link', 'urlvt', 'urlhz'], [
+            [1, 'Cross Training Global Sport', 'http://www.google.es', 'imagenes/publi/gb-cross-vt.jpg', 'imagenes/publi/gb-cross-hz.jpg'],
+            [4, 'Zambomba Picoco: ', 'http://www.google.es', 'imagenes/publi/picoco-zambomba-sopa-vt.jpg', 'imagenes/publi/picoco-zambomba-sopa-hz.jpg'],
+            [1, 'Clases de tenis: ', 'http://www.google.es', 'imagenes/publi/clases-tenis-vt.jpg', 'imagenes/publi/clases-tenis-hz.jpg'],
+            [2, 'Trinity Irish Pub: ', 'http://www.google.es', 'imagenes/publi/trinity-vt.jpg', 'imagenes/publi/trinity-hz.jpg'],
+        ]);
+
         $this->batchInsert('estado_ventas',  ['estado'], [
             ['En curso'], ['Pendiente Pago'], ['Borrador'], ['Finalizada']
         ]);

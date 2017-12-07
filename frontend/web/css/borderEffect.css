@@ -270,10 +270,8 @@ body {
     z-index: 10;
 }
 
-.promo {
+.promo, .promoVt, .promoHz {
     position: absolute;
-    right: 10px;
-    bottom: 10px;
     border-radius: 3px;
     background-color: rgba(255, 255, 80, 0.5);
     color: #006621;
@@ -283,6 +281,21 @@ body {
     border: 1px solid #006621;
     padding: 1px 3px 0 2px;
     line-height: 11px;
+}
+
+.promo {
+    right: 10px;
+    bottom: 10px;
+}
+
+.promoVt {
+    right: 30px;
+    bottom: 10px;
+}
+
+.promoHz {
+    right: 10px;
+    bottom: 30px;
 }
 
 .lead {

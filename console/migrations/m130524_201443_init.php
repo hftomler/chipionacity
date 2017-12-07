@@ -335,6 +335,26 @@ class m130524_201443_init extends Migration
             'descripcion_tag'=> $this->string(255)->notNull(),
         ], $tableOptions);
 
+        $this->createTable('imagen_publi', [
+            'id'=> $this->primaryKey(),
+            'etiqueta_id' =>$this->integer()->notNull(),
+            'descripcion' => $this->string(50)->notNull(),
+            'link' => $this->string(255)->notNull(),
+            'urlvt' => $this->string(255)->notNull(),
+            'urlhz' => $this->string(255)->notNull(),
+            'created_at' => $this->datetime()->notNull()->defaultExpression('now()'),
+            'updated_at' => $this->datetime()->notNull()->defaultExpression('now()'),
+        ], $tableOptions);
+
+        $this->addForeignKey(
+            'fk_imagen_publi_etiqueta',
+            'imagen_publi',
+            'etiqueta_id',
+            'etiquetas',
+            'id',
+            'CASCADE'
+        );
+
         $this->createTable('servicios_etiquetas', [
             'id'=> $this->primaryKey(),
             'etiqueta_id'=> $this->integer()->notNull(),
@@ -462,6 +482,7 @@ class m130524_201443_init extends Migration
         $this->dropTable('servicios_categorias');
         $this->dropTable('categorias');
         $this->dropTable('servicios_etiquetas');
+        $this->dropTable('imagen_publi');
         $this->dropTable('etiquetas');
         $this->dropTable('imagen_servicio');
         $this->dropTable('votaciones');

@@ -7,6 +7,7 @@ use kartik\select2\Select2;
 use backend\models\Servicios;
 use yii\web\JsExpression;
 use yii\helpers\Url;
+use backend\models\ImagenPubli;
 /* @var $this yii\web\View */
 
 
@@ -90,7 +91,8 @@ $xsmall = "col-md-3";
                 <?= $model->getImagenTop(4, $xsmall, true, true); // Muestra los que tienen promo y ordenados por puntuacion?>
             </div>
         </div>
-        <div id="publi1"></div>
+        <div id="publi1hz" class="col-xs-6"><?= ImagenPubli::getImagenPubli(true, false) ?></div>
+        <div id="publi2hz" class="col-xs-6"><?= ImagenPubli::getImagenPubli(true, false) ?></div>
         <div id="top2" class="container">
             <div class="well well-sm col-xs-12">
                 <div class="pull-right">
@@ -112,7 +114,9 @@ $xsmall = "col-md-3";
             <div class="row list-group products">
                 <?= $model->getImagenTop(2, $big, false, true); // Muestra los que NO tienen promo y los más nuevos?>
             </div>
-            <div class="weather col-xs-6">Cádiz</div>
+            <div id="publi2" class="col-xs-4"><?= ImagenPubli::getImagenPubli(true, true) ?></div>
+            <div class="weather col-xs-4">Cádiz</div>
+            <div id="publi3" class="col-xs-4"><?= ImagenPubli::getImagenPubli(true, true) ?></div>
         </div>
 
 </div>
