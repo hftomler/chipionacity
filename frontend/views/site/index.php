@@ -112,6 +112,7 @@ $xsmall = "col-md-3";
             <div class="row list-group products">
                 <?= $model->getImagenTop(2, $big, false, true); // Muestra los que NO tienen promo y los más nuevos?>
             </div>
+            <div class="weather col-xs-6">Cádiz</div>
         </div>
 
 </div>

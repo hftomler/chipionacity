@@ -118,6 +118,7 @@ $(function(){
   	},7000);
 
 	$(document).ready( function () {
+		$(".weather").weatherFeed({relativeTimeZone:true});
 		$('.listServ').click(function(event){
 			var th = $(this);
 			event.preventDefault();

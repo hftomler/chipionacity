@@ -1,0 +1,97 @@
+﻿ .fullDay
+{
+    /*border-radius: 15px;*/
+    border: 1px solid #000;
+    background-color:rgba(31, 92, 153, 0.4);
+    padding: 5px 5px 5px 5px;
+    color: #FFF;
+    width: 150px;
+    margin-top: 30px;
+    overflow:hidden;
+    font-size:0.8em;
+}
+.weatherSummary
+{
+    background-size:cover;
+    background-repeat:no-repeat;
+
+}
+.today
+{
+    margin: 0 auto;
+    padding: 10px 10px 10px 10px;
+    color: #FFF;
+    width: 280px;
+    vertical-align:top;
+    overflow:hidden;
+    font-size:1.5em;
+}
+.today p
+{
+    margin-top: 0.3em;
+    margin-bottom: 0.3em;
+}
+h2.weather
+{
+    border-bottom: 1px solid #999;
+}
+
+.fullDay:hover
+{
+    background-color: #4C7DAD;
+}
+
+.lastUpdate
+{
+    color: #880000;
+    font-size:0.5em;
+}
+
+.highTemp
+{
+    color: #FFDE58;
+    font-weight: bolder;
+}
+
+.lowTemp
+{
+    color: #FFF;
+    font-weight: bolder;
+}
+
+.day
+{
+    font-size:2em;
+    font-weight:bold;
+    color: white;
+    text-shadow: 2px 2px #006600;
+}
+
+ul.weather
+{
+    list-style-type: none;
+    width: 100%;
+    text-align: center;
+    border: 1px solid #e3e3e3;
+    border-radius: 5px;
+}
+
+.fullday p
+{
+    margin: 0;
+}
+
+ul li.weather
+{
+    display:inline-block;
+}
+
+li.today > p {
+    text-shadow: 1px 1px #006600;
+}
+
+.weather
+{
+    margin: 0;
+    padding: 0 15px 0 0;
+}
