@@ -387,7 +387,7 @@ class Servicios extends \yii\db\ActiveRecord
                             . $key->descripcion_lg
                             . '</p>
                               <div class="row col-xs-12 text-center">'
-                            . Html::a($key->precio .  " € <i class='fa fa-cart-plus unoymedio' aria-hidden='true'> </i>", ["venta/addCart", "id" => $key->id], ["class" => "btn btn-success unoymedio", "title" => "Añadir al pedido" ])
+                            . Html::a($key->precio .  " € <i class='fa fa-cart-plus unoycuarto' aria-hidden='true'> </i>", ["venta/addCart", "id" => $key->id], ["class" => "btn btn-success unoycuarto", "title" => "Añadir al pedido" ])
                             . '</div>
                             </div>
                             </div>

@@ -11,7 +11,7 @@ body {
 }
 
 .wrap > .container {
-    padding: 70px 15px 20px;
+    padding: 30px 15px 20px;
 }
 
 .footer {
@@ -262,10 +262,6 @@ nav.inicio li:hover a:hover, nav li form button.btn-link:hover {
     text-align: center;
 }
 
-.unoymedio {
-    font-size: 1.5em !important;
-}
-
 .titUpdate {
     text-align: center;
     color: #286090;
@@ -472,6 +468,10 @@ input[type=checkbox].check {
 
 .unoymedio {
     font-size: 1.5em !important;
+}
+
+.unoycuarto {
+    font-size: 1.25em !important;
 }
 
 /* Estilos para mostrar lista de servicios */

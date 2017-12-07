@@ -87,10 +87,10 @@ $xsmall = "col-md-3";
                 <div class="titUpdateBig"><i class="fa fa-picture-o" aria-hidden="true"></i> <?= Yii::t('app', 'Discover our latest services') ?></div>
             </div>
             <div class="row list-group products">
-                <?= $model->getImagenTop(12, $big, true, true); // Muestra los que tienen promo y ordenados por puntuacion?>
+                <?= $model->getImagenTop(4, $xsmall, true, true); // Muestra los que tienen promo y ordenados por puntuacion?>
             </div>
         </div>
-
+        <div id="publi1"></div>
         <div id="top2" class="container">
             <div class="well well-sm col-xs-12">
                 <div class="pull-right">
@@ -107,10 +107,10 @@ $xsmall = "col-md-3";
                         <i class="fa fa-th" aria-hidden="true" title="<?= Yii::t('app', 'Medium Photos') ?>"></i>
                     </a>
                 </div>
-                <div class="text-center"><h4><?= Yii::t('app', 'Discover our latest services') ?></h4></div>
+                <div class="titUpdateBig"><i class="fa fa-picture-o" aria-hidden="true"></i> <?= Yii::t('app', 'Our most rated services ') ?></div>
             </div>
             <div class="row list-group products">
-                <?= $model->getImagenTop(12, $xsmall, false, true); // Muestra los que NO tienen promo y los más nuevos?>
+                <?= $model->getImagenTop(2, $big, false, true); // Muestra los que NO tienen promo y los más nuevos?>
             </div>
         </div>
 
