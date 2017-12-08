@@ -202,6 +202,9 @@ $(function(){
 
 				// MUESTRO LA IMAGEN
 				el.fadeIn(150);
+				$('html, body').stop().animate({
+					 'scrollTop': el.offset().top
+				}, 1500, 'swing');
 			});
 		});
 
