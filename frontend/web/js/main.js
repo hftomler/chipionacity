@@ -208,9 +208,14 @@ $(function(){
 							"</div>"+
 						  "</div>"
 				);
-				// Creo las escuchas para los clics en las miniaturas
+				// Creo las escuchas para los clics en las miniaturas y el cambio de imagen principal
 				$('#imgsDetalle > img').click( function () {
-					$('#imgDetPrinc').attr('src', $(this).attr('src'));
+					$url = $(this).attr('src');
+					$("#imgDetPrinc")
+					        .fadeOut(400, function() {
+					            $("#imgDetPrinc").attr('src',$url);
+					        })
+							.fadeIn(400);
 				});
 
 				// MUESTRO LA IMAGEN

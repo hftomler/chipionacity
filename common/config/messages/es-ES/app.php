@@ -17,18 +17,23 @@
  * NOTE: this file must be saved in UTF-8 encoding.
  */
 return [
-    'Unforgettable experiences <i class = "fa fa-heart" aria-hidden = "true"> </ i>,
-            in the ideal place <i class = "fa fa-star" aria-hidden = "true"> </ i> <br/>
-            to a spectacular <i class = "fa fa-arrow-down" aria-hidden = "true"> </ i> <i class = "fa fa-eur" aria-hidden = "true"> </ i>' => 'Experiencias inolvidables <i class="fa fa-heart" aria-hidden="true"></i>,
-                    en el lugar ideal <i class="fa fa-star" aria-hidden="true"></i><br/>
-                    a un  espectacular <i class="fa fa-arrow-down" aria-hidden="true"></i> <i class="fa fa-eur" aria-hidden="true"></i>',
-    'Waiting results...' => 'Esperando resultados ...',
-    'Are you looking for something to do ...?' => '¿Estás buscando algo que hacer ...?',
+    'Are you new' => '¿Eres nuevo?',
+    'Comments' => 'Comentarios',
+    'Create Comment' => 'Crear comentario',
+    'Discover our latest services' => 'Descubre nuestros nuevos servicios',
+    'Tag ID' => 'Id Etiqueta',
+    'Large Description' => 'Descripción ampl.',
+    'My Profile' => 'Mi Perfil',
+    'Our most rated services ' => 'Nuestros servicios más puntuados',
+    'Sign In' => '',
+    'Urlhz' => 'Imagen apaisada',
+    'Urlvt' => 'Imagen vertical',
     'About Service Images' => 'Sobre las imágenes de Servicio',
     'Active' => 'Activo',
     'Address' => 'Dirección',
     'Administrator\'s Zone' => 'Zona de administración',
     'Amount' => 'Cantidad',
+    'Are you looking for something to do ...?' => '¿Estás buscando algo que hacer ...?',
     'Are you sure you want to delete this item?' => '¿Está seguro  que desea borrar este item?',
     'Are you sure you want to delete this user?' => '¿Está seguro que desea borrar este usuario?',
     'Avatar List' => 'Lista de Avatares',
@@ -161,6 +166,11 @@ return [
     'Total Sale' => 'Total Venta',
     'Total line' => 'Total Línea',
     'Town ID' => 'Id Municipio',
+    'Unforgettable experiences <i class = "fa fa-heart" aria-hidden = "true"> </ i>,
+            in the ideal place <i class = "fa fa-star" aria-hidden = "true"> </ i> <br/>
+            to a spectacular <i class = "fa fa-arrow-down" aria-hidden = "true"> </ i> <i class = "fa fa-eur" aria-hidden = "true"> </ i>' => 'Experiencias inolvidables <i class="fa fa-heart" aria-hidden="true"></i>,
+                    en el lugar ideal <i class="fa fa-star" aria-hidden="true"></i><br/>
+                    a un  espectacular <i class="fa fa-arrow-down" aria-hidden="true"></i> <i class="fa fa-eur" aria-hidden="true"></i>',
     'Unit Price' => 'Precio Unit.',
     'Update' => 'Actualizar',
     'Update Profile Image: ' => 'Actualizar Imagen Perfil',
@@ -188,6 +198,7 @@ return [
     'View Profile:' => 'Ver Perfil',
     'View Service Image: ' => 'Ver imagen servicio: ',
     'Votes' => 'Votos',
+    'Waiting results...' => 'Esperando resultados ...',
     'Welcome to Administrator\'s Zone' => 'Zona de administración',
     'When placed on them, two icons will appear:' => 'Cuando pase el cursor por encima de ellas, aparecerán 2 iconos:',
     'You can add a new role if you like, just click the link below to get started.' => 'Puedes añadir nuevos roles, haz clic en el enlace.',
