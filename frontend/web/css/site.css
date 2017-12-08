@@ -586,3 +586,12 @@ input[type=checkbox].check {
 .separate > div {
     margin: 10px 0;
 }
+
+.textComent {
+    margin-top: 10px;
+    text-align: justify;
+    font-size: 125% !important;
+    line-height: 125% !important;
+    font-style: italic;
+    color: #666;
+}

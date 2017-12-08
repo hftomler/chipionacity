@@ -46,7 +46,7 @@ class m171202_111329_datos_iniciales extends Migration
                 Yii::$app->security->generatePasswordHash('123456'),
                 Yii::$app->security->generateRandomString(), true
             ],
-            ['Inactivo', ', invitadoInactivo@gmail.com', 10, 10, 5,
+            ['InvitadoInactivo', ', invitadoInactivo@gmail.com', 10, 10, 5,
                 Yii::$app->security->generatePasswordHash('123456'),
                 Yii::$app->security->generateRandomString(), false
             ],
@@ -151,6 +151,21 @@ class m171202_111329_datos_iniciales extends Migration
             ['Deporte'], ['Fiesta'], ['Cultura'], ['Música']
         ]);
 
+        $this->batchInsert('comentarios', ['servicio_id', 'profile_id', 'comentario'], [
+            [1, 1, 'Precioso día el que hemos echado con toda la familia a bordo del "Salmedina II"'],
+            [2, 2, 'Un buen rato el que hemos pasado pedaleando por la Vía Verde desde Chipiona a Rota. Por poner un pero se podría mantener un poco más la calzada y cuidar la limpieza de la vía.'],
+            [3, 3, 'En sólo una semana me he quitado la espina de aprender a tocar la Guitarra. Ahora sé los compases básicos. El verano que viene me tendrás ahí de nuevo Juan.'],
+            [4, 4, 'Manuel y yo lo hemos pasado genial. La atmósfera supertmblr y la comida magnífica. Lo mejor el olor a mar proveniente del corral de La Longuera. gracias a Casa Augusto y a Ricardo por las atenciones.'],
+            [5, 2, 'No pensábamos que estuviera tan alto. Hemos visto el Puente de la Pepa y toda la desembocadura del Guadalquivir. Sin duda una experiencia inolvidable'],
+            [6, 5, 'Paulino ha sido un profesor excelente. Ya nos hemos apuntado para verano tanto mis niños como yo.'],
+            [7, 6, 'Hasta hoy no he tenido en cuenta el trabajo que supone sacar una copa de este manjar que tenéis en Chipiona. Sin duda uno de las mejores experiencias que hemos vivido esta Semana Santa.'],
+            [8, 3, 'Mi niña ha flipado con los camaleones. Aunque no los puedan tener enjaulados por protección, los tienen localizados dentro de las dunas y retamas y hemos podido disfrutar viendo a varios.'],
+            [9, 2, 'Hemos celebrado la comida de la familia de este verano en vuestra casa y habéis hecho honor al nombre. Un 10 en servicio y calidad de la comida. Todo fresquísimo'],
+            [10, 1, 'El paseo en barco, incluso con las olas que hacía ha sido estupendo. Atracar en Salmedina cuando la marea estaba baja le ha parecido a mis hijos de cuento de pirata, más aún después de ver el barco del arroz hundido.'],
+            [11, 6, 'La verdad es que fui por acompañar a mi madre que es muy creyente y devota de la Virgen de Regla, pero los tesoros que conservan los franciscanos me han dejado atónita. Muchas gracias al Padre Juan José por sus explicaicones.'],
+            [12, 4, 'Me ha parecido un poco penosa. Apenas tiene nada más que cuatro mapas colgados de la pared. No lo recomendaré y por supuesto lo he valorado con un 0. ']
+        ]);
+
         $this->batchInsert('imagen_publi', ['etiqueta_id', 'descripcion', 'link', 'urlvt', 'urlhz'], [
             [1, 'Cross Training Global Sport', 'http://www.google.es', 'imagenes/publi/gb-cross-vt.jpg', 'imagenes/publi/gb-cross-hz.jpg'],
             [4, 'Zambomba Picoco: ', 'http://www.google.es', 'imagenes/publi/picoco-zambomba-sopa-vt.jpg', 'imagenes/publi/picoco-zambomba-sopa-hz.jpg'],
@@ -161,6 +176,7 @@ class m171202_111329_datos_iniciales extends Migration
         $this->batchInsert('estado_ventas',  ['estado'], [
             ['En curso'], ['Pendiente Pago'], ['Borrador'], ['Finalizada']
         ]);
+
 
     }
 

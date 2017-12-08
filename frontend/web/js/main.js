@@ -163,6 +163,12 @@ $(function(){
 					}
 				});
 
+			// Ahora el último comentario
+			var cmtr = "";
+			$.post('index.php?r=comentarios/lastcom&id=' + id)
+				.done (function(data) {
+					cmtr = jQuery.parseJSON(data);
+				});
 			// Ahora cojo los datos del servicio y monto la ficha
 			var urlImg = img.attr('src');
 			var servicio = "";//var array = {};// Array para guardar el objeto JSON que me devuelve el $.post
@@ -172,6 +178,7 @@ $(function(){
 				// CONSTRUYO LA FICHA
 				var el = $('#servDetalle');
 				el.empty();
+				el.fadeOut(100).fadeIn(600);
 				var estrellas = "";
 				for (i=0; i<Math.trunc(servicio.media_punt); i++) {
 					estrellas += "<i class='fa fa-star' aria-hidden='true'></i>";
@@ -187,10 +194,11 @@ $(function(){
 						    	"<img src='"+ urlImg + "' class='imgDet'/></div>"+
 							"<div class='col-xs-12 col-md-6'>"+
 							"<p class='col-xs-12 textDetalle'>\"" + servicio.descripcion_lg + "\"<p>"+
-							"<p class='col-xs-7 estreDetalle'>" + servicio.puntuacion + " puntos ("+ estrellas + ")</p>"+
-							"<a class='col-xs-3 col-xs-offset-2 btn btn-success unoycuarto'"+
+							"<p class='col-xs-8 estreDetalle'>" + servicio.puntuacion + " puntos ("+ estrellas + ")</p>"+
+							"<a class='col-xs-3 col-xs-offset-1 btn btn-success unoycuarto'"+
 								"href='/index.php?r=venta/addCart&id=" + servicio.id + " title='Añadir al pedido: " + servicio.descripcion + "'>"+
 								servicio.precio + " € <i class='fa fa-cart-plus unoycuarto' aria-hidden='true'> </i></a>"+
+							"<p class='col-xs-12 textComent'>\"" + cmtr + "\"<p>"+
 							"</div>"+
 							"<div class='col-xs-12 col-md-12'>"+
 								imgServicio +
@@ -201,10 +209,9 @@ $(function(){
 				);
 
 				// MUESTRO LA IMAGEN
-				el.fadeIn(150);
 				$('html, body').stop().animate({
 					 'scrollTop': el.offset().top
-				}, 1500, 'swing');
+				}, 900, 'swing');
 			});
 		});
 

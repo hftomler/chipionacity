@@ -256,6 +256,7 @@ class m130524_201443_init extends Migration
             'padre_id' => $this->integer(),
             'comentario' => $this->string(255)->notNull(),
             'created_at' => $this->datetime()->notNull()->defaultExpression('now()'),
+            'updated_at' => $this->datetime()->notNull()->defaultExpression('now()'),
         ]);
 
         $this->addForeignKey(

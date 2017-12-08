@@ -3,7 +3,9 @@
 namespace backend\models;
 
 use Yii;
-
+use yii\db\ActiveRecord;
+use yii\db\Expression;
+use frontend\models\Profile;
 /**
  * This is the model class for table "comentarios".
  *
@@ -28,6 +30,22 @@ class Comentarios extends \yii\db\ActiveRecord
     {
         return 'comentarios';
     }
+
+    /**
+      * @inheritdoc
+      */
+     public function behaviors()
+     {
+         return [
+             'timestamp' => [
+                 'class' => 'yii\behaviors\TimestampBehavior',
+                 'attributes' => [
+                     ActiveRecord::EVENT_BEFORE_INSERT => ['created_at'],
+                 ],
+                 'value' => new Expression('NOW()'),
+             ],
+         ];
+     }
 
     /**
      * @inheritdoc
@@ -90,5 +108,27 @@ class Comentarios extends \yii\db\ActiveRecord
     public function getServicio()
     {
         return $this->hasOne(Servicios::className(), ['id' => 'servicio_id']);
+    }
+
+    /**
+     * @param int $servicio_id
+     * @return \yii\db\ActiveQuery
+     */
+    private static function getId($servicio_id) {
+        return self::find()->where(['servicio_id' => $servicio_id])->one();
+    }
+
+    /**
+     * @param int $servicio_id
+     * @return \yii\db\ActiveQuery
+     */
+    public static function getLastCom($servicio_id) {
+        if (self::getId($servicio_id) !== null){
+            return self::find()->where(['servicio_id' => $servicio_id])
+                                         ->orderBy(['created_at' => SORT_DESC])
+                                         ->one()->comentario;
+        } else {
+            return 'Aún no hay ningún comentario sobre este servicio';
+        }
     }
 }
