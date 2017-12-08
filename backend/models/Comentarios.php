@@ -124,11 +124,15 @@ class Comentarios extends \yii\db\ActiveRecord
      */
     public static function getLastCom($servicio_id) {
         if (self::getId($servicio_id) !== null){
-            return self::find()->where(['servicio_id' => $servicio_id])
+            $formatter = \Yii::$app->formatter;
+            $coment[] = self::find()->where(['servicio_id' => $servicio_id])
                                          ->orderBy(['created_at' => SORT_DESC])
                                          ->one()->comentario;
+            $coment[] = Profile::find()->where(['id' => self::getId($servicio_id)->profile_id])->one()->nombre;
+            $coment[] = $formatter->asDate(self::find()->where(['servicio_id' => $servicio_id])->orderBy(['created_at' => SORT_DESC])->one()->created_at, 'short');
         } else {
-            return 'Aún no hay ningún comentario sobre este servicio';
+            $coment[] = 'Aún no hay ningún comentario sobre este servicio';
         }
+        return $coment;
     }
 }

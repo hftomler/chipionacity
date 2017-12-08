@@ -167,7 +167,8 @@ $(function(){
 			var cmtr = "";
 			$.post('index.php?r=comentarios/lastcom&id=' + id)
 				.done (function(data) {
-					cmtr = jQuery.parseJSON(data);
+					array = jQuery.parseJSON(data);
+					cmtr = "\"" + array[0] + "\"<p class='userComent'>@" + array[1] + id + " (" + array[2] + ")</p>";
 				});
 			// Ahora cojo los datos del servicio y monto la ficha
 			var urlImg = img.attr('src');
@@ -198,7 +199,10 @@ $(function(){
 							"<a class='col-xs-3 col-xs-offset-1 btn btn-success unoycuarto'"+
 								"href='/index.php?r=venta/addCart&id=" + servicio.id + " title='Añadir al pedido: " + servicio.descripcion + "'>"+
 								servicio.precio + " € <i class='fa fa-cart-plus unoycuarto' aria-hidden='true'> </i></a>"+
-							"<p class='col-xs-12 textComent'>\"" + cmtr + "\"<p>"+
+							"<p class='col-xs-12 textComent'>" + cmtr + "<p>"+
+							"<p class='col-xs-12 textDetalle'>" +
+									"<i class='fa fa-clock-o' aria-hidden='true'></i>"+
+									" Este servicio tiene una duración aproximada de " + servicio.duracion + "<p>"+
 							"</div>"+
 							"<div class='col-xs-12 col-md-12'>"+
 								imgServicio +

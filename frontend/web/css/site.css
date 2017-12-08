@@ -590,8 +590,13 @@ input[type=checkbox].check {
 .textComent {
     margin-top: 10px;
     text-align: justify;
-    font-size: 125% !important;
-    line-height: 125% !important;
     font-style: italic;
     color: #666;
+}
+
+.userComent {
+    float: right;
+    padding-right: 15px;
+    color: #428bca;
+    font-style: italic;
 }
