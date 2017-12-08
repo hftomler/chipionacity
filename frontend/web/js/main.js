@@ -152,29 +152,11 @@ $(function(){
 		$('.products figure').click(function () {
 			var img = $(this).children(":first");
 			var id = img.attr('id').substr(4);
-			// Primero cojo la lista de imágenes del servicios
-			array = [];
-			var imgServicio = "";
-			$.post('index.php?r=servicio/listaurls&id=' + id)
-				.done (function(data) {
-					array = jQuery.parseJSON(data);
-					for (i= 0; i<array.length; i++) {
-						imgServicio += "<img src='" + array[i] + "' class='imgServicio-sm img-thumbnail col-xs-3' />";
-					}
-				});
-
-			// Ahora el último comentario
-			var cmtr = "";
-			$.post('index.php?r=comentarios/lastcom&id=' + id)
-				.done (function(data) {
-					array = jQuery.parseJSON(data);
-					cmtr = "\"" + array['comentario'] + "\"<p class='userComent'>@" + array['autor'] + " (" + array['fecha'] + ")</p>";
-				});
-			// Ahora cojo los datos del servicio y monto la ficha
+			// Pido los datos del servicio y monto la ficha
 			var urlImg = img.attr('src');
 			var servicio = "";//var array = {};// Array para guardar el objeto JSON que me devuelve el $.post
 			// Pido por AJax el registro que me interesa = id;
-			$.post('index.php?r=servicio/servdetalle2&id=' + id, function(data) {
+			$.post('index.php?r=servicio/servdetalle&id=' + id, function(data) {
 				servicio = jQuery.parseJSON(data);
 				// CONSTRUYO LA FICHA
 				var el = $('#servDetalle');
@@ -184,8 +166,21 @@ $(function(){
 				for (i=0; i<Math.trunc(servicio.media_punt); i++) {
 					estrellas += "<i class='fa fa-star' aria-hidden='true'></i>";
 				}
+				if (servicio.media_punt%1 >=0.5) {
+					estrellas += "<i class='fa fa-star-half-o' aria-hidden='true'></i>";
+					for (i = 0; i< 5-(Math.trunc(servicio.media_punt)+1); i++) {
+						estrellas += "<i class='fa fa-star-o' aria-hidden='true'></i>";
+					}
+				} else {
+					for (i = 0; i< 5-(Math.trunc(servicio.media_punt)); i++) {
+						estrellas += "<i class='fa fa-star-o' aria-hidden='true'></i>";
+					}
+				}
+				imgServicio = "";
+				for (i = 0; i<servicio.imgs.length; i++) {
+					imgServicio += "<img src='" + servicio.imgs[i] + "' class='imgServicio-sm img-thumbnail col-xs-3' />";
+				}
 				cmtr = "\"" + servicio.comentario.comentario + "\"<p class='userComent'>@" + servicio.comentario.autor + " (" + servicio.comentario.fecha + ")</p>";
-				if (servicio.media_punt%1 >=0.5) estrellas += "<i class='fa fa-star-half-o' aria-hidden='true'></i>";
 				el.append("<div class='col-xs-12'>"+
 							"<h4 class='col-xs-12 titUpdate well'>"+
 								"<i class='col-xs-1 fa fa-info-circle' aria-hidden='true'></i>"+
@@ -193,7 +188,7 @@ $(function(){
 								"<i class='fa fa-picture-o' aria-hidden='true'></i>"+
 							"</h4>"+
 							"<div class='col-xs-12 col-md-6 separate'>"+
-						    	"<img src='"+ urlImg + "' class='imgDet'/></div>"+
+						    	"<img id='imgDetPrinc' src='"+ urlImg + "' class='imgDet'/></div>"+
 							"<div class='col-xs-12 col-md-6'>"+
 							"<p class='col-xs-12 textDetalle'>\"" + servicio.descripcion_lg + "\"<p>"+
 							"<p class='col-xs-8 estreDetalle'>" + servicio.puntuacion + " puntos ("+ estrellas + ")</p>"+
@@ -208,13 +203,15 @@ $(function(){
 									 ((servicio.activo) ? " y <span class='text-success'>actualmente está disponible</span> su reserva" :
 									  					  ", lamentablemente <span class='text-danger'>no está disponible</span> para su reserva en la actualidad.") + "</p>"+
 							"</div>"+
-							"<div class='col-xs-12 col-md-12'>"+
+							"<div id='imgsDetalle' class='col-xs-12 col-md-12'>"+
 								imgServicio +
 							"</div>"+
 						  "</div>"
-
-
 				);
+				// Creo las escuchas para los clics en las miniaturas
+				$('#imgsDetalle > img').click( function () {
+					$('#imgDetPrinc').attr('src', $(this).attr('src'));
+				});
 
 				// MUESTRO LA IMAGEN
 				$('html, body').stop().animate({

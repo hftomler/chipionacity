@@ -47,14 +47,14 @@ FontAwesomeAsset::register($this);
         ],
     ]);
     if (Yii::$app->user->isGuest) {
-        $menuItems[] = [ 'label' => '<i class="fa fa-id-card-o" aria-hidden="true"></i> Mi perfil',
+        $menuItems[] = [ 'label' => '<i class="fa fa-id-card-o" aria-hidden="true"></i> ' . Yii::t('app', 'My Profile'),
                      'items' => [
-                         ['label' => '<i class="fa fa-sign-in" aria-hidden="true"></i> Identifícate',  'url' => ['/site/login'],
+                         ['label' => '<i class="fa fa-sign-in" aria-hidden="true"></i> ' . Yii::t('app', 'Sign In'),  'url' => ['/site/login'],
                          'linkOptions' => [
                              'value' => Url::to('index.php?r=site/login'),
                              'id'=>'modalLogin'],
                          ],
-                          ['label' => '<i class="fa fa-id-card-o" aria-hidden="true"></i> ¿Eres nuevo?', 'url' => ['/site/signup'],
+                          ['label' => '<i class="fa fa-id-card-o" aria-hidden="true"></i> ' . Yii::t('app', 'Are you new'), 'url' => ['/site/signup'],
                                        'linkOptions' => [
                                              'value' => Url::to('index.php?r=site/signup'),
                                              'id'=>'modalSignup'],
@@ -64,15 +64,15 @@ FontAwesomeAsset::register($this);
     } else {
         $profileId = RecordHelpers::userHas('profile') ? Profile::find()->where(['user_id' => Yii::$app->user->id])->one()->id : false;
         if ($profileId) {
-            $prof = ['label' => '<i class="fa fa-eye" aria-hidden="true"></i> Profile', 'url' => ['/profile/view']];
+            $prof = ['label' => '<i class="fa fa-eye" aria-hidden="true"></i> ' . Yii::t('app', 'Profile'), 'url' => ['/profile/view']];
             $imgNav = ImagenProfile::getLastImg($profileId);
         } else {
-            $prof = ['label' => '<i class="fa fa-plus-square" aria-hidden="true"></i> Profile', 'url' => ['/profile/view']];
+            $prof = ['label' => '<i class="fa fa-plus-square" aria-hidden="true"></i> ' . Yii::t('app', 'Profile'), 'url' => ['/profile/view']];
             $imgNav = "imagenes/imgPerfil/sinPerfil.jpg";
         }
         $menuItems[] = [ 'label' => '<img src="' . $imgNav . '" class="imgPerfil-xs img-circle" title="' . Yii::$app->user->identity->username . '"/>',
                         'items' => [
-                             ['label' => '<i class="fa fa-sign-out" aria-hidden="true"></i>' . Yii::t('app', 'Logout') .
+                             ['label' => '<i class="fa fa-sign-out" aria-hidden="true"></i> ' . Yii::t('app', 'Logout') .
                                          ' <span class="cnred">(' . Yii::$app->user->identity->username . ')</span>',
                                          'url' => ['/site/logout'], 'linkOptions' => ['data' => ['method' => 'post']]],
                              '<li class="divider"></li>',

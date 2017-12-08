@@ -248,11 +248,6 @@ class ServicioController extends Controller
 
     public function actionServdetalle($id) {
         $serv = Servicios::find()->where(['id' => $id])->one();
-        return Json::encode($serv);
-    }
-
-    public function actionServdetalle2($id) {
-        $serv = Servicios::find()->where(['id' => $id])->one();
         $servComp = [];
         $servComp['id'] = $serv->id;
         $servComp['descripcion'] = $serv->descripcion;
@@ -265,6 +260,7 @@ class ServicioController extends Controller
         $servComp['comentario'] = Comentarios::getLastCom($id);
         $servComp['plural'] = UnidadesTiempo::getPlural($serv->duracion_unidad_id);
         $servComp['singular'] = UnidadesTiempo::getSIngular($serv->duracion_unidad_id);
+        $servComp['imgs'] = Servicios::getImagenesServicioUrl($id);
         return Json::encode($servComp);
     }
 }
