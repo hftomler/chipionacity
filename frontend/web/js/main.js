@@ -168,13 +168,13 @@ $(function(){
 			$.post('index.php?r=comentarios/lastcom&id=' + id)
 				.done (function(data) {
 					array = jQuery.parseJSON(data);
-					cmtr = "\"" + array[0] + "\"<p class='userComent'>@" + array[1] + id + " (" + array[2] + ")</p>";
+					cmtr = "\"" + array['comentario'] + "\"<p class='userComent'>@" + array['autor'] + " (" + array['fecha'] + ")</p>";
 				});
 			// Ahora cojo los datos del servicio y monto la ficha
 			var urlImg = img.attr('src');
 			var servicio = "";//var array = {};// Array para guardar el objeto JSON que me devuelve el $.post
 			// Pido por AJax el registro que me interesa = id;
-			$.post('index.php?r=servicio/servdetalle&id=' + id, function(data) {
+			$.post('index.php?r=servicio/servdetalle2&id=' + id, function(data) {
 				servicio = jQuery.parseJSON(data);
 				// CONSTRUYO LA FICHA
 				var el = $('#servDetalle');
@@ -184,6 +184,7 @@ $(function(){
 				for (i=0; i<Math.trunc(servicio.media_punt); i++) {
 					estrellas += "<i class='fa fa-star' aria-hidden='true'></i>";
 				}
+				cmtr = "\"" + servicio.comentario.comentario + "\"<p class='userComent'>@" + servicio.comentario.autor + " (" + servicio.comentario.fecha + ")</p>";
 				if (servicio.media_punt%1 >=0.5) estrellas += "<i class='fa fa-star-half-o' aria-hidden='true'></i>";
 				el.append("<div class='col-xs-12'>"+
 							"<h4 class='col-xs-12 titUpdate well'>"+
@@ -200,9 +201,12 @@ $(function(){
 								"href='/index.php?r=venta/addCart&id=" + servicio.id + " title='Añadir al pedido: " + servicio.descripcion + "'>"+
 								servicio.precio + " € <i class='fa fa-cart-plus unoycuarto' aria-hidden='true'> </i></a>"+
 							"<p class='col-xs-12 textComent'>" + cmtr + "<p>"+
-							"<p class='col-xs-12 textDetalle'>" +
+							"<p class='col-xs-12 textAdicServ'>" +
 									"<i class='fa fa-clock-o' aria-hidden='true'></i>"+
-									" Este servicio tiene una duración aproximada de " + servicio.duracion + "<p>"+
+									" Este servicio tiene una duración aproximada de " + servicio.duracion + " " +
+									 ((servicio.duracion>1) ? servicio.plural : servicio.singular) +
+									 ((servicio.activo) ? " y <span class='text-success'>actualmente está disponible</span> su reserva" :
+									  					  ", lamentablemente <span class='text-danger'>no está disponible</span> para su reserva en la actualidad.") + "</p>"+
 							"</div>"+
 							"<div class='col-xs-12 col-md-12'>"+
 								imgServicio +

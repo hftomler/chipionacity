@@ -52,4 +52,12 @@ class UnidadesTiempo extends \yii\db\ActiveRecord
     {
         return $this->hasMany(Servicios::className(), ['duracion_unidad_id' => 'id']);
     }
+
+    public static function getPlural($id) {
+        return self::find()->where(['id' => $id])->one()->plural;
+    }
+
+    public static function getSingular($id) {
+        return self::find()->where(['id' => $id])->one()->singular;
+    }
 }

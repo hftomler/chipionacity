@@ -19,6 +19,8 @@ use Imagine\Image\BoxInterface;
 use common\models\User;
 use yii\db\Query;
 use yii\helpers\Json;
+use backend\models\Comentarios;
+use backend\models\UnidadesTiempo;
 
 
 
@@ -247,5 +249,22 @@ class ServicioController extends Controller
     public function actionServdetalle($id) {
         $serv = Servicios::find()->where(['id' => $id])->one();
         return Json::encode($serv);
+    }
+
+    public function actionServdetalle2($id) {
+        $serv = Servicios::find()->where(['id' => $id])->one();
+        $servComp = [];
+        $servComp['id'] = $serv->id;
+        $servComp['descripcion'] = $serv->descripcion;
+        $servComp['descripcion_lg'] = $serv->descripcion_lg;
+        $servComp['puntuacion'] = $serv->puntuacion;
+        $servComp['media_punt'] = $serv->media_punt;
+        $servComp['precio'] = $serv->precio;
+        $servComp['duracion'] = $serv->duracion;
+        $servComp['activo'] = $serv->activo;
+        $servComp['comentario'] = Comentarios::getLastCom($id);
+        $servComp['plural'] = UnidadesTiempo::getPlural($serv->duracion_unidad_id);
+        $servComp['singular'] = UnidadesTiempo::getSIngular($serv->duracion_unidad_id);
+        return Json::encode($servComp);
     }
 }

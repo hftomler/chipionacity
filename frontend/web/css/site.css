@@ -600,3 +600,8 @@ input[type=checkbox].check {
     color: #428bca;
     font-style: italic;
 }
+
+.textAdicServ {
+    text-align: justify;
+    font-size: 100%;
+}
