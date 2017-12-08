@@ -70,6 +70,7 @@ $xsmall = "col-md-3";
 
         <div class="clearfix"></div>
         <div id="top1" class="container">
+            <div id='servDetalle' class="well col-xs-12"></div>
             <div class="well well-sm col-xs-12">
                 <div class="pull-right">
                     <a href="#container" class="btn btn-default btn-sm listServ">
@@ -88,7 +89,7 @@ $xsmall = "col-md-3";
                 <div class="titUpdateBig"><i class="fa fa-picture-o" aria-hidden="true"></i> <?= Yii::t('app', 'Discover our latest services') ?></div>
             </div>
             <div class="row list-group products">
-                <?= $model->getImagenTop(4, $xsmall, true, true); // Muestra los que tienen promo y ordenados por puntuacion?>
+                <?= $model->getImagenTop(4, $xsmall, true, false); // Muestra los que NO tienen promo y ordenados por puntuacion?>
             </div>
         </div>
         <div id="publi1hz" class="col-xs-6"><?= ImagenPubli::getImagenPubli(true, false) ?></div>

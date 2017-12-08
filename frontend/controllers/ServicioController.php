@@ -243,4 +243,9 @@ class ServicioController extends Controller
         $urls = Servicios::getImagenesServicioUrl($id);
         return Json::encode($urls);
     }
+
+    public function actionServdetalle($id) {
+        $serv = Servicios::find()->where(['id' => $id])->one();
+        return Json::encode($serv);
+    }
 }

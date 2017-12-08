@@ -336,7 +336,7 @@ class Servicios extends \yii\db\ActiveRecord
      * @return $htmlResul
      */
     public function getImagenTop($num, $grid, $promo = true, $nuevos = false) {
-        $limit = 3;
+        $limit = 4;
         if ($promo) {
             if ($nuevos) {
                 $imgs = self::find()->orderBy(['promocion' => SORT_DESC, 'updated_at' => SORT_DESC])->limit($num)->all();
@@ -350,12 +350,10 @@ class Servicios extends \yii\db\ActiveRecord
                 $imgs = self::find()->orderBy(['num_votos' => SORT_DESC])->limit($num)->all();
             }
         }
-        //$imgs = ($promo) ? self::find()->orderBy(['promocion' => SORT_DESC, 'num_votos' => SORT_DESC])->limit($num)->all() : self::find()->orderBy(['num_votos' => SORT_DESC])->limit($num)->all();
         $servsTop = $this->isTop($limit);
         $servsNew = $this->isNew($limit);
         $strImgs = array();
         foreach ($imgs as $key) {
-            //var_dump(self::isInTop($key->id, 6) . " - " . $key->id . " - " . self::isInNew($key->id, 6));
             $url = ImagenServicio::getLastImg($key->id);
             $title = Yii::t('app', ImagenServicio::existsUrl($key->id, $url)->descripcion);
             $strImgs[] = '<div class="item col-xs-12 col-sm-6 ' . $grid . '">

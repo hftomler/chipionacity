@@ -265,6 +265,8 @@ nav.inicio li:hover a:hover, nav li form button.btn-link:hover {
 .titUpdate {
     text-align: center;
     color: #286090;
+    font-size: 200% !important;
+    line-height: 100% !important;
 }
 
 .titUpdateBig {
@@ -340,12 +342,13 @@ nav.inicio li:hover a:hover, nav li form button.btn-link:hover {
 .imgServicio-sm {
     height: 100%;
     z-index: 1;
+    margin: 5px 0;
 }
 
 
 /*Sobreescribiendo img-thumbnail de bootstrap */
 .img-thumbnail {
-    padding: 1px;
+    padding: 2px;
 }
 
 /* Miniatura para imágenes de servicio */
@@ -553,4 +556,33 @@ input[type=checkbox].check {
     margin-bottom: 20px;
     border: 1px solid #e3e3e3;
     border-radius: 5px;
+}
+
+/* CLASES PARA EL SERVICIO SELECCIONADO EN PRIMERA PÁGINA */
+
+#servDetalle {
+    display: none;
+}
+
+.imgDet {
+    width: 100%;
+    border: 1px solid #e3e3e3;
+    border-radius: 5px;
+    filter: drop-shadow(2px 2px 3px #999);
+    margin-bottom: 15px;
+}
+
+.textDetalle {
+    text-align: justify;
+    font-size: 125% !important;
+    line-height: 125% !important;
+}
+
+.estreDetalle {
+    font-size: 150%;
+    color: #ff7e00;
+}
+
+.separate > div {
+    margin: 10px 0;
 }

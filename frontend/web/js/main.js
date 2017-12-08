@@ -148,7 +148,64 @@ $(function(){
 				.addClass('col-md-3');
 		});
 
-		$('.products figure').mouseover(function (){
+		/* Creación de la vista detallada del servicio */
+		$('.products figure').click(function () {
+			var img = $(this).children(":first");
+			var id = img.attr('id').substr(4);
+			// Primero cojo la lista de imágenes del servicios
+			array = [];
+			var imgServicio = "";
+			$.post('index.php?r=servicio/listaurls&id=' + id)
+				.done (function(data) {
+					array = jQuery.parseJSON(data);
+					for (i= 0; i<array.length; i++) {
+						imgServicio += "<img src='" + array[i] + "' class='imgServicio-sm img-thumbnail col-xs-3' />";
+					}
+				});
+
+			// Ahora cojo los datos del servicio y monto la ficha
+			var urlImg = img.attr('src');
+			var servicio = "";//var array = {};// Array para guardar el objeto JSON que me devuelve el $.post
+			// Pido por AJax el registro que me interesa = id;
+			$.post('index.php?r=servicio/servdetalle&id=' + id, function(data) {
+				servicio = jQuery.parseJSON(data);
+				// CONSTRUYO LA FICHA
+				var el = $('#servDetalle');
+				el.empty();
+				var estrellas = "";
+				for (i=0; i<Math.trunc(servicio.media_punt); i++) {
+					estrellas += "<i class='fa fa-star' aria-hidden='true'></i>";
+				}
+				if (servicio.media_punt%1 >=0.5) estrellas += "<i class='fa fa-star-half-o' aria-hidden='true'></i>";
+				el.append("<div class='col-xs-12'>"+
+							"<h4 class='col-xs-12 titUpdate well'>"+
+								"<i class='col-xs-1 fa fa-info-circle' aria-hidden='true'></i>"+
+								"<span class='col-xs-10'>" + servicio.descripcion + "</span>"+
+								"<i class='fa fa-picture-o' aria-hidden='true'></i>"+
+							"</h4>"+
+							"<div class='col-xs-12 col-md-6 separate'>"+
+						    	"<img src='"+ urlImg + "' class='imgDet'/></div>"+
+							"<div class='col-xs-12 col-md-6'>"+
+							"<p class='col-xs-12 textDetalle'>\"" + servicio.descripcion_lg + "\"<p>"+
+							"<p class='col-xs-7 estreDetalle'>" + servicio.puntuacion + " puntos ("+ estrellas + ")</p>"+
+							"<a class='col-xs-3 col-xs-offset-2 btn btn-success unoycuarto'"+
+								"href='/index.php?r=venta/addCart&id=" + servicio.id + " title='Añadir al pedido: " + servicio.descripcion + "'>"+
+								servicio.precio + " € <i class='fa fa-cart-plus unoycuarto' aria-hidden='true'> </i></a>"+
+							"</div>"+
+							"<div class='col-xs-12 col-md-12'>"+
+								imgServicio +
+							"</div>"+
+						  "</div>"
+
+
+				);
+
+				// MUESTRO LA IMAGEN
+				el.fadeIn(150);
+			});
+		});
+
+		/*$('.products figure').mouseover(function (){
 			elem = $(this);
 			var id = elem.children(":first").attr('id').substr(4);
 			array = [];
@@ -179,7 +236,7 @@ $(function(){
 			elem = $(this);
 			clearInterval(slideImages);
 			setTimeout(array.splice(0,array.length), 1000);
-		});
+		});*/
 
 		$('.select2-selection__arrow').remove();
 	});
