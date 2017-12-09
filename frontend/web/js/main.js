@@ -118,6 +118,13 @@ $(function(){
   	},7000);
 
 	$(document).ready( function () {
+		$('#servicios-id').on('select2:select', function (e) {
+			var data = e.params.data;
+			cargaDetalle(data.id);
+			$(this).val(null).trigger('change'); //Vacío la selección del select2
+			//Elimino la opción insertada en el select oculto que está debajo del select2
+			$(this).children(':last').remove();
+		});
 		$(".weather").weatherFeed({relativeTimeZone:true});
 		$('.listServ').click(function(event){
 			var th = $(this);
@@ -152,8 +159,11 @@ $(function(){
 		$('.products figure').click(function () {
 			var img = $(this).children(":first");
 			var id = img.attr('id').substr(4);
-			// Pido los datos del servicio y monto la ficha
-			var urlImg = img.attr('src');
+			// Llamo a la función de creación del detalle.
+			cargaDetalle(id);
+		});
+
+		function cargaDetalle(id) {
 			var servicio = "";//var array = {};// Array para guardar el objeto JSON que me devuelve el $.post
 			// Pido por AJax el registro que me interesa = id;
 			$.post('index.php?r=servicio/servdetalle&id=' + id, function(data) {
@@ -188,7 +198,7 @@ $(function(){
 								"<i class='fa fa-picture-o' aria-hidden='true'></i>"+
 							"</h4>"+
 							"<div class='col-xs-12 col-md-6 separate'>"+
-						    	"<img id='imgDetPrinc' src='"+ urlImg + "' class='imgDet'/></div>"+
+								"<img id='imgDetPrinc' src='"+ servicio.imgs[0] + "' class='imgDet'/></div>"+
 							"<div class='col-xs-12 col-md-6'>"+
 							"<p class='col-xs-12 textDetalle'>\"" + servicio.descripcion_lg + "\"<p>"+
 							"<p class='col-xs-8 estreDetalle'>" + servicio.puntuacion + " puntos ("+ estrellas + ")</p>"+
@@ -201,7 +211,7 @@ $(function(){
 									" Este servicio tiene una duración aproximada de " + servicio.duracion + " " +
 									 ((servicio.duracion>1) ? servicio.plural : servicio.singular) +
 									 ((servicio.activo) ? " y <span class='text-success'>actualmente está disponible</span> su reserva" :
-									  					  ", lamentablemente <span class='text-danger'>no está disponible</span> para su reserva en la actualidad.") + "</p>"+
+														  ", lamentablemente <span class='text-danger'>no está disponible</span> para su reserva en la actualidad.") + "</p>"+
 							"</div>"+
 							"<div id='imgsDetalle' class='col-xs-12 col-md-12'>"+
 								imgServicio +
@@ -212,9 +222,9 @@ $(function(){
 				$('#imgsDetalle > img').click( function () {
 					$url = $(this).attr('src');
 					$("#imgDetPrinc")
-					        .fadeOut(400, function() {
-					            $("#imgDetPrinc").attr('src',$url);
-					        })
+							.fadeOut(400, function() {
+								$("#imgDetPrinc").attr('src',$url);
+							})
 							.fadeIn(400);
 				});
 
@@ -223,7 +233,7 @@ $(function(){
 					 'scrollTop': el.offset().top
 				}, 900, 'swing');
 			});
-		});
+		}
 
 		/*$('.products figure').mouseover(function (){
 			elem = $(this);

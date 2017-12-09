@@ -89,7 +89,7 @@ $xsmall = "col-md-3";
                 <div class="titUpdateBig"><i class="fa fa-picture-o" aria-hidden="true"></i> <?= Yii::t('app', 'Discover our latest services') ?></div>
             </div>
             <div class="row list-group products">
-                <?= $model->getImagenTop(4, $xsmall, true, false); // Muestra los que NO tienen promo y ordenados por puntuacion?>
+                <?= $model->getImagenTop(4, $xsmall, true, true); // Muestra los que NO tienen promo y ordenados por puntuacion?>
             </div>
         </div>
         <div id="publi1hz" class="col-xs-6"><?= ImagenPubli::getImagenPubli(true, false) ?></div>
