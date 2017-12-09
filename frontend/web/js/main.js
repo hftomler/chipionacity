@@ -118,6 +118,22 @@ $(function(){
   	},7000);
 
 	$(document).ready( function () {
+		$('#servicios-id').on('select2:opening', function (e) {
+			// Animación logo
+			if ($('#logo').hasClass('invisible')) {
+				$("#logoInicio").next().removeClass().addClass('col-xs-12 titular text-center').prependTo('.site-index');
+				$("#logoInicio").remove();
+				$('.jumbotron').slideUp('slow').remove();
+				$('#logo').css({
+					opacity: '0',
+					height: '0',
+					opacity: '0'});
+				$('#logo').removeClass('invisible').animate({
+					height: '60px',
+					opacity: '1'
+				}, 300);
+			}
+		});
 		$('#servicios-id').on('select2:select', function (e) {
 			var data = e.params.data;
 			cargaDetalle(data.id);

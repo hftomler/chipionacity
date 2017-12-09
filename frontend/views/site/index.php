@@ -22,8 +22,8 @@ $xsmall = "col-md-3";
     <div class="jumbotron">
         <img id="logoInicio" src="imagenes/logohome.png" class="col-xs-5 col-xs-offset-1" alt="logo">
         <p class="col-xs-5 titular"><?= Yii::t('app', 'Unforgettable experiences <i class = "fa fa-heart" aria-hidden = "true"> </ i>,
-            in the ideal place <i class = "fa fa-star" aria-hidden = "true"> </ i> <br/>
-            to a spectacular <i class = "fa fa-arrow-down" aria-hidden = "true"> </ i> <i class = "fa fa-eur" aria-hidden = "true"> </ i>') ?></p>
+            in the ideal place <i class = "fa fa-star" aria-hidden = "true"> </ i>
+            to a spectacular price <i class = "fa fa-arrow-down" aria-hidden = "true"> </ i> <i class = "fa fa-eur" aria-hidden = "true"> </ i>') ?></p>
     </div>
 
     <div class="body-content">

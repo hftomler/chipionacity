@@ -40,7 +40,7 @@ FontAwesomeAsset::register($this);
     $isHome = (($controller->id === $default_controller) && ($controller->action->id === $controller->defaultAction)) ? true : false;
     $navClass = $isHome ? 'navbar inicio' : 'navbar';
     NavBar::begin([
-        'brandLabel' => $isHome ? '' : '<img id="logo" src="imagenes/logo.png" alt="logo">',
+        'brandLabel' => $isHome ? '<img id="logo" class="invisible " src="imagenes/logohome.png" alt="logo">' : '<img id="logo" src="imagenes/logo.png" alt="logo">',
         'brandUrl' => Yii::$app->homeUrl,
         'options' => [
            'class' => $navClass,
