@@ -247,7 +247,7 @@ class Servicios extends \yii\db\ActiveRecord
         $imgs = ImagenServicio::findAll(['servicio_id' => $id]);
         $urls = [];
         foreach($imgs as $key) {
-            $urls[] = $key->url;
+            $urls[] = ['url' => $key->url, 'descripcion' =>$key->descripcion];
         }
         return $urls;
     }

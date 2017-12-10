@@ -234,7 +234,7 @@ $(function(){
 				}
 				imgServicio = "";
 				for (i = 0; i<servicio.imgs.length; i++) {
-					imgServicio += "<img src='" + servicio.imgs[i] + "' class='imgServicio-sm img-thumbnail col-xs-3' />";
+					imgServicio += "<img src='" + servicio.imgs[i]['url'] + "' class='imgServicio-sm img-thumbnail col-xs-3' title='" + servicio.imgs[i]['descripcion'] + "'/>";
 				}
 				cmtr = "\"" + servicio.comentario.comentario + "\"<p class='userComent'>@" + servicio.comentario.autor + " (" + servicio.comentario.fecha + ")</p>";
 				el.append("<div class='col-xs-12'>"+
@@ -244,7 +244,10 @@ $(function(){
 								"<i class='fa fa-picture-o' aria-hidden='true'></i>"+
 							"</h4>"+
 							"<div class='col-xs-12 col-md-6 separate'>"+
-								"<img id='imgDetPrinc' src='"+ servicio.imgs[0] + "' class='imgDet'/></div>"+
+								"<div class='captionImgDet captionImgDetHij'>"+
+									"<p align-text-bottom>" + servicio.imgs[0]['descripcion'] + "</p>"+
+								"</div>"+
+								"<img id='imgDetPrinc' src='"+ servicio.imgs[0]['url'] + "' class='imgDet'/></div>"+
 							"<div class='col-xs-12 col-md-6'>"+
 							"<p class='col-xs-12 textDetalle'>\"" + servicio.descripcion_lg + "\"<p>"+
 							"<p class='col-xs-8 estreDetalle'>" + servicio.puntuacion + " puntos ("+ estrellas + ")</p>"+
@@ -267,11 +270,19 @@ $(function(){
 				// Creo las escuchas para los clics en las miniaturas y el cambio de imagen principal
 				$('#imgsDetalle > img').click( function () {
 					$url = $(this).attr('src');
+					$title = $(this).attr('title');
 					$("#imgDetPrinc")
 							.fadeOut(400, function() {
-								$("#imgDetPrinc").attr('src',$url);
+								$("#imgDetPrinc").attr('src', $url);
+								$(".captionImgDet p:first-child").html($title);
 							})
 							.fadeIn(400);
+				});
+
+				$('#imgDetPrinc').hover( function () {
+					$('.captionImgDet').addClass('captImgDetHovHij');
+				}, function() {
+					$('.captionImgDet').removeClass('captImgDetHovHij');
 				});
 
 				// MUESTRO LA IMAGEN
