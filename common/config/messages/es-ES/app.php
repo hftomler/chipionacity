@@ -21,7 +21,7 @@ return [
     'Create Comentarios' => '',
     'Descripcion' => '',
     'Etiqueta ID' => '',
-    'Sign In' => '',
+    'Sign In' => 'Entrar...',
     'Unforgettable experiences <i class = "fa fa-heart" aria-hidden = "true"> </ i>,
             in the ideal place <i class = "fa fa-star" aria-hidden = "true"> </ i>
             to a spectacular price <i class = "fa fa-arrow-down" aria-hidden = "true"> </ i> <i class = "fa fa-eur" aria-hidden = "true"> </ i>' => 'Experiencias inolvidables <i class="fa fa-heart" aria-hidden="true"></i>,
@@ -33,7 +33,7 @@ return [
     'Administrator\'s Zone' => 'Zona de administración',
     'Amount' => 'Cantidad',
     'Are you looking for something to do ...?' => '¿Estás buscando algo que hacer ...?',
-    'Are you new' => '¿Eres nuevo?',
+    'Are you new?' => '¿Eres nuevo?',
     'Are you sure you want to delete this item?' => '¿Está seguro  que desea borrar este item?',
     'Are you sure you want to delete this user?' => '¿Está seguro que desea borrar este usuario?',
     'Avatar List' => 'Lista de Avatares',

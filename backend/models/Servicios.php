@@ -320,6 +320,23 @@ class Servicios extends \yii\db\ActiveRecord
         return $this->find()->select(['id', 'descripcion'])->orderBy(['puntuacion'=>SORT_DESC])->limit($limit)->indexBy('id')->all();
     }
 
+    /** Devuelve un servicio aleatorio
+     * @param bool $promo Si se devuelve un servicio con promoción o no
+     * @return array
+     */
+    public static function getAleatServ($promo) {
+        $id = "";
+        if ($promo == "true") {
+            $count = count(self::find()->where(['promocion' => true])->all());
+            $pos = rand(1, $count);
+            return Servicios::find()->select(['id'])->where(['promocion' => true])->offset($pos-1)->one();
+        }  else {
+            $count = count(self::find()->all());
+            $pos = rand(1, $count);
+            return Servicios::find()->select(['id'])->offset($pos-1)->one();
+        }
+    }
+
     /**
      * @param int $limit Número de servicios a mostrar
      * @return array

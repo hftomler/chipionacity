@@ -58,19 +58,19 @@ use backend\models\ImagenProfile;
             <input id="valueAvatar" name="valueAvatar" type="hidden" class="form-control" />
         </div>
         <div id="balloon2" class="opener box"
-        data-addoverlay="false"
-        data-css="balloon-large"
-        data-highlight="false"
-        data-overlaycolor="linear-gradient(135deg, #337ab7 0%, #ff7e00 100%)"
-        data-overlayopacity=".10"
-        data-bgcolor="#337ab7"
-        data-forceposition="down"
-        data-balloon= "Desmarque el <i class='fa fa-check-square-o' aria-hidden='true'></i>
-        para seleccionar una imagen de su propio dispositivo"
-        data-timer="6000"
-        data-onlyonce="true"
-        style="">
-    </div>
+            data-addoverlay="false"
+            data-css="balloon-large"
+            data-highlight="false"
+            data-overlaycolor="linear-gradient(135deg, #337ab7 0%, #ff7e00 100%)"
+            data-overlayopacity=".10"
+            data-bgcolor="#337ab7"
+            data-forceposition="down"
+            data-balloon= "Desmarque el <i class='fa fa-check-square-o' aria-hidden='true'></i>
+            para seleccionar una imagen de su propio dispositivo"
+            data-timer="6000"
+            data-onlyonce="true"
+            style="">
+        </div>
         <?= $form->field($model, 'fichImage')->fileInput([
                                         'id' => 'btImgPerfil',
                                         'style' =>'display:none'
@@ -119,9 +119,9 @@ use backend\models\ImagenProfile;
             ?>
         </div>
     </div>
-
+    <div class="clearfix"></div>
     <div class="form-group">
-        <?= Html::submitButton($model->isNewRecord ? Yii::t('app', 'Create') : Yii::t('app', 'Update'), ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
+            <?= Html::submitButton($model->isNewRecord ? Yii::t('app', 'Create') : Yii::t('app', 'Update'), ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>

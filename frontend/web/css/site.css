@@ -240,8 +240,23 @@ nav.inicio li:hover a:hover, nav li form button.btn-link:hover {
     font-size: 1.5em;
 }
 
+.tenerSuerte i {
+    font-size: 1.5em;
+    padding: 0 10px;
+    border: 1px solid #fff;
+    vertical-align: center;
+    background-color: #ff7e00;
+    color: #fff;
+}
+
+.descuentoBalloon {
+    font-size: 1.5em;
+    color: #fff;
+    font-weight: bolder;
+}
+
 .titular i {
-    color: #ff7e00
+    color: #ff7e00;
 }
 
 .check-sm {
@@ -291,7 +306,7 @@ nav.inicio li:hover a:hover, nav li form button.btn-link:hover {
 
 .imgPerfil-md {
     margin-top: 0;
-    height: 110px;
+    height: 90%;
     border: 1px solid #555;
     filter: drop-shadow(4px 4px 6px #666);
 }

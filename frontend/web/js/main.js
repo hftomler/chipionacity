@@ -116,10 +116,40 @@ $(function(){
     setTimeout(function(){
 	  	$("#balloon2").showBalloon();
   	},7000);
+	setTimeout(function(){
+	  	$("#balloonSelect2").showBalloon();
+  	},2500);
+
+
 
 	$(document).ready( function () {
+		// Creo el balloon botón "Voy a tener suerte"
+		$('.input-group.input-group-md.group-servicios-id.select2-bootstrap-prepend.select2-bootstrap-append').wrap("<div id='balloonSelect2' class='opener box'" +
+			    "data-addoverlay='false'"+
+			    "data-css='balloon-large'"+
+			    "data-highlight='false'"+
+			    "data-overlaycolor='linear-gradient(135deg, #337ab7 0%, #ff7e00 100%)'"+
+			    "data-overlayopacity='.10'"+
+			    "data-bgcolor='#337ab7'"+
+			    "data-forceposition='left'"+
+			    "data-balloon= '<p class=\"text-center\">Clic en <span class=\"tenerSuerte\"><i class=\"fa fa-lightbulb-o\" aria-hidden=\"true\"></i></span>"+
+			    " y llévate</br>una experiencia con un exclusivo </br><span class=\"descuentoBalloon text-center\">¡ 10 <i class=\"fa fa-percent\" aria-hidden=\"true\"></i> descuento!</span></p>'"+
+			    "data-timer='6000'"+
+			    "data-onlyonce='true'"+
+			    "style=''>"+
+		"</div>");
+		$('#tenerSuerte').parent().click(function () {
+			var slct = $('.input-group.input-group-md.group-servicios-id.select2-bootstrap-prepend.select2-bootstrap-append');
+			if (slct.parent().is( "#balloonSelect2")) { slct.unwrap(); $('#balloonSelect2').remove();}
+			$.post('index.php?r=servicio/tenersuerte&promo=' + false, function(data) {
+				servicio = jQuery.parseJSON(data);
+				cargaDetalle(servicio.id);
+			});
+		})
 		$('#servicios-id').on('select2:opening', function (e) {
 			// Animación logo
+			var slct = $('.input-group.input-group-md.group-servicios-id.select2-bootstrap-prepend.select2-bootstrap-append');
+			if (slct.parent().is( "#balloonSelect2")) { slct.unwrap(); $('#balloonSelect2').remove();}
 			if ($('#logo').hasClass('invisible')) {
 				$("#logoInicio").next().removeClass().addClass('col-xs-12 titular text-center').prependTo('.site-index');
 				$("#logoInicio").remove();

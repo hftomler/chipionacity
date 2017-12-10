@@ -146,6 +146,9 @@
                                     case "Partly Cloudy":
                                         data.query.results.channel.item.forecast[i].text = "Parcialmente Nuboso";
                                         break;
+                                        case "Scattered Showers":
+                                            data.query.results.channel.item.forecast[i].text = "Chubascos dispersos";
+                                            break;
                                     default:
                                 }
                                 data.query.results.channel.item.forecast[i].date = new Date(data.query.results.channel.item.forecast[i].date).toLocaleDateString();

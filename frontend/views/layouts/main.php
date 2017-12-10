@@ -54,7 +54,7 @@ FontAwesomeAsset::register($this);
                              'value' => Url::to('index.php?r=site/login'),
                              'id'=>'modalLogin'],
                          ],
-                          ['label' => '<i class="fa fa-id-card-o" aria-hidden="true"></i> ' . Yii::t('app', 'Are you new'), 'url' => ['/site/signup'],
+                          ['label' => '<i class="fa fa-id-card-o" aria-hidden="true"></i> ' . Yii::t('app', 'Are you new?'), 'url' => ['/site/signup'],
                                        'linkOptions' => [
                                              'value' => Url::to('index.php?r=site/signup'),
                                              'id'=>'modalSignup'],

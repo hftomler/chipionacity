@@ -246,6 +246,11 @@ class ServicioController extends Controller
         return Json::encode($urls);
     }
 
+    public function actionTenersuerte($promo) {
+        $id = Servicios::getAleatServ($promo);
+        return Json::encode($id);
+    }
+
     public function actionServdetalle($id) {
         $serv = Servicios::find()->where(['id' => $id])->one();
         $servComp = [];

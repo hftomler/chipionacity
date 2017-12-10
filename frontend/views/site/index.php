@@ -29,7 +29,6 @@ $xsmall = "col-md-3";
     <div class="body-content">
         <div class="col-xs-12"><?php $form = ActiveForm::begin(['options'=> ['enctype' => 'multipart/form-data']]); ?>
             <div class="col-xs-8 col-xs-offset-2">
-
             <?php
                 $waiting = "function () { return '" . Yii::t('app', 'Waiting results...') . "'; }";
                 echo $form->field($model, 'id')->widget(Select2::classname(), [
@@ -65,6 +64,7 @@ $xsmall = "col-md-3";
                     ],
                 ])->label('');?>
             </div>
+        </div>
         <?php ActiveForm::end(); ?></div>
     </div>
 
