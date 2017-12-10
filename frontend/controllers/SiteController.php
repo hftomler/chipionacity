@@ -28,7 +28,7 @@ class SiteController extends Controller
                 'class' => AccessControl::className(),
                 'rules' => [
                     [
-                        'actions' => ['index', 'login', 'signup', 'error', 'language'],
+                        'actions' => ['index', 'login', 'signup', 'contact', 'error', 'language', 'captcha'],
                         'allow' => true,
                     ],
                     [
@@ -137,7 +137,7 @@ class SiteController extends Controller
 
             return $this->refresh();
         } else {
-            return $this->render('contact', [
+            return $this->renderAjax('contact', [
                 'model' => $model,
             ]);
         }

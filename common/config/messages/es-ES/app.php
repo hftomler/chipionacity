@@ -18,15 +18,11 @@
  */
 return [
     'Comentarios' => '',
+    'Contact with us!' => 'Contáctenos',
     'Create Comentarios' => '',
     'Descripcion' => '',
     'Etiqueta ID' => '',
-    'Sign In' => 'Entrar...',
-    'Unforgettable experiences <i class = "fa fa-heart" aria-hidden = "true"> </ i>,
-            in the ideal place <i class = "fa fa-star" aria-hidden = "true"> </ i>
-            to a spectacular price <i class = "fa fa-arrow-down" aria-hidden = "true"> </ i> <i class = "fa fa-eur" aria-hidden = "true"> </ i>' => 'Experiencias inolvidables <i class="fa fa-heart" aria-hidden="true"></i>,
-                    en el lugar ideal <i class="fa fa-star" aria-hidden="true"></i>
-                    a un precio espectacular <i class="fa fa-arrow-down" aria-hidden="true"></i> <i class="fa fa-eur" aria-hidden="true"></i>',
+    'Please leave your questions or comments. We will get in touch with you as soon as possible.' => 'Por favor, deje sus consultas o comentarios. Nos pondremos en contacto con usted lo antes posible.',
     'About Service Images' => 'Sobre las imágenes de Servicio',
     'Active' => 'Activo',
     'Address' => 'Dirección',
@@ -137,6 +133,7 @@ return [
     'Service Images' => 'Imágenes de Servicio',
     'Services' => 'Servicios',
     'Servicios' => 'Servicios',
+    'Sign In' => 'Entrar...',
     'Signup' => 'Registro',
     'Singular' => 'SIngular',
     'State' => 'Estaod',
@@ -170,6 +167,11 @@ return [
     'Total Sale' => 'Total Venta',
     'Total line' => 'Total Línea',
     'Town ID' => 'Id Municipio',
+    'Unforgettable experiences <i class = "fa fa-heart" aria-hidden = "true"> </ i>,
+            in the ideal place <i class = "fa fa-star" aria-hidden = "true"> </ i>
+            to a spectacular price <i class = "fa fa-arrow-down" aria-hidden = "true"> </ i> <i class = "fa fa-eur" aria-hidden = "true"> </ i>' => 'Experiencias inolvidables <i class="fa fa-heart" aria-hidden="true"></i>,
+                    en el lugar ideal <i class="fa fa-star" aria-hidden="true"></i>
+                    a un precio espectacular <i class="fa fa-arrow-down" aria-hidden="true"></i> <i class="fa fa-eur" aria-hidden="true"></i>',
     'Unit Price' => 'Precio Unit.',
     'Update' => 'Actualizar',
     'Update Profile Image: ' => 'Actualizar Imagen Perfil',

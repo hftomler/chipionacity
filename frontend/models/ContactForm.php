@@ -15,6 +15,7 @@ class ContactForm extends Model
     public $subject;
     public $body;
     public $verifyCode;
+    public $proveedor;
 
 
     /**
@@ -29,6 +30,8 @@ class ContactForm extends Model
             ['email', 'email'],
             // verifyCode needs to be entered correctly
             ['verifyCode', 'captcha'],
+            // Si está solicitando ser proveedor.
+            ['rememberMe', 'boolean'],
         ];
     }
 
@@ -39,6 +42,7 @@ class ContactForm extends Model
     {
         return [
             'verifyCode' => Yii::t('app', 'Verification code'),
+            'proveedor' => Yii::t('app', 'Supplier'),
         ];
     }
 
@@ -53,7 +57,7 @@ class ContactForm extends Model
         return Yii::$app->mailer->compose()
             ->setTo($email)
             ->setFrom([$this->email => $this->name])
-            ->setSubject($this->subject)
+            ->setSubject($this->subject . " " . $this->proveedor)
             ->setTextBody($this->body)
             ->send();
     }

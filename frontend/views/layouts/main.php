@@ -59,6 +59,11 @@ FontAwesomeAsset::register($this);
                                              'value' => Url::to('index.php?r=site/signup'),
                                              'id'=>'modalSignup'],
                             ],
+                        ['label' => '<i class="fa fa-envelope-o" aria-hidden="true"></i> ' . Yii::t('app', 'Contact with us!'), 'url' => ['/site/contact'],
+                                     'linkOptions' => [
+                                           'value' => Url::to('index.php?r=site/contact'),
+                                           'id'=>'modalContact'],
+                          ],
                       ],
                   ];
     } else {
@@ -77,6 +82,11 @@ FontAwesomeAsset::register($this);
                                          'url' => ['/site/logout'], 'linkOptions' => ['data' => ['method' => 'post']]],
                              '<li class="divider"></li>',
                              $prof,
+                             ['label' => '<i class="fa fa-envelope-o" aria-hidden="true"></i> ' . Yii::t('app', 'Contact with us!'), 'url' => ['/site/contact'],
+                             'linkOptions' => [
+                                 'value' => Url::to('index.php?r=site/contact'),
+                                 'id'=>'modalContact'],
+                             ],
                         ],
                     ];
     }
@@ -145,6 +155,18 @@ Modal::begin([
 ]);
 
 echo "<div id='modalContentSignup'></div>";
+
+Modal::end();
+?>
+<?php
+Modal::begin([
+    'header'=>$modalHeader,
+    'id'=>'modalContactContent',
+    'size'=>'modal-lg',
+    'footer'=>$modalFooter,
+]);
+
+echo "<div id='modalContentContact'></div>";
 
 Modal::end();
 ?>

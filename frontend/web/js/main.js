@@ -109,6 +109,14 @@ $(function(){
 		.load($(this).attr('value'));
 	});
 
+
+		$('#modalContact').click(function(evento) {
+			evento.preventDefault();
+			$('#modalContactContent').modal('show')
+			.find('#modalContentContact')
+			.load($(this).attr('value'));
+		});
+
 	jQuery.balloon.init();
 	setTimeout(function(){
 	  	$("#balloon1").showBalloon();
