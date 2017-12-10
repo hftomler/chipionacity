@@ -327,13 +327,13 @@ class Servicios extends \yii\db\ActiveRecord
     public static function getAleatServ($promo) {
         $id = "";
         if ($promo == "true") {
-            $count = count(self::find()->where(['promocion' => true])->all());
+            $count = count(self::find()->where(['promocion' => true, 'activo' => true])->all());
             $pos = rand(1, $count);
-            return Servicios::find()->select(['id'])->where(['promocion' => true])->offset($pos-1)->one();
+            return Servicios::find()->select(['id'])->where(['promocion' => true, 'activo' => true])->offset($pos-1)->one();
         }  else {
-            $count = count(self::find()->all());
+            $count = count(self::find()->where(['activo' => true])->all());
             $pos = rand(1, $count);
-            return Servicios::find()->select(['id'])->offset($pos-1)->one();
+            return Servicios::find()->select(['id'])->where(['activo' => true])->offset($pos-1)->one();
         }
     }
 

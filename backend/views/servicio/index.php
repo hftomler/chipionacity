@@ -27,12 +27,8 @@ $isProveedor = User::isProveedor(Yii::$app->user->identity->id);
     </h1>
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
+        'filterModel' => $searchModel,
         'options' => ['class' => 'grid-view gvCenter'],
-        /*'rowOptions' => function ($model, $key, $index, $grid) {
-                                        return PermissionHelpers::userMustBeOwner('servicios', $key) ?
-                                                    ['class' => 'miPerfil'] :
-                                                    '';
-                                    },*/
         'columns' => [
             'descripcion',
             'precio',

@@ -99,6 +99,7 @@ class m171202_111329_datos_iniciales extends Migration
             ['Visita Isla Salmedina y Barco del Arroz', 'La visita a la isla semisumergida de Salmedina y el barco hundido frente a Doñana, te sumergirá en la historia de los naufragios de la desembocadura del Guadalquivir.',45, 5, 10, 2, 42, 14, 3.5, '2017-09-19', '2017-09-19', false],
             ['Museo del Santuario de Regla', 'La orden franciscana es la regente del Santuario de Regla. Con esta visita podrás entender la importancia de su misión en nuestra tierra y la historia de Ntra. Sra. de Regla.', 33, 5, 10, 2, 37, 5, 2.6, '2017-09-24',  '2017-09-24', false],
             ['Exposición Nuevo Mundo', 'Este año se conmemoran los 500 años de la I Circunnavegación y no puede ser mejor momento para disfrutar de la historia del descubrimiento, de la que fue gran testigo toda nuestra costa.', 22, 7, 10, 2, 5, 3, 1.2, '2017-11-22', '2017-11-22', false],
+            ['Salón de fotografía', 'Visita la sala permanente del Castillo dedicada a la fotografía contemporánea.', 6, 5, 10, 2, 183, 11, 5, '2017-01-12', '2017-01-12', false],
         ]);
 
         $this->batchInsert('imagen_servicio', ['servicio_id', 'descripcion', 'url', 'urlthumb'], [
@@ -122,10 +123,10 @@ class m171202_111329_datos_iniciales extends Migration
             [6, 'Todas las edades', 'imagenes/imgServ/tenis2.jpg', 'imagenes/thumbs/tenis2-thumb.jpg'],
             [6, 'Diversión asegurada', 'imagenes/imgServ/tenis3.jpg', 'imagenes/thumbs/tenis3-thumb.jpg'],
             [6, 'Al final todos campeones', 'imagenes/imgServ/tenis4.jpg', 'imagenes/thumbs/tenis4-thumb.jpg'],
-            [7, 'El reflejo del paraiso', 'imagenes/imgServ/marcielo.jpg', 'imagenes/thumbs/marcielo-thumb.jpg'],
-            [7, 'El fondo también tiene su encanto', 'imagenes/imgServ/fondomar.jpg', 'imagenes/thumbs/fondomar-thumb.jpg'],
-            [7, 'Abstracción', 'imagenes/imgServ/abstracta.jpg', 'imagenes/thumbs/abstracta-thumb.jpg'],
-            [7, '¿Demasiado frío? Venta a Chipiona', 'imagenes/imgServ/bosque.jpg', 'imagenes/thumbs/bosque-thumb.jpg'],
+            [7, 'Raqueta y pelota', 'imagenes/imgServ/moscatel-1.jpg', 'imagenes/thumbs/moscatel-1-thumb.jpg'],
+            [7, 'Todas las edades', 'imagenes/imgServ/moscatel-2.jpg', 'imagenes/thumbs/moscatel-2-thumb.jpg'],
+            [7, 'Diversión asegurada', 'imagenes/imgServ/moscatel-3.jpg', 'imagenes/thumbs/moscatel-3-thumb.jpg'],
+            [7, 'Al final todos campeones', 'imagenes/imgServ/moscatel-4.jpg', 'imagenes/thumbs/moscatel-4-thumb.jpg'],
             [8, '¿En extinción? Aquí los cuidamos para ti', 'imagenes/imgServ/camaleon1.jpg', 'imagenes/thumbs/camaleon1-thumb.jpg'],
             [8, 'Junto a dunas y pasarelas de madera', 'imagenes/imgServ/camaleon2.jpg', 'imagenes/thumbs/camaleon2-thumb.jpg'],
             [8, 'Centro de Interpretación de la Naturaleza', 'imagenes/imgServ/camaleon3.jpg', 'imagenes/thumbs/camaleon3-thumb.jpg'],
@@ -134,17 +135,25 @@ class m171202_111329_datos_iniciales extends Migration
             [9, 'Este lago está lejos pero nos encanta', 'imagenes/imgServ/lago2.jpg', 'imagenes/thumbs/lago2-thumb.jpg'],
             [9, 'Dientes de león', 'imagenes/imgServ/dienteleon.jpg', 'imagenes/thumbs/dienteleon-thumb.jpg'],
             [9, 'La bajada de la marea nos deja éstas maravillas', 'imagenes/imgServ/rocas.jpg', 'imagenes/thumbs/rocas-thumb.jpg'],
-            [10, 'Y este se quedó así porque no pudo venir', 'imagenes/imgServ/lagoInvierno.jpg', 'imagenes/thumbs/lagoInvierno-thumb.jpg'],
-            [10, 'Igual de helado quedarás con nuestras experiencias', 'imagenes/imgServ/lagoHelado.jpg', 'imagenes/thumbs/lagoHelado-thumb.jpg'],
-            [10, 'Así son nuestros atardeceres', 'imagenes/imgServ/playa.jpg', 'imagenes/thumbs/playa-thumb.jpg'],
-            [10, 'Este lago está más lejos, pero aquí lo pongo', 'imagenes/imgServ/lago.jpg', 'imagenes/thumbs/lago-thumb.jpg'],
-            [10, 'Recogiendo la cosecha', 'imagenes/imgServ/trigoseco.jpg', 'imagenes/thumbs/trigoseco-thumb.jpg'],
+            [9, 'Heladísimo', 'imagenes/imgServ/lagoInvierno.jpg', 'imagenes/thumbs/lagoInvierno-thumb.jpg'],
+            [10, 'Concierto en la Isla de Salmedina', 'imagenes/imgServ/salmedina-1.jpg', 'imagenes/thumbs/salmedina-1-thumb.jpg'],
+            [10, 'Vista del Puro desde la propia roca', 'imagenes/imgServ/salmedina-2.jpg', 'imagenes/thumbs/salmedina-2-thumb.jpg'],
+            [10, 'Delfines visitando Salmedina', 'imagenes/imgServ/salmedina-3.jpg', 'imagenes/thumbs/salmedina-3-thumb.jpg'],
+            [10, 'Aguas de regatas y naufragios', 'imagenes/imgServ/salmedina-4.jpg', 'imagenes/thumbs/salmedina-4-thumb.jpg'],
+            [10, 'El barco del Arroz', 'imagenes/imgServ/salmedina-5.jpg', 'imagenes/thumbs/salmedina-5-thumb.jpg'],
+            [10, 'Desde la Playa de Montijo', 'imagenes/imgServ/salmedina-6.jpg', 'imagenes/thumbs/salmedina-6-thumb.jpg'],
+            [10, 'Aguas que nos ofrecen maravillas', 'imagenes/imgServ/salmedina-7.jpg', 'imagenes/thumbs/salmedina-7-thumb.jpg'],
+            [10, 'Aprendiendo a bucear en grupo', 'imagenes/imgServ/salmedina-8.jpg', 'imagenes/thumbs/salmedina-8-thumb.jpg'],
             [11, 'El fondo de windows', 'imagenes/imgServ/trigalverde.jpg', 'imagenes/thumbs/trigalverde-thumb.jpg'],
             [11, '¿No quieres dejar huella en el mundo? ¡Visítanos!', 'imagenes/imgServ/tractor.jpg', 'imagenes/thumbs/tractor-thumb.jpg'],
             [11, 'No te lo puedes perder', 'imagenes/imgServ/fondowindows.jpg', 'imagenes/thumbs/fondowindows-thumb.jpg'],
             [12, '¿A qué es tumblr?, que diría mi niña', 'imagenes/imgServ/sunset.jpg', 'imagenes/thumbs/sunset-thumb.jpg'],
             [12, 'Impertérrito', 'imagenes/imgServ/mago.jpg', 'imagenes/thumbs/mago-thumb.jpg'],
             [12, 'Cataratas en el río Majaceite', 'imagenes/imgServ/catarata.jpg', 'imagenes/thumbs/catarata-thumb.jpg'],
+            [13, 'El reflejo del paraiso', 'imagenes/imgServ/marcielo.jpg', 'imagenes/thumbs/marcielo-thumb.jpg'],
+            [13, 'El fondo también tiene su encanto', 'imagenes/imgServ/fondomar.jpg', 'imagenes/thumbs/fondomar-thumb.jpg'],
+            [13, 'Abstracción', 'imagenes/imgServ/abstracta.jpg', 'imagenes/thumbs/abstracta-thumb.jpg'],
+            [13, '¿Demasiado frío? Venta a Chipiona', 'imagenes/imgServ/bosque.jpg', 'imagenes/thumbs/bosque-thumb.jpg'],
         ]);
 
         $this->batchInsert('etiquetas',  ['descripcion_tag'], [
@@ -163,7 +172,8 @@ class m171202_111329_datos_iniciales extends Migration
             [9, 2, 'Hemos celebrado la comida de la familia de este verano en vuestra casa y habéis hecho honor al nombre. Un 10 en servicio y calidad de la comida. Todo fresquísimo'],
             [10, 1, 'El paseo en barco, incluso con las olas que hacía ha sido estupendo. Atracar en Salmedina cuando la marea estaba baja le ha parecido a mis hijos de cuento de pirata, más aún después de ver el barco del arroz hundido.'],
             [11, 6, 'La verdad es que fui por acompañar a mi madre que es muy creyente y devota de la Virgen de Regla, pero los tesoros que conservan los franciscanos me han dejado atónita. Muchas gracias al Padre Juan José por sus explicaicones.'],
-            [12, 4, 'Me ha parecido un poco penosa. Apenas tiene nada más que cuatro mapas colgados de la pared. No lo recomendaré y por supuesto lo he valorado con un 0. ']
+            [12, 4, 'Me ha parecido un poco penosa. Apenas tiene nada más que cuatro mapas colgados de la pared. No lo recomendaré y por supuesto lo he valorado con un 0. '],
+            [13, 3, 'Realmente aburrida. En vez de contemporánea podrían decir minimalista: 4 fotos y de pésima calidad.']
         ]);
 
         $this->batchInsert('imagen_publi', ['etiqueta_id', 'descripcion', 'link', 'urlvt', 'urlhz'], [
