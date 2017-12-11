@@ -17,8 +17,8 @@ Por ejemplo:
 
 ## URL del repositorio
 
-[https://github.com/ricpelo/proyecto](https://github.com/ricpelo/proyecto)
+[https://github.com/hftomler/chipionacity](https://github.com/hftomler/chipionacity)
 
 ## URL de la documentación
 
-[https://ricpelo.github.io/proyecto](https://ricpelo.github.io/proyecto)
+[https://hftomler.github.io/chipionacity](https://hftomler.github.io/chipionacity)
