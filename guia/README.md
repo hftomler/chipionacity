@@ -1,3 +1,6 @@
+<img src="https://github.com/hftomler/chipionacity/blob/master/backend/web/imagenes/logoInicio.png" title="Logo Chipiona City">
+
+
 Proyecto integrado
 ==================
 
