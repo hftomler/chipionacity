@@ -11,6 +11,11 @@ class m171202_111329_datos_iniciales extends Migration
     public function up()
     {
 
+        $this->batchInsert('config_vars', ['includePromo', 'numServIni1', 'numServIni2', 'ordPunt', 'regUser'], [
+            [true, 6, 6, false, true]
+        ]);
+
+
         $this->batchInsert('user_type', ['user_type_name', 'user_type_value'], [
             ['Gratuito', 10], ['Suscrito', 20]
         ]);
@@ -83,7 +88,7 @@ class m171202_111329_datos_iniciales extends Migration
         ]);
 
         $this->batchInsert('unidades_tiempo', ['plural', 'singular'], [
-            ['Hours', 'Hour'], ['Days', 'Day'], ['Weeks', 'Week'], ['Months', 'Month'], ['Years', 'Year'],
+            ['Horas', 'Hora'], ['Días', 'Día'], ['Semanas', 'Semana'], ['Meses', 'Mes'], ['Años', 'Año'],
         ]);
 
         $this->batchInsert('servicios', ['descripcion', 'descripcion_lg', 'precio', 'proveedor_id', 'duracion', 'duracion_unidad_id', 'puntuacion', 'num_votos', 'media_punt', 'created_at', 'updated_at', 'promocion'], [
@@ -123,18 +128,18 @@ class m171202_111329_datos_iniciales extends Migration
             [6, 'Todas las edades', 'imagenes/imgServ/tenis2.jpg', 'imagenes/thumbs/tenis2-thumb.jpg'],
             [6, 'Diversión asegurada', 'imagenes/imgServ/tenis3.jpg', 'imagenes/thumbs/tenis3-thumb.jpg'],
             [6, 'Al final todos campeones', 'imagenes/imgServ/tenis4.jpg', 'imagenes/thumbs/tenis4-thumb.jpg'],
-            [7, 'Raqueta y pelota', 'imagenes/imgServ/moscatel-1.jpg', 'imagenes/thumbs/moscatel-1-thumb.jpg'],
-            [7, 'Todas las edades', 'imagenes/imgServ/moscatel-2.jpg', 'imagenes/thumbs/moscatel-2-thumb.jpg'],
-            [7, 'Diversión asegurada', 'imagenes/imgServ/moscatel-3.jpg', 'imagenes/thumbs/moscatel-3-thumb.jpg'],
-            [7, 'Al final todos campeones', 'imagenes/imgServ/moscatel-4.jpg', 'imagenes/thumbs/moscatel-4-thumb.jpg'],
+            [7, 'César Florido, Pepe Mellado y Católico Agrícola', 'imagenes/imgServ/moscatel-1.jpg', 'imagenes/thumbs/moscatel-1-thumb.jpg'],
+            [7, 'Nacidas y crecidas a sol lento', 'imagenes/imgServ/moscatel-2.jpg', 'imagenes/thumbs/moscatel-2-thumb.jpg'],
+            [7, 'Las mejores uvas para el mejor moscatel pasa', 'imagenes/imgServ/moscatel-3.jpg', 'imagenes/thumbs/moscatel-3-thumb.jpg'],
+            [7, 'Galardonados en todos los certámenes de enología', 'imagenes/imgServ/moscatel-4.jpg', 'imagenes/thumbs/moscatel-4-thumb.jpg'],
             [8, '¿En extinción? Aquí los cuidamos para ti', 'imagenes/imgServ/camaleon1.jpg', 'imagenes/thumbs/camaleon1-thumb.jpg'],
             [8, 'Junto a dunas y pasarelas de madera', 'imagenes/imgServ/camaleon2.jpg', 'imagenes/thumbs/camaleon2-thumb.jpg'],
             [8, 'Centro de Interpretación de la Naturaleza', 'imagenes/imgServ/camaleon3.jpg', 'imagenes/thumbs/camaleon3-thumb.jpg'],
-            [8, 'Colores que no creerás', 'imagenes/imgServ/camaleon4.jpg', 'imagenes/thumbs/camaleon4-thumb.jpg'],
-            [8, 'Les querrás echar de comer', 'imagenes/imgServ/camaleon5.jpg', 'imagenes/thumbs/camaleon5-thumb.jpg'],
-            [8, 'Les querrás echar de comer', 'imagenes/imgServ/camaleon6.jpg', 'imagenes/thumbs/camaleon6-thumb.jpg'],
-            [8, 'Les querrás echar de comer', 'imagenes/imgServ/camaleon7.jpg', 'imagenes/thumbs/camaleon7-thumb.jpg'],
-            [8, 'Les querrás echar de comer', 'imagenes/imgServ/camaleon8.jpg', 'imagenes/thumbs/camaleon8-thumb.jpg'],
+            [8, 'Colores y atardeceres que no creerás', 'imagenes/imgServ/camaleon4.jpg', 'imagenes/thumbs/camaleon4-thumb.jpg'],
+            [8, 'El CINLAC se camufla con el entorno', 'imagenes/imgServ/camaleon5.jpg', 'imagenes/thumbs/camaleon5-thumb.jpg'],
+            [8, 'Desde su nacimiento, cuidados', 'imagenes/imgServ/camaleon6.jpg', 'imagenes/thumbs/camaleon6-thumb.jpg'],
+            [8, 'En grupo lo pasarás mejor', 'imagenes/imgServ/camaleon7.jpg', 'imagenes/thumbs/camaleon7-thumb.jpg'],
+            [8, 'Disfruta de las pasarelas sobre las Dunas', 'imagenes/imgServ/camaleon8.jpg', 'imagenes/thumbs/camaleon8-thumb.jpg'],
             [9, 'Este lago está lejos pero nos encanta', 'imagenes/imgServ/lago2.jpg', 'imagenes/thumbs/lago2-thumb.jpg'],
             [9, 'Dientes de león', 'imagenes/imgServ/dienteleon.jpg', 'imagenes/thumbs/dienteleon-thumb.jpg'],
             [9, 'La bajada de la marea nos deja éstas maravillas', 'imagenes/imgServ/rocas.jpg', 'imagenes/thumbs/rocas-thumb.jpg'],
@@ -147,14 +152,14 @@ class m171202_111329_datos_iniciales extends Migration
             [10, 'Desde la Playa de Montijo', 'imagenes/imgServ/salmedina-6.jpg', 'imagenes/thumbs/salmedina-6-thumb.jpg'],
             [10, 'Aguas que nos ofrecen maravillas', 'imagenes/imgServ/salmedina-7.jpg', 'imagenes/thumbs/salmedina-7-thumb.jpg'],
             [10, 'Aprendiendo a bucear en grupo', 'imagenes/imgServ/salmedina-8.jpg', 'imagenes/thumbs/salmedina-8-thumb.jpg'],
-            [11, 'El fondo de windows', 'imagenes/imgServ/santuario1.jpg', 'imagenes/thumbs/santuario1-thumb.jpg'],
-            [11, '¿No quieres dejar huella en el mundo? ¡Visítanos!', 'imagenes/imgServ/santuario2.jpg', 'imagenes/thumbs/santuario2-thumb.jpg'],
-            [11, 'No te lo puedes perder', 'imagenes/imgServ/santuario3.jpg', 'imagenes/thumbs/santuario3-thumb.jpg'],
-            [11, 'No te lo puedes perder', 'imagenes/imgServ/santuario4.jpg', 'imagenes/thumbs/santuario4-thumb.jpg'],
-            [12, '¿A qué es tumblr?, que diría mi niña', 'imagenes/imgServ/nuevomundo1.jpg', 'imagenes/thumbs/nuevomundo1-thumb.jpg'],
-            [12, 'Cataratas en el río Majaceite', 'imagenes/imgServ/nuevomundo2.jpg', 'imagenes/thumbs/nuevomundo2-thumb.jpg'],
-            [12, 'Impertérrito', 'imagenes/imgServ/nuevomundo3.jpg', 'imagenes/thumbs/nuevomundo3-thumb.jpg'],
-            [12, 'Cataratas en el río Majaceite', 'imagenes/imgServ/nuevomundo4.jpg', 'imagenes/thumbs/nuevomundo4-thumb.jpg'],
+            [11, 'El Santuario desde la Playa de Regla', 'imagenes/imgServ/santuario1.jpg', 'imagenes/thumbs/santuario1-thumb.jpg'],
+            [11, 'Ntra. Sra. de Regla procesiona en Septiembre', 'imagenes/imgServ/santuario2.jpg', 'imagenes/thumbs/santuario2-thumb.jpg'],
+            [11, 'El camerín de la Virgen de Regla', 'imagenes/imgServ/santuario3.jpg', 'imagenes/thumbs/santuario3-thumb.jpg'],
+            [11, 'Concierto flamenco en el Claustro', 'imagenes/imgServ/santuario4.jpg', 'imagenes/thumbs/santuario4-thumb.jpg'],
+            [12, 'Mapas antiguos y rutas del descubrimiento', 'imagenes/imgServ/nuevomundo1.jpg', 'imagenes/thumbs/nuevomundo1-thumb.jpg'],
+            [12, 'La vida a bordo de una de las carabelas', 'imagenes/imgServ/nuevomundo2.jpg', 'imagenes/thumbs/nuevomundo2-thumb.jpg'],
+            [12, 'La Cádiz de la Edad Media', 'imagenes/imgServ/nuevomundo3.jpg', 'imagenes/thumbs/nuevomundo3-thumb.jpg'],
+            [12, 'El Castillo de Guzmán el Bueno', 'imagenes/imgServ/nuevomundo4.jpg', 'imagenes/thumbs/nuevomundo4-thumb.jpg'],
             [13, 'El reflejo del paraiso', 'imagenes/imgServ/marcielo.jpg', 'imagenes/thumbs/marcielo-thumb.jpg'],
             [13, 'El fondo también tiene su encanto', 'imagenes/imgServ/fondomar.jpg', 'imagenes/thumbs/fondomar-thumb.jpg'],
             [13, 'Abstracción', 'imagenes/imgServ/abstracta.jpg', 'imagenes/thumbs/abstracta-thumb.jpg'],

@@ -8,6 +8,7 @@ use backend\models\Servicios;
 use yii\web\JsExpression;
 use yii\helpers\Url;
 use backend\models\ImagenPubli;
+use backend\models\ConfigVars;
 /* @var $this yii\web\View */
 
 
@@ -16,7 +17,9 @@ $model = new Servicios();
 $big = "col-md-6";
 $small = "col-md-4";
 $xsmall = "col-md-3";
+$confVars = ConfigVars::find()->one();
 ?>
+
 <div class="site-index">
 
     <div class="jumbotron">
@@ -89,7 +92,7 @@ $xsmall = "col-md-3";
                 <div class="titUpdateBig"><i class="fa fa-picture-o" aria-hidden="true"></i> <?= Yii::t('app', 'Discover our latest services') ?></div>
             </div>
             <div class="row list-group products">
-                <?= $model->getImagenTop(4, $xsmall, true, true); // Muestra los que NO tienen promo y ordenados por puntuacion?>
+                <?= $model->getImagenTop($confVars->numServIni1, $xsmall, $confVars->includePromo, $confVars->ordPunt); // Muestra los que NO tienen promo y ordenados por puntuacion?>
             </div>
         </div>
         <div id="publi1hz" class="col-xs-6"><?= ImagenPubli::getImagenPubli(true, false) ?></div>
@@ -113,7 +116,7 @@ $xsmall = "col-md-3";
                 <div class="titUpdateBig"><i class="fa fa-picture-o" aria-hidden="true"></i> <?= Yii::t('app', 'Our most rated services ') ?></div>
             </div>
             <div class="row list-group products">
-                <?= $model->getImagenTop(2, $big, false, true); // Muestra los que NO tienen promo y los más nuevos?>
+                <?= $model->getImagenTop($confVars->numServIni2, $big, false, true); // Muestra los que NO tienen promo y los más nuevos?>
             </div>
             <div id="publi2" class="col-xs-4"><?= ImagenPubli::getImagenPubli(true, true) ?></div>
             <div class="weather col-xs-4">Cádiz</div>

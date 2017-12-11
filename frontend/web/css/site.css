@@ -372,7 +372,29 @@ nav.inicio li:hover a:hover, nav li form button.btn-link:hover {
     padding-bottom: 25px;
 }
 
+/* Botón para ir al inicio */
 
+.toplinkChici {
+    position: fixed;
+    bottom: 50px;
+    right: 50px;
+
+    padding: 5px 8px 0 5px;
+
+    border: solid 1px #ddd;
+    border-radius: 5px;
+    background: #fff;
+}
+
+.toplinkChici a {
+    color: #bbb;
+    text-decoration: none;
+}
+
+.toplinkChici a:hover {
+    color: #999;
+    text-decoration: none;
+}
 
 .language {
     margin: -10px 5px;

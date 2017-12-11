@@ -18,6 +18,7 @@ use common\models\RecordHelpers;
 
 AppAsset::register($this);
 FontAwesomeAsset::register($this);
+
 ?>
 <?php $this->beginPage() ?>
 <!DOCTYPE html>
@@ -104,6 +105,7 @@ FontAwesomeAsset::register($this);
         ]) ?>
         <?= Alert::widget() ?>
         <?= $content ?>
+        <div class="toplinkChici"><a href="#" class="h1" title="ir al inicio"><span class="glyphicon glyphicon-arrow-up"></a></div>
     </div>
 </div>
 

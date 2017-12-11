@@ -11,6 +11,18 @@ class m130524_201443_init extends Migration
             $tableOptions = 'CHARACTER SET utf8 COLLATE utf8_unicode_ci ENGINE=InnoDB';
         }
 
+        // Tabla de configuracion
+
+        $this->createTable('config_vars', [
+            'id'=>$this->primaryKey(),
+            'includePromo'=>$this->boolean()->defaultValue(false),
+            'numServIni1'=>$this->integer()->notNull(),
+            'numServIni2'=>$this->integer()->notNull(),
+            'ordPunt'=>$this->boolean()->defaultValue(false),
+            'regUser'=>$this->boolean()->defaultValue(true),
+        ], $tableOptions);
+
+
         // Creo las tablas  e inserto los valores iniciales.
 
         $this->createTable('paises', [
@@ -477,6 +489,8 @@ class m130524_201443_init extends Migration
 
     public function down()
     {
+
+        $this->dropTable('config_vars');
         $this->dropTable('lineas_venta');
         $this->dropTable('ventas');
         $this->dropTable('estado_ventas');

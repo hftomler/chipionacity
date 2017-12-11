@@ -1,4 +1,5 @@
 drop table "user" cascade;
+drop table "config_vars" cascade;
 drop table "roles" cascade;
 drop table "provincias" cascade;
 drop table "municipios" cascade;
@@ -24,6 +25,7 @@ drop table "unidades_tiempo";
 drop table "comentarios";
 drop table "votaciones";
 
+delete from "config_vars";
 delete from "user";
 delete from "roles";
 delete from "provincias";

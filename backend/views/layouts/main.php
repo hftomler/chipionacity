@@ -52,6 +52,7 @@ FontAwesomeAsset::register($this);
 <div class="wrap">
     <?php
     $isAdmin = PermissionHelpers::requireMinRol('admin');
+    $isSadmin = PermissionHelpers::requireMinRol('superAdmin');
     $isProv = PermissionHelpers::requireMinRol('proveedor');
     $isAvatar = ((Yii::$app->controller->action->id == 'avatar') ? true : false);
     $isSite = ((Yii::$app->controller->id == 'site') ? true : false);
@@ -100,12 +101,13 @@ FontAwesomeAsset::register($this);
         }
         $profileId = RecordHelpers::userHas('profile') ? Profile::find()->where(['user_id' => Yii::$app->user->id])->one()->id : false;
         if ($profileId) {
-            $prof = ['label' => '<i class="fa fa-eye" aria-hidden="true"></i> Profile', 'url' => Url::toRoute(['profile/view', 'id' => $profileId])];
+            $prof = ['label' => '<i class="fa fa-eye" aria-hidden="true"></i>' . Yii::t('app', 'Profile'), 'url' => Url::toRoute(['profile/view', 'id' => $profileId])];
             $imgNav = ImagenProfile::getLastImg($profileId);
         } else {
-            $prof = ['label' => '<i class="fa fa-plus-square" aria-hidden="true"></i> Profile', 'url' => ['/profile/create']];
+            $prof = ['label' => '<i class="fa fa-plus-square" aria-hidden="true"></i>' . Yii::t('app', 'Profile'), 'url' => ['/profile/create']];
             $imgNav = "imagenes/imgPerfil/sinPerfil.jpg";
         }
+        $configIcon = ($isSadmin) ? ['label' => '<i class="fa fa-cogs" aria-hidden="true"></i> Config', 'url' => Url::toRoute(['configvars/update', 'id' => 1])]: '';
         $menuItems[] = [ 'label' => '<img src="' . $imgNav . '" class="imgPerfilInicio-xs img-circle" title="' . Yii::$app->user->identity->username . '"/>',
                         'items' => [
                              ['label' => '<i class="fa fa-sign-out" aria-hidden="true"></i>' . Yii::t('app', 'Logout') .
@@ -113,6 +115,7 @@ FontAwesomeAsset::register($this);
                                          'url' => ['/site/logout'], 'linkOptions' => ['data' => ['method' => 'post']]],
                              '<li class="divider"></li>',
                              $prof,
+                             $configIcon,
                         ],
                     ];
     }
