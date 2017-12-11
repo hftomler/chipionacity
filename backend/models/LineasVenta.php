@@ -1,6 +1,6 @@
 <?php
 
-namespace backend\models;
+namespace app\models;
 
 use Yii;
 
@@ -49,14 +49,14 @@ class LineasVenta extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id' => Yii::t('app', 'Id'),
-            'venta_id' => Yii::t('app', 'Sale Id'),
-            'servicio_id' => Yii::t('app', 'Service Id'),
-            'cantidad' => Yii::t('app', 'Quantity'),
-            'precio_unit' => Yii::t('app', 'Unit Price'),
-            'descuento_linea' => Yii::t('app', 'Line Discount'),
-            'total_linea' => Yii::t('app', 'Total line'),
-            'total_comision_linea' => Yii::t('app', 'Total Commission Line'),
+            'id' => Yii::t('app', 'ID'),
+            'venta_id' => Yii::t('app', 'Venta ID'),
+            'servicio_id' => Yii::t('app', 'Servicio ID'),
+            'cantidad' => Yii::t('app', 'Cantidad'),
+            'precio_unit' => Yii::t('app', 'Precio Unit'),
+            'descuento_linea' => Yii::t('app', 'Descuento Linea'),
+            'total_linea' => Yii::t('app', 'Total Linea'),
+            'total_comision_linea' => Yii::t('app', 'Total Comision Linea'),
         ];
     }
 
