@@ -20,8 +20,9 @@ class m130524_201443_init extends Migration
             'numServIni2'=>$this->integer()->notNull(),
             'ordPunt'=>$this->boolean()->defaultValue(false),
             'regUser'=>$this->boolean()->defaultValue(true),
+            'offline'=>$this->boolean()->defaultValue(false),
+            'logoHomeft'=>$this->string(255)->notNUll()->defaultValue("imagenes/logohome.png")
         ], $tableOptions);
-
 
         // Creo las tablas  e inserto los valores iniciales.
 

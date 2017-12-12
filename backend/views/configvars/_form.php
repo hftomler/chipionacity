@@ -13,21 +13,30 @@ use yii\widgets\ActiveForm;
     <?php $form = ActiveForm::begin(); ?>
 
     <div class="col-xs-12 text-center">
-        <div class="col-xs-4 btn-success">
+        <div class="col-xs-3">
             <?= $form->field($model, 'includePromo')->checkbox() ?>
         </div>
-        <div class="col-xs-4">
+        <div class="col-xs-3">
             <?= $form->field($model, 'ordPunt')->checkbox() ?>
         </div>
-        <div class="col-xs-4">
+        <div class="col-xs-3">
             <?= $form->field($model, 'regUser')->checkbox() ?>
+        </div>
+        <div class="col-xs-3">
+            <?= $form->field($model, 'offline')->checkbox() ?>
         </div>
     </div>
 
-
-    <?= $form->field($model, 'numServIni1')->textInput() ?>
-
-    <?= $form->field($model, 'numServIni2')->textInput() ?>
+    <div class="col-xs-12 text-center">
+        <div class="col-xs-6">
+            <?= $form->field($model, 'numServIni1')->textInput() ?>
+        </div>
+        <div class="col-xs-6">
+            <?= $form->field($model, 'numServIni2')->textInput() ?>
+        </div>
+        <div class="col-xs-12">
+            <?= $form->field($model, 'logoHomeft')->textInput() ?>
+        </div>
 
 
     <div class="form-group">

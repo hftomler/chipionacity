@@ -270,6 +270,10 @@ nav.inicio li:hover a:hover, nav li form button.btn-link:hover {
     font-size: 0.9em;
 }
 
+.exclError {
+    font-size: 10em;
+    color: #f00;
+}
 .tituloForms {
     max-width: 100%;
     margin-bottom: 15px;

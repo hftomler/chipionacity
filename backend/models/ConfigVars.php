@@ -13,6 +13,8 @@ use Yii;
  * @property integer $numServIni2
  * @property boolean $ordPunt
  * @property boolean $regUser
+ * @property boolean $offline
+ * @property boolean $logoHomeft
  */
 class ConfigVars extends \yii\db\ActiveRecord
 {
@@ -30,9 +32,10 @@ class ConfigVars extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['includePromo', 'ordPunt', 'regUser'], 'boolean'],
+            [['includePromo', 'ordPunt', 'regUser', 'offline'], 'boolean'],
             [['numServIni1', 'numServIni2'], 'required'],
             [['numServIni1', 'numServIni2'], 'integer'],
+            [['logoHomeft'], 'string']
         ];
     }
 

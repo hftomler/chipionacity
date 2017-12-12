@@ -12,6 +12,7 @@ use yii\web\BadRequestHttpException;
 use yii\web\Controller;
 use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
+use backend\models\ConfigVars;
 
 /**
  * Site controller
@@ -176,9 +177,13 @@ class SiteController extends Controller
             }
         }
 
-        return $this->renderAjax('signup', [
-            'model' => $model,
-        ]);
+        if (ConfigVars::find()->one()->regUser) {
+            return $this->renderAjax('signup', [
+                'model' => $model,
+            ]);
+        } else {
+            return $this->renderAjax('noregs');
+        }
     }
 
     /**
