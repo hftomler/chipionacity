@@ -1,10 +1,10 @@
 <img src="https://github.com/hftomler/chipionacity/blob/master/backend/web/imagenes/logoInicio.png" title="Logo Chipiona City">
 
 
-Proyecto integrado
-==================
+.·-·. Chipiona City  .·-·.
+==========================
 
-Este es el documento principal, que incluye la portada  y el índice de contenidos.
+Chipiona City, web de experiencias de la Costa Noroeste de Cádiz, es el proyecto fin de grado de DAW de [Agustín Lorenzo](https://github.com/hftomler), cursado en [I.E.S. Doñana](http://www.iesdonana.org)
 
 Descripción general
 -------------------
