@@ -14,16 +14,18 @@ use backend\models\ConfigVars;
 
 $this->title = 'My Yii Application';
 $model = new Servicios();
+$configVars = ConfigVars::find()->one();
 $big = "col-md-6";
 $small = "col-md-4";
 $xsmall = "col-md-3";
-$confVars = ConfigVars::find()->one();
+$classBloq1 = "col-md-" . round(12 / $configVars->classBloq1);
+$classBloq2 = "col-md-" . round(12 /$configVars->classBloq2);
 ?>
 
 <div class="site-index">
 
     <div class="jumbotron">
-        <img id="logoInicio" src="<?= $confVars->logoHomeft ?>" class="col-xs-5 col-xs-offset-1" alt="logo">
+        <img id="logoInicio" src="<?= $configVars->logoHomeft ?>" class="col-xs-5 col-xs-offset-1" alt="logo">
         <p class="col-xs-5 titular"><?= Yii::t('app', 'Unforgettable experiences <i class = "fa fa-heart" aria-hidden = "true"> </ i>,
             in the ideal place <i class = "fa fa-star" aria-hidden = "true"> </ i>
             to a spectacular price <i class = "fa fa-arrow-down" aria-hidden = "true"> </ i> <i class = "fa fa-eur" aria-hidden = "true"> </ i>') ?></p>
@@ -92,7 +94,7 @@ $confVars = ConfigVars::find()->one();
                 <div class="titUpdateBig"><i class="fa fa-picture-o" aria-hidden="true"></i> <?= Yii::t('app', 'Discover our latest services') ?></div>
             </div>
             <div class="row list-group products">
-                <?= $model->getImagenTop($confVars->numServIni1, $xsmall, $confVars->includePromo, $confVars->ordPunt); // Muestra los que NO tienen promo y ordenados por puntuacion?>
+                <?= $model->getImagenTop($configVars->numServIni1, $classBloq1, $configVars->includePromo, $configVars->ordPunt); // Muestra los que NO tienen promo y ordenados por puntuacion?>
             </div>
         </div>
         <div id="publi1hz" class="col-xs-6"><?= ImagenPubli::getImagenPubli(true, false) ?></div>
@@ -116,11 +118,10 @@ $confVars = ConfigVars::find()->one();
                 <div class="titUpdateBig"><i class="fa fa-picture-o" aria-hidden="true"></i> <?= Yii::t('app', 'Our most rated services ') ?></div>
             </div>
             <div class="row list-group products">
-                <?= $model->getImagenTop($confVars->numServIni2, $big, false, true); // Muestra los que NO tienen promo y los más nuevos?>
+                <?= $model->getImagenTop($configVars->numServIni2, $classBloq2, false, true); // Muestra los que NO tienen promo y los más nuevos?>
             </div>
             <div id="publi2" class="col-xs-4"><?= ImagenPubli::getImagenPubli(true, true) ?></div>
             <div class="weather col-xs-4">Cádiz</div>
             <div id="publi3" class="col-xs-4"><?= ImagenPubli::getImagenPubli(true, true) ?></div>
         </div>
-
 </div>

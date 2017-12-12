@@ -149,6 +149,9 @@
                                         case "Scattered Showers":
                                             data.query.results.channel.item.forecast[i].text = "Chubascos dispersos";
                                             break;
+                                        case "Breezy":
+                                            data.query.results.channel.item.forecast[i].text = "Ventoso";
+                                            break;
                                     default:
                                 }
                                 data.query.results.channel.item.forecast[i].date = new Date(data.query.results.channel.item.forecast[i].date).toLocaleDateString();

@@ -28,11 +28,17 @@ use yii\widgets\ActiveForm;
     </div>
 
     <div class="col-xs-12 text-center">
-        <div class="col-xs-6">
+        <div class="col-xs-3">
             <?= $form->field($model, 'numServIni1')->textInput() ?>
         </div>
-        <div class="col-xs-6">
+        <div class="col-xs-3">
             <?= $form->field($model, 'numServIni2')->textInput() ?>
+        </div>
+        <div class="col-xs-3">
+            <?= $form->field($model, 'classBloq1')->textInput() ?>
+        </div>
+        <div class="col-xs-3">
+            <?= $form->field($model, 'classBloq2')->textInput() ?>
         </div>
         <div class="col-xs-12">
             <?= $form->field($model, 'logoHomeft')->textInput() ?>

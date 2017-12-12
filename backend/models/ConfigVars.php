@@ -11,6 +11,8 @@ use Yii;
  * @property boolean $includePromo
  * @property integer $numServIni1
  * @property integer $numServIni2
+ * @property integer $classBloq1
+ * @property integer $classBloq2
  * @property boolean $ordPunt
  * @property boolean $regUser
  * @property boolean $offline
@@ -34,7 +36,7 @@ class ConfigVars extends \yii\db\ActiveRecord
         return [
             [['includePromo', 'ordPunt', 'regUser', 'offline'], 'boolean'],
             [['numServIni1', 'numServIni2'], 'required'],
-            [['numServIni1', 'numServIni2'], 'integer'],
+            [['numServIni1', 'numServIni2', 'classBloq1', 'classBloq2'], 'integer'],
             [['logoHomeft'], 'string']
         ];
     }
@@ -49,6 +51,8 @@ class ConfigVars extends \yii\db\ActiveRecord
             'includePromo' => Yii::t('app', 'Include Promotion Service'),
             'numServIni1' => Yii::t('app', 'Services number 1'),
             'numServIni2' => Yii::t('app', 'Services number 2'),
+            'classBloq1' => Yii::t('app', 'Number Images first block'),
+            'classBloq2' => Yii::t('app', 'Number Images second block'),
             'ordPunt' => Yii::t('app', 'Order by Puntuation'),
             'regUser' => Yii::t('app', 'User Registration'),
         ];
