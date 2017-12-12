@@ -58,8 +58,20 @@ $show_this_nav = PermissionHelpers::requireMinRol('superAdmin');
             // 'rol_id',
             // 'user_type_id',
             // 'proveedor:boolean',
-
             ['class' => 'yii\grid\ActionColumn',
+                            'template' => '{view} {update} {delete} {mail}',
+                            'buttons' => [
+                                'mail' => function ($url) {
+                                    return Html::a(
+                                        '<i class="fa fa-envelope unoycuarto" aria-hidden="true"></i>',
+                                        $url,
+                                        [
+                                            'title' => Yii::t('app', 'Mail this user'),
+                                            'data-pjax' => '0',
+                                        ]
+                                    );
+                                },
+                            ],
                              'visibleButtons' => [
                                  'update' => $show_this_nav,
                                  'delete' => $show_this_nav,

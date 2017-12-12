@@ -24,11 +24,11 @@ $isProv = User::isProveedor(Yii::$app->user->identity->id);
         <div class="col-xs-12 col-sm-4">
             <?php
                 if (!$isProv) {
-                        echo $form->field($model, 'proveedor_id')->dropDownList($model->proveedorList, ['prompt' => Yii::t('app', 'Supplier Id') ]);
+                        echo $form->field($model, 'proveedor_id')->dropDownList($model->proveedorList, ['prompt' => Yii::t('app', 'Service Provider Id') ]);
                 } else {
                         echo Html::activeTextInput($model, 'proveedor_id', ['value'=> Yii::$app->user->identity->id, 'style' => 'display:none']);
                         echo Html::beginTag('div', ['class' => 'form-group field-servicios-proveedor_id required']);
-                            echo '<label class="control-label" for=servicios-proveedor_id" >' . Yii::t('app', 'Supplier Id') . '</label>';
+                            echo '<label class="control-label" for=servicios-proveedor_id" >' . Yii::t('app', 'Service Provider Id') . '</label>';
                             echo Html::textInput('prov',
                                                  Yii::$app->user->identity->id . ': ' . Yii::$app->user->identity->username,
                                                  ['class' => 'form-control', 'disabled' => true ]);

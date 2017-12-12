@@ -46,6 +46,17 @@ return [
             // this is the name of the session cookie used for login on the frontend
             'name' => 'advanced-frontend',
         ],
+        'mailer' => [
+                'class' => 'yii\swiftmailer\Mailer',
+                'transport' => [
+                    'class' => 'Swift_SmtpTransport',
+                    'host' => 'smtp.gmail.com',
+                    'username' => 'agustin.lorenzi@gmail.com',
+                    'password' => 'Aetion1223',
+                    'port' => '587',
+                    'encryption' => 'tls',
+                ],
+            ],
         'log' => [
             'traceLevel' => YII_DEBUG ? 3 : 0,
             'targets' => [

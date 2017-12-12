@@ -24,14 +24,14 @@ class UserController extends Controller
         return [
             'access' => [
                 'class' => AccessControl::className(), // \yii\filters\AccessControl::className(),
-                'only' => ['index', 'view', 'create', 'update', 'delete', 'Usexists'],
+                'only' => ['index', 'view', 'create', 'update', 'delete', 'Usexists', 'mail'],
                 'rules' => [
                     [
                         'actions' => ['usexists'],
                         'allow' => true,
                     ],
                     [
-                        'actions' => ['index', 'view'],
+                        'actions' => ['index', 'view', 'mail'],
                         'allow' => true,
                         'roles' => ['@'],
                         'matchCallback' => function ($rule, $action) {
@@ -74,12 +74,24 @@ class UserController extends Controller
 
     /**
      * Displays a single User model.
-     * @param integer $id
+     * @param int $id
      * @return mixed
      */
     public function actionView($id)
     {
         return $this->render('view', [
+            'model' => $this->findModel($id),
+        ]);
+    }
+
+    /**
+     * Displays a single User model.
+     * @param int $id
+     * @return mixed
+     */
+    public function actionMail($id)
+    {
+        return $this->render('mail', [
             'model' => $this->findModel($id),
         ]);
     }

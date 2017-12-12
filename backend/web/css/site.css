@@ -328,6 +328,10 @@ nav li:hover a:hover, nav li form button.btn-link:hover {
     font-size: 1.5em !important;
 }
 
+.unoycuarto {
+    font-size: 1.25em !important;
+}
+
 .titUpdate {
     text-align: center;
     color: #286090;

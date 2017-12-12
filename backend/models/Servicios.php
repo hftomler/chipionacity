@@ -103,7 +103,7 @@ class Servicios extends \yii\db\ActiveRecord
             'descripcion' => Yii::t('app', 'Description'),
             'descripcion' => Yii::t('app', 'Large Description'),
             'precio' => Yii::t('app', 'Price'),
-            'proveedor_id' => Yii::t('app', 'Supplier Id'),
+            'proveedor_id' => Yii::t('app', 'Service Provider Id'),
             'activo' => Yii::t('app', 'Active'),
             'tipo_iva_id' => Yii::t('app', 'VAT Type Id'),
             'duracion' => Yii::t('app', 'Duration'),

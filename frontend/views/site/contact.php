@@ -40,7 +40,7 @@ $this->params['breadcrumbs'][] = $this->title;
                             ])->label("") ?>
                     </div>
                     <div class="col-xs-6">
-                        <?= $form->field($model, 'proveedor')->checkbox()->label(Yii::t('app', ''))?>
+                        <?= $form->field($model, 'proveedor')->checkbox()->label(Yii::t('app', 'I want to receive information to be a service provider'))?>
                     </div>
                 </div>
 

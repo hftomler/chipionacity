@@ -31,7 +31,7 @@ class ContactForm extends Model
             // verifyCode needs to be entered correctly
             ['verifyCode', 'captcha'],
             // Si está solicitando ser proveedor.
-            ['rememberMe', 'boolean'],
+            ['proveedor', 'boolean'],
         ];
     }
 
@@ -42,7 +42,7 @@ class ContactForm extends Model
     {
         return [
             'verifyCode' => Yii::t('app', 'Verification code'),
-            'proveedor' => Yii::t('app', 'Supplier'),
+            'proveedor' => Yii::t('app', 'Service Provider'),
         ];
     }
 

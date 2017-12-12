@@ -32,7 +32,7 @@ $isProveedor = User::isProveedor(Yii::$app->user->identity->id);
         'columns' => [
             'descripcion',
             'precio',
-            ['attribute'=>(Yii::t('app', 'Supplier')),
+            ['attribute'=>(Yii::t('app', 'Service Provider')),
                             'value'=>function ($model, $key, $index, $column) {
                                 return $model->proveedor->username;
                             },

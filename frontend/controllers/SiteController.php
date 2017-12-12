@@ -136,7 +136,7 @@ class SiteController extends Controller
                 Yii::$app->session->setFlash('error', 'There was an error sending your message.');
             }
 
-            return $this->refresh();
+            return $this->goHome();
         } else {
             return $this->renderAjax('contact', [
                 'model' => $model,
