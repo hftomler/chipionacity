@@ -382,12 +382,18 @@ nav.inicio li:hover a:hover, nav li form button.btn-link:hover {
     position: fixed;
     bottom: 50px;
     right: 50px;
-
     padding: 5px 8px 0 5px;
-
     border: solid 1px #ddd;
-    border-radius: 5px;
-    background: #fff;
+    border-radius: 30%;
+    background: none;
+    opacity: 0.5;
+}
+
+.toplinkChici:hover {
+    border: solid 1px #337ab7;
+    border-radius: 20%;
+    background: none;
+    opacity: 0.9;
 }
 
 .toplinkChici a {
@@ -396,7 +402,7 @@ nav.inicio li:hover a:hover, nav li form button.btn-link:hover {
 }
 
 .toplinkChici a:hover {
-    color: #999;
+    color: #ff7e00;
     text-decoration: none;
 }
 
