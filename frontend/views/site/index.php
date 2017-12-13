@@ -121,8 +121,13 @@ $classBloq2 = "col-md-" . round(12 /$configVars->classBloq2);
             <div class="row list-group products">
                 <?= $model->getImagenTop($configVars->numServIni2, $classBloq2, false, true); // Muestra los que NO tienen promo y los más nuevos?>
             </div>
-            <div id="publi2" class="col-xs-4"><?= ImagenPubli::getImagenPubli(true, true) ?></div>
-            <div class="weather col-xs-4">Cádiz</div>
-            <div id="publi3" class="col-xs-4"><?= ImagenPubli::getImagenPubli(true, true) ?></div>
+            <div id="publi2" class="col-xs-3"><?= ImagenPubli::getImagenPubli(true, true) ?></div>
+            <div id="vd1" class="col-xs-6 video">
+                <div align="center" class="embed-responsive embed-responsive-16by9">
+                    <iframe src="https://player.vimeo.com/video/229112121" width="640" height="360" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+                            <p><a href="https://vimeo.com/229112121">Moscatel de Chipiona</a><a href="https://vimeo.com/user8341765">JaujaProducciones</a></p>
+                </div>
+            </div>
+            <div id="publi3" class="col-xs-3"><?= ImagenPubli::getImagenPubli(true, true) ?></div>
         </div>
 </div>
