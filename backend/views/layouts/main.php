@@ -10,6 +10,7 @@ use yii\widgets\Breadcrumbs;
 use backend\assets\AppAsset;
 use common\widgets\Alert;
 use yii\helpers\Url;
+use yii\bootstrap\Modal;
 use frontend\assets\FontAwesomeAsset;
 use frontend\models\Profile;
 use backend\models\ImagenProfile;
@@ -161,6 +162,25 @@ FontAwesomeAsset::register($this);
 </footer>
 })
 <?php $this->endBody() ?>
+<?php
+$modalHeader = '<p class="text-center">
+                                <img class="text-center" id="logo" src="imagenes/logo.png" alt="logo">
+                            </p>';
+$modalFooter = '<p>
+                                <i class="fa fa-copyright" aria-hidden="true"></i> Chipiona City ' .
+                                date('Y') .
+                           '</p>';
+Modal::begin([
+    'header'=>$modalHeader,
+    'id'=>'modalMailContent',
+    'size'=>'modal-md',
+    'footer'=>$modalFooter,
+]);
+
+echo "<div id='modalContentMail'></div>";
+
+Modal::end();
+?>
 </body>
 </html>
 <?php $this->endPage() ?>

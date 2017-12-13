@@ -5,6 +5,7 @@ namespace backend\controllers;
 use Yii;
 use common\models\User;
 use backend\models\search\UserSearch;
+use backend\models\MailForm;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -85,15 +86,27 @@ class UserController extends Controller
     }
 
     /**
-     * Displays a single User model.
-     * @param int $id
+     * Displays mail to user page.
+     *
      * @return mixed
      */
-    public function actionMail($id)
+    public function actionMail($user_id)
     {
-        return $this->render('mail', [
-            'model' => $this->findModel($id),
-        ]);
+        $userTo = $this->findModel($user_id);
+        $model = new MailForm();
+        if ($model->load(Yii::$app->request->post()) && $model->validate()) {
+            if ($model->sendEmail($user_id)->email) {
+                Yii::$app->session->setFlash('success', 'Thank you for mailing us. We will respond to you as soon as possible.');
+            } else {
+                Yii::$app->session->setFlash('error', 'There was an error sending your mail.');
+            }
+
+            return $this->goHome();
+        } else {
+            return $this->renderAjax('mail', [
+                'model' => $model
+            ]);
+        }
     }
 
     /**

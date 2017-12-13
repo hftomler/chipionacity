@@ -242,27 +242,28 @@ $(function(){
 				}
 				imgServicio = "";
 				for (i = 0; i<servicio.imgs.length; i++) {
-					imgServicio += "<img src='" + servicio.imgs[i]['url'] + "' class='imgServicio-sm img-thumbnail col-xs-3' title='" + servicio.imgs[i]['descripcion'] + "'/>";
+					imgServicio += "<img itemprop='image' src='" + servicio.imgs[i]['url'] + "' class='imgServicio-sm img-thumbnail col-xs-3' alt='" + servicio.imgs[i]['descripcion'] + "' title='" + servicio.imgs[i]['descripcion'] + "'/>";
 				}
-				cmtr = "\"" + servicio.comentario.comentario + "\"<p class='userComent'>@" + servicio.comentario.autor + " (" + servicio.comentario.fecha + ")</p>";
-				el.append("<div class='col-xs-12'>"+
+				cmtr = "\"" + servicio.comentario.comentario + "\"<p itemscope itemtype='http://schema.org/Review' class='userComent'>@<span itemprop='author'>" + servicio.comentario.autor + "</span> (<span itemprop='dateCreated'>" + servicio.comentario.fecha + "</span>)</p>";
+				el.append("<div class='col-xs-12' itemscope itemtype='http://schema.org/Service'>"+
 							"<h4 class='col-xs-12 titUpdate well'>"+
 								"<i class='col-xs-1 fa fa-info-circle' aria-hidden='true'></i>"+
-								"<span class='col-xs-10'>" + servicio.descripcion + "</span>"+
+								"<span class='col-xs-10' itemprop='name'>" + servicio.descripcion + "</span>"+
 								"<i class='fa fa-picture-o' aria-hidden='true'></i>"+
 							"</h4>"+
 							"<div class='col-xs-12 col-md-6 separate'>"+
 								"<div class='captionImgDet captionImgDetHij'>"+
-									"<p align-text-bottom>" + servicio.imgs[0]['descripcion'] + "</p>"+
+									"<p>" + servicio.imgs[0]['descripcion'] + "</p>"+
 								"</div>"+
-								"<img id='imgDetPrinc' src='"+ servicio.imgs[0]['url'] + "' class='imgDet'/></div>"+
+								"<img id='imgDetPrinc' itemprop='image' src='"+ servicio.imgs[0]['url'] + "' class='imgDet'/></div>"+
 							"<div class='col-xs-12 col-md-6'>"+
-							"<p class='col-xs-12 textDetalle'>\"" + servicio.descripcion_lg + "\"<p>"+
-							"<p class='col-xs-8 estreDetalle'>" + servicio.puntuacion + " puntos ("+ estrellas + ")</p>"+
+							"<p class='col-xs-12 textDetalle' itemprop='description'>\"" + servicio.descripcion_lg + "\"<p>"+
+							"<p class='col-xs-8 estreDetalle' itemprop='aggregateRating'>" + servicio.puntuacion +
+							" puntos (<span itemscope itemtype='http://schema.org/AggregateRating'><meta itemprop='ratingValue' content='" + servicio.media_punt + "'>" +  + "</span>" + estrellas + ")</p>"+
 							"<a class='col-xs-3 col-xs-offset-1 btn btn-success unoycuarto'"+
-								"href='/index.php?r=venta/addCart&id=" + servicio.id + " title='Añadir al pedido: " + servicio.descripcion + "'>"+
-								servicio.precio + " € <i class='fa fa-cart-plus unoycuarto' aria-hidden='true'> </i></a>"+
-							"<p class='col-xs-12 textComent'>" + cmtr + "<p>"+
+								" itemscope itemtype='http://schema.org/PriceSpecification' href='/index.php?r=venta/addCart&id=" + servicio.id + "' title='Añadir al pedido: " + servicio.descripcion + "'><span itemprop='minimumPaymentDue'>"+
+								servicio.precio + " €</span> <i class='fa fa-cart-plus unoycuarto' aria-hidden='true'> </i></a>"+
+							"<p class='col-xs-12 textComent' itemprop='review'>" + cmtr + "<p>"+
 							"<p class='col-xs-12 textAdicServ'>" +
 									"<i class='fa fa-clock-o' aria-hidden='true'></i>"+
 									" Este servicio tiene una duración aproximada de " + servicio.duracion + " " +
@@ -277,14 +278,17 @@ $(function(){
 				);
 				// Creo las escuchas para los clics en las miniaturas y el cambio de imagen principal
 				$('#imgsDetalle > img').click( function () {
-					$url = $(this).attr('src');
+					$url = $(this).attr('src'); // Url de la miniaturas
+					$urlPrinc = $("#imgDetPrinc").attr('src'); // Url de la imagen Principal
 					$title = $(this).attr('title');
-					$("#imgDetPrinc")
-							.fadeOut(400, function() {
-								$("#imgDetPrinc").attr('src', $url);
-								$(".captionImgDet p:first-child").html($title);
-							})
-							.fadeIn(400);
+					if ($url != $urlPrinc) {
+						$("#imgDetPrinc")
+						.fadeOut(400, function() {
+							$("#imgDetPrinc").attr('src', $url);
+							$(".captionImgDet p:first-child").html($title);
+						})
+						.fadeIn(400);
+					}
 				});
 
 				$('#imgDetPrinc').hover( function () {

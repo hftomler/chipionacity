@@ -53,7 +53,7 @@ $classBloq2 = "col-md-" . round(12 /$configVars->classBloq2);
                         'escapeMarkup' => new JsExpression('function (markup) { return markup; }'),
                         'templateResult' => new JsExpression('function(results) {
                                                                 img = "<div class=\'imgWrapServ-xs\'>" +
-                                                                           "<img class=\'imgServicio-xs img-thumbnail\' src=\'" + results.url + "\'/>" +
+                                                                           "<img class=\'imgServicio-xs img-thumbnail\' alt=\'Mini\' src=\'" + results.url + "\'/>" +
                                                                        "</div>" + results.text + "<i class=\'pull-right\'>" + results.precio + "</i>";
                                                                 return img;
                                                             }'),

@@ -98,9 +98,9 @@ class ImagenPubli extends \yii\db\ActiveRecord
            $reg = self::find()->orderBy(['updated_at' => SORT_DESC])->one();
        }
        if ($orientacion) {
-           $htmlResult = '<a href="' . $reg->link . '"><img class="publiVt" src="' . $reg->urlvt . '" title="' . $reg->descripcion . '" /><span class="promoVt">Anuncio</span></a>';
+           $htmlResult = '<a href="' . $reg->link . '"><img class="publiVt" src="' . $reg->urlvt . '" title="' . $reg->descripcion . '" alt="' . $reg->descripcion . '" /><span class="promoVt">Anuncio</span></a>';
        } else {
-           $htmlResult = '<a href="' . $reg->link . '"><img class="publiHz" src="' . $reg->urlhz . '" title="' . $reg->descripcion . '" /><span class="promoHz">Anuncio</span></a>';
+           $htmlResult = '<a href="' . $reg->link . '"><img class="publiHz" src="' . $reg->urlhz . '" title="' . $reg->descripcion . '" alt="' . $reg->descripcion . '" /><span class="promoHz">Anuncio</span></a>';
        }
        return $htmlResult;
    }

@@ -157,7 +157,7 @@
                                 data.query.results.channel.item.forecast[i].date = new Date(data.query.results.channel.item.forecast[i].date).toLocaleDateString();
                                 if (i == 0) {
                                     day = "<p class='day promo'>El tiempo hoy en " + city + "</p>";
-                                    image = "<img src='" + codeImgURL + data.query.results.channel.item.forecast[i].code + ".png'/>";
+                                    image = "<img alt='' src='" + codeImgURL + data.query.results.channel.item.forecast[i].code + ".png'/>";
                                     date = "<p>" + data.query.results.channel.item.forecast[i].date + "</p>";
                                     high = "<p class='highTemp'> Máx: " + (data.query.results.channel.item.forecast[i].high-45) + " C&deg;</p>";
                                     low = "<p class='lowTemp'> Mín: &nbsp;" + (data.query.results.channel.item.forecast[i].low-45) + " C&deg;</p>";
@@ -168,7 +168,7 @@
                                 else {
                                     day = "<p class='day'>" + data.query.results.channel.item.forecast[i].day + "</p>";
                                     date = "<p>" + data.query.results.channel.item.forecast[i].date + "</p>";
-                                    image = "<img src='" + codeImgURL + data.query.results.channel.item.forecast[i].code + ".png'/>";
+                                    image = "<img alt='' src='" + codeImgURL + data.query.results.channel.item.forecast[i].code + ".png'/>";
                                     high = "<span class='highTemp'> H: " + data.query.results.channel.item.forecast[i].high-45 + " C&deg;</span>";
                                     low = "<span class='lowTemp'> L: " + data.query.results.channel.item.forecast[i].low-45 + " C&deg;</span>";
                                     description = "<p>" + data.query.results.channel.item.forecast[i].text + "</p>";

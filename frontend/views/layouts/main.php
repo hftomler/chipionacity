@@ -42,7 +42,7 @@ FontAwesomeAsset::register($this);
     $isHome = (($controller->id === $default_controller) && ($controller->action->id === $controller->defaultAction)) ? true : false;
     $navClass = $isHome ? 'navbar inicio' : 'navbar';
     NavBar::begin([
-        'brandLabel' => $isHome ? '<img id="logo" class="invisible " src="' . ConfigVars::find()->one()->logoHomeft . '">' : '<img id="logo" src="imagenes/logo.png" alt="logo">',
+        'brandLabel' => $isHome ? '<img id="logo" class="invisible " alt="Logotipo de Chipiona City" src="' . ConfigVars::find()->one()->logoHomeft . '">' : '<img id="logo" src="imagenes/logo.png" alt="logo">',
         'brandUrl' => Yii::$app->homeUrl,
         'options' => [
            'class' => $navClass,
@@ -119,7 +119,7 @@ FontAwesomeAsset::register($this);
                 <?php
                 foreach(Yii::$app->params['languages'] as $key => $language) {
                     echo '<div class="col-xs-2">';
-                    echo ' <img src="imagenes/iconos/' . $key . '.png"  id="' . $key . '" class="language" title="' . $language . '"/>';
+                    echo ' <img src="imagenes/iconos/' . $key . '.png"  id="' . $key . '" class="language" title="' . $language . '" alt="' . $language . '"/>';
                     echo '</div>';
                 }
                 ?>

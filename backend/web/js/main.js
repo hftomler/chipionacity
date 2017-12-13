@@ -9,10 +9,10 @@ $(function(){
 		});
 	});
 
-	$('#modalLogin').click(function(evento) {
+	$('#modalMail').click(function(evento) {
 		evento.preventDefault();
-		$('#modalLoginContent').modal('show')
-			.find('#modalContent')
+		$('#modalMailContent').modal('show')
+			.find('#modalContentMail')
 			.load($(this).attr('value'));
 	});
 

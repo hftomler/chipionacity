@@ -4,6 +4,7 @@ use yii\helpers\Html;
 use yii\grid\GridView;
 use yii\bootstrap\Collapse;
 use common\models\PermissionHelpers;
+use yii\helpers\Url;
 
 /* @var $this yii\web\View */
 /* @var $searchModel backend\models\search\UserSearch */
@@ -64,10 +65,10 @@ $show_this_nav = PermissionHelpers::requireMinRol('superAdmin');
                                 'mail' => function ($url) {
                                     return Html::a(
                                         '<i class="fa fa-envelope unoycuarto" aria-hidden="true"></i>',
-                                        $url,
+                                        Url::to($url, true),
                                         [
                                             'title' => Yii::t('app', 'Mail this user'),
-                                            'data-pjax' => '0',
+                                            'id'=>'modalMail',
                                         ]
                                     );
                                 },

@@ -231,6 +231,7 @@ class Servicios extends \yii\db\ActiveRecord
                                     ['class' => 'imgServicio-sm imgServ-thumbnail'])
                                     . '<i name="ds' .$key->id . '"
                                     class="fa fa-trash closeImgServ invisible" aria-hidden="true"
+                                    alt="' . $this->descripcion . '"
                                     title="' . Yii::t('app', 'Delete Service Image: ')
                                     . $this->descripcion . '"></i>
                 </div>';
@@ -306,7 +307,7 @@ class Servicios extends \yii\db\ActiveRecord
     public static function getListadescripciones() {
         $droptions = self::find()->orderBy('descripcion')->all();
         foreach($droptions as $key) {
-            $imagen = '<img src="' . ImagenServicio::getLastImgThumb($key->id) . '" />';
+            $imagen = '<img src="' . ImagenServicio::getLastImgThumb($key->id) . '" alt="' . $key->descripcion . '" />';
             $key->descripcion = '<span class="title">' . $key->descripcion . '</span>' . $imagen;
         }
         return ArrayHelper::map($droptions, 'id', 'descripcion');
@@ -375,7 +376,7 @@ class Servicios extends \yii\db\ActiveRecord
             $title = Yii::t('app', ImagenServicio::existsUrl($key->id, $url)->descripcion);
             $strImgs[] = '<div class="item col-xs-12 col-sm-6 ' . $grid . '">
                             <div class="thumbnail col-xs-12">'
-                            . (array_key_exists($key->id, $servsTop) ? '<img src="imagenes/iconos/5star.png" class="imgStar" />' : '')
+                            . (array_key_exists($key->id, $servsTop) ? '<img src="imagenes/iconos/5star.png" alt="star" class="imgStar" />' : '')
                             . '<figure class="snip1295">'
                             . Html::img($url,
                             [
