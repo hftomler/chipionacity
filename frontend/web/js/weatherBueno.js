@@ -24,6 +24,7 @@
         var tryCount = 0;
         this.each(function () {
             var $weatherTag = $(this);
+            $weatherTag.css("width", options.width);
             var city = $.trim($(this).text().split(',')[0]);
             var state = $.trim($(this).text().split(',')[1]);
             var days = 1;
@@ -130,6 +131,7 @@
                             }
 
                             //now lets populate the forcast items
+                            var weatherListItem = "<ul class='weatherSummary weather'><p class='day'>Hoy en " + city + "</p>";
                             var tempSummary;
                             $weatherTag.find(".loadMessage").text("Generating Weather: " + title);
                             //lets create today's current weather item
@@ -141,9 +143,6 @@
                                     case "Mostly Sunny":
                                         data.query.results.channel.item.forecast[i].text = "Bastante Soleado";
                                         break;
-                                        case "Sunny":
-                                            data.query.results.channel.item.forecast[i].text = "Soleado";
-                                            break;
                                     case "Partly Cloudy":
                                         data.query.results.channel.item.forecast[i].text = "Parcialmente Nuboso";
                                         break;
@@ -156,23 +155,24 @@
                                     default:
                                 }
                                 data.query.results.channel.item.forecast[i].date = new Date(data.query.results.channel.item.forecast[i].date).toLocaleDateString();
-                                var weatherListItem = "<ul class='weatherSummary weather'><p class='day'>Hoy " + data.query.results.channel.item.forecast[i].date + " en <b>" + city + "</b></p>";
                                 if (i == 0) {
                                     day = "<p class='day promo'>El tiempo hoy en " + city + "</p>";
                                     image = "<img alt='' src='" + codeImgURL + data.query.results.channel.item.forecast[i].code + ".png'/>";
+                                    date = "<p>" + data.query.results.channel.item.forecast[i].date + "</p>";
                                     high = "<p class='highTemp'> Máx: " + (data.query.results.channel.item.forecast[i].high-45) + " C&deg;</p>";
                                     low = "<p class='lowTemp'> Mín: &nbsp;" + (data.query.results.channel.item.forecast[i].low-45) + " C&deg;</p>";
                                     tempSummary = high + low;
                                     description = "<p>" + data.query.results.channel.item.forecast[i].text + "</p>";
-                                    dayDom = "<li class='today'>" + image + description + tempSummary + "</li>";
+                                    dayDom = "<li class='today'>" + image + date + description + tempSummary + "</li>";
                                 }
                                 else {
                                     day = "<p class='day'>" + data.query.results.channel.item.forecast[i].day + "</p>";
+                                    date = "<p>" + data.query.results.channel.item.forecast[i].date + "</p>";
                                     image = "<img alt='' src='" + codeImgURL + data.query.results.channel.item.forecast[i].code + ".png'/>";
                                     high = "<span class='highTemp'> H: " + data.query.results.channel.item.forecast[i].high-45 + " C&deg;</span>";
                                     low = "<span class='lowTemp'> L: " + data.query.results.channel.item.forecast[i].low-45 + " C&deg;</span>";
                                     description = "<p>" + data.query.results.channel.item.forecast[i].text + "</p>";
-                                    dayDom = "<li class='fullDay forecast weather'>" + day + image + description + "<p>" + high + "&nbsp;-" + low + "</p></li>";
+                                    dayDom = "<li class='fullDay forecast weather'>" + day + image + date + description + "<p>" + high + "&nbsp;-" + low + "</p></li>";
                                 }
                                 weatherListItem += dayDom;
 

@@ -97,8 +97,9 @@ $classBloq2 = "col-md-" . round(12 /$configVars->classBloq2);
                 <?= $model->getImagenTop($configVars->numServIni1, $classBloq1, $configVars->includePromo, $configVars->ordPunt); // Muestra los que NO tienen promo y ordenados por puntuacion?>
             </div>
         </div>
-        <div id="publi1hz" class="col-xs-6"><?= ImagenPubli::getImagenPubli(true, false) ?></div>
-        <div id="publi2hz" class="col-xs-6"><?= ImagenPubli::getImagenPubli(true, false) ?></div>
+        <div id="publi1hz" class="col-xs-5"><?= ImagenPubli::getImagenPubli(true, false) ?></div>
+        <div class="weather col-xs-2">Cádiz</div>
+        <div id="publi2hz" class="col-xs-5"><?= ImagenPubli::getImagenPubli(true, false) ?></div>
         <div id="top2" class="container">
             <div class="well well-sm col-xs-12">
                 <div class="pull-right">
