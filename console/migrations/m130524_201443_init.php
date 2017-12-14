@@ -438,7 +438,7 @@ class m130524_201443_init extends Migration
             'importe_iva' =>$this->decimal(7,2)->notNull(),
             'total_venta' =>$this->decimal(7,2)->notNull(),
             'total_comision' =>$this->decimal(7,2)->notNull(),
-            'estado_id' => $this->integer()->notNull(),
+            'estado_id' => $this->integer()->notNull()->defaultValue(3),
             ], $tableOptions);
 
         $this->addForeignKey(
@@ -463,7 +463,7 @@ class m130524_201443_init extends Migration
             'id'=> $this->primaryKey(),
             'venta_id'=> $this->integer()->notNull(),
             'servicio_id' => $this->integer()->notNull(),
-            'cantidad'=>$this->integer()->notNull(),
+            'cantidad'=>$this->integer()->notNull()->defaultValue(1),
             'precio_unit' =>$this->decimal(7,2)->notNull(),
             'descuento_linea' =>$this->decimal(7,2)->notNull()->defaultValue(0),
             'total_linea' =>$this->decimal(7,2)->notNull(),

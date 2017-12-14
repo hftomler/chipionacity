@@ -196,12 +196,21 @@ class m171202_111329_datos_iniciales extends Migration
             [4, 'Zambomba Picoco: ', 'http://www.google.es', 'imagenes/publi/picoco-zambomba-sopa-vt.jpg', 'imagenes/publi/picoco-zambomba-sopa-hz.jpg'],
             [1, 'Clases de tenis: ', 'http://www.google.es', 'imagenes/publi/clases-tenis-vt.jpg', 'imagenes/publi/clases-tenis-hz.jpg'],
             [2, 'Trinity Irish Pub: ', 'http://www.google.es', 'imagenes/publi/trinity-vt.jpg', 'imagenes/publi/trinity-hz.jpg'],
+            [3, 'Trinity Irish Pub: ', 'http://www.google.es', 'imagenes/publi/venta-aurelio-vt.jpg', 'imagenes/publi/venta-aurelio-hz.jpg'],
         ]);
 
         $this->batchInsert('estado_ventas',  ['estado'], [
             ['En curso'], ['Pendiente Pago'], ['Borrador'], ['Finalizada']
         ]);
 
+        $this->batchInsert('ventas', ['usuario_id', 'importe', 'importe_iva', 'total_venta', 'total_comision', 'estado_id'], [
+            [4, 95.50, 15.10, 110.60, 25.00, 3],
+            [4, 95.50, 15.10, 110.60, 25.00, 4],
+        ]);
+
+        $this->batchInsert('lineas_venta', ['venta_id', 'servicio_id', 'cantidad', 'precio_unit', 'total_linea', 'total_comision_linea'], [
+            [1, 1, 1, 110.60, 110.60, 25.00],
+        ]);
 
     }
 

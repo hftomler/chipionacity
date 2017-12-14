@@ -1,10 +1,10 @@
 <?php
 
-namespace frontend\controllers;
+namespace backend\controllers;
 
 use Yii;
 use backend\models\Ventas;
-use frontend\models\search\VentasSearch;
+use backend\models\search\VentasSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -129,18 +129,12 @@ class VentasController extends Controller
      * @param int $id_servicio
      * @return mixed
      */
-    public function actionAddcart($id_servicio) {
-        if (Yii::$app->user->isGuest) {
-            Yii::$app->session->setFlash('danger', Yii::t('app', 'Sorry, but you are not logged in. Please enter the system and try again.'));
-            return $this->goBack();
+    public function addCart($id_servicio) {
+        if (!Yii::$app->user->isGuest) {
+            var_dump("No está logueado"); die();
+            return;
         } else {
-            var_dump("Está logueado");
-            $venta = Ventas::find()->where(['usuario_id' => Yii::$app->user->id, 'estado_id' => 2])->one();
-            if ($venta) {
-                var_dump("He encontrado" . $venta->id);
-            } else {
-                var_dump("No ha encontrado");
-            }
+            var_dump("Está logueado"); die();
         }
     }
 }

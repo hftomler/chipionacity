@@ -687,3 +687,10 @@ input[type=checkbox].check {
     text-align: justify;
     font-size: 100%;
 }
+
+/* Modif. para alertas con setFlash */
+.alert-danger {
+    text-align: center;
+    font-size: 1.1em;
+    font-weight: bolder;
+}
