@@ -11,6 +11,7 @@ use backend\models\ImagenProfile;
 /* @var $model frontend\models\Profile */
 /* @var $form yii\widgets\ActiveForm */
 
+
 ?>
 
 <div class="profile-form">

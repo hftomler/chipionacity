@@ -19,12 +19,12 @@
 .today
 {
     margin: 0 auto;
-    padding: 5px;
+    padding: 1px;
     color: #FFF;
     width: 100%;
     vertical-align:top;
     overflow:hidden;
-    font-size:1em;
+    font-size:0.9em;
     line-height: 1.2em;
 }
 .today p

@@ -258,8 +258,8 @@ $(function(){
 								"<img id='imgDetPrinc' itemprop='image' src='"+ servicio.imgs[0]['url'] + "' class='imgDet'/></div>"+
 							"<div class='col-xs-12 col-md-6'>"+
 							"<p class='col-xs-12 textDetalle' itemprop='description'>\"" + servicio.descripcion_lg + "\"<p>"+
-							"<p class='col-xs-8 estreDetalle' itemprop='aggregateRating'>" + servicio.puntuacion +
-							" puntos (<span itemscope itemtype='http://schema.org/AggregateRating'><meta itemprop='ratingValue' content='" + servicio.media_punt + "'>" +  + "</span>" + estrellas + ")</p>"+
+							"<p class='col-xs-8 estreDetalle' itemprop='aggregateRating' title='Puntuación media: " + servicio.media_punt + " puntos'>" + servicio.puntuacion +
+							" puntos (<span itemscope itemtype='http://schema.org/AggregateRating'><meta itemprop='ratingValue' content='" + servicio.media_punt + "'></span>" + estrellas + ")</p>"+
 							"<a class='col-xs-3 col-xs-offset-1 btn btn-success unoycuarto'"+
 								" itemscope itemtype='http://schema.org/PriceSpecification' href='/index.php?r=venta/addCart&id=" + servicio.id + "' title='Añadir al pedido: " + servicio.descripcion + "'><span itemprop='minimumPaymentDue'>"+
 								servicio.precio + " €</span> <i class='fa fa-cart-plus unoycuarto' aria-hidden='true'> </i></a>"+

@@ -193,6 +193,10 @@ nav li:hover a:hover, nav li form button.btn-link:hover {
     height: 60px;
 }
 
+.swLogoHomeft {
+    width: 100%;
+}
+
 .imgPerfil-md {
     margin-top: 0;
     height: 110px;

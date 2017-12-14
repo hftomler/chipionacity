@@ -113,6 +113,11 @@ $(function(){
 		}
     });
 
+	// Cargar la ventana para los logos
+	$("#swLogoHomeft").click(function () {
+		abrirpopup('index.php?r=configvars/logos','800','600');
+	});
+
 	$("#btImgPerfil").change(function(){
 		cambiarImgPerfil(this);
 	})
@@ -140,6 +145,11 @@ $(function(){
 
 	$("#valueAvatar").change(function () {
 		$('#swImgPerfil').attr('src', $(this).val());
+	});
+
+	$("#valueLogo").change(function () {
+		$('#swLogoHomeft').attr('src', $(this).val());
+		$('#configvars-logohomeft').val($('#swLogoHomeft').attr('src'));
 	});
 
 	$('.js-tilt').tilt({

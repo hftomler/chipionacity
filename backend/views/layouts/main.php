@@ -85,18 +85,18 @@ FontAwesomeAsset::register($this);
         $menuItems = [];
     }
 
-    $profileId = RecordHelpers::userHas('profile') ? Profile::find()->where(['user_id' => Yii::$app->user->id])->one()->id : false;
-    if ($profileId) {
-        $prof = ['label' => '<i class="fa fa-eye" aria-hidden="true"></i>' . Yii::t('app', 'Profile'), 'url' => Url::toRoute(['profile/view', 'id' => $profileId])];
-        $imgNav = ImagenProfile::getLastImg($profileId);
-    } else {
-        $prof = ['label' => '<i class="fa fa-plus-square" aria-hidden="true"></i> ' . Yii::t('app', 'Profile'), 'url' => ['/profile/create']];
-        $imgNav = "imagenes/imgPerfil/sinPerfil.jpg";
-    }
     if (Yii::$app->user->isGuest) {
         $menuItems[] = ['label' => '<i class="fa fa-sign-in" aria-hidden="true"></i><br/> ' . Yii::t('app', 'Login') , 'url' => ['/site/login']];
     } else {
         if ($isAdmin && !$isAvatar) {
+            $profileId = RecordHelpers::userHas('profile') ? Profile::find()->where(['user_id' => Yii::$app->user->id])->one()->id : false;
+            if ($profileId) {
+                $prof = ['label' => '<i class="fa fa-eye" aria-hidden="true"></i>' . Yii::t('app', 'Profile'), 'url' => Url::toRoute(['profile/view', 'id' => $profileId])];
+                $imgNav = ImagenProfile::getLastImg($profileId);
+            } else {
+                $prof = ['label' => '<i class="fa fa-plus-square" aria-hidden="true"></i> ' . Yii::t('app', 'Profile'), 'url' => ['/profile/create']];
+                $imgNav = "imagenes/imgPerfil/sinPerfil.jpg";
+            }
             $menuItems[] = [ 'label' => '<i class="fa fa-bars unoycuarto" aria-hidden="true"></i><br/>',
                              'items' => [
                                     ['label' => '<i class="fa fa-users" aria-hidden="true"></i> ' . Yii::t('app', 'Users') , 'url' => ['user/index']],
@@ -107,20 +107,19 @@ FontAwesomeAsset::register($this);
                                     ['label' => '<i class="fa fa-comments" aria-hidden="true"></i> ' . '<i class="fa fa-map-signs" aria-hidden="true"></i> ' . Yii::t('app', 'Services') , 'url' => ['/servicio']]
                                 ]
                             ];
+            $configIcon = ($isSadmin) ? ['label' => '<i class="fa fa-cogs" aria-hidden="true"></i> Config', 'url' => Url::toRoute(['configvars/update', 'id' => 1])]: '';
+            $menuItems[] = [ 'label' => '<img src="' . $imgNav . '" class="imgPerfilInicio-xs img-circle" title="' . Yii::$app->user->identity->username . '"/>',
+                'items' => [
+                    ['label' => '<i class="fa fa-sign-out" aria-hidden="true"></i> ' . Yii::t('app', 'Logout') .
+                    ' <span class="cnred">(' . Yii::$app->user->identity->username . ')</span>',
+                    'url' => ['/site/logout'], 'linkOptions' => ['data' => ['method' => 'post']]],
+                    '<li class="divider"></li>',
+                    $prof,
+                    $configIcon,
+                ],
+            ];
         }
-
     }
-    $configIcon = ($isSadmin) ? ['label' => '<i class="fa fa-cogs" aria-hidden="true"></i> Config', 'url' => Url::toRoute(['configvars/update', 'id' => 1])]: '';
-    $menuItems[] = [ 'label' => '<img src="' . $imgNav . '" class="imgPerfilInicio-xs img-circle" title="' . Yii::$app->user->identity->username . '"/>',
-                    'items' => [
-                         ['label' => '<i class="fa fa-sign-out" aria-hidden="true"></i> ' . Yii::t('app', 'Logout') .
-                                     ' <span class="cnred">(' . Yii::$app->user->identity->username . ')</span>',
-                                     'url' => ['/site/logout'], 'linkOptions' => ['data' => ['method' => 'post']]],
-                         '<li class="divider"></li>',
-                         $prof,
-                         $configIcon,
-                    ],
-                ];
 
     echo Nav::widget([
         'options' => ['class' => 'navbar-nav navbar-right'],

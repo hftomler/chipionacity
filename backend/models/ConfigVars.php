@@ -49,12 +49,13 @@ class ConfigVars extends \yii\db\ActiveRecord
         return [
             'id' => 'ID',
             'includePromo' => Yii::t('app', 'Include Promotion Service'),
-            'numServIni1' => Yii::t('app', 'Services number 1'),
-            'numServIni2' => Yii::t('app', 'Services number 2'),
-            'classBloq1' => Yii::t('app', 'Number Images first block'),
-            'classBloq2' => Yii::t('app', 'Number Images second block'),
+            'numServIni1' => Yii::t('app', '# Imgs Services main block'),
+            'numServIni2' => Yii::t('app', '# Imgs Services secondary block'),
+            'classBloq1' => Yii::t('app', '# Imgs per line main block'),
+            'classBloq2' => Yii::t('app', '# Imgs secondary block'),
             'ordPunt' => Yii::t('app', 'Order by Puntuation'),
             'regUser' => Yii::t('app', 'User Registration'),
+            'offline' => Yii::t('app', 'System offline'),
         ];
     }
 }

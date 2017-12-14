@@ -85,7 +85,8 @@ class ConfigvarsController extends Controller
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+            Yii::$app->session->setFlash('success', Yii::t('app', 'The configuration has been successfully updated.'));
+            return $this->redirect(['update', 'id' => $model->id]);
         } else {
             return $this->render('update', [
                 'model' => $model,
@@ -120,5 +121,17 @@ class ConfigvarsController extends Controller
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');
         }
+    }
+
+    /**
+    * Muestra página de logos para selección.
+     * @return mixed
+     */
+    public function actionLogos()
+    {
+
+        return $this->render('logo', [
+            'model' => 'configVars',
+        ]);
     }
 }
