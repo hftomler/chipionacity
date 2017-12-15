@@ -38,6 +38,7 @@ $classBloq2 = "col-md-" . round(12 /$configVars->classBloq2);
                 $waiting = "function () { return '" . Yii::t('app', 'Waiting results...') . "'; }";
                 echo $form->field($model, 'id')->widget(Select2::classname(), [
                     'initValueText' => "", // set the initial display text
+
                     'options' => ['placeholder' => Yii::t('app', 'Are you looking for something to do ...?')],
                     'pluginOptions' => [
                         'allowClear' => true,
