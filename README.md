@@ -1,3 +1,6 @@
+
+![Logo](https://github.com/hftomler/chipionacity/blob/master/backend/web/imagenes/logohome.png)
+
 Chipiona City. Web online de contratación de experiencias.
 ==========================================================
 
@@ -8,7 +11,7 @@ Pondrá a disposición del usuario la posibilidad de contratar y/o reservar onli
 En definitiva intentará ofertar, agrupados en una sola web, la gran diversidad de servicios ofrecidos por autónomos, empresas e instituciones y que, en la actualidad, sólo es posible encontrar virtualmente de forma aislada e incluso algunos de ellos sólo de forma presencial.
 
 
-Documentation is at [docs/guide/README.md](docs/guide/README.md).
+Ir a [Documentación](https://github.com/hftomler/chipionacity/blob/master/guia/README.md)
 
 [![Latest Stable Version](https://poser.pugx.org/yiisoft/yii2-app-advanced/v/stable.png)](https://packagist.org/packages/yiisoft/yii2-app-advanced)
 [![Total Downloads](https://poser.pugx.org/yiisoft/yii2-app-advanced/downloads.png)](https://packagist.org/packages/yiisoft/yii2-app-advanced)
