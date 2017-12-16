@@ -14,31 +14,34 @@ Aunque la aplicación es bastante intuitiva y proporciona ayuda automática sobr
     
 ![Mi Perfil](https://github.com/hftomler/chipionacity/blob/master/backend/web/imagenes/imgGuia/MenuwhenNotLogin.png?raw=true)
 
-![Mi Perfil](https://github.com/hftomler/chipionacity/blob/master/backend/web/imagenes/imgGuia/pantallaLogin.png?raw=true)
+![Login](https://github.com/hftomler/chipionacity/blob/master/backend/web/imagenes/imgGuia/pantallaLogin.png?raw=true)
 
-![Mi Perfil](https://github.com/hftomler/chipionacity/blob/master/backend/web/imagenes/imgGuia/pantallaRegistro.png?raw=true)
+![Registro](https://github.com/hftomler/chipionacity/blob/master/backend/web/imagenes/imgGuia/pantallaRegistro.png?raw=true)
 
-![Mi Perfil](https://github.com/hftomler/chipionacity/blob/master/backend/web/imagenes/imgGuia/contacto.png?raw=true)
+![Contacto](https://github.com/hftomler/chipionacity/blob/master/backend/web/imagenes/imgGuia/contacto.png?raw=true)
 
 * La zona de búsqueda
 
     Al hacer clic en el input de búsqueda se nos despliega un apartado en el que nos aparecen las búsquedas a la vez que se va tecleando la misma. Para facilitarnos la búsqueda se nos proporciona una imagen, descripción y precio del servicio.
     
-![Mi Perfil](https://github.com/hftomler/chipionacity/blob/master/backend/web/imagenes/imgGuia/busqueda.png?raw=true)
+![Búsqueda](https://github.com/hftomler/chipionacity/blob/master/backend/web/imagenes/imgGuia/busqueda.png?raw=true)
 
 * Zona de servicios nuevos
 
     Información sobre los servicios nuevos o actualizados recientemente. 
     
-![Mi Perfil](https://github.com/hftomler/chipionacity/blob/master/backend/web/imagenes/imgGuia/nuevosServicios.png?raw=true)
+![Nuevos Servicios](https://github.com/hftomler/chipionacity/blob/master/backend/web/imagenes/imgGuia/nuevosServicios.png?raw=true)
 
 
 * Zona de servicios más valorados
 
     Información sobre los servicios más puntuados y valorados por los usuarios de Chipiona City. 
     
-![Mi Perfil](https://github.com/hftomler/chipionacity/blob/master/backend/web/imagenes/imgGuia/serviciosPuntuados.png?raw=true)
+![Servicios más valorados](https://github.com/hftomler/chipionacity/blob/master/backend/web/imagenes/imgGuia/serviciosPuntuados.png?raw=true)
 
-En ambas zonas dispones de un 
+En ambas zonas dispones de un selector en forma de botonera mediante el cual puedes elegir el tamaño de las miniaturas de los servicios que se te muestran en ese bloque.
+
+![Selector de tamaño](https://github.com/hftomler/chipionacity/blob/master/backend/web/imagenes/imgGuia/selectorSize.png?raw=true)
 
 Puede ocurrir que nos aparezcan determinados servicios que están siendo promocionados y que aparecen primero en las listas de servicios. Puedes comprobar que tienen la leyenda anuncio en el extremo inferior derecho para informarte de que no aparecen ahí por cumplir con las condiciones (Nuevo o puntuados).
+
