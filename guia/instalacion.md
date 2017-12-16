@@ -59,10 +59,24 @@ Desde la carpeta web
 ~~~
 php composer.phar create-project yiisoft/yii2-app-advanced advanced 2.0.13
 ~~~
-o descargar del siguiente enlace [Yii2 advanced](https://github.com/yiisoft/yii2/releases/download/2.0.13/yii-advanced-app-2.0.13.tgz)
+o descargar del siguiente enlace [Yii2 advanced](https://github.com/yiisoft/yii2/releases/download/2.0.13/yii-advanced-app-2.0.13.tgz) y descomprimir dentro de la propia carpeta web.
 
 5. Configurar los dominios (chiback.dev y chifront.dev), para el backend y el frontend:
 
 ![Despligue-hosts](https://github.com/hftomler/chipionacity/blob/master/backend/web/imagenes/imgGuia/despliegue-hosts.png)
+Editamos el fichero /etc/hosts
+
+
 ![Backend](https://github.com/hftomler/chipionacity/blob/master/backend/web/imagenes/imgGuia/virtualHost-backend.png)
 ![Backend](https://github.com/hftomler/chipionacity/blob/master/backend/web/imagenes/imgGuia/virtualHost-frontend.png)
+
+* Creamos el fichero chipionacity.conf dentro de /etc/apache2/sites-available/ y añadimos dentro los dos virtualhost: chifront.dev y chiback.dev
+
+6. Iniciar Yii2
+
+Desde la carpeta web donde tenemos la instalación de Yii
+~~~
+php init
+~~~
+
+Escogemos si queremos una instalación para producción o para desarrollo y ya tenemos Yii instalado y funcionando.
