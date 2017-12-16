@@ -26,6 +26,11 @@ Aunque la aplicación es bastante intuitiva y proporciona ayuda automática sobr
     
 ![Búsqueda](https://github.com/hftomler/chipionacity/blob/master/backend/web/imagenes/imgGuia/busqueda.png?raw=true)
 
+   En determinadas ocasiones y aquí es una de ellas, la aplicación nos indicará mediante la aparición de ***Bubbles*** de posibilidades que no estén tan visibles en la aplicación. Uno de ellos es el botón ***Aconséjame*** representado por una bombilla en la parte izquierda de la zona de búsqueda.
+
+![Búsqueda](https://github.com/hftomler/chipionacity/blob/master/backend/web/imagenes/imgGuia/busqueda.png?raw=true)
+
+
 * Zona de servicios nuevos
 
     Información sobre los servicios nuevos o actualizados recientemente. 
