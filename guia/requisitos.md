@@ -1,7 +1,7 @@
 
 # Catálogo de requisitos
 
-## Todos los requisitos están disponibles en el pdf -> [Propuesta de Proyecto](https://github.com/hftomler/chipionacity/blob/master/backend/web/pdfs/PropuestaProyecto1718.pdf) 
+## Todos los requisitos detallados están disponibles en el pdf -> [Propuesta de Proyecto](https://github.com/hftomler/chipionacity/blob/master/backend/web/pdfs/PropuestaProyecto1718.pdf) 
 
 ## Cuadro resumen
 A título de resumen se incluyen aquí los requisitos completos, en forma de cuadro resumen, para más información descargar la [Propuesta de Proyecto](https://github.com/hftomler/chipionacity/blob/master/backend/web/pdfs/PropuestaProyecto1718.pdf) 
@@ -20,14 +20,14 @@ A título de resumen se incluyen aquí los requisitos completos, en forma de cua
 | (**R10**) Modificacion de roles de usuario. | Importante | Funcional | Media | v1 |
 | (**R11**) Baja de roles de usuario. | Importante | Funcional | Media | v1 |
 | (**R12**) Envío de mensajes a usuarios. | Importante | Funcional | Media | v3 |
-| (**R13**) Dar de alta un usuario. | Importante | Funcional | Media | v1 |
-| (**R14**) Dar de alta un usuario. | Importante | Funcional | Media | v1 |
-| (**R15**) Dar de alta un usuario. | Importante | Funcional | Media | v1 |
-| (**R16**) Dar de alta un usuario. | Importante | Funcional | Media | v1 |
-| (**R17**) Dar de alta un usuario. | Importante | Funcional | Media | v1 |
-| (**R18**) Dar de alta un usuario. | Importante | Funcional | Media | v1 |
-| (**R19**) Dar de alta un usuario. | Importante | Funcional | Media | v1 |
-| (**R20**) Dar de alta un usuario. | Importante | Funcional | Media | v1 |
+| (**R13**) Envío de boletines masivos. | Importante | Funcional | Media | v3 |
+| (**R14**) Alta de servicios. | Importante | Funcional | Media | v2 |
+| (**R15**) Modificación de servicios. | Importante | Funcional | Media | v2 |
+| (**R16**) Baja de servicios. | Importante | Funcional | Media | v2 |
+| (**R17**) Contratación de servicios. | Importante | Funcional | Media | v3 |
+| (**R18**) Modificación de servicios contratados. | Importante | Funcional | Media | v3 |
+| (**R19**) Cancelación de servicios contratados. | Importante | Funcional | Media | v3 |
+| (**R20**) Modificación o cancelación de servicios contratados fuera del período de cancelación. | Opcional | Funcional | Difícil | v1 |
 | (**R21**) Dar de alta un usuario. | Importante | Funcional | Media | v1 |
 | (**R22**) Dar de alta un usuario. | Importante | Funcional | Media | v1 |
 | (**R23**) Dar de alta un usuario. | Importante | Funcional | Media | v1 |
