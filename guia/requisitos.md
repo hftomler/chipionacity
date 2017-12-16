@@ -28,13 +28,26 @@ A título de resumen se incluyen aquí los requisitos completos, en forma de cua
 | (**R18**) Modificación de servicios contratados. | Importante | Funcional | Media | v3 |
 | (**R19**) Cancelación de servicios contratados. | Importante | Funcional | Media | v3 |
 | (**R20**) Modificación o cancelación de servicios contratados fuera del período de cancelación. | Opcional | Funcional | Difícil | v1 |
-| (**R21**) Dar de alta un usuario. | Importante | Funcional | Media | v1 |
-| (**R22**) Dar de alta un usuario. | Importante | Funcional | Media | v1 |
-| (**R23**) Dar de alta un usuario. | Importante | Funcional | Media | v1 |
-| (**R24**) Dar de alta un usuario. | Importante | Funcional | Media | v1 |
-| (**R25**) Dar de alta un usuario. | Importante | Funcional | Media | v1 |
-| (**R26**) Dar de alta un usuario. | Importante | Funcional | Media | v1 |
-| (**R27**) Dar de alta un usuario. | Importante | Funcional | Media | v1 |
-| (**R28**) Dar de alta un usuario. | Importante | Funcional | Media | v1 |
-| (**R29**) Dar de alta un usuario. | Importante | Funcional | Media | v1 |
-
+| (**R21**) Publicación de artículos en cuenta de Facebook de la aplicación. | Opcional | Funcional | Difícil | v1 |
+| (**R22**) Publicación de vídeos promocionales en cuenta de Youtube de la aplicación. | Opcional | Funcional | Difícil | v1 |
+| (**R23**) Publicación de artículos en cuenta de Facebook de la aplicación. | Opcional | Funcional | Difícil | v1 |
+| (**R24**) Gestión de cobros. | Opcional | Funcional | Difícil | v1 |
+| (**R25**) Gestión de comisiones. | Opcional | Funcional | Difícil | v1 |
+| (**R26**) Uso de sistema de caché a través de Service Workers. | Opcional | Funcional | Difícil | v1 |
+| (**RMG1**) Publicación del código fuente en Github | Mínima | Técnica |  | Continua |
+| (**RMG2**) Definición de requisitos y conversión en incidencias (issues) de GitHub. | Mínima | Técnica |  | Continua |
+| (**RMG3**) Definición del código según normas internas de Yii2. | Mínima | Técnica |  | Continua |
+| (**RMG4**) Fichero [README.md](https://github.com/hftomler/chipionacity/blob/master/guia/README.md). | Mínima | Técnica |  | Continua |
+| (**RMG5**) Documentación generada con Yii2-apidoc. | Mínima | Técnica |  | Continua |
+| (**RMG6**) Administración y resolución de incidencias notificadas en GitHub. | Mínima | Técnica |  | Continua |
+| (**RMG7**) Uso de proyectos de GitHub | Mínima | Técnica |  | Continua |
+| (**RMG8**) Uso de etiquetas e Hitos. | Mínima | Técnica |  | Continua |
+| (**RMG9**) Acciones a realizar al final de cada iterácion. | Mínima | Técnica |  | Continua |
+| (**RMG10**) Cumplimiento al final del proyecto. | Mínima | Técnica |  | Continua |
+| (**RM-DWEC1**) Validación de campos de formulario. | Mínima | Técnica |  | Continua |
+| (**RM-DWEC2**) Diseño de una eficiente gestión de ventanas. | Mínima | Técnica |  | Continua |
+| (**RM-DWEC3**) Uso de mecanismos de manejo de eventos. | Mínima | Técnica |  | Continua |
+| (**RM-DWEC4**) Uso de los elementos del DOM. | Mínima | Técnica |  | Continua |
+| (**RM-DWEC5**) Uso de la librería JQUERY. | Mínima | Técnica |  | Continua |
+| (**RM-DWEC6**) Uso de plugins. | Mínima | Técnica |  | Continua |
+| (**RM-DWEC7**) Uso de AJAX. | Mínima | Técnica |  | Continua |
