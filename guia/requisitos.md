@@ -1,7 +1,7 @@
 
 # Catálogo de requisitos
 
-## Todos los requisitos están disponibles en el pdf de la [Propuesta de Proyecto](https://github.com/hftomler/chipionacity/blob/master/backend/web/pdfs/PropuestaProyecto1718.pdf) 
+## Todos los requisitos están disponibles en el pdf -> [Propuesta de Proyecto](https://github.com/hftomler/chipionacity/blob/master/backend/web/pdfs/PropuestaProyecto1718.pdf) 
 
 ## Cuadro resumen
 A título de resumen se incluyen aquí los requisitos completos, en forma de cuadro resumen, para más información descargar la [Propuesta de Proyecto](https://github.com/hftomler/chipionacity/blob/master/backend/web/pdfs/PropuestaProyecto1718.pdf) 
