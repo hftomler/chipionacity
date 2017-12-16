@@ -4,7 +4,11 @@
 
 2. En segundo lugar, optar por el [Plugin Select2 de Kartik](http://demos.krajee.com/widget-details/select2), como herramienta principal de búsqueda de servicios por parte del usuario final.
 
-3. Por último, la selección de los distintos plugins, tanto de jquery como de Yii2, que facilitaron el desarrollo de diversas funcionalidades.
+3. Opción de limitar las dimensiones de las imágenes subidas tanto para foto de perfil como para imágenes de servicio, impidiendo en el primer caso las mayores de 300px o menores de 200px y en el segundo limitando el tamaño de las mismas a 1 Mb.
+
+4. Por último, la selección de los distintos plugins, tanto de jquery como de Yii2, que facilitaron el desarrollo de diversas funcionalidades.
+
+
 
 ***
 
