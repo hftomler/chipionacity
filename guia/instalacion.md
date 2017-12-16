@@ -9,13 +9,13 @@ sudo apt update
 sudo apt install apache2
 ~~~
  
-1 PHP7:
+1. PHP7:
 
 ~~~
 sudo apt install php7.1 apache2 libapache2-mod-php7.1 php7.1-cli php7.1-pgsql php7.1-sqlite3 sqlite sqlite3 php7.1-intl php7.1-mbstring php7.1-gd php7.1-curl php7.1-xml php7.1-xdebug php7.1-json
 ~~~
 
-2 PostreQSL:
+2. PostreQSL:
 
 Instalación:
 
@@ -36,7 +36,7 @@ Comprobar que entra correctamente:
 psql -h localhost -U chici -d chici
 ~~~
 
-3 Composer:
+3. Composer:
 
 Ejecutar las siguientes líneas:
 
@@ -63,4 +63,6 @@ o descargar del siguiente enlace [Yii2 advanced](https://github.com/yiisoft/yii2
 
 5. Configurar los dominios (chiback.dev y chifront.dev), para el backend y el frontend:
 
-[Despligue-hosts](https://github.com/hftomler/chipionacity/blob/master/backend/web/imagenes/imgGuia/despliegue-hosts.png)
+![Despligue-hosts](https://github.com/hftomler/chipionacity/blob/master/backend/web/imagenes/imgGuia/despliegue-hosts.png)
+![Backend](https://github.com/hftomler/chipionacity/blob/master/backend/web/imagenes/imgGuia/virtualHost-backend.png)
+![Backend](https://github.com/hftomler/chipionacity/blob/master/backend/web/imagenes/imgGuia/virtualHost-frontend.png)
