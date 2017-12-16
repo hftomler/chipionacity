@@ -466,6 +466,7 @@ class m130524_201443_init extends Migration
             'cantidad'=>$this->integer()->notNull()->defaultValue(1),
             'precio_unit' =>$this->decimal(7,2)->notNull(),
             'descuento_linea' =>$this->decimal(7,2)->notNull()->defaultValue(0),
+            'importe_iva' => $this->decimal(7,2)->notNull()->defaultValue(0),
             'total_linea' =>$this->decimal(7,2)->notNull(),
             'total_comision_linea' =>$this->decimal(7,2)->notNull(),
         ], $tableOptions);
