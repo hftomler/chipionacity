@@ -45,3 +45,11 @@ En ambas zonas dispones de un selector en forma de botonera mediante el cual pue
 
 Puede ocurrir que nos aparezcan determinados servicios que están siendo promocionados y que aparecen primero en las listas de servicios. Puedes comprobar que tienen la leyenda anuncio en el extremo inferior derecho para informarte de que no aparecen ahí por cumplir con las condiciones (Nuevo o puntuados).
 
+![Promocionados](https://github.com/hftomler/chipionacity/blob/master/backend/web/imagenes/imgGuia/anuncio.png?raw=true)
+
+No obstante, estos mismos servicios que en determinadas ocasiones aparecen como *Anuncios* pueden aparecer sin esta leyenda al estar en la posición correcta que les pertenece en los determinados bloques: Por ejemplo ser más nuevo o puntuado que otros, ocurre por ejemplo en la siguiente imagen en la que el servicio **Clase de Tenis** aparece el primero por ser el que más recientemente se ha actualizado, aunque en la imagen anterior aparecía en ese lugar por haber sido promocionado.
+
+![Star y New](https://github.com/hftomler/chipionacity/blob/master/backend/web/imagenes/imgGuia/bloquenewPuntNoAnuncio.png?raw=true)
+
+También nos aparece un ribete con la leyenda *new* en la parte superior izquierda de un servicio, indicando que es un servicio recientemente actualizado, si estamos en el bloque de ***Servicios puntuados***. Asimismo, nos puede aparecer una estrella en la parte superior derecha de un servicio indicando que es uno de los más puntuados, si estamos en el bloque de ***Servicios nuevos***. 
+
