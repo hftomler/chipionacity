@@ -146,6 +146,8 @@ $(function(){
 			    "data-onlyonce='true'"+
 			    "style=''>"+
 		"</div>");
+
+		// Bombilla de "Recomiéndame un servicio" & give me "Un descuento"
 		$('#tenerSuerte').parent().click(function () {
 			var slct = $('.input-group.input-group-md.group-servicios-id.select2-bootstrap-prepend.select2-bootstrap-append');
 			if (slct.parent().is( "#balloonSelect2")) { slct.unwrap(); $('#balloonSelect2').remove();}
@@ -242,7 +244,7 @@ $(function(){
 				}
 				imgServicio = "";
 				for (i = 0; i<servicio.imgs.length; i++) {
-					imgServicio += "<img itemprop='image' src='" + servicio.imgs[i]['url'] + "' class='imgServicio-sm img-thumbnail col-xs-3' alt='" + servicio.imgs[i]['descripcion'] + "' title='" + servicio.imgs[i]['descripcion'] + "'/>";
+					imgServicio += "<img itemprop='image' src='" + servicio.imgs[i]['url'] + "' class='imgServicio-sm img-thumbnail col-xs-2' alt='" + servicio.imgs[i]['descripcion'] + "' title='" + servicio.imgs[i]['descripcion'] + "'/>";
 				}
 				cmtr = "\"" + servicio.comentario.comentario + "\"<p itemscope itemtype='http://schema.org/Review' class='userComent'>@<span itemprop='author'>" + servicio.comentario.autor + "</span> (<span itemprop='dateCreated'>" + servicio.comentario.fecha + "</span>)</p>";
 				el.append("<div class='col-xs-12' itemscope itemtype='http://schema.org/Service'>"+

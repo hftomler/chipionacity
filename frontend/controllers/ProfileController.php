@@ -168,7 +168,6 @@ class ProfileController extends Controller {
                                                                          '.' . $model->fichImage->extension;
 
                 if (!file_exists($nomImg)) {
-                    $mensajeFlash += Yii::t('app', 'The new profile image has been saved.');
                     $imgPerfil->url = $nomImg;
                     $imgPerfil->save();
                     $model->save();
