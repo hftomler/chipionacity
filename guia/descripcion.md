@@ -17,7 +17,7 @@ El objetivo global de la aplicación es la gestión y contratación, de forma an
 Este objetivo global se consigue a través de los siguientes objetivos generales:
 
 * **OG1:** Gestionar la BBDD de usuarios registrados, su rol dentro de la aplicación  y la comunicación de la aplicación con los mismos.
-* **OG2:** Gestionar las ofertas de ocio. Altas, bajas y actualizaciones de ofertas.
+* **OG2:** Gestionar las ofertas de ocio (servicios). Altas, bajas y actualizaciones de ofertas.
 * **OG3:** Publicar de forma automática las ofertas de ocio en las diferentes redes sociales de la aplicación.
 * **OG4:** Gestionar el cobro y liquidar comisiones.
 
