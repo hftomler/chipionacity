@@ -354,7 +354,9 @@ class Servicios extends \yii\db\ActiveRecord
      * @return $htmlResul
      */
     public function getImagenTop($num, $grid, $promo = true, $nuevos = false) {
-        $limit = 4;
+        $configVar = ConfigVars::find()->one();
+        $servsNew = $this->isNew($configVar->cuantosNew);
+        $servsTop = $this->isNew($configVar->cuantosTop);
         if ($promo) {
             if ($nuevos) {
                 $imgs = self::find()->orderBy(['promocion' => SORT_DESC, 'updated_at' => SORT_DESC])->limit($num)->all();
@@ -368,8 +370,6 @@ class Servicios extends \yii\db\ActiveRecord
                 $imgs = self::find()->orderBy(['num_votos' => SORT_DESC])->limit($num)->all();
             }
         }
-        $servsTop = $this->isTop($limit);
-        $servsNew = $this->isNew($limit);
         $strImgs = array();
         foreach ($imgs as $key) {
             $url = ImagenServicio::getLastImg($key->id);

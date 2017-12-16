@@ -11,8 +11,8 @@ class m171202_111329_datos_iniciales extends Migration
     public function up()
     {
 
-        $this->batchInsert('config_vars', ['includePromo', 'numServIni1', 'numServIni2', 'ordPunt', 'regUser'], [
-            [true, 6, 6, false, true]
+        $this->batchInsert('config_vars', ['includePromo', 'numServIni1', 'numServIni2', 'ordPunt', 'regUser', 'cuantosTop', 'cuantosNew'], [
+            [true, 6, 6, true, true, 2, 4]
         ]);
 
 

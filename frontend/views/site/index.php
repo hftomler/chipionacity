@@ -95,7 +95,7 @@ $classBloq2 = "col-md-" . round(12 /$configVars->classBloq2);
                 <div class="titUpdateBig"><i class="fa fa-picture-o" aria-hidden="true"></i> <?= Yii::t('app', 'Discover our latest services') ?></div>
             </div>
             <div class="row list-group products">
-                <?= $model->getImagenTop($configVars->numServIni1, $classBloq1, $configVars->includePromo, $configVars->ordPunt); // Muestra los que NO tienen promo y ordenados por puntuacion?>
+                <?= $model->getImagenTop($configVars->numServIni1, $classBloq1, $configVars->includePromo, $configVars->ordPunt); // Carga servicios con las condiciones de configVars?>
             </div>
         </div>
         <div id="publi1hz" class="col-xs-5"><?= ImagenPubli::getImagenPubli(true, false) ?></div>

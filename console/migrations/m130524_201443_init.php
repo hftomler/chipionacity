@@ -23,6 +23,8 @@ class m130524_201443_init extends Migration
             'offline'=>$this->boolean()->defaultValue(false),
             'classBloq1'=>$this->integer()->defaultValue(4),
             'classBloq2'=>$this->integer()->defaultValue(3),
+            'cuantosTop'=>$this->integer()->defaultValue(2),
+            'cuantosNew'=>$this->integer()->defaultValue(2),
             'logoHomeft'=>$this->string(255)->notNUll()->defaultValue("imagenes/logohome.png")
         ], $tableOptions);
 

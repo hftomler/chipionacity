@@ -28,28 +28,36 @@ use yii\widgets\ActiveForm;
     </div>
 
     <div class="col-xs-12 text-center">
-        <div class="col-xs-3">
+        <div class="col-xs-2">
             <?= $form->field($model, 'numServIni1')->textInput() ?>
         </div>
-        <div class="col-xs-3">
+        <div class="col-xs-2">
             <?= $form->field($model, 'numServIni2')->textInput() ?>
         </div>
-        <div class="col-xs-3">
+        <div class="col-xs-2">
             <?= $form->field($model, 'classBloq1')->textInput() ?>
         </div>
-        <div class="col-xs-3">
+        <div class="col-xs-2">
             <?= $form->field($model, 'classBloq2')->textInput() ?>
         </div>
-        <div class="col-xs-6">
+        <div class="col-xs-2">
+            <?= $form->field($model, 'cuantosTop')->textInput() ?>
+        </div>
+        <div class="col-xs-2">
+            <?= $form->field($model, 'cuantosNew')->textInput() ?>
+        </div>
+    </div>
+    <div class="col-xs-12">
+        <div class="col-xs-4">
             <?= $form->field($model, 'logoHomeft')->textInput() ?>
         </div>
-        <div class="col-xs-6">
+        <div class="col-xs-8">
             <?php $imgPerfil = $model->logoHomeft; ?>
             <?= Html::img($imgPerfil, [ 'id' => 'swLogoHomeft',
-                                                'title' => 'Logo: - ' . Yii::t('app', 'Click to change'),
-                                                'class' => 'swLogoHomeft',
-                                                'alt' => Yii::t('app', 'Logo Home Page')
-                                            ]);
+                'title' => 'Logo: - ' . Yii::t('app', 'Click to change'),
+                'class' => 'swLogoHomeft',
+                'alt' => Yii::t('app', 'Logo Home Page')
+            ]);
             ?>
             <input id="valueLogo" name="valueLogo" type="hidden" class="form-control" />
         </div>

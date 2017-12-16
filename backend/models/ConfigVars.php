@@ -13,6 +13,8 @@ use Yii;
  * @property integer $numServIni2
  * @property integer $classBloq1
  * @property integer $classBloq2
+ * @property integer $cuantosTop
+ * @property integer $cuantosNew
  * @property boolean $ordPunt
  * @property boolean $regUser
  * @property boolean $offline
@@ -35,7 +37,7 @@ class ConfigVars extends \yii\db\ActiveRecord
     {
         return [
             [['includePromo', 'ordPunt', 'regUser', 'offline'], 'boolean'],
-            [['numServIni1', 'numServIni2'], 'required'],
+            [['numServIni1', 'numServIni2', 'cuantosNew', 'cuantosTop'], 'required'],
             [['numServIni1', 'numServIni2', 'classBloq1', 'classBloq2'], 'integer'],
             [['logoHomeft'], 'string']
         ];
@@ -56,6 +58,8 @@ class ConfigVars extends \yii\db\ActiveRecord
             'ordPunt' => Yii::t('app', 'Order by Puntuation'),
             'regUser' => Yii::t('app', 'User Registration'),
             'offline' => Yii::t('app', 'System offline'),
+            'cuantosNew' => Yii::t('app', '# new services to highlight'),
+            'cuantosTop' => Yii::t('app', '# Top services to highlight'),
         ];
     }
 }
