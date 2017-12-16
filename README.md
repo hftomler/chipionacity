@@ -1,5 +1,5 @@
 
-![Logo](https://github.com/hftomler/chipionacity/blob/master/backend/web/imagenes/logohome.png)
+<img src="https://github.com/hftomler/chipionacity/blob/master/backend/web/imagenes/logoInicio.png" title="Logo Chipiona City">
 
 Chipiona City. Web online de contratación de experiencias.
 ==========================================================
