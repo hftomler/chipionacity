@@ -22,7 +22,6 @@ Instrucciones de instalación y despliegue
 * [Instrucciones de instalación y despliegue](instalacion.md)
 
   * [En local](instalacion.md#en-local)
-  * [En la nube](instalacion.md#en-la-nube)
 
 Catálogo de requisitos
 ----------------------
