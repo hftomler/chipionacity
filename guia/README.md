@@ -51,8 +51,7 @@ Diagramas
 
 * [Diagramas](diagramas.md)
 
-  * [Diagramas de clases](diagramas.md#diagramas-de-clases)
-  * [Diagramas de estructura lógica de datos](diagramas.md#diagramas-de-estructura-logica-de-datos)
+    * [Diagramas de estructura lógica de datos](diagramas.md#diagramas-de-estructura-logica-de-datos)
 
 Glosario de términos
 --------------------
