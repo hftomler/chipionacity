@@ -4,6 +4,8 @@ namespace frontend\controllers;
 
 use Yii;
 use backend\models\Ventas;
+use backend\models\LineasVenta;
+use backend\models\Servicios;
 use frontend\models\search\VentasSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
@@ -135,9 +137,18 @@ class VentasController extends Controller
             return $this->goBack();
         } else {
             var_dump("Está logueado");
-            $venta = Ventas::find()->where(['usuario_id' => Yii::$app->user->id, 'estado_id' => 2])->one();
+            $venta = Ventas::find()->where(['usuario_id' => Yii::$app->user->id, 'estado_id' => 3])->one();
             if ($venta) {
-                var_dump("He encontrado" . $venta->id);
+                $serv = Servicios::find()->where(['id' => $id_servicio])->one();
+                $nuevaLinea = new LineasVenta();
+                $nuevaLinea->venta_id = $venta->id;
+                $nuevaLinea->servicio_id = $id_servicio;
+                $nuevaLinea->precio_unit = $serv->precio;
+                $nuevaLinea->cantidad = 1;
+                $nuevaLinea->total_comision_linea = 0;
+                $nuevaLinea->total_linea = $serv->precio * $nuevaLinea->cantidad;
+                $nuevaLinea->save();
+                return $this->goHome();
             } else {
                 var_dump("No ha encontrado");
             }

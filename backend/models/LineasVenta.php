@@ -1,6 +1,6 @@
 <?php
 
-namespace app\models;
+namespace backend\models;
 
 use Yii;
 
@@ -13,6 +13,7 @@ use Yii;
  * @property integer $cantidad
  * @property string $precio_unit
  * @property string $descuento_linea
+ * @property string $importe_iva
  * @property string $total_linea
  * @property string $total_comision_linea
  *
@@ -35,9 +36,9 @@ class LineasVenta extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['venta_id', 'servicio_id', 'cantidad', 'precio_unit', 'total_linea', 'total_comision_linea'], 'required'],
+            [['venta_id', 'servicio_id', 'precio_unit', 'total_linea', 'total_comision_linea'], 'required'],
             [['venta_id', 'servicio_id', 'cantidad'], 'integer'],
-            [['precio_unit', 'descuento_linea', 'total_linea', 'total_comision_linea'], 'number'],
+            [['precio_unit', 'descuento_linea', 'importe_iva', 'total_linea', 'total_comision_linea'], 'number'],
             [['servicio_id'], 'exist', 'skipOnError' => true, 'targetClass' => Servicios::className(), 'targetAttribute' => ['servicio_id' => 'id']],
             [['venta_id'], 'exist', 'skipOnError' => true, 'targetClass' => Ventas::className(), 'targetAttribute' => ['venta_id' => 'id']],
         ];
@@ -50,13 +51,14 @@ class LineasVenta extends \yii\db\ActiveRecord
     {
         return [
             'id' => Yii::t('app', 'ID'),
-            'venta_id' => Yii::t('app', 'Sale ID'),
-            'servicio_id' => Yii::t('app', 'Service ID'),
-            'cantidad' => Yii::t('app', 'Quantity'),
-            'precio_unit' => Yii::t('app', 'Unit Price'),
-            'descuento_linea' => Yii::t('app', 'Line Discount'),
-            'total_linea' => Yii::t('app', 'Total Line'),
-            'total_comision_linea' => Yii::t('app', 'Total Comission Line'),
+            'venta_id' => Yii::t('app', 'Venta ID'),
+            'servicio_id' => Yii::t('app', 'Servicio ID'),
+            'cantidad' => Yii::t('app', 'Cantidad'),
+            'precio_unit' => Yii::t('app', 'Precio Unit'),
+            'descuento_linea' => Yii::t('app', 'Descuento Linea'),
+            'importe_iva' => Yii::t('app', 'Importe Iva'),
+            'total_linea' => Yii::t('app', 'Total Linea'),
+            'total_comision_linea' => Yii::t('app', 'Total Comision Linea'),
         ];
     }
 

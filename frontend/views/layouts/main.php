@@ -16,6 +16,7 @@ use frontend\models\Profile;
 use backend\models\ImagenProfile;
 use common\models\RecordHelpers;
 use backend\models\ConfigVars;
+use backend\models\Ventas;
 
 AppAsset::register($this);
 FontAwesomeAsset::register($this);
@@ -74,9 +75,12 @@ FontAwesomeAsset::register($this);
             $prof = ['label' => '<i class="fa fa-eye" aria-hidden="true"></i> ' . Yii::t('app', 'Profile'), 'url' => ['/profile/view']];
             $imgNav = ImagenProfile::getLastImg($profileId);
         } else {
-            $prof = ['label' => '<i class="fa fa-plus-square" aria-hidden="true"></i> ' . Yii::t('app', 'Profile'), 'url' => ['/profile/view']];
+            $prof = ['label' => '<i class="fa fa-plus-square" aria-hidden="true"></i> ' . Yii::t('app', 'Profile'), 'url' => ['/profile/create']];
             $imgNav = "imagenes/imgPerfil/sinPerfil.jpg";
         }
+        $menuItems[] = ['label' => '<div id="carroNav">
+                                    <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+                                    <span id="numServCarro">' . Ventas::numLineas() . '</span></div>', 'url' => ['/venta/vercarro']];
         $menuItems[] = [ 'label' => '<img src="' . $imgNav . '" class="imgPerfil-xs img-circle" title="' . Yii::$app->user->identity->username . '"/>',
                         'items' => [
                              ['label' => '<i class="fa fa-sign-out" aria-hidden="true"></i> ' . Yii::t('app', 'Logout') .

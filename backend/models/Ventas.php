@@ -4,6 +4,8 @@ namespace backend\models;
 
 use Yii;
 use common\models\User;
+use backend\models\LineasVenta;
+use backend\models\EstadoVentas;
 
 /**
  * This is the model class for table "ventas".
@@ -88,4 +90,10 @@ class Ventas extends \yii\db\ActiveRecord
     {
         return $this->hasOne(User::className(), ['id' => 'usuario_id']);
     }
+
+    public static function numLineas() {
+        $idVenta = self::find()->where(['usuario_id' => Yii::$app->user->id, 'estado_id' => 3])->one()->id;
+        return count(LineasVenta::find()->where(['venta_id' => $idVenta])->all());
+    }
+
 }
