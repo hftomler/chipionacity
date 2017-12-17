@@ -690,7 +690,10 @@ input[type=checkbox].check {
 
 /* Modif. para alertas con setFlash */
 .alert-danger {
+    padding: 2px;
     text-align: center;
     font-size: 1.1em;
     font-weight: bolder;
+    border: 1px solid #882222;
+    border-radius: 3px;
 }

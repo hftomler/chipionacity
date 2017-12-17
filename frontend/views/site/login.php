@@ -32,7 +32,10 @@ $this->params['breadcrumbs'][] = $this->title;
                     <?= Html::a(Yii::t('app','reset it'), ['site/request-password-reset']) ?>.
                 </div>
 
-                <p id="errorLogin" class="alert-danger"></p>
+                <div id="errorLogin" class="alert-danger fade in">
+                    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                    <p></p>
+                </div>
                 <div class="form-group">
                     <?= Html::submitButton('<i class="fa fa-check-circle" aria-hidden="true"></i> Continuar',
                                           ['class' => 'btn btn-success btn-login collapse col-xs-12',
@@ -44,9 +47,10 @@ $this->params['breadcrumbs'][] = $this->title;
     </div>
 </div>
 <script>
+        $('#errorLogin').hide();
 		$('#loginform-username').change(function() {
             if ($('#loginform-password').val()) {
-                $('#errorLogin').html("");
+                $('#errorLogin').hide();
                 $.post('index.php?r=user/usexists&username=' +
                        $(this).val() + '&password=' + $('#loginform-password').val() ,
                             function(data) {
@@ -65,7 +69,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
         $('#loginform-password').change(function() {
             if ($('#loginform-username').val()) {
-                $('#errorLogin').html("");
+                $('#errorLogin').hide();
                 $.post('index.php?r=user/usexists&username=' +
                         $('#loginform-username').val() + '&password=' + $(this).val() ,
                             function(data) {
@@ -83,6 +87,7 @@ $this->params['breadcrumbs'][] = $this->title;
         });
 
         function muestraError() {
-            $('#errorLogin').html("El nombre de usuario y contraseña no son válidos");
+            $('#errorLogin > p').html("El nombre de usuario y contraseña no son válidos");
+            $('#errorLogin').show();
         }
 </script>
