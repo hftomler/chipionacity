@@ -26,10 +26,16 @@ $this->params['breadcrumbs'][] = $this->title;
 
                 <?= $form->field($model, 'password')->passwordInput() ?>
 
-                <p id="errorLogin" class="alert-danger"></p>
+                <div id="errorSignup" class="alert-danger fade in">
+                    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                    <p></p>
+                </div>
 
                 <div class="form-group">
-                    <?= Html::submitButton('<i class="fa fa-check-circle" aria-hidden="true"></i> Continuar', ['class' => 'btn btn-success btn-login collapse col-xs-12', 'name' => 'signup-button', 'id' => 'signup-button']) ?>
+                    <?= Html::submitButton('<i class="fa fa-check-circle" aria-hidden="true"></i> Continuar',
+                                          ['class' => 'btn btn-success btn-login collapse col-xs-12',
+                                           'name' => 'signup-button', 'id' => 'signup-button', 'disabled' => 'disabled'])
+                    ?>
                 </div>
 
             <?php ActiveForm::end(); ?>
@@ -38,47 +44,65 @@ $this->params['breadcrumbs'][] = $this->title;
 </div>
 
 <script>
-		$('#signupform-username').change(function() {
-                $('#errorLogin').html("");
-                $.post('index.php?r=user/usexists&username=' +
-                       $(this).val(),
-                            function(data) {
-                                if (!data) {
-                                    $('#signup-button').collapse("hide");
-                                    $('#signupform-username').select();
-                                    $('#signupform-username').focus();
-                                    muestraError("El nombre de usuario ya existe");
-                                } else {
-                                    $('#login-button').collapse("show");
-                                };
-                            });
-            }
-		});
+        $('#errorSignup').hide();
+        $('#signupform-username').change(function() {
+            $('#errorSignup').hide();
+            if (valida()) {
+                $('#errorLogin').hide();
 
-        $('#loginform-password').change(function() {
-            if ($('#loginform-username').val()) {
-                $('#errorLogin').html("");
-                $.post('index.php?r=user/usexists&username=' +
-                        $('#loginform-username').val() + '&password=' + $(this).val() ,
-                            function(data) {
-                                if (!data) {
-                                    $('#login-button').collapse("hide");
-                                    $('#loginform-username').select();
-                                    $('#loginform-username').focus();
-                                    muestraError();
-                                } else {
-                                    $('#login-button').collapse("show");
-                                };
-                            });
+                $('#signup-button').collapse("show");
+                $('#signup-button').removeAttr('disabled');
+            } else {
+                $('#signup-button').collapse("hide");
             }
         });
 
+        $('#signupform-email').change(function() {
+            $('#errorSignup').hide();
+            if (valida()) {
+                $('#signup-button').collapse("show");
+                $('#signup-button').removeAttr('disabled');
+            } else {
+                $('#signup-button').collapse("hide");
+            }
+        });
+
+        $('#signupform-password').change(function() {
+            $('#errorSignup').hide();
+            if (valida()) {
+                $('#signup-button').collapse("show");
+                $('#signup-button').removeAttr('disabled');
+            } else {
+                $('#signup-button').collapse("hide");
+            }
+        });
+
+        function valida() {
+            var result = true;
+            var patremail = /^([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/;
+            if ($('#signupform-username').val().length <6 ) {
+                muestraError("El nombre de usuario debe tener al menos 6 caracteres.");
+                $('#signupform-username').select();
+                $('#signupform-username').focus();
+                return false;
+            }
+            if (!patremail.test($('#signupform-email').val())) {
+                muestraError("El email no es válido");
+                $('#signupform-email').select();
+                $('#signupform-email').focus();
+                return false;
+            }
+            if ($('#signupform-password').val().length == 0) {
+                muestraError("La contraseña debe contener algún carácter");
+                $('#signupform-password').select();
+                $('#signupform-password').focus();
+                return false;
+            }
+            return result;
+        }
+
         function muestraError($error) {
-            $('#errorLogin').html($error);
-        }
-
-        function validate() {
-
-        }
+            $('#errorSignup > p').html($error);
+            $('#errorSignup').show();        }
 
 </script>

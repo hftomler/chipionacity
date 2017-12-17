@@ -161,10 +161,16 @@ class UserController extends Controller
     public function actionUsexists($username, $password = false) {
         $session = Yii::$app->session;
         $user = User::findByUsername($username);
-        if ($user !== null) {
-            if ($password && $user->validatePassword($password)) {
+        if ($password) {
+            if ($user !== null) {
+                if ($user->validatePassword($password)) {
+                    return true;
+                };
+            }
+        } else {
+            if ($user !== null) {
                 return true;
-            };
+            }
         }
         return false;
     }

@@ -75,8 +75,8 @@ $this->params['breadcrumbs'][] = $this->title;
                             function(data) {
                                 if (!data) {
                                     $('#login-button').collapse("hide");
-                                    $('#loginform-username').select();
-                                    $('#loginform-username').focus();
+                                    $('#loginform-password').select();
+                                    $('#loginform-password').focus();
                                     muestraError();
                                 } else {
                                     $('#login-button').collapse("show");
