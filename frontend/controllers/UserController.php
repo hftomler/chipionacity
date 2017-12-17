@@ -158,11 +158,11 @@ class UserController extends Controller
      * @throws NotFoundHttpException if the model cannot be found
      */
 
-    public function actionUsexists($username, $password) {
+    public function actionUsexists($username, $password = false) {
         $session = Yii::$app->session;
         $user = User::findByUsername($username);
         if ($user !== null) {
-            if ($user->validatePassword($password)) {
+            if ($password && $user->validatePassword($password)) {
                 return true;
             };
         }

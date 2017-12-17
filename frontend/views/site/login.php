@@ -21,7 +21,6 @@ $this->params['breadcrumbs'][] = $this->title;
             </p>
             <?php $form = ActiveForm::begin(['id' => 'login-form']); ?>
 
-                <p id="errorLogin" class="alert-danger"></p>
                 <?= $form->field($model, 'username')->textInput(['autofocus' => true]) ?>
 
                 <?= $form->field($model, 'password')->passwordInput() ?>
@@ -30,11 +29,15 @@ $this->params['breadcrumbs'][] = $this->title;
 
                 <div style="color:#999;margin:1em 0">
                     <?= Yii::t('app','If you forgot your password you can') ?>
-                    <?= Html::a('reset it', ['site/request-password-reset']) ?>.
+                    <?= Html::a(Yii::t('app','reset it'), ['site/request-password-reset']) ?>.
                 </div>
 
+                <p id="errorLogin" class="alert-danger"></p>
                 <div class="form-group">
-                    <?= Html::submitButton('<i class="fa fa-check-circle" aria-hidden="true"></i> Continuar', ['class' => 'btn btn-success btn-login collapse col-xs-12', 'name' => 'login-button', 'id' => 'login-button']) ?>
+                    <?= Html::submitButton('<i class="fa fa-check-circle" aria-hidden="true"></i> Continuar',
+                                          ['class' => 'btn btn-success btn-login collapse col-xs-12',
+                                           'name' => 'login-button', 'id' => 'login-button', 'disabled' => 'disabled'])
+                    ?>
                 </div>
             <?php ActiveForm::end(); ?>
         </div>
@@ -54,6 +57,7 @@ $this->params['breadcrumbs'][] = $this->title;
                                     muestraError();
                                 } else {
                                     $('#login-button').collapse("show");
+                                    $('#login-button').removeAttr('disabled');
                                 };
                             });
             }
@@ -72,6 +76,7 @@ $this->params['breadcrumbs'][] = $this->title;
                                     muestraError();
                                 } else {
                                     $('#login-button').collapse("show");
+                                    $('#login-button').removeAttr('disabled');
                                 };
                             });
             }
@@ -80,5 +85,4 @@ $this->params['breadcrumbs'][] = $this->title;
         function muestraError() {
             $('#errorLogin').html("El nombre de usuario y contraseña no son válidos");
         }
-
 </script>

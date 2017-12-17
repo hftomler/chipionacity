@@ -26,6 +26,8 @@ $this->params['breadcrumbs'][] = $this->title;
 
                 <?= $form->field($model, 'password')->passwordInput() ?>
 
+                <p id="errorLogin" class="alert-danger"></p>
+
                 <div class="form-group">
                     <?= Html::submitButton('<i class="fa fa-check-circle" aria-hidden="true"></i> Continuar', ['class' => 'btn btn-success btn-login collapse col-xs-12', 'name' => 'signup-button', 'id' => 'signup-button']) ?>
                 </div>
@@ -34,22 +36,49 @@ $this->params['breadcrumbs'][] = $this->title;
         </div>
     </div>
 </div>
+
 <script>
-    $('#form-signup input').blur (function () {
-        var camposRellenados = true;
-        $('#form-signup').find("input").each(function() {
-        var $this = $(this);
-                if( $this.val().length <= 0 ) {
-                    camposRellenados = false;
-                    return false;
-                }
+		$('#signupform-username').change(function() {
+                $('#errorLogin').html("");
+                $.post('index.php?r=user/usexists&username=' +
+                       $(this).val(),
+                            function(data) {
+                                if (!data) {
+                                    $('#signup-button').collapse("hide");
+                                    $('#signupform-username').select();
+                                    $('#signupform-username').focus();
+                                    muestraError("El nombre de usuario ya existe");
+                                } else {
+                                    $('#login-button').collapse("show");
+                                };
+                            });
+            }
+		});
+
+        $('#loginform-password').change(function() {
+            if ($('#loginform-username').val()) {
+                $('#errorLogin').html("");
+                $.post('index.php?r=user/usexists&username=' +
+                        $('#loginform-username').val() + '&password=' + $(this).val() ,
+                            function(data) {
+                                if (!data) {
+                                    $('#login-button').collapse("hide");
+                                    $('#loginform-username').select();
+                                    $('#loginform-username').focus();
+                                    muestraError();
+                                } else {
+                                    $('#login-button').collapse("show");
+                                };
+                            });
+            }
         });
-        if(camposRellenados == false) {
-            $('#signup-button').collapse("hide");
+
+        function muestraError($error) {
+            $('#errorLogin').html($error);
         }
-        else {
-            $('#signup-button').collapse("show");
+
+        function validate() {
+
         }
-    });
 
 </script>
