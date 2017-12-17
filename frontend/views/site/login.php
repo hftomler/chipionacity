@@ -21,6 +21,7 @@ $this->params['breadcrumbs'][] = $this->title;
             </p>
             <?php $form = ActiveForm::begin(['id' => 'login-form']); ?>
 
+                <p id="errorLogin" class="alert-danger"></p>
                 <?= $form->field($model, 'username')->textInput(['autofocus' => true]) ?>
 
                 <?= $form->field($model, 'password')->passwordInput() ?>
@@ -42,34 +43,42 @@ $this->params['breadcrumbs'][] = $this->title;
 <script>
 		$('#loginform-username').change(function() {
             if ($('#loginform-password').val()) {
+                $('#errorLogin').html("");
                 $.post('index.php?r=user/usexists&username=' +
-                                                 $(this).val() + '&password=' + $('#loginform-password').val() ,
-                    function(data) {
-                        if (!data) {
-                            $('#login-button').collapse("hide");
-                            $('#loginform-username').select();
-                            $('#loginform-username').focus();
-                        } else {
-                            $('#login-button').collapse("show");
-                        };
-                    });
+                       $(this).val() + '&password=' + $('#loginform-password').val() ,
+                            function(data) {
+                                if (!data) {
+                                    $('#login-button').collapse("hide");
+                                    $('#loginform-username').select();
+                                    $('#loginform-username').focus();
+                                    muestraError();
+                                } else {
+                                    $('#login-button').collapse("show");
+                                };
+                            });
             }
 		});
 
         $('#loginform-password').change(function() {
             if ($('#loginform-username').val()) {
+                $('#errorLogin').html("");
                 $.post('index.php?r=user/usexists&username=' +
-                                                 $('#loginform-username').val() + '&password=' + $(this).val() ,
-                    function(data) {
-                        if (!data) {
-                            $('#login-button').collapse("hide");
-                            $('#loginform-username').select();
-                            $('#loginform-username').focus();
-                        } else {
-                            $('#login-button').collapse("show");
-                        };
-                    });
+                        $('#loginform-username').val() + '&password=' + $(this).val() ,
+                            function(data) {
+                                if (!data) {
+                                    $('#login-button').collapse("hide");
+                                    $('#loginform-username').select();
+                                    $('#loginform-username').focus();
+                                    muestraError();
+                                } else {
+                                    $('#login-button').collapse("show");
+                                };
+                            });
             }
         });
+
+        function muestraError() {
+            $('#errorLogin').html("El nombre de usuario y contraseña no son válidos");
+        }
 
 </script>

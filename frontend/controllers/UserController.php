@@ -153,7 +153,8 @@ class UserController extends Controller
     /**
      * Finds the User model by Username
      * @param string $username
-     * @return boolean
+     * @param string $password
+     * @return bool
      * @throws NotFoundHttpException if the model cannot be found
      */
 
@@ -162,11 +163,9 @@ class UserController extends Controller
         $user = User::findByUsername($username);
         if ($user !== null) {
             if ($user->validatePassword($password)) {
-                $session->addFlash('mensaje', 'You have successfully deleted your post.');
                 return true;
             };
         }
-        $session->addFlash('mensaje', 'You have NOT successfully deleted your post.');
         return false;
     }
 }
