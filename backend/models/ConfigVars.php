@@ -60,6 +60,7 @@ class ConfigVars extends \yii\db\ActiveRecord
             'offline' => Yii::t('app', 'System offline'),
             'cuantosNew' => Yii::t('app', '# new services to highlight'),
             'cuantosTop' => Yii::t('app', '# Top services to highlight'),
+            'logoHomeft' => Yii::t('app', 'Logo frontend'),
         ];
     }
 }
