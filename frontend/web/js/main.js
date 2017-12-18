@@ -126,7 +126,7 @@ $(function(){
   	},7000);
 	setTimeout(function(){
 	  	$("#balloonSelect2").showBalloon();
-  	},5000);
+  	},25000);
 
 
 

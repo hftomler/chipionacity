@@ -138,20 +138,28 @@ class VentasController extends Controller
         } else {
             var_dump("Está logueado");
             $venta = Ventas::find()->where(['usuario_id' => Yii::$app->user->id, 'estado_id' => 3])->one();
-            if ($venta) {
-                $serv = Servicios::find()->where(['id' => $id_servicio])->one();
-                $nuevaLinea = new LineasVenta();
-                $nuevaLinea->venta_id = $venta->id;
-                $nuevaLinea->servicio_id = $id_servicio;
-                $nuevaLinea->precio_unit = $serv->precio;
-                $nuevaLinea->cantidad = 1;
-                $nuevaLinea->total_comision_linea = 0;
-                $nuevaLinea->total_linea = $serv->precio * $nuevaLinea->cantidad;
-                $nuevaLinea->save();
-                return $this->goHome();
-            } else {
-                var_dump("No ha encontrado");
+            $serv = Servicios::find()->where(['id' => $id_servicio])->one();
+            if (!$venta) {
+                $venta = new Ventas();
+                $venta->usuario_id = Yii::$app->user->id;
+                $venta->importe = $serv->precio;
+                $venta->importe_iva = 0;
+                $venta->total_venta = $serv->precio;
+                $venta->total_comision = 0;
+                $venta->estado_id = 3;
+                $venta->save();
+                var_dump($venta);
             }
+
+            $nuevaLinea = new LineasVenta();
+            $nuevaLinea->venta_id = $venta->id;
+            $nuevaLinea->servicio_id = $id_servicio;
+            $nuevaLinea->precio_unit = $serv->precio;
+            $nuevaLinea->cantidad = 1;
+            $nuevaLinea->total_comision_linea = 0;
+            $nuevaLinea->total_linea = $serv->precio * $nuevaLinea->cantidad;
+            $nuevaLinea->save();
+            return $this->goHome();
         }
     }
 }
