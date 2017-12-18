@@ -81,7 +81,7 @@ FontAwesomeAsset::register($this);
         $menuItems[] = ['label' => '<div id="carroNav">
                                     <i class="fa fa-shopping-cart" aria-hidden="true"></i>
                                     <span id="numServCarro">' . Ventas::numLineas() . '</span></div>', 'url' => ['/venta/vercarro']];
-        $menuItems[] = [ 'label' => '<img src="' . $imgNav . '" class="imgPerfil-xs img-circle" title="' . Yii::$app->user->identity->username . '"/>',
+        $menuItems[] = [ 'label' => '<img src="' . $imgNav . '" class="imgPerfil-xs img-circle" title="' . Yii::$app->user->identity->username . '" alt="ImgPerfil"/>',
                         'items' => [
                              ['label' => '<i class="fa fa-sign-out" aria-hidden="true"></i> ' . Yii::t('app', 'Logout') .
                                          ' <span class="cnred">(' . Yii::$app->user->identity->username . ')</span>',

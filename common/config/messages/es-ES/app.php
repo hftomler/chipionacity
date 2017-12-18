@@ -23,7 +23,7 @@ return [
     'More info' => '+ info',
     'Price Unit' => 'Precio Unit.',
     'Privacy Matters' => 'Sobre la privacidad',
-    'Privacy matters but it can be confusing. This page explains our approach to privacy on our website and how it affects you.' => 'La privacidad importa, pero puede ser confuso. Esta página explica nuestro enfoque de la privacidad en nuestro sitio web y cómo puede afectarle.',
+    'Privacy matters but it can be confusing. This page explains our approach to privacy on our website and how it affects you.' => 'La privacidad importa, pero los aspectos relativos a la misma pueden ser confusos. Esta página explica nuestro enfoque de la privacidad en nuestro sitio web y cómo puede afectarle.',
     'Some 3rd parties like Facebook and Twitter may know you visited this website, if you use their services. We can’t control them but we don’t believe this knowledge poses any threat to you.' => 'Algunos terceros como Facebook y Twitter pueden saber que usted visitó este sitio web, si utiliza sus servicios. No podemos controlarlos, pero no creemos que este conocimiento represente una amenaza para usted.',
     'These are just the key points. If you need detail, contact us' => 'Estos son solo los puntos clave. Si necesita detalles, contacte con nosotros.',
     'This website uses cookies to ensure you get the best experience on our website.' => 'Este sitio web utiliza cookies para garantizar que obtenga la mejor experiencia en nuestro sitio web.',
