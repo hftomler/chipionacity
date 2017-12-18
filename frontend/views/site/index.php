@@ -14,7 +14,7 @@ use cinghie\cookieconsent\widgets\CookieWidget;
 /* @var $this yii\web\View */
 
 
-$this->title = 'My Yii Application';
+$this->title = 'Chipiona City. Tu web de experiencias en la Comarca Noroeste de Cádiz';
 $model = new Servicios();
 $configVars = ConfigVars::find()->one();
 $big = "col-md-6";
@@ -89,9 +89,6 @@ $classBloq2 = "col-md-" . round(12 /$configVars->classBloq2);
             <div id='servDetalle' class="well col-xs-12"></div>
             <div class="well well-sm col-xs-12">
                 <div class="pull-right">
-                    <a href="#container" class="btn btn-default btn-sm listServ">
-                        <i class="fa fa-th-list text-primary" aria-hidden="true" title="<?= Yii::t('app', 'List') ?>"></i>
-                    </a>
                     <a href="#container" class="btn btn-default btn-sm bigServ">
                         <i class="fa fa-th-large text-primary" aria-hidden="true" title="<?= Yii::t('app', 'Big Photos') ?>"></i>
                     </a>
@@ -114,9 +111,6 @@ $classBloq2 = "col-md-" . round(12 /$configVars->classBloq2);
         <div id="top2" class="container">
             <div class="well well-sm col-xs-12">
                 <div class="pull-right">
-                    <a href="#container" class="btn btn-default btn-sm listServ">
-                        <i class="fa fa-th-list" aria-hidden="true" title="<?= Yii::t('app', 'List') ?>"></i>
-                    </a>
                     <a href="#container" class="btn btn-default btn-sm bigServ">
                         <i class="fa fa-th-large" aria-hidden="true" title="<?= Yii::t('app', 'Big Photos') ?>"></i>
                     </a>

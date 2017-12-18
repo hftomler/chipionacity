@@ -161,6 +161,7 @@ nav .open >a {
     background-color: transparent !important;
 }
 
+
 .dropdown-menu {
     background-color: #333;
     box-shadow: 5px 5px 5px #999;
@@ -185,6 +186,10 @@ nav .open >a {
 nav li:hover a:hover, nav li form button.btn-link:hover {
     background-color: transparent;
     color: #ff7e00;
+}
+
+.datepicker-dropdown.dropdown-menu {
+    background-color: #fff;
 }
 
 /* IMAGENES */
