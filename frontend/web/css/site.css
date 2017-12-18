@@ -722,3 +722,21 @@ input[type=checkbox].check {
 #carroNav:hover {
     color: #009bff;
 }
+
+/* Site privacy */
+
+.site-privacy h3, .site-privacy ul, .site-privacy-li{
+    line-height: 1.5em;
+}
+
+.site-privacy ul {
+    margin: 0 20px;
+}
+
+.site-privacy ul li {
+    margin-bottom: 10px;
+}
+
+.site-privacy ul li i {
+    color: #ff7e00;
+}

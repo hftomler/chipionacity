@@ -51,14 +51,14 @@ class LineasVenta extends \yii\db\ActiveRecord
     {
         return [
             'id' => Yii::t('app', 'ID'),
-            'venta_id' => Yii::t('app', 'Venta ID'),
-            'servicio_id' => Yii::t('app', 'Servicio ID'),
-            'cantidad' => Yii::t('app', 'Cantidad'),
-            'precio_unit' => Yii::t('app', 'Precio Unit'),
-            'descuento_linea' => Yii::t('app', 'Descuento Linea'),
-            'importe_iva' => Yii::t('app', 'Importe Iva'),
-            'total_linea' => Yii::t('app', 'Total Linea'),
-            'total_comision_linea' => Yii::t('app', 'Total Comision Linea'),
+            'venta_id' => Yii::t('app', 'Sale ID'),
+            'servicio_id' => Yii::t('app', 'Service ID'),
+            'cantidad' => Yii::t('app', 'Quantity'),
+            'precio_unit' => Yii::t('app', 'Price Unit'),
+            'descuento_linea' => Yii::t('app', 'Line Discount'),
+            'importe_iva' => Yii::t('app', 'Vat amount'),
+            'total_linea' => Yii::t('app', 'Total Line'),
+            'total_comision_linea' => Yii::t('app', 'Total Comission Line'),
         ];
     }
 

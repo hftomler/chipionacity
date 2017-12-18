@@ -9,6 +9,8 @@ use yii\web\JsExpression;
 use yii\helpers\Url;
 use backend\models\ImagenPubli;
 use backend\models\ConfigVars;
+use cinghie\cookieconsent\widgets\CookieWidget;
+
 /* @var $this yii\web\View */
 
 
@@ -21,6 +23,14 @@ $xsmall = "col-md-3";
 $classBloq1 = "col-md-" . round(12 / $configVars->classBloq1);
 $classBloq2 = "col-md-" . round(12 /$configVars->classBloq2);
 ?>
+
+<?= CookieWidget::widget([
+        'message' => Yii::t('app', 'This website uses cookies to ensure you get the best experience on our website.'),
+		'dismiss' => Yii::t('app', 'Got It'),
+        'learnMore' => Yii::t('app', 'More info'),
+		'link' => Url::to('index.php?r=site/privacy'),
+		'theme' => 'light-top'
+]); ?>
 
 <div class="site-index">
 
