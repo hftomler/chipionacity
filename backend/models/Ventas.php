@@ -92,8 +92,11 @@ class Ventas extends \yii\db\ActiveRecord
     }
 
     public static function numLineas() {
-        $idVenta = self::find()->where(['usuario_id' => Yii::$app->user->id, 'estado_id' => 3])->one()->id;
-        return count(LineasVenta::find()->where(['venta_id' => $idVenta])->all());
+        if (self::find()->where(['usuario_id' => Yii::$app->user->id, 'estado_id' => 3])->exists()) {
+            $idVenta = self::find()->where(['usuario_id' => Yii::$app->user->id, 'estado_id' => 3])->one()->id;
+            return count(LineasVenta::find()->where(['venta_id' => $idVenta])->all());
+        }
+        return 0;
     }
 
 }

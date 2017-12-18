@@ -34,7 +34,15 @@ class ProfileController extends Controller
                 'only' => ['index', 'view', 'create', 'update', 'avatar', 'delete'],
                 'rules' => [
                     [
-                        'actions' => ['index', 'view', 'create', 'update', 'avatar'],
+                        'actions' => ['view', 'create', 'update', 'avatar'],
+                        'allow' => true,
+                        'roles' => ['@'],
+                        'matchCallback' => function ($rule, $action) {
+                            return (PermissionHelpers::requireMinRol('proveedor') && PermissionHelpers::requireStatus('Activo'));
+                        }
+                    ],
+                    [
+                        'actions' => ['index'],
                         'allow' => true,
                         'roles' => ['@'],
                         'matchCallback' => function ($rule, $action) {
