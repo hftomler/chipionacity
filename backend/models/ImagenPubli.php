@@ -69,7 +69,7 @@ class ImagenPubli extends \yii\db\ActiveRecord
         return [
             'id' => Yii::t('app', 'ID'),
             'etiqueta_id' => Yii::t('app', 'Etiqueta ID'),
-            'descripcion' => Yii::t('app', 'Descripcion'),
+            'descripcion' => Yii::t('app', 'Description'),
             'urlvt' => Yii::t('app', 'Urlvt'),
             'urlhz' => Yii::t('app', 'Urlhz'),
             'created_at' => Yii::t('app', 'Created At'),

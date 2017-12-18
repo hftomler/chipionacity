@@ -74,7 +74,7 @@ return [
     'Delete Service Image: ' => 'Borrar imagen del servicio: ',
     'Delete confirm' => 'Confirmación de borrado',
     'Den Rol' => 'Rol',
-    'Descripcion' => 'Descripcion',
+    'Description' => 'Descripcion',
     'Description' => 'Descripción',
     'Discount' => 'Descuento',
     'Discover our latest services' => 'Descubre nuestros nuevos servicios',
