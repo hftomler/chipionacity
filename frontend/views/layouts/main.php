@@ -117,8 +117,8 @@ FontAwesomeAsset::register($this);
 <footer class="footer">
     <div class="container">
         <div class="row align-items-center">
-            <div class="pull-left text-left col-xs-4">&copy; Chipiona City<?= date('Y') ?></div>
-            <div class="text-center col-xs-4">
+            <div class="pull-left text-left col-xs-3">&copy; Chipiona City<?= date('Y') ?></div>
+            <div class="text-center col-xs-3">
                 <div class="small col-xs-4"><?= Yii::t('app', "Languages:") ?> </div>
                 <?php
                 foreach(Yii::$app->params['languages'] as $key => $language) {
@@ -128,7 +128,10 @@ FontAwesomeAsset::register($this);
                 }
                 ?>
             </div>
-            <div class="pull-right text-right col-xs-4"><?= Yii::powered() ?></div>
+            <div class="text-right col-xs-2">
+                <a href="index.php?r=site/privacy"><?= Yii::t('app', 'Privacy') ?></a>
+            </div>
+            <div class="pull-right text-right col-xs-3"><?= Yii::powered() ?></div>
         </div>
     </div>
 </footer>
