@@ -246,7 +246,8 @@ $(function(){
 				for (i = 0; i<servicio.imgs.length; i++) {
 					imgServicio += "<img itemprop='image' src='" + servicio.imgs[i]['url'] + "' class='imgServicio-sm img-thumbnail col-xs-2' alt='" + servicio.imgs[i]['descripcion'] + "' title='" + servicio.imgs[i]['descripcion'] + "'/>";
 				}
-				cmtr = "\"" + servicio.comentario.comentario + "\"<p itemscope itemtype='http://schema.org/Review' class='userComent'>@<span itemprop='author'>" + servicio.comentario.autor + "</span> (<span itemprop='dateCreated'>" + servicio.comentario.fecha + "</span>)</p>";
+				cmtr = "\"" + servicio.comentario.comentario + "\"<p itemscope itemtype='http://schema.org/Review' data-id='" +
+				 			  servicio.comentario.profile_id + "' class='userComent tooltip_elemento'>@<span itemprop='author'>" + servicio.comentario.autor + "</span> (<span itemprop='dateCreated'>" + servicio.comentario.fecha + "</span>)</p>";
 				el.append("<div class='col-xs-12' itemscope itemtype='http://schema.org/Service'>"+
 							"<h4 class='col-xs-12 titUpdate well'>"+
 								"<i class='col-xs-1 fa fa-info-circle' aria-hidden='true'></i>"+
@@ -265,7 +266,7 @@ $(function(){
 							"<a class='col-xs-3 col-xs-offset-1 btn btn-success unoycuarto'"+
 								" itemscope itemtype='http://schema.org/PriceSpecification' href='/index.php?r=ventas/addcart&id_servicio=" + servicio.id + "' title='Añadir al pedido: " + servicio.descripcion + "'><span itemprop='minimumPaymentDue'>"+
 								servicio.precio + " €</span> <i class='fa fa-cart-plus unoycuarto' aria-hidden='true'> </i></a>"+
-							"<p class='col-xs-12 textComent' itemprop='review'>" + cmtr + "<p>"+
+							"<p class='col-xs-12 textComent' itemprop='review'>" + cmtr + "</p>"+
 							"<p class='col-xs-12 textAdicServ'>" +
 									"<i class='fa fa-clock-o' aria-hidden='true'></i>"+
 									" Este servicio tiene una duración aproximada de " + servicio.duracion + " " +
@@ -297,6 +298,19 @@ $(function(){
 					$('.captionImgDet').addClass('captImgDetHovHij');
 				}, function() {
 					$('.captionImgDet').removeClass('captImgDetHovHij');
+				});
+
+				$('.userComent').hover( function (e) {
+					var idProfData = $(this).attr('data-id');
+					$.post('index.php?r=profile/datosprofile&id=' + idProfData, function(data) {
+						profData = jQuery.parseJSON(data);
+						var aut = (profData.gender == 'Mujer') ? 'Autora' : 'Autor';
+						textoTooltip = "<div class='col-xs-4'><img src='" + profData.img + "' class='imgPerfil-sm img-circle img-thumbnail' /></div>" +
+									   "<div class='col-xs-8 middle'><p class='unoycuarto'>" + aut + " del comentario</p><p>" + profData.nombreFull + "<br/>" + profData.gender + " (" + profData.pais + ")</p></div>";
+					    $('.userComent').append('<div class="tooltiptext">' + textoTooltip + '</div>').children('.tooltip').show();
+				    });
+				}, function() {
+					$('.tooltiptext').remove();
 				});
 
 				// MUESTRO LA IMAGEN

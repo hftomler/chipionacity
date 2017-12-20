@@ -17,6 +17,7 @@ use common\models\Provincia;
 use common\models\Municipio;
 use yii\web\UploadedFile;
 use backend\models\ImagenProfile;
+use yii\helpers\Json;
 
 /**
  * ProfileController implements the CRUD actions for Profile model.
@@ -235,7 +236,7 @@ class ProfileController extends Controller {
     }
 
     public function actionListamuni($id) {
-        $contMunicipios = Municipio::find()->where(['provincia_id' => $id]) ->count();
+        $contMunicipios = Municipio::find()->where(['provincia_id' => $id])->count();
         $municipios = Municipio::find()->where(['provincia_id' => $id])->all();
         ArrayHelper::multisort($municipios, 'nombre_municipio', SORT_ASC);
         if ($contMunicipios >0) {
@@ -245,6 +246,16 @@ class ProfileController extends Controller {
         } else {
             echo "<option> -- </option>";
         }
+    }
+
+    public function actionDatosprofile($id) {
+        $prof = Profile::find()->where(['id' => $id])->one();
+        $profDat = [];
+        $profDat['nombreFull'] = $prof->nombre . ' ' . $prof->apellidos;
+        $profDat['img'] = ImagenProfile::getLastImg($id);
+        $profDat['gender'] = $prof->genderName;
+        $profDat['pais'] = $prof->nombrePais;
+        return Json::encode($profDat);
     }
 
     /**
